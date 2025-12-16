@@ -86,16 +86,16 @@ export default function AnimationsPage() {
     };
 
     return (
-        <div className="min-h-screen">
+        <div className="min-h-screen bg-[var(--background)]">
             <main className="container mx-auto px-4 sm:px-8 py-8">
                 <div className="max-w-7xl mx-auto">
                     {/* Hero */}
-                    <div className="pb-8 border-b border-border-dark mb-12 flex flex-col md:flex-row md:items-end justify-between gap-4">
+                    <div className="pb-8 border-b border-[var(--border)] mb-12 flex flex-col md:flex-row md:items-end justify-between gap-4">
                         <div>
-                            <h1 className="text-4xl lg:text-5xl font-black text-white tracking-tight mb-4">
+                            <h1 className="text-4xl lg:text-5xl font-black text-[var(--foreground)] tracking-tight mb-4">
                                 Biblioteca de Motion
                             </h1>
-                            <p className="text-text-secondary text-lg max-w-3xl">
+                            <p className="text-[var(--text-secondary)] text-lg max-w-3xl">
                                 Padrões de animação padronizados usando Framer Motion. Use-os para dar vida à interface mantendo performance e consistência.
                             </p>
                         </div>
@@ -111,8 +111,8 @@ export default function AnimationsPage() {
                     <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
                         {/* Basic Transitions */}
                         <section className="space-y-8">
-                            <h2 className="text-2xl font-bold flex items-center gap-3">
-                                <span className="p-1.5 rounded bg-surface-dark border border-border-dark text-primary material-symbols-outlined">
+                            <h2 className="text-2xl font-bold flex items-center gap-3 text-[var(--foreground)]">
+                                <span className="p-1.5 rounded bg-[var(--surface)] border border-[var(--border)] text-primary material-symbols-outlined">
                                     animation
                                 </span>
                                 Animações de Entrada
@@ -120,8 +120,8 @@ export default function AnimationsPage() {
 
                             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                                 {/* Fade In */}
-                                <div className="bg-surface-dark border border-border-dark rounded-xl p-6 flex flex-col items-center justify-center min-h-[200px]">
-                                    <div className="text-xs text-text-secondary font-mono mb-4">fadeIn</div>
+                                <div className="bg-[var(--surface)] border border-[var(--border)] rounded-xl p-6 flex flex-col items-center justify-center min-h-[200px]">
+                                    <div className="text-xs text-[var(--text-secondary)] font-mono mb-4">fadeIn</div>
                                     <AnimatePresence mode="wait">
                                         <motion.div
                                             key={`fade-${trigger}`}
@@ -134,8 +134,8 @@ export default function AnimationsPage() {
                                 </div>
 
                                 {/* Fade In Up */}
-                                <div className="bg-surface-dark border border-border-dark rounded-xl p-6 flex flex-col items-center justify-center min-h-[200px]">
-                                    <div className="text-xs text-text-secondary font-mono mb-4">fadeInUp</div>
+                                <div className="bg-[var(--surface)] border border-[var(--border)] rounded-xl p-6 flex flex-col items-center justify-center min-h-[200px]">
+                                    <div className="text-xs text-[var(--text-secondary)] font-mono mb-4">fadeInUp</div>
                                     <AnimatePresence mode="wait">
                                         <motion.div
                                             key={`fadeup-${trigger}`}
@@ -148,8 +148,8 @@ export default function AnimationsPage() {
                                 </div>
 
                                 {/* Scale In */}
-                                <div className="bg-surface-dark border border-border-dark rounded-xl p-6 flex flex-col items-center justify-center min-h-[200px]">
-                                    <div className="text-xs text-text-secondary font-mono mb-4">scaleIn</div>
+                                <div className="bg-[var(--surface)] border border-[var(--border)] rounded-xl p-6 flex flex-col items-center justify-center min-h-[200px]">
+                                    <div className="text-xs text-[var(--text-secondary)] font-mono mb-4">scaleIn</div>
                                     <AnimatePresence mode="wait">
                                         <motion.div
                                             key={`scale-${trigger}`}
@@ -162,8 +162,8 @@ export default function AnimationsPage() {
                                 </div>
 
                                 {/* Slide Right */}
-                                <div className="bg-surface-dark border border-border-dark rounded-xl p-6 flex flex-col items-center justify-center min-h-[200px]">
-                                    <div className="text-xs text-text-secondary font-mono mb-4">slideInRight</div>
+                                <div className="bg-[var(--surface)] border border-[var(--border)] rounded-xl p-6 flex flex-col items-center justify-center min-h-[200px]">
+                                    <div className="text-xs text-[var(--text-secondary)] font-mono mb-4">slideInRight</div>
                                     <AnimatePresence mode="wait">
                                         <motion.div
                                             key={`slide-${trigger}`}
@@ -177,12 +177,12 @@ export default function AnimationsPage() {
                             </div>
 
                             {/* Code Snippet */}
-                            <div className="bg-surface-dark border border-border-dark rounded-xl overflow-hidden mt-6">
-                                <div className="flex items-center justify-between px-4 py-3 border-b border-border-dark bg-background-dark/50">
-                                    <span className="text-xs font-bold text-text-secondary">Uso Básico (React)</span>
+                            <div className="bg-[var(--surface)] border border-[var(--border)] rounded-xl overflow-hidden mt-6">
+                                <div className="flex items-center justify-between px-4 py-3 border-b border-[var(--border)] bg-[var(--background)]/50">
+                                    <span className="text-xs font-bold text-[var(--text-secondary)]">Uso Básico (React)</span>
                                     <button
                                         onClick={() => copyCode(CODE_SNIPPETS.fadeInUp, 'basic')}
-                                        className="text-xs flex items-center gap-1.5 text-text-secondary hover:text-white transition-colors"
+                                        className="text-xs flex items-center gap-1.5 text-[var(--text-secondary)] hover:text-[var(--foreground)] transition-colors"
                                     >
                                         {copied === 'basic' ? <Check size={14} className="text-emerald-500" /> : <Copy size={14} />}
                                         {copied === 'basic' ? 'Copiado' : 'Copiar'}
@@ -196,14 +196,14 @@ export default function AnimationsPage() {
 
                         {/* Staggered */}
                         <section className="space-y-8">
-                            <h2 className="text-2xl font-bold flex items-center gap-3">
-                                <span className="p-1.5 rounded bg-surface-dark border border-border-dark text-primary material-symbols-outlined">
+                            <h2 className="text-2xl font-bold flex items-center gap-3 text-[var(--foreground)]">
+                                <span className="p-1.5 rounded bg-[var(--surface)] border border-[var(--border)] text-primary material-symbols-outlined">
                                     checklist
                                 </span>
                                 Listas Escalonadas (Staggered)
                             </h2>
 
-                            <div className="bg-surface-dark border border-border-dark rounded-xl p-8 min-h-[416px] flex flex-col justify-center">
+                            <div className="bg-[var(--surface)] border border-[var(--border)] rounded-xl p-8 min-h-[416px] flex flex-col justify-center">
                                 <AnimatePresence mode="wait">
                                     <motion.div
                                         key={`stagger-${trigger}`}
@@ -216,10 +216,10 @@ export default function AnimationsPage() {
                                             <motion.div
                                                 key={i}
                                                 variants={VARIANTS.fadeInUp}
-                                                className="h-14 bg-background-dark border border-border-dark rounded-lg flex items-center px-4 gap-4"
+                                                className="h-14 bg-[var(--background)] border border-[var(--border)] rounded-lg flex items-center px-4 gap-4"
                                             >
-                                                <div className="size-8 rounded-full bg-surface-dark border border-border-dark/50" />
-                                                <div className="h-2 w-24 bg-surface-dark rounded-full" />
+                                                <div className="size-8 rounded-full bg-[var(--surface)] border border-[var(--border)]/50" />
+                                                <div className="h-2 w-24 bg-[var(--surface)] rounded-full" />
                                             </motion.div>
                                         ))}
                                     </motion.div>
@@ -227,12 +227,12 @@ export default function AnimationsPage() {
                             </div>
 
                             {/* Code Snippet */}
-                            <div className="bg-surface-dark border border-border-dark rounded-xl overflow-hidden mt-6">
-                                <div className="flex items-center justify-between px-4 py-3 border-b border-border-dark bg-background-dark/50">
-                                    <span className="text-xs font-bold text-text-secondary">Escalonar Filhos</span>
+                            <div className="bg-[var(--surface)] border border-[var(--border)] rounded-xl overflow-hidden mt-6">
+                                <div className="flex items-center justify-between px-4 py-3 border-b border-[var(--border)] bg-[var(--background)]/50">
+                                    <span className="text-xs font-bold text-[var(--text-secondary)]">Escalonar Filhos</span>
                                     <button
                                         onClick={() => copyCode(CODE_SNIPPETS.stagger, 'stagger')}
-                                        className="text-xs flex items-center gap-1.5 text-text-secondary hover:text-white transition-colors"
+                                        className="text-xs flex items-center gap-1.5 text-[var(--text-secondary)] hover:text-[var(--foreground)] transition-colors"
                                     >
                                         {copied === 'stagger' ? <Check size={14} className="text-emerald-500" /> : <Copy size={14} />}
                                         {copied === 'stagger' ? 'Copiado' : 'Copiar'}

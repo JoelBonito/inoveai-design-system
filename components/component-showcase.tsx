@@ -1,0 +1,236 @@
+"use client";
+
+import { useState, useEffect, ReactNode } from "react";
+import { Sun, Moon, Code, Copy, Check } from "lucide-react";
+import { ShowcaseThemeProvider } from "./showcase-theme-context";
+
+interface ComponentShowcaseProps {
+    /** Título da seção */
+    title: string;
+    /** Descrição opcional */
+    description?: string;
+    /** Componente(s) a serem exibidos */
+    children: ReactNode;
+    /** Código HTML/TSX para exibir no modal */
+    code: string;
+    /** Se deve permitir toggle de tema local */
+    allowThemeToggle?: boolean;
+    /** Classe adicional para o container de preview */
+    previewClassName?: string;
+}
+
+/**
+ * ComponentShowcase - Container de exibição de componentes do Design System
+ * 
+ * Funcionalidades:
+ * - Preview do componente em tempo real
+ * - Toggle Dark/Light mode local (independente do site)
+ * - Botão para ver código HTML em modal
+ * - Estilos adaptativos baseados no tema
+ * 
+ * @example
+ * <ComponentShowcase title="Variantes" code={buttonCode}>
+ *   <Button variant="primary">Primary</Button>
+ *   <Button variant="secondary">Secondary</Button>
+ * </ComponentShowcase>
+ */
+export function ComponentShowcase({
+    title,
+    description,
+    children,
+    code,
+    allowThemeToggle = true,
+    previewClassName = "",
+}: ComponentShowcaseProps) {
+    const [isLocalDark, setIsLocalDark] = useState(false);
+    const [showCode, setShowCode] = useState(false);
+    const [copied, setCopied] = useState(false);
+
+    // Sync with global theme and watch for changes
+    // Sync with global theme and watch for changes
+    useEffect(() => {
+        const checkTheme = () => {
+            // Check both html and body for robustness
+            const isDark = document.documentElement.classList.contains('dark') ||
+                document.body.classList.contains('dark');
+            setIsLocalDark(isDark);
+        };
+
+        // Check immediately
+        checkTheme();
+
+        // Double check after verify layout hydration
+        const timer = setTimeout(checkTheme, 100);
+
+        // Watch for changes to the html class attribute
+        const observer = new MutationObserver(() => {
+            checkTheme();
+        });
+
+        observer.observe(document.documentElement, {
+            attributes: true,
+            attributeFilter: ['class']
+        });
+
+        // Also observe body just in case
+        observer.observe(document.body, {
+            attributes: true,
+            attributeFilter: ['class']
+        });
+
+        return () => {
+            observer.disconnect();
+            clearTimeout(timer);
+        };
+    }, []);
+
+    const handleCopy = async () => {
+        await navigator.clipboard.writeText(code);
+        setCopied(true);
+        setTimeout(() => setCopied(false), 2000);
+    };
+
+    return (
+        <div className="flex flex-col gap-4">
+            {/* Header */}
+            <div className="flex items-center justify-between">
+                <div>
+                    <h3 className="text-xl font-bold text-[var(--foreground)]">
+                        {title}
+                    </h3>
+                    {description && (
+                        <p className="text-sm text-[var(--text-secondary)] mt-1">
+                            {description}
+                        </p>
+                    )}
+                </div>
+
+                {/* Actions */}
+                <div className="flex items-center gap-2">
+                    {allowThemeToggle && (
+                        <button
+                            onClick={() => setIsLocalDark(!isLocalDark)}
+                            className="flex items-center gap-2 px-3 py-1.5 rounded-md text-sm font-medium transition-all
+                                       bg-[var(--surface)] border border-[var(--border)] 
+                                       text-[var(--text-secondary)] hover:text-[var(--foreground)]
+                                       hover:border-primary/50"
+                            title={isLocalDark ? "Mudar para Light Mode" : "Mudar para Dark Mode"}
+                        >
+                            {isLocalDark ? (
+                                <>
+                                    <Sun size={16} />
+                                    <span className="hidden sm:inline">Light</span>
+                                </>
+                            ) : (
+                                <>
+                                    <Moon size={16} />
+                                    <span className="hidden sm:inline">Dark</span>
+                                </>
+                            )}
+                        </button>
+                    )}
+
+                    <button
+                        onClick={() => setShowCode(!showCode)}
+                        className={`flex items-center gap-2 px-3 py-1.5 rounded-md text-sm font-medium transition-all
+                                   border ${showCode
+                                ? 'bg-primary text-white border-primary'
+                                : 'bg-[var(--surface)] border-[var(--border)] text-[var(--text-secondary)] hover:text-[var(--foreground)] hover:border-primary/50'
+                            }`}
+                    >
+                        <Code size={16} />
+                        <span className="hidden sm:inline">Código</span>
+                    </button>
+                </div>
+            </div>
+
+            {/* Preview Container */}
+            <div
+                className={`
+                    relative rounded-xl border overflow-hidden transition-colors
+                    ${isLocalDark
+                        ? 'bg-[#111118] border-[#282839]'
+                        : 'bg-[#f6f6f8] border-[#e2e2e8]'
+                    }
+                `}
+            >
+                {/* Grid Pattern Background */}
+                <div
+                    className="absolute inset-0 opacity-[0.03] pointer-events-none"
+                    style={{
+                        backgroundImage: `radial-gradient(${isLocalDark ? '#ffffff' : '#000000'} 1px, transparent 1px)`,
+                        backgroundSize: '20px 20px',
+                    }}
+                />
+
+                {/* Component Preview Area */}
+                <div className={`relative z-10 p-8 min-h-[200px] flex items-center justify-center ${previewClassName}`}>
+                    {/* Theme Provider for children - allows them to use useShowcaseTheme() */}
+                    <ShowcaseThemeProvider isDark={isLocalDark}>
+                        <div className={`
+                            flex flex-wrap items-center justify-center gap-4
+                            ${isLocalDark ? 'text-white' : 'text-[#111118]'}
+                        `}>
+                            {children}
+                        </div>
+                    </ShowcaseThemeProvider>
+                </div>
+
+                {/* Theme Indicator */}
+                <div className={`
+                    absolute top-3 right-3 px-2 py-1 rounded text-[10px] font-bold uppercase tracking-wider
+                    ${isLocalDark
+                        ? 'bg-white/10 text-white/50'
+                        : 'bg-black/5 text-black/40'
+                    }
+                `}>
+                    {isLocalDark ? 'Dark Mode' : 'Light Mode'}
+                </div>
+            </div>
+
+            {/* Code Panel (Expandable) */}
+            {showCode && (
+                <div className="rounded-xl border border-[var(--border)] bg-[#0d0d12] overflow-hidden">
+                    {/* Code Header */}
+                    <div className="flex items-center justify-between px-4 py-3 bg-[#1a1a24] border-b border-[#282839]">
+                        <div className="flex items-center gap-2">
+                            <div className="flex gap-1.5">
+                                <div className="size-3 rounded-full bg-[#ff5f57]" />
+                                <div className="size-3 rounded-full bg-[#febc2e]" />
+                                <div className="size-3 rounded-full bg-[#28c840]" />
+                            </div>
+                            <span className="ml-3 text-xs text-[#6b6b80] font-mono">
+                                component.html
+                            </span>
+                        </div>
+
+                        <button
+                            onClick={handleCopy}
+                            className="flex items-center gap-2 px-3 py-1.5 rounded-md text-sm font-medium transition-all
+                                       bg-[#282839] text-[#9d9db9] hover:text-white hover:bg-[#3a3a4a]"
+                        >
+                            {copied ? (
+                                <>
+                                    <Check size={14} className="text-green-400" />
+                                    <span>Copiado!</span>
+                                </>
+                            ) : (
+                                <>
+                                    <Copy size={14} />
+                                    <span>Copiar</span>
+                                </>
+                            )}
+                        </button>
+                    </div>
+
+                    {/* Code Content */}
+                    <div className="p-6 overflow-x-auto max-h-[400px] overflow-y-auto custom-scrollbar">
+                        <pre className="text-sm text-[#e4e4e7] font-mono leading-relaxed">
+                            <code>{code}</code>
+                        </pre>
+                    </div>
+                </div>
+            )}
+        </div>
+    );
+}

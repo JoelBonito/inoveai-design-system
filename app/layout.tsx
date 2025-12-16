@@ -51,7 +51,7 @@ export default function RootLayout({
         <CommandMenu components={components} />
 
         {/* Sidebar Navigation */}
-        <SiteSidebar />
+        <SiteSidebar components={components} />
 
         {/* Main Scroll Content */}
         <main className="flex-1 overflow-y-auto h-full pt-14 lg:pt-0 lg:pl-64">

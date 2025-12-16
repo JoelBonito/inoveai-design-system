@@ -7,21 +7,21 @@ import { ArrowLeft, RefreshCw, Code2, MonitorPlay, Loader2 } from 'lucide-react'
 // Import Monaco Editor - will only render after client mount
 import Editor from '@monaco-editor/react';
 
-const DEFAULT_CODE = `<div className="p-8 bg-surface-dark rounded-xl border border-border-dark max-w-sm mx-auto shadow-2xl">
+const DEFAULT_CODE = `<div className="p-8 bg-[var(--surface)] rounded-xl border border-[var(--border)] max-w-sm mx-auto shadow-2xl">
   <div className="flex flex-col gap-4">
     <div className="flex items-center gap-4">
       <div className="size-12 rounded-full bg-primary flex items-center justify-center text-white text-xl font-bold">
         JD
       </div>
       <div>
-        <h3 className="text-white font-bold text-lg">John Doe</h3>
-        <p className="text-text-secondary text-sm">Product Designer</p>
+        <h3 className="text-[var(--foreground)] font-bold text-lg">John Doe</h3>
+        <p className="text-[var(--text-secondary)] text-sm">Product Designer</p>
       </div>
     </div>
     
-    <div className="h-px bg-border-dark w-full" />
+    <div className="h-px bg-[var(--border)] w-full" />
     
-    <p className="text-white text-sm leading-relaxed">
+    <p className="text-[var(--foreground)] text-sm leading-relaxed">
       Passionate about building accessible and beautiful user interfaces. 
       Love using Tailwind CSS and Next.js!
     </p>
@@ -30,7 +30,7 @@ const DEFAULT_CODE = `<div className="p-8 bg-surface-dark rounded-xl border bord
       <button className="flex-1 bg-primary hover:bg-primary/90 text-white font-bold py-2 rounded-lg transition-colors text-sm">
         Follow
       </button>
-      <button className="px-4 py-2 border border-border-dark text-white rounded-lg hover:bg-white/5 transition-colors text-sm font-medium">
+      <button className="px-4 py-2 border border-[var(--border)] text-[var(--foreground)] rounded-lg hover:bg-[var(--foreground)]/5 transition-colors text-sm font-medium">
         Message
       </button>
     </div>

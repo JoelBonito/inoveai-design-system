@@ -61,15 +61,15 @@ export default function AccessibilityPage() {
     }, [fg, bg]);
 
     return (
-        <div className="min-h-screen bg-background-dark text-white">
+        <div className="min-h-screen bg-[var(--background)] text-[var(--foreground)]">
             <main className="container mx-auto px-4 sm:px-8 py-8">
                 <div className="max-w-7xl mx-auto">
                     {/* Hero */}
-                    <div className="pb-8 border-b border-border-dark mb-12">
-                        <h1 className="text-5xl font-black text-white tracking-tight mb-4">
+                    <div className="pb-8 border-b border-[var(--border)] mb-12">
+                        <h1 className="text-5xl font-black text-[var(--foreground)] tracking-tight mb-4">
                             Acessibilidade (a11y)
                         </h1>
-                        <p className="text-text-secondary text-lg max-w-3xl">
+                        <p className="text-[var(--text-secondary)] text-lg max-w-3xl">
                             Ferramentas e diretrizes para garantir que nossa interface seja utilizável por todos.
                             Conformidade com WCAG 2.1 AA torna a web mais inclusiva.
                         </p>
@@ -78,18 +78,18 @@ export default function AccessibilityPage() {
                     <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
                         {/* Contrast Checker */}
                         <section className="space-y-6">
-                            <h2 className="text-2xl font-bold flex items-center gap-3">
-                                <span className="p-1.5 rounded bg-surface-dark border border-border-dark text-primary material-symbols-outlined">
+                            <h2 className="text-2xl font-bold flex items-center gap-3 text-[var(--foreground)]">
+                                <span className="p-1.5 rounded bg-[var(--surface)] border border-[var(--border)] text-primary material-symbols-outlined">
                                     contrast
                                 </span>
                                 Verificador de Contraste
                             </h2>
 
-                            <div className="bg-surface-dark border border-border-dark rounded-xl p-8">
+                            <div className="bg-[var(--surface)] border border-[var(--border)] rounded-xl p-8">
                                 <div className="grid grid-cols-2 gap-8 mb-8">
                                     {/* Background Picker */}
                                     <div className="space-y-2">
-                                        <label className="text-sm font-bold text-text-secondary">Cor de Fundo</label>
+                                        <label className="text-sm font-bold text-[var(--text-secondary)]">Cor de Fundo</label>
                                         <div className="flex items-center gap-3">
                                             <input
                                                 type="color"
@@ -101,14 +101,14 @@ export default function AccessibilityPage() {
                                                 type="text"
                                                 value={bg}
                                                 onChange={(e) => setBg(e.target.value)}
-                                                className="bg-background-dark border border-border-dark rounded px-3 py-2 text-white font-mono w-full"
+                                                className="bg-[var(--background)] border border-[var(--border)] rounded px-3 py-2 text-[var(--foreground)] font-mono w-full"
                                             />
                                         </div>
                                     </div>
 
                                     {/* Foreground Picker */}
                                     <div className="space-y-2">
-                                        <label className="text-sm font-bold text-text-secondary">Cor do Texto</label>
+                                        <label className="text-sm font-bold text-[var(--text-secondary)]">Cor do Texto</label>
                                         <div className="flex items-center gap-3">
                                             <input
                                                 type="color"
@@ -120,7 +120,7 @@ export default function AccessibilityPage() {
                                                 type="text"
                                                 value={fg}
                                                 onChange={(e) => setFg(e.target.value)}
-                                                className="bg-background-dark border border-border-dark rounded px-3 py-2 text-white font-mono w-full"
+                                                className="bg-[var(--background)] border border-[var(--border)] rounded px-3 py-2 text-[var(--foreground)] font-mono w-full"
                                             />
                                         </div>
                                     </div>
@@ -139,28 +139,28 @@ export default function AccessibilityPage() {
 
                                 {/* Results */}
                                 <div className="grid grid-cols-2 gap-4">
-                                    <div className="p-4 bg-background-dark/50 rounded-lg text-center">
-                                        <div className="text-text-secondary text-xs font-bold uppercase tracking-wider mb-2">Razão de Contraste</div>
+                                    <div className="p-4 bg-[var(--background)]/50 rounded-lg text-center">
+                                        <div className="text-[var(--text-secondary)] text-xs font-bold uppercase tracking-wider mb-2">Razão de Contraste</div>
                                         <div className={`text-4xl font-black ${ratio < 3 ? 'text-red-500' : ratio < 4.5 ? 'text-yellow-500' : 'text-emerald-500'}`}>
                                             {ratio}:1
                                         </div>
                                     </div>
 
                                     <div className="space-y-2">
-                                        <div className="flex items-center justify-between p-2 rounded bg-background-dark/30">
-                                            <span className="text-sm text-text-secondary">AA Normal (4.5:1)</span>
+                                        <div className="flex items-center justify-between p-2 rounded bg-[var(--background)]/30">
+                                            <span className="text-sm text-[var(--text-secondary)]">AA Normal (4.5:1)</span>
                                             {checkConformance(ratio, 'AA', 'normal')
                                                 ? <Check className="text-emerald-500" size={18} />
                                                 : <XCircle className="text-red-500" size={18} />}
                                         </div>
-                                        <div className="flex items-center justify-between p-2 rounded bg-background-dark/30">
-                                            <span className="text-sm text-text-secondary">AA Grande (3:1)</span>
+                                        <div className="flex items-center justify-between p-2 rounded bg-[var(--background)]/30">
+                                            <span className="text-sm text-[var(--text-secondary)]">AA Grande (3:1)</span>
                                             {checkConformance(ratio, 'AA', 'large')
                                                 ? <Check className="text-emerald-500" size={18} />
                                                 : <XCircle className="text-red-500" size={18} />}
                                         </div>
-                                        <div className="flex items-center justify-between p-2 rounded bg-background-dark/30">
-                                            <span className="text-sm text-text-secondary">AAA Normal (7:1)</span>
+                                        <div className="flex items-center justify-between p-2 rounded bg-[var(--background)]/30">
+                                            <span className="text-sm text-[var(--text-secondary)]">AAA Normal (7:1)</span>
                                             {checkConformance(ratio, 'AAA', 'normal')
                                                 ? <Check className="text-emerald-500" size={18} />
                                                 : <XCircle className="text-red-500" size={18} />}
@@ -172,8 +172,8 @@ export default function AccessibilityPage() {
 
                         {/* Checklist */}
                         <section className="space-y-6">
-                            <h2 className="text-2xl font-bold flex items-center gap-3">
-                                <span className="p-1.5 rounded bg-surface-dark border border-border-dark text-primary material-symbols-outlined">
+                            <h2 className="text-2xl font-bold flex items-center gap-3 text-[var(--foreground)]">
+                                <span className="p-1.5 rounded bg-[var(--surface)] border border-[var(--border)] text-primary material-symbols-outlined">
                                     checklist
                                 </span>
                                 Checklist WCAG 2.1
@@ -181,8 +181,8 @@ export default function AccessibilityPage() {
 
                             <div className="space-y-6">
                                 {A11Y_CHECKLIST.map((category) => (
-                                    <div key={category.id} className="bg-surface-dark border border-border-dark rounded-xl overflow-hidden">
-                                        <div className="bg-background-dark/50 border-b border-border-dark px-6 py-3 font-bold text-white flex items-center gap-2">
+                                    <div key={category.id} className="bg-[var(--surface)] border border-[var(--border)] rounded-xl overflow-hidden">
+                                        <div className="bg-[var(--background)]/50 border-b border-[var(--border)] px-6 py-3 font-bold text-[var(--foreground)] flex items-center gap-2">
                                             <div className="size-2 rounded-full bg-primary" />
                                             {category.category}
                                         </div>
@@ -193,7 +193,7 @@ export default function AccessibilityPage() {
                                                         {item.critical ? <AlertTriangle size={12} /> : <Check size={12} />}
                                                     </div>
                                                     <div>
-                                                        <p className="text-sm text-white">{item.text}</p>
+                                                        <p className="text-sm text-[var(--foreground)]">{item.text}</p>
                                                         {item.critical && <span className="text-[10px] text-red-400 font-bold uppercase tracking-wider">Crítico</span>}
                                                     </div>
                                                 </div>
