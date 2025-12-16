@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Autocomplete Search (Dark Mode)</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#1337ec",
+                        "background-light": "#f6f6f8",
+                        "background-dark": "#111422",
+                        "surface-dark": "#1c2136",
+                        "border-dark": "#232948",
+                        "text-muted": "#929bc9",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"]
+                    },
+                    borderRadius: { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" },
+                },
+            },
+        }
+    </script>
+<style>
+        .scrollbar-hide::-webkit-scrollbar {
+            display: none;
+        }
+        .glass-panel {
+            background: rgba(28, 33, 54, 0.95);
+            backdrop-filter: blur(10px);
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-white font-display overflow-hidden">
+<div class="flex h-screen w-full flex-row overflow-hidden">
+<!-- Sidebar -->
+<aside class="hidden w-64 flex-col border-r border-border-dark bg-background-dark p-4 lg:flex">
+<div class="flex items-center gap-3 mb-8 px-2">
+<div class="flex items-center justify-center rounded-lg bg-primary/20 p-2 text-primary">
+<span class="material-symbols-outlined">smart_toy</span>
+</div>
+<div class="flex flex-col">
+<h1 class="text-base font-bold leading-tight">Nexus Agency</h1>
+<p class="text-text-muted text-xs font-medium">Enterprise Plan</p>
+</div>
+</div>
+<nav class="flex flex-1 flex-col gap-2">
+<a class="flex items-center gap-3 rounded-lg px-3 py-2 text-text-muted hover:bg-surface-dark hover:text-white transition-colors" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="text-sm font-medium">Dashboard</span>
+</a>
+<a class="flex items-center gap-3 rounded-lg px-3 py-2 text-text-muted hover:bg-surface-dark hover:text-white transition-colors" href="#">
+<span class="material-symbols-outlined">folder_open</span>
+<span class="text-sm font-medium">Projects</span>
+</a>
+<a class="flex items-center gap-3 rounded-lg bg-surface-dark px-3 py-2 text-white shadow-sm ring-1 ring-white/10" href="#">
+<span class="material-symbols-outlined filled">database</span>
+<span class="text-sm font-medium">Datasets</span>
+</a>
+<a class="flex items-center gap-3 rounded-lg px-3 py-2 text-text-muted hover:bg-surface-dark hover:text-white transition-colors" href="#">
+<span class="material-symbols-outlined">bar_chart</span>
+<span class="text-sm font-medium">Analytics</span>
+</a>
+<a class="flex items-center gap-3 rounded-lg px-3 py-2 text-text-muted hover:bg-surface-dark hover:text-white transition-colors" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span class="text-sm font-medium">Settings</span>
+</a>
+</nav>
+<div class="mt-auto border-t border-border-dark pt-4">
+<div class="flex items-center gap-3 px-2">
+<div class="h-8 w-8 rounded-full bg-cover bg-center" data-alt="User profile avatar gradient" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAQqS3ce1rLBiHh4CEGB9KIVFAoHP1iqRFkXkEuOY2HhP_EMAvcyMnWeCQ4RAb5TFpBtPlaSnMhyiwSN9cCdbOiFR-uwmklwqFCGIOE7D_rwGssy8hp_m0bt1uCi1bn-BgnkJ4kgoC0n2Z-R7LyelLpJsnpnlq37-W3vW5u9zxHtCobOZc2r7oJWqOxRg4fLIC2Gwx0Hdx-26RQSpErn0UevQcMXb8tr7b2vAR4-S9SfjuLtkgXPPT_gNDUi3gxm-aOpKN1Sx8_IWg');"></div>
+<div class="flex flex-col">
+<p class="text-sm font-medium text-white">Alex Morgan</p>
+<p class="text-xs text-text-muted">alex@nexus.ai</p>
+</div>
+</div>
+</div>
+</aside>
+<!-- Main Content -->
+<div class="flex flex-1 flex-col h-full overflow-hidden relative">
+<!-- Top Header -->
+<header class="flex h-16 items-center justify-between border-b border-border-dark bg-background-dark px-8">
+<h2 class="text-lg font-semibold tracking-tight text-white">Data Explorer</h2>
+<div class="flex items-center gap-4">
+<button class="flex h-9 w-9 items-center justify-center rounded-lg border border-border-dark bg-surface-dark text-text-muted transition-colors hover:text-white">
+<span class="material-symbols-outlined text-[20px]">notifications</span>
+</button>
+<button class="flex h-9 w-9 items-center justify-center rounded-lg border border-border-dark bg-surface-dark text-text-muted transition-colors hover:text-white">
+<span class="material-symbols-outlined text-[20px]">help</span>
+</button>
+</div>
+</header>
+<!-- Main Scroll Area -->
+<main class="flex-1 overflow-y-auto bg-background-dark p-8 md:p-12 lg:p-16">
+<div class="mx-auto max-w-3xl flex flex-col items-center justify-start pt-10">
+<!-- Search Component Container -->
+<div class="w-full relative group">
+<!-- Input Field -->
+<div class="relative z-30 flex w-full items-center rounded-t-xl bg-surface-dark ring-1 ring-border-dark focus-within:ring-2 focus-within:ring-primary shadow-2xl transition-all duration-200" style="border-bottom-left-radius: 0; border-bottom-right-radius: 0;">
+<div class="flex h-14 w-14 items-center justify-center text-text-muted">
+<span class="material-symbols-outlined">search</span>
+</div>
+<input class="h-14 w-full bg-transparent border-none p-0 text-base text-white placeholder-text-muted focus:ring-0" placeholder="Search databases, models, or projects..." type="text" value="Neural network optimization"/>
+<!-- Loading Indicator / Clear -->
+<div class="flex items-center pr-4 gap-3">
+<div class="flex items-center gap-1.5 rounded bg-[#232948] px-2 py-1 text-xs font-medium text-text-muted">
+<span class="material-symbols-outlined text-[14px]">keyboard_command_key</span>
+<span>K</span>
+</div>
+<button class="text-text-muted hover:text-white">
+<span class="material-symbols-outlined">close</span>
+</button>
+</div>
+<!-- Progress Bar (Integrated at bottom of input) -->
+<div class="absolute bottom-0 left-0 h-[2px] w-full bg-[#232948]">
+<div class="h-full w-1/3 bg-primary animate-pulse"></div>
+</div>
+</div>
+<!-- Dropdown Results -->
+<div class="absolute left-0 top-14 z-20 w-full rounded-b-xl border border-t-0 border-border-dark bg-surface-dark shadow-2xl overflow-hidden glass-panel">
+<!-- AI Suggestions Section -->
+<div class="flex flex-col border-b border-border-dark py-2">
+<div class="flex items-center justify-between px-4 py-2">
+<h3 class="flex items-center gap-2 text-xs font-bold tracking-wider text-text-muted uppercase">
+<span class="material-symbols-outlined text-sm text-primary">auto_awesome</span>
+                                        AI Generated Suggestions
+                                    </h3>
+<span class="text-[10px] text-text-muted bg-[#232948] px-1.5 py-0.5 rounded">34ms</span>
+</div>
+<button class="mx-2 flex items-center justify-between rounded-md bg-primary px-3 py-2.5 text-left transition-colors group/item cursor-pointer">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-white/90">model_training</span>
+<div class="flex flex-col">
+<span class="text-sm font-medium text-white">Optimize learning rate for large datasets</span>
+<span class="text-xs text-blue-200">Recommendation based on your recent activity</span>
+</div>
+</div>
+<span class="hidden text-xs font-semibold text-white/80 group-hover/item:block">
+<span class="material-symbols-outlined text-sm align-middle">keyboard_return</span>
+</span>
+</button>
+<button class="mx-2 flex items-center justify-between rounded-md px-3 py-2.5 text-left hover:bg-[#232948] transition-colors group/item cursor-pointer">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-text-muted">account_tree</span>
+<span class="text-sm font-medium text-white/90">Neural architecture search patterns</span>
+</div>
+</button>
+</div>
+<!-- Recent Searches Section -->
+<div class="flex flex-col border-b border-border-dark py-2">
+<h3 class="px-4 py-2 text-xs font-bold tracking-wider text-text-muted uppercase">Recent Searches</h3>
+<button class="mx-2 flex items-center gap-3 rounded-md px-3 py-2 text-left hover:bg-[#232948] transition-colors cursor-pointer group/recent">
+<span class="material-symbols-outlined text-text-muted text-[20px] group-hover/recent:text-white">history</span>
+<span class="text-sm text-text-muted group-hover/recent:text-white">Project Alpha v2 performance</span>
+<span class="ml-auto text-xs text-text-muted/50">2h ago</span>
+</button>
+<button class="mx-2 flex items-center gap-3 rounded-md px-3 py-2 text-left hover:bg-[#232948] transition-colors cursor-pointer group/recent">
+<span class="material-symbols-outlined text-text-muted text-[20px] group-hover/recent:text-white">history</span>
+<span class="text-sm text-text-muted group-hover/recent:text-white">Client: TechCorp deliverables</span>
+<span class="ml-auto text-xs text-text-muted/50">5h ago</span>
+</button>
+</div>
+<!-- Database Results Section -->
+<div class="flex flex-col py-2">
+<h3 class="px-4 py-2 text-xs font-bold tracking-wider text-text-muted uppercase">Database Results</h3>
+<button class="mx-2 flex items-center justify-between rounded-md px-3 py-2.5 text-left hover:bg-[#232948] transition-colors cursor-pointer group/db">
+<div class="flex items-center gap-3 overflow-hidden">
+<div class="flex h-8 w-8 shrink-0 items-center justify-center rounded bg-emerald-500/10 text-emerald-500">
+<span class="material-symbols-outlined text-[18px]">folder</span>
+</div>
+<div class="flex flex-col overflow-hidden">
+<div class="flex items-center gap-2">
+<span class="truncate text-sm font-medium text-white group-hover/db:text-primary transition-colors">Neural_Opt_V4_Final</span>
+<span class="inline-flex items-center rounded-sm bg-[#232948] px-1.5 py-0.5 text-[10px] font-medium text-text-muted border border-white/5">PROJECT</span>
+</div>
+<span class="truncate text-xs text-text-muted">Updated by Sarah J. • 12MB</span>
+</div>
+</div>
+<div class="flex items-center gap-2 opacity-0 group-hover/db:opacity-100 transition-opacity">
+<span class="rounded bg-black/40 px-1.5 py-0.5 text-[10px] text-text-muted">Jump to</span>
+</div>
+</button>
+<button class="mx-2 flex items-center justify-between rounded-md px-3 py-2.5 text-left hover:bg-[#232948] transition-colors cursor-pointer group/db">
+<div class="flex items-center gap-3 overflow-hidden">
+<div class="flex h-8 w-8 shrink-0 items-center justify-center rounded bg-purple-500/10 text-purple-500">
+<span class="material-symbols-outlined text-[18px]">person</span>
+</div>
+<div class="flex flex-col overflow-hidden">
+<div class="flex items-center gap-2">
+<span class="truncate text-sm font-medium text-white group-hover/db:text-primary transition-colors">Dr. Neural Network</span>
+<span class="inline-flex items-center rounded-sm bg-[#232948] px-1.5 py-0.5 text-[10px] font-medium text-text-muted border border-white/5">USER</span>
+</div>
+<span class="truncate text-xs text-text-muted">Lead Researcher • Online</span>
+</div>
+</div>
+</button>
+</div>
+<!-- Footer -->
+<div class="flex items-center justify-between bg-[#15192b] px-4 py-2 text-[11px] text-text-muted border-t border-border-dark">
+<div class="flex gap-4">
+<span class="flex items-center gap-1"><kbd class="font-sans font-semibold">↑↓</kbd> to navigate</span>
+<span class="flex items-center gap-1"><kbd class="font-sans font-semibold">↵</kbd> to select</span>
+<span class="flex items-center gap-1"><kbd class="font-sans font-semibold">esc</kbd> to close</span>
+</div>
+<span class="opacity-60">Nexus Search Engine v2.4</span>
+</div>
+</div>
+</div>
+<!-- Context/Background Data Visuals (Blurred/Faded to show focus on search) -->
+<div class="mt-20 grid w-full grid-cols-1 gap-6 opacity-30 blur-[1px] md:grid-cols-2 lg:grid-cols-3 pointer-events-none select-none">
+<div class="h-40 rounded-xl bg-surface-dark border border-border-dark p-4">
+<div class="h-4 w-1/2 rounded bg-[#232948] mb-4"></div>
+<div class="h-2 w-full rounded bg-[#232948] mb-2"></div>
+<div class="h-2 w-2/3 rounded bg-[#232948] mb-2"></div>
+</div>
+<div class="h-40 rounded-xl bg-surface-dark border border-border-dark p-4">
+<div class="h-4 w-1/2 rounded bg-[#232948] mb-4"></div>
+<div class="flex gap-2 mt-4">
+<div class="h-16 w-full rounded bg-[#232948]"></div>
+<div class="h-16 w-full rounded bg-[#232948]"></div>
+</div>
+</div>
+<div class="h-40 rounded-xl bg-surface-dark border border-border-dark p-4">
+<div class="h-4 w-1/3 rounded bg-[#232948] mb-4"></div>
+<div class="h-20 w-full rounded bg-[#232948]"></div>
+</div>
+</div>
+</div>
+</main>
+</div>
+</div>
+</body></html>

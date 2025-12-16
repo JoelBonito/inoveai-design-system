@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Design Tokens | Style Guide</title>
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;family=Noto+Sans:wght@400;500;700&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#2b2bee",
+                        "background-light": "#f6f6f8",
+                        "background-dark": "#101022",
+                        // Custom utility colors derived from design plan
+                        "surface": "#1c1c27",
+                        "surface-border": "#282839",
+                        "text-secondary": "#9d9db9"
+                    },
+                    fontFamily: {
+                        "display": ["Space Grotesk", "sans-serif"],
+                        "body": ["Noto Sans", "sans-serif"],
+                        "mono": ["JetBrains Mono", "monospace"],
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        body { font-family: "Space Grotesk", "Noto Sans", sans-serif; }
+        .font-mono { font-family: "JetBrains Mono", monospace; }
+        
+        /* IDE-like scrollbar */
+        ::-webkit-scrollbar { width: 8px; height: 8px; }
+        ::-webkit-scrollbar-track { background: #101022; }
+        ::-webkit-scrollbar-thumb { background: #282839; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #3b3b54; }
+    </style>
+</head>
+<body class="bg-background-dark text-white overflow-hidden h-screen flex antialiased selection:bg-primary/30 selection:text-white">
+<!-- Sidebar Navigation -->
+<aside class="w-72 flex flex-col border-r border-surface-border bg-background-dark h-full shrink-0 z-20">
+<!-- Brand / Header -->
+<div class="p-6 flex items-center gap-3 border-b border-surface-border/50">
+<div class="size-10 rounded-lg bg-primary flex items-center justify-center text-white shadow-[0_0_15px_rgba(43,43,238,0.5)]">
+<span class="material-symbols-outlined text-[24px]">token</span>
+</div>
+<div class="flex flex-col">
+<h1 class="text-white text-base font-bold leading-tight tracking-tight">Design System</h1>
+<p class="text-text-secondary text-xs font-mono">v1.0.4-beta</p>
+</div>
+</div>
+<!-- Navigation Links -->
+<nav class="flex-1 overflow-y-auto px-4 py-6 flex flex-col gap-1.5">
+<div class="px-3 pb-2">
+<span class="text-xs font-bold text-text-secondary uppercase tracking-widest">Core</span>
+</div>
+<!-- Active Item -->
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg bg-primary/10 border border-primary/20 text-white group relative overflow-hidden" href="#">
+<div class="absolute left-0 top-0 bottom-0 w-1 bg-primary rounded-r"></div>
+<span class="material-symbols-outlined text-[20px] text-primary">palette</span>
+<span class="text-sm font-medium">Tokens &amp; Theme</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-text-secondary hover:text-white hover:bg-surface transition-all duration-200" href="#">
+<span class="material-symbols-outlined text-[20px]">grid_view</span>
+<span class="text-sm font-medium">Components</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-text-secondary hover:text-white hover:bg-surface transition-all duration-200" href="#">
+<span class="material-symbols-outlined text-[20px]">category</span>
+<span class="text-sm font-medium">Icons &amp; Assets</span>
+</a>
+<div class="px-3 pb-2 pt-6">
+<span class="text-xs font-bold text-text-secondary uppercase tracking-widest">Resources</span>
+</div>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-text-secondary hover:text-white hover:bg-surface transition-all duration-200" href="#">
+<span class="material-symbols-outlined text-[20px]">menu_book</span>
+<span class="text-sm font-medium">Documentation</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-text-secondary hover:text-white hover:bg-surface transition-all duration-200" href="#">
+<span class="material-symbols-outlined text-[20px]">integration_instructions</span>
+<span class="text-sm font-medium">Integration</span>
+</a>
+</nav>
+<!-- Sidebar Footer -->
+<div class="p-4 border-t border-surface-border bg-[#0a0a16]">
+<div class="flex items-center gap-3">
+<div class="size-9 rounded-full bg-gradient-to-br from-indigo-500 via-purple-500 to-pink-500 shadow-inner" data-alt="Abstract gradient user avatar"></div>
+<div class="flex flex-col">
+<p class="text-sm font-bold text-white">FullStack Agency</p>
+<p class="text-[11px] text-text-secondary">Admin Workspace</p>
+</div>
+<button class="ml-auto text-text-secondary hover:text-white">
+<span class="material-symbols-outlined text-[20px]">settings</span>
+</button>
+</div>
+</div>
+</aside>
+<!-- Main Content Area -->
+<main class="flex-1 flex flex-col h-full min-w-0 overflow-hidden relative bg-background-dark">
+<!-- Top Navigation Bar -->
+<header class="flex items-center justify-between border-b border-surface-border px-8 py-3 bg-background-dark/80 backdrop-blur-md z-10 sticky top-0">
+<div class="flex items-center gap-4 text-sm">
+<button class="p-1.5 rounded-md hover:bg-surface text-text-secondary hover:text-white transition-colors">
+<span class="material-symbols-outlined text-[20px]">menu_open</span>
+</button>
+<div class="flex items-center gap-2 text-text-secondary font-mono">
+<span>sys</span>
+<span class="material-symbols-outlined text-[14px]">chevron_right</span>
+<span class="text-white">tokens</span>
+<span class="material-symbols-outlined text-[14px]">chevron_right</span>
+<span class="text-primary">dark-mode</span>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<div class="relative group hidden md:block">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-text-secondary group-focus-within:text-primary transition-colors text-[20px]">search</span>
+<input class="bg-surface border border-transparent focus:border-primary/50 rounded-lg py-1.5 pl-10 pr-4 text-sm text-white focus:outline-none focus:ring-0 w-64 placeholder:text-text-secondary/50 font-mono transition-all" placeholder="Search token (Ctrl+K)" type="text"/>
+</div>
+<div class="h-6 w-px bg-surface-border"></div>
+<button class="flex items-center justify-center gap-2 px-4 py-2 bg-white text-black rounded-lg text-sm font-bold hover:bg-gray-200 transition-colors">
+<span class="material-symbols-outlined text-[18px]">download</span>
+<span class="hidden sm:inline">Export JSON</span>
+</button>
+</div>
+</header>
+<!-- Scrollable Dashboard Content -->
+<div class="flex-1 overflow-y-auto p-6 md:p-10 scroll-smooth">
+<div class="max-w-[1100px] mx-auto flex flex-col gap-16 pb-20">
+<!-- Page Header -->
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-6 pb-6 border-b border-surface-border">
+<div class="flex flex-col gap-3">
+<h2 class="text-4xl font-black tracking-tighter text-white">Design Tokens</h2>
+<p class="text-text-secondary text-lg max-w-2xl font-light">The fundamental atoms of our visual language. These tokens ensure consistency across the dark mode interface of the web app.</p>
+</div>
+<div class="flex items-center gap-2 text-xs font-mono text-text-secondary bg-surface px-3 py-1.5 rounded border border-surface-border">
+<span class="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span>
+                        Last updated: 2 mins ago
+                    </div>
+</div>
+<!-- 1. Color Palette Section -->
+<section class="flex flex-col gap-6">
+<div class="flex items-center justify-between">
+<h3 class="text-xl font-bold text-white flex items-center gap-3">
+<span class="p-1.5 rounded bg-surface border border-surface-border text-primary material-symbols-outlined text-[20px]">palette</span>
+                            Color Palette
+                        </h3>
+<button class="text-xs text-primary font-bold uppercase tracking-wider hover:underline">View All Colors</button>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+<!-- Primary Color Card -->
+<div class="bg-surface border border-surface-border rounded-xl p-4 flex flex-col gap-4 group hover:border-primary/50 transition-all duration-300">
+<div class="aspect-video w-full rounded-lg bg-primary shadow-[0_0_20px_rgba(43,43,238,0.2)] flex items-end justify-end p-2 relative overflow-hidden" data-alt="Vibrant electric blue color swatch">
+<div class="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
+<span class="bg-black/50 backdrop-blur px-2 py-1 rounded text-[10px] font-mono text-white z-10">DEFAULT</span>
+</div>
+<div class="flex flex-col gap-1">
+<div class="flex justify-between items-center">
+<h4 class="text-white font-bold">Primary Blue</h4>
+<span class="text-xs font-mono text-text-secondary bg-background-dark px-1.5 py-0.5 rounded">primary-500</span>
+</div>
+<p class="text-text-secondary text-sm font-mono">#2b2bee</p>
+</div>
+</div>
+<!-- Surface Color Card -->
+<div class="bg-surface border border-surface-border rounded-xl p-4 flex flex-col gap-4 group hover:border-white/20 transition-all duration-300">
+<div class="aspect-video w-full rounded-lg bg-[#1c1c27] border border-surface-border flex items-end justify-end p-2" data-alt="Dark gray surface color swatch">
+<span class="bg-white/10 backdrop-blur px-2 py-1 rounded text-[10px] font-mono text-white">surface</span>
+</div>
+<div class="flex flex-col gap-1">
+<div class="flex justify-between items-center">
+<h4 class="text-white font-bold">Surface Dark</h4>
+<span class="text-xs font-mono text-text-secondary bg-background-dark px-1.5 py-0.5 rounded">surface</span>
+</div>
+<p class="text-text-secondary text-sm font-mono">#1c1c27</p>
+</div>
+</div>
+<!-- Success Color Card -->
+<div class="bg-surface border border-surface-border rounded-xl p-4 flex flex-col gap-4 group hover:border-emerald-500/50 transition-all duration-300">
+<div class="aspect-video w-full rounded-lg bg-emerald-500 shadow-[0_0_20px_rgba(16,185,129,0.2)] flex items-end justify-end p-2 relative overflow-hidden" data-alt="Emerald green success color swatch">
+<div class="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
+<span class="bg-black/50 backdrop-blur px-2 py-1 rounded text-[10px] font-mono text-white z-10">success</span>
+</div>
+<div class="flex flex-col gap-1">
+<div class="flex justify-between items-center">
+<h4 class="text-white font-bold">Success</h4>
+<span class="text-xs font-mono text-text-secondary bg-background-dark px-1.5 py-0.5 rounded">emerald-500</span>
+</div>
+<p class="text-text-secondary text-sm font-mono">#10b981</p>
+</div>
+</div>
+<!-- Error Color Card -->
+<div class="bg-surface border border-surface-border rounded-xl p-4 flex flex-col gap-4 group hover:border-rose-500/50 transition-all duration-300">
+<div class="aspect-video w-full rounded-lg bg-rose-500 shadow-[0_0_20px_rgba(244,63,94,0.2)] flex items-end justify-end p-2 relative overflow-hidden" data-alt="Rose red error color swatch">
+<div class="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
+<span class="bg-black/50 backdrop-blur px-2 py-1 rounded text-[10px] font-mono text-white z-10">error</span>
+</div>
+<div class="flex flex-col gap-1">
+<div class="flex justify-between items-center">
+<h4 class="text-white font-bold">Error</h4>
+<span class="text-xs font-mono text-text-secondary bg-background-dark px-1.5 py-0.5 rounded">rose-500</span>
+</div>
+<p class="text-text-secondary text-sm font-mono">#f43f5e</p>
+</div>
+</div>
+</div>
+</section>
+<!-- 2. Typography Section -->
+<section class="flex flex-col gap-6">
+<div class="flex items-center justify-between">
+<h3 class="text-xl font-bold text-white flex items-center gap-3">
+<span class="p-1.5 rounded bg-surface border border-surface-border text-primary material-symbols-outlined text-[20px]">text_fields</span>
+                            Typography
+                        </h3>
+</div>
+<div class="bg-surface border border-surface-border rounded-xl overflow-hidden divide-y divide-surface-border">
+<!-- Table Header -->
+<div class="grid grid-cols-12 gap-4 p-4 bg-background-dark/50 text-xs font-bold text-text-secondary uppercase tracking-wider">
+<div class="col-span-3">Role</div>
+<div class="col-span-3">Spec</div>
+<div class="col-span-6">Preview</div>
+</div>
+<!-- H1 Row -->
+<div class="grid grid-cols-12 gap-4 p-6 items-center group hover:bg-white/[0.02]">
+<div class="col-span-3">
+<span class="text-white font-bold block mb-1">Heading 1</span>
+<span class="text-xs font-mono text-primary bg-primary/10 px-1.5 py-0.5 rounded">text-4xl</span>
+</div>
+<div class="col-span-3 flex flex-col justify-center text-sm text-text-secondary font-mono">
+<span>Size: 36px</span>
+<span>Weight: 700 (Bold)</span>
+<span>Line: 1.1</span>
+</div>
+<div class="col-span-6">
+<p class="text-4xl font-bold text-white truncate">Design for the Future</p>
+</div>
+</div>
+<!-- H2 Row -->
+<div class="grid grid-cols-12 gap-4 p-6 items-center group hover:bg-white/[0.02]">
+<div class="col-span-3">
+<span class="text-white font-bold block mb-1">Heading 2</span>
+<span class="text-xs font-mono text-primary bg-primary/10 px-1.5 py-0.5 rounded">text-2xl</span>
+</div>
+<div class="col-span-3 flex flex-col justify-center text-sm text-text-secondary font-mono">
+<span>Size: 24px</span>
+<span>Weight: 700 (Bold)</span>
+<span>Line: 1.25</span>
+</div>
+<div class="col-span-6">
+<p class="text-2xl font-bold text-white truncate">Visual Hierarchy &amp; Scale</p>
+</div>
+</div>
+<!-- Body Row -->
+<div class="grid grid-cols-12 gap-4 p-6 items-center group hover:bg-white/[0.02]">
+<div class="col-span-3">
+<span class="text-white font-bold block mb-1">Body Default</span>
+<span class="text-xs font-mono text-primary bg-primary/10 px-1.5 py-0.5 rounded">text-base</span>
+</div>
+<div class="col-span-3 flex flex-col justify-center text-sm text-text-secondary font-mono">
+<span>Size: 16px</span>
+<span>Weight: 400 (Regular)</span>
+<span>Line: 1.5</span>
+</div>
+<div class="col-span-6">
+<p class="text-base text-text-secondary">Space Grotesk is a proportional sans-serif typeface based on Colophon Foundry's Space Mono.</p>
+</div>
+</div>
+<!-- Mono Row -->
+<div class="grid grid-cols-12 gap-4 p-6 items-center group hover:bg-white/[0.02]">
+<div class="col-span-3">
+<span class="text-white font-bold block mb-1">Monospace</span>
+<span class="text-xs font-mono text-primary bg-primary/10 px-1.5 py-0.5 rounded">font-mono</span>
+</div>
+<div class="col-span-3 flex flex-col justify-center text-sm text-text-secondary font-mono">
+<span>Family: JetBrains Mono</span>
+<span>Weight: 400</span>
+</div>
+<div class="col-span-6">
+<p class="text-sm font-mono text-primary">npm install @design-system/tokens</p>
+</div>
+</div>
+</div>
+</section>
+<!-- 3. Spacing & Radius Visualizer -->
+<section class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+<!-- Spacing -->
+<div class="flex flex-col gap-6">
+<h3 class="text-xl font-bold text-white flex items-center gap-3">
+<span class="p-1.5 rounded bg-surface border border-surface-border text-primary material-symbols-outlined text-[20px]">straighten</span>
+                            Spacing Scale
+                        </h3>
+<div class="bg-surface border border-surface-border rounded-xl p-6 flex flex-col gap-4">
+<!-- 16px -->
+<div class="flex items-center gap-4 group">
+<div class="w-16 text-right font-mono text-xs text-text-secondary">16px</div>
+<div class="h-8 bg-primary/20 border border-primary/50 rounded flex items-center relative w-16 group-hover:bg-primary/40 transition-colors">
+<div class="absolute inset-0 flex items-center justify-center text-[10px] text-primary font-bold opacity-0 group-hover:opacity-100">md</div>
+</div>
+<div class="text-xs text-text-secondary opacity-50">p-4 / m-4</div>
+</div>
+<!-- 24px -->
+<div class="flex items-center gap-4 group">
+<div class="w-16 text-right font-mono text-xs text-text-secondary">24px</div>
+<div class="h-8 bg-primary/20 border border-primary/50 rounded flex items-center relative w-24 group-hover:bg-primary/40 transition-colors">
+<div class="absolute inset-0 flex items-center justify-center text-[10px] text-primary font-bold opacity-0 group-hover:opacity-100">lg</div>
+</div>
+<div class="text-xs text-text-secondary opacity-50">p-6 / m-6</div>
+</div>
+<!-- 32px -->
+<div class="flex items-center gap-4 group">
+<div class="w-16 text-right font-mono text-xs text-text-secondary">32px</div>
+<div class="h-8 bg-primary/20 border border-primary/50 rounded flex items-center relative w-32 group-hover:bg-primary/40 transition-colors">
+<div class="absolute inset-0 flex items-center justify-center text-[10px] text-primary font-bold opacity-0 group-hover:opacity-100">xl</div>
+</div>
+<div class="text-xs text-text-secondary opacity-50">p-8 / m-8</div>
+</div>
+<!-- 48px -->
+<div class="flex items-center gap-4 group">
+<div class="w-16 text-right font-mono text-xs text-text-secondary">48px</div>
+<div class="h-8 bg-primary/20 border border-primary/50 rounded flex items-center relative w-48 group-hover:bg-primary/40 transition-colors">
+<div class="absolute inset-0 flex items-center justify-center text-[10px] text-primary font-bold opacity-0 group-hover:opacity-100">2xl</div>
+</div>
+<div class="text-xs text-text-secondary opacity-50">p-12 / m-12</div>
+</div>
+</div>
+</div>
+<!-- Border Radius & Shadows -->
+<div class="flex flex-col gap-6">
+<h3 class="text-xl font-bold text-white flex items-center gap-3">
+<span class="p-1.5 rounded bg-surface border border-surface-border text-primary material-symbols-outlined text-[20px]">rounded_corner</span>
+                            Radius &amp; Depth
+                        </h3>
+<div class="bg-surface border border-surface-border rounded-xl p-6 flex items-center justify-center min-h-[250px] relative overflow-hidden">
+<!-- Grid Background Effect -->
+<div class="absolute inset-0 opacity-10" style="background-image: radial-gradient(#4b5563 1px, transparent 1px); background-size: 20px 20px;"></div>
+<!-- 3D Card Stack -->
+<div class="relative z-0 size-32 bg-background-dark rounded-lg border border-surface-border shadow-lg rotate-12 flex items-center justify-center" data-alt="Stacked card showing border radius"></div>
+<div class="relative z-10 size-32 bg-background-dark rounded-lg border border-surface-border shadow-xl -ml-20 -mt-10 flex items-center justify-center" data-alt="Stacked card showing border radius front">
+<span class="text-xs font-mono text-text-secondary">rounded-lg</span>
+</div>
+<div class="absolute bottom-4 right-4 text-xs font-mono text-text-secondary">
+                                 Elevation: shadow-xl
+                             </div>
+</div>
+</div>
+</section>
+<!-- 4. Component Preview (Interactive Feel) -->
+<section class="flex flex-col gap-6">
+<h3 class="text-xl font-bold text-white flex items-center gap-3">
+<span class="p-1.5 rounded bg-surface border border-surface-border text-primary material-symbols-outlined text-[20px]">code</span>
+                        Code &amp; Usage
+                    </h3>
+<div class="w-full rounded-xl bg-[#0f1115] border border-surface-border overflow-hidden shadow-2xl">
+<!-- Code Editor Header -->
+<div class="flex items-center justify-between px-4 py-2 bg-[#1c1c27] border-b border-surface-border">
+<div class="flex items-center gap-2">
+<div class="flex gap-1.5">
+<div class="size-2.5 rounded-full bg-[#ff5f56]"></div>
+<div class="size-2.5 rounded-full bg-[#ffbd2e]"></div>
+<div class="size-2.5 rounded-full bg-[#27c93f]"></div>
+</div>
+<span class="ml-3 text-xs text-text-secondary font-mono">tailwind.config.js</span>
+</div>
+<button class="text-text-secondary hover:text-white transition-colors">
+<span class="material-symbols-outlined text-[16px]">content_copy</span>
+</button>
+</div>
+<!-- Code Content -->
+<div class="p-6 overflow-x-auto">
+<pre class="font-mono text-sm leading-relaxed text-gray-400"><span class="text-purple-400">module</span>.<span class="text-blue-400">exports</span> = {
+  <span class="text-red-400">theme</span>: {
+    <span class="text-red-400">extend</span>: {
+      <span class="text-red-400">colors</span>: {
+        <span class="text-green-400">'primary'</span>: <span class="text-yellow-300">'#2b2bee'</span>,
+        <span class="text-green-400">'background-dark'</span>: <span class="text-yellow-300">'#101022'</span>,
+        <span class="text-green-400">'surface'</span>: <span class="text-yellow-300">'#1c1c27'</span>,
+      },
+      <span class="text-red-400">fontFamily</span>: {
+        <span class="text-green-400">'display'</span>: [<span class="text-yellow-300">'Space Grotesk'</span>, <span class="text-yellow-300">'sans-serif'</span>],
+      }
+    }
+  }
+}
+</pre>
+</div>
+</div>
+</section>
+</div>
+</div>
+</main>
+</body></html>

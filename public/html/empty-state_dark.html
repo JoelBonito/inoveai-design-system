@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Loading State - Light Mode</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style type="text/tailwindcss">
+        :root {
+            --primary-color: #0f172a;--accent-color: #3b82f6;}
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .font-mono {
+            font-family: 'JetBrains Mono', monospace;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-900 antialiased h-screen flex overflow-hidden">
+<aside class="w-64 bg-white border-r border-gray-200 flex-shrink-0 flex flex-col justify-between hidden md:flex">
+<div>
+<div class="h-16 flex items-center px-6 border-b border-gray-100">
+<div class="flex items-center gap-2">
+<div class="w-8 h-8 bg-gray-900 rounded-lg flex items-center justify-center">
+<span class="material-symbols-outlined text-white text-[20px]">api</span>
+</div>
+<span class="font-bold text-lg tracking-tight">Nexus AI</span>
+</div>
+</div>
+<nav class="p-4 space-y-1">
+<a class="flex items-center gap-3 px-3 py-2 text-sm font-medium text-gray-600 rounded-md hover:bg-gray-50 hover:text-gray-900 transition-colors" href="#">
+<span class="material-symbols-outlined text-[20px]">dashboard</span>
+                    Dashboard
+                </a>
+<a class="flex items-center gap-3 px-3 py-2 text-sm font-medium text-gray-900 bg-gray-100 rounded-md" href="#">
+<span class="material-symbols-outlined text-[20px]">folder_open</span>
+                    Projects
+                </a>
+<a class="flex items-center gap-3 px-3 py-2 text-sm font-medium text-gray-600 rounded-md hover:bg-gray-50 hover:text-gray-900 transition-colors" href="#">
+<span class="material-symbols-outlined text-[20px]">rocket_launch</span>
+                    Deployments
+                </a>
+<a class="flex items-center gap-3 px-3 py-2 text-sm font-medium text-gray-600 rounded-md hover:bg-gray-50 hover:text-gray-900 transition-colors" href="#">
+<span class="material-symbols-outlined text-[20px]">bar_chart</span>
+                    Analytics
+                </a>
+<a class="flex items-center gap-3 px-3 py-2 text-sm font-medium text-gray-600 rounded-md hover:bg-gray-50 hover:text-gray-900 transition-colors" href="#">
+<span class="material-symbols-outlined text-[20px]">groups</span>
+                    Team
+                </a>
+</nav>
+</div>
+<div class="p-4 border-t border-gray-100">
+<div class="flex items-center gap-3 px-3 py-2 rounded-md hover:bg-gray-50 cursor-pointer">
+<div class="w-8 h-8 rounded-full bg-gray-200 border border-gray-300"></div>
+<div class="flex-1 min-w-0">
+<p class="text-sm font-medium text-gray-900 truncate">Admin User</p>
+<p class="text-xs text-gray-500 truncate">admin@nexus.ai</p>
+</div>
+</div>
+</div>
+</aside>
+<main class="flex-1 flex flex-col h-full relative">
+<header class="h-16 bg-white border-b border-gray-200 flex items-center justify-between px-8">
+<div class="flex items-center text-sm text-gray-500">
+<span class="hover:text-gray-900 cursor-pointer">Workspace</span>
+<span class="material-symbols-outlined text-[16px] mx-2">chevron_right</span>
+<span class="font-medium text-gray-900">Active Projects</span>
+</div>
+<div class="flex items-center gap-4">
+<button class="p-2 text-gray-400 hover:text-gray-600 rounded-full hover:bg-gray-100">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<button class="p-2 text-gray-400 hover:text-gray-600 rounded-full hover:bg-gray-100">
+<span class="material-symbols-outlined">help</span>
+</button>
+</div>
+</header>
+<div class="flex-1 overflow-y-auto p-8">
+<div class="max-w-7xl mx-auto w-full animate-pulse">
+<div class="flex flex-col sm:flex-row sm:items-center justify-between mb-8 gap-4">
+<div class="space-y-3">
+<div class="h-8 bg-gray-200 rounded-md w-64"></div>
+<div class="h-4 bg-gray-200 rounded-md w-96"></div>
+</div>
+<div class="h-10 bg-gray-200 rounded-md w-32"></div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+<div class="bg-white p-6 rounded-xl border border-gray-200 shadow-sm">
+<div class="flex items-center justify-between mb-4">
+<div class="h-4 bg-gray-200 rounded w-24"></div>
+<div class="h-8 w-8 bg-gray-200 rounded-full"></div>
+</div>
+<div class="h-8 bg-gray-200 rounded w-16 mb-2"></div>
+<div class="h-3 bg-gray-200 rounded w-32"></div>
+</div>
+<div class="bg-white p-6 rounded-xl border border-gray-200 shadow-sm">
+<div class="flex items-center justify-between mb-4">
+<div class="h-4 bg-gray-200 rounded w-24"></div>
+<div class="h-8 w-8 bg-gray-200 rounded-full"></div>
+</div>
+<div class="h-8 bg-gray-200 rounded w-16 mb-2"></div>
+<div class="h-3 bg-gray-200 rounded w-32"></div>
+</div>
+<div class="bg-white p-6 rounded-xl border border-gray-200 shadow-sm">
+<div class="flex items-center justify-between mb-4">
+<div class="h-4 bg-gray-200 rounded w-24"></div>
+<div class="h-8 w-8 bg-gray-200 rounded-full"></div>
+</div>
+<div class="h-8 bg-gray-200 rounded w-16 mb-2"></div>
+<div class="h-3 bg-gray-200 rounded w-32"></div>
+</div>
+</div>
+<div class="flex items-center gap-4 mb-6">
+<div class="h-10 bg-gray-200 rounded-md w-full max-w-sm"></div>
+<div class="h-10 bg-gray-200 rounded-md w-24"></div>
+<div class="h-10 bg-gray-200 rounded-md w-24"></div>
+<div class="flex-1"></div>
+<div class="h-10 bg-gray-200 rounded-md w-10"></div>
+<div class="h-10 bg-gray-200 rounded-md w-10"></div>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-6">
+<div class="bg-white rounded-xl border border-gray-200 shadow-sm p-6 flex flex-col h-[280px]">
+<div class="flex justify-between items-start mb-6">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 bg-gray-200 rounded-lg"></div>
+<div class="space-y-2">
+<div class="h-4 bg-gray-200 rounded w-32"></div>
+<div class="h-3 bg-gray-200 rounded w-20"></div>
+</div>
+</div>
+<div class="w-8 h-8 bg-gray-200 rounded-full"></div>
+</div>
+<div class="space-y-3 flex-1">
+<div class="h-3 bg-gray-200 rounded w-full"></div>
+<div class="h-3 bg-gray-200 rounded w-5/6"></div>
+<div class="h-3 bg-gray-200 rounded w-4/6"></div>
+</div>
+<div class="pt-4 mt-4 border-t border-gray-100 flex items-center justify-between">
+<div class="flex -space-x-2">
+<div class="w-6 h-6 rounded-full bg-gray-200 border-2 border-white"></div>
+<div class="w-6 h-6 rounded-full bg-gray-200 border-2 border-white"></div>
+<div class="w-6 h-6 rounded-full bg-gray-200 border-2 border-white"></div>
+</div>
+<div class="h-4 bg-gray-200 rounded w-16"></div>
+</div>
+</div>
+<div class="bg-white rounded-xl border border-gray-200 shadow-sm p-6 flex flex-col h-[280px]">
+<div class="flex justify-between items-start mb-6">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 bg-gray-200 rounded-lg"></div>
+<div class="space-y-2">
+<div class="h-4 bg-gray-200 rounded w-28"></div>
+<div class="h-3 bg-gray-200 rounded w-24"></div>
+</div>
+</div>
+<div class="w-8 h-8 bg-gray-200 rounded-full"></div>
+</div>
+<div class="space-y-3 flex-1">
+<div class="h-3 bg-gray-200 rounded w-full"></div>
+<div class="h-3 bg-gray-200 rounded w-11/12"></div>
+</div>
+<div class="pt-4 mt-4 border-t border-gray-100 flex items-center justify-between">
+<div class="flex -space-x-2">
+<div class="w-6 h-6 rounded-full bg-gray-200 border-2 border-white"></div>
+<div class="w-6 h-6 rounded-full bg-gray-200 border-2 border-white"></div>
+</div>
+<div class="h-4 bg-gray-200 rounded w-20"></div>
+</div>
+</div>
+<div class="bg-white rounded-xl border border-gray-200 shadow-sm p-6 flex flex-col h-[280px]">
+<div class="flex justify-between items-start mb-6">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 bg-gray-200 rounded-lg"></div>
+<div class="space-y-2">
+<div class="h-4 bg-gray-200 rounded w-40"></div>
+<div class="h-3 bg-gray-200 rounded w-16"></div>
+</div>
+</div>
+<div class="w-8 h-8 bg-gray-200 rounded-full"></div>
+</div>
+<div class="space-y-3 flex-1">
+<div class="h-3 bg-gray-200 rounded w-3/4"></div>
+<div class="h-3 bg-gray-200 rounded w-full"></div>
+<div class="h-3 bg-gray-200 rounded w-1/2"></div>
+</div>
+<div class="pt-4 mt-4 border-t border-gray-100 flex items-center justify-between">
+<div class="flex -space-x-2">
+<div class="w-6 h-6 rounded-full bg-gray-200 border-2 border-white"></div>
+</div>
+<div class="h-4 bg-gray-200 rounded w-12"></div>
+</div>
+</div>
+<div class="bg-white rounded-xl border border-gray-200 shadow-sm p-6 flex flex-col h-[280px]">
+<div class="flex justify-between items-start mb-6">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 bg-gray-200 rounded-lg"></div>
+<div class="space-y-2">
+<div class="h-4 bg-gray-200 rounded w-36"></div>
+<div class="h-3 bg-gray-200 rounded w-24"></div>
+</div>
+</div>
+<div class="w-8 h-8 bg-gray-200 rounded-full"></div>
+</div>
+<div class="space-y-3 flex-1">
+<div class="h-3 bg-gray-200 rounded w-full"></div>
+<div class="h-3 bg-gray-200 rounded w-5/6"></div>
+</div>
+<div class="pt-4 mt-4 border-t border-gray-100 flex items-center justify-between">
+<div class="flex -space-x-2">
+<div class="w-6 h-6 rounded-full bg-gray-200 border-2 border-white"></div>
+<div class="w-6 h-6 rounded-full bg-gray-200 border-2 border-white"></div>
+<div class="w-6 h-6 rounded-full bg-gray-200 border-2 border-white"></div>
+</div>
+<div class="h-4 bg-gray-200 rounded w-24"></div>
+</div>
+</div>
+<div class="bg-white rounded-xl border border-gray-200 shadow-sm p-6 flex flex-col h-[280px]">
+<div class="flex justify-between items-start mb-6">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 bg-gray-200 rounded-lg"></div>
+<div class="space-y-2">
+<div class="h-4 bg-gray-200 rounded w-20"></div>
+<div class="h-3 bg-gray-200 rounded w-16"></div>
+</div>
+</div>
+<div class="w-8 h-8 bg-gray-200 rounded-full"></div>
+</div>
+<div class="space-y-3 flex-1">
+<div class="h-3 bg-gray-200 rounded w-11/12"></div>
+<div class="h-3 bg-gray-200 rounded w-full"></div>
+<div class="h-3 bg-gray-200 rounded w-2/3"></div>
+</div>
+<div class="pt-4 mt-4 border-t border-gray-100 flex items-center justify-between">
+<div class="flex -space-x-2">
+<div class="w-6 h-6 rounded-full bg-gray-200 border-2 border-white"></div>
+<div class="w-6 h-6 rounded-full bg-gray-200 border-2 border-white"></div>
+</div>
+<div class="h-4 bg-gray-200 rounded w-14"></div>
+</div>
+</div>
+<div class="bg-white rounded-xl border border-gray-200 shadow-sm p-6 flex flex-col h-[280px]">
+<div class="flex justify-between items-start mb-6">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 bg-gray-200 rounded-lg"></div>
+<div class="space-y-2">
+<div class="h-4 bg-gray-200 rounded w-32"></div>
+<div class="h-3 bg-gray-200 rounded w-20"></div>
+</div>
+</div>
+<div class="w-8 h-8 bg-gray-200 rounded-full"></div>
+</div>
+<div class="space-y-3 flex-1">
+<div class="h-3 bg-gray-200 rounded w-full"></div>
+<div class="h-3 bg-gray-200 rounded w-4/5"></div>
+</div>
+<div class="pt-4 mt-4 border-t border-gray-100 flex items-center justify-between">
+<div class="flex -space-x-2">
+<div class="w-6 h-6 rounded-full bg-gray-200 border-2 border-white"></div>
+</div>
+<div class="h-4 bg-gray-200 rounded w-16"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+
+</body></html>

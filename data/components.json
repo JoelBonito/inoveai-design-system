@@ -1,0 +1,586 @@
+[
+  {
+    "id": "autocomplete",
+    "name": "Autocomplete",
+    "category": "form",
+    "description": "Componente de campo de busca inteligente com sugestões automáticas baseadas na entrada do usuário.",
+    "darkMode": {
+      "screenshot": "/screenshots/01_autocomplete_dark.png",
+      "htmlPath": "/html/autocomplete_dark.html"
+    },
+    "lightMode": {
+      "screenshot": "/screenshots/01_autocomplete_light.png",
+      "htmlPath": "/html/autocomplete_light.html"
+    },
+    "tokensUsed": [
+      "primary",
+      "surface-dark",
+      "text-secondary"
+    ],
+    "tags": [
+      "form",
+      "ui"
+    ]
+  },
+  {
+    "id": "badge",
+    "name": "Badge",
+    "category": "feedback",
+    "description": "Componente de rótulo compacto usado para exibir status, contagens ou metadados de forma visual.",
+    "darkMode": {
+      "screenshot": "/screenshots/02_badge_dark.png",
+      "htmlPath": "/html/badge_dark.html"
+    },
+    "lightMode": {
+      "screenshot": "/screenshots/02_badge_light.png",
+      "htmlPath": "/html/badge_light.html"
+    },
+    "tokensUsed": [
+      "primary",
+      "surface-dark",
+      "text-secondary"
+    ],
+    "tags": [
+      "feedback",
+      "ui"
+    ]
+  },
+  {
+    "id": "breadcrumbs",
+    "name": "Breadcrumbs",
+    "category": "navigation",
+    "description": "Navegação estrutural que ajuda o usuário a entender sua localização atual na hierarquia do site.",
+    "darkMode": {
+      "screenshot": "/screenshots/03_breadcrumbs_dark.png",
+      "htmlPath": "/html/breadcrumbs_dark.html"
+    },
+    "lightMode": {
+      "screenshot": "/screenshots/03_breadcrumbs_light.png",
+      "htmlPath": "/html/breadcrumbs_light.html"
+    },
+    "tokensUsed": [
+      "primary",
+      "surface-dark",
+      "text-secondary"
+    ],
+    "tags": [
+      "navigation",
+      "ui"
+    ]
+  },
+  {
+    "id": "date-picker",
+    "name": "Seletor de Data",
+    "category": "form",
+    "description": "Componente interativo para seleção de datas e agendamento através de um calendário visual.",
+    "darkMode": {
+      "screenshot": "/screenshots/04_date-picker_dark.png",
+      "htmlPath": "/html/date-picker_dark.html"
+    },
+    "lightMode": {
+      "screenshot": "/screenshots/04_date-picker_light.png",
+      "htmlPath": "/html/date-picker_light.html"
+    },
+    "tokensUsed": [
+      "primary",
+      "surface-dark",
+      "text-secondary"
+    ],
+    "tags": [
+      "form",
+      "ui"
+    ]
+  },
+  {
+    "id": "select",
+    "name": "Select",
+    "category": "form",
+    "description": "Menu suspenso que permite ao usuário escolher uma opção de uma lista predefinida.",
+    "darkMode": {
+      "screenshot": "/screenshots/05_select_dark.png",
+      "htmlPath": "/html/select_dark.html"
+    },
+    "lightMode": {
+      "screenshot": "/screenshots/05_select_light.png",
+      "htmlPath": "/html/select_light.html"
+    },
+    "tokensUsed": [
+      "primary",
+      "surface-dark",
+      "text-secondary"
+    ],
+    "tags": [
+      "form",
+      "ui"
+    ]
+  },
+  {
+    "id": "table",
+    "name": "Tabela",
+    "category": "data",
+    "description": "Componente para exibição de conjuntos de dados estruturados em linhas e colunas, ideal para comparação e análise.",
+    "darkMode": {
+      "screenshot": "/screenshots/06_table_dark.png",
+      "htmlPath": "/html/table_dark.html"
+    },
+    "lightMode": {
+      "screenshot": "/screenshots/06_table_light.png",
+      "htmlPath": "/html/table_light.html"
+    },
+    "tokensUsed": [
+      "primary",
+      "surface-dark",
+      "text-secondary"
+    ],
+    "tags": [
+      "data",
+      "ui"
+    ]
+  },
+  {
+    "id": "tabs",
+    "name": "Abas (Tabs)",
+    "category": "navigation",
+    "description": "Interface de abas para alternar entre diferentes visualizações ou contextos no mesmo espaço da tela.",
+    "darkMode": {
+      "screenshot": "/screenshots/07_tabs_dark.png",
+      "htmlPath": "/html/tabs_dark.html"
+    },
+    "lightMode": {
+      "screenshot": "/screenshots/07_tabs_light.png",
+      "htmlPath": "/html/tabs_light.html"
+    },
+    "tokensUsed": [
+      "primary",
+      "surface-dark",
+      "text-secondary"
+    ],
+    "tags": [
+      "navigation",
+      "ui"
+    ]
+  },
+  {
+    "id": "essentials",
+    "name": "Componentes Essenciais",
+    "category": "core",
+    "description": "Coleção base de elementos UI fundamentais como Botões, Inputs, Checkboxes e outros primitivos.",
+    "darkMode": {
+      "screenshot": "/screenshots/08_essentials_dark.png",
+      "htmlPath": "/html/essentials_dark.html"
+    },
+    "lightMode": {
+      "screenshot": "/screenshots/08_essentials_light.png",
+      "htmlPath": "/html/essentials_light.html"
+    },
+    "tokensUsed": [
+      "primary",
+      "surface-dark",
+      "text-secondary"
+    ],
+    "tags": [
+      "core",
+      "ui"
+    ]
+  },
+  {
+    "id": "empty-state",
+    "name": "Estado Vazio",
+    "category": "feedback",
+    "description": "Interface exibida quando não há dados para mostrar, orientando o usuário sobre como proceder.",
+    "darkMode": {
+      "screenshot": "/screenshots/09_empty-state_dark.png",
+      "htmlPath": "/html/empty-state_dark.html"
+    },
+    "lightMode": {
+      "screenshot": "/screenshots/09_empty-state_light.png",
+      "htmlPath": "/html/empty-state_light.html"
+    },
+    "tokensUsed": [
+      "primary",
+      "surface-dark",
+      "text-secondary"
+    ],
+    "tags": [
+      "feedback",
+      "ui"
+    ]
+  },
+  {
+    "id": "file-upload",
+    "name": "Upload de Arquivo",
+    "category": "form",
+    "description": "Área de upload drag-and-drop avançada com visualização de estado e progresso.",
+    "darkMode": {
+      "screenshot": "/screenshots/10_file-upload_dark.png",
+      "htmlPath": "/html/file-upload_dark.html"
+    },
+    "lightMode": {
+      "screenshot": "/screenshots/10_file-upload_light.png",
+      "htmlPath": "/html/file-upload_light.html"
+    },
+    "tokensUsed": [
+      "primary",
+      "surface-dark",
+      "text-secondary"
+    ],
+    "tags": [
+      "form",
+      "ui"
+    ]
+  },
+  {
+    "id": "button",
+    "name": "Botão",
+    "category": "core",
+    "description": "Elemento interativo fundamental para acionar ações. Suporta variantes (Primary, Secondary, Ghost, Destructive), tamanhos e estados.",
+    "darkMode": {
+      "screenshot": "/screenshots/08_essentials_dark.png",
+      "htmlPath": "/html/button_dark.html"
+    },
+    "lightMode": {
+      "screenshot": "/screenshots/08_essentials_light.png",
+      "htmlPath": "/html/button_light.html"
+    },
+    "tokensUsed": [
+      "primary",
+      "surface-dark",
+      "text-white",
+      "radius"
+    ],
+    "tags": [
+      "core",
+      "ui",
+      "interaction"
+    ],
+    "props": {
+      "variant": [
+        "primary",
+        "secondary",
+        "outline",
+        "ghost",
+        "destructive"
+      ],
+      "size": [
+        "sm",
+        "md",
+        "lg",
+        "icon"
+      ],
+      "disabled": "boolean",
+      "loading": "boolean"
+    }
+  },
+  {
+    "id": "input",
+    "name": "Input de Texto",
+    "category": "form",
+    "description": "Campo de entrada de texto com suporte para labels, mensagens de ajuda, estados de erro e ícones.",
+    "darkMode": {
+      "screenshot": "/screenshots/08_essentials_dark.png",
+      "htmlPath": "/html/input_dark.html"
+    },
+    "lightMode": {
+      "screenshot": "/screenshots/08_essentials_light.png",
+      "htmlPath": "/html/input_light.html"
+    },
+    "tokensUsed": [
+      "surface-dark",
+      "border-dark",
+      "text-white",
+      "primary"
+    ],
+    "tags": [
+      "form",
+      "ui",
+      "input"
+    ],
+    "props": {
+      "type": [
+        "text",
+        "password",
+        "email",
+        "number"
+      ],
+      "placeholder": "string",
+      "error": "boolean",
+      "disabled": "boolean"
+    }
+  },
+  {
+    "id": "checkbox",
+    "name": "Checkbox",
+    "category": "form",
+    "description": "Controle de seleção binária ou múltipla. Permite que o usuário selecione uma ou mais opções de um conjunto.",
+    "darkMode": {
+      "screenshot": "/screenshots/08_essentials_dark.png",
+      "htmlPath": "/html/checkbox_dark.html"
+    },
+    "lightMode": {
+      "screenshot": "/screenshots/08_essentials_light.png",
+      "htmlPath": "/html/checkbox_light.html"
+    },
+    "tokensUsed": [
+      "primary",
+      "surface-dark",
+      "border-dark"
+    ],
+    "tags": [
+      "form",
+      "ui",
+      "selection"
+    ],
+    "props": {
+      "checked": "boolean",
+      "disabled": "boolean",
+      "label": "string"
+    }
+  },
+  {
+    "id": "switch",
+    "name": "Switch",
+    "category": "form",
+    "description": "Controle de alternância imediata entre dois estados (ligado/desligado), funcionando como um interruptor físico.",
+    "darkMode": {
+      "screenshot": "/screenshots/08_essentials_dark.png",
+      "htmlPath": "/html/switch_dark.html"
+    },
+    "lightMode": {
+      "screenshot": "/screenshots/08_essentials_light.png",
+      "htmlPath": "/html/switch_light.html"
+    },
+    "tokensUsed": [
+      "primary",
+      "surface-dark",
+      "success"
+    ],
+    "tags": [
+      "form",
+      "ui",
+      "toggles"
+    ],
+    "props": {
+      "checked": "boolean",
+      "disabled": "boolean",
+      "size": [
+        "sm",
+        "md"
+      ]
+    }
+  },
+  {
+    "id": "chart",
+    "name": "Gráfico",
+    "category": "data",
+    "description": "Componente de visualização de dados através de gráficos interativos para dashboards e relatórios.",
+    "darkMode": {
+      "screenshot": "/screenshots/11_chart_dark.png",
+      "htmlPath": "/html/chart_dark.html"
+    },
+    "lightMode": {
+      "screenshot": "/screenshots/11_chart_light.png",
+      "htmlPath": "/html/chart_light.html"
+    },
+    "tokensUsed": [
+      "primary",
+      "surface-dark",
+      "text-secondary"
+    ],
+    "tags": [
+      "data",
+      "dashboard",
+      "ui"
+    ]
+  },
+  {
+    "id": "modal",
+    "name": "Modal (Dialog)",
+    "category": "feedback",
+    "description": "Janela modal para exibir conteúdo sobreposto, confirmações ou formulários que requerem atenção do usuário.",
+    "darkMode": {
+      "screenshot": "/screenshots/12_modal_dark.png",
+      "htmlPath": "/html/modal_dark.html"
+    },
+    "lightMode": {
+      "screenshot": "/screenshots/12_modal_light.png",
+      "htmlPath": "/html/modal_light.html"
+    },
+    "tokensUsed": [
+      "primary",
+      "surface-dark",
+      "border-dark"
+    ],
+    "tags": [
+      "feedback",
+      "overlay",
+      "ui"
+    ]
+  },
+  {
+    "id": "toast",
+    "name": "Toast (Notificação)",
+    "category": "feedback",
+    "description": "Mensagens temporárias de feedback para notificar o usuário sobre ações ou eventos do sistema.",
+    "darkMode": {
+      "screenshot": "/screenshots/13_toast_dark.png",
+      "htmlPath": "/html/toast_dark.html"
+    },
+    "lightMode": {
+      "screenshot": "/screenshots/13_toast_light.png",
+      "htmlPath": "/html/toast_light.html"
+    },
+    "tokensUsed": [
+      "success",
+      "warning",
+      "error",
+      "surface-dark"
+    ],
+    "tags": [
+      "feedback",
+      "notification",
+      "ui"
+    ]
+  },
+  {
+    "id": "pagination",
+    "name": "Paginação",
+    "category": "navigation",
+    "description": "Controle de navegação para dividir conteúdo em páginas, com suporte a scroll infinito.",
+    "darkMode": {
+      "screenshot": "/screenshots/14_pagination_dark.png",
+      "htmlPath": "/html/pagination_dark.html"
+    },
+    "lightMode": {
+      "screenshot": "/screenshots/14_pagination_light.png",
+      "htmlPath": "/html/pagination_light.html"
+    },
+    "tokensUsed": [
+      "primary",
+      "surface-dark",
+      "border-dark"
+    ],
+    "tags": [
+      "navigation",
+      "ui"
+    ]
+  },
+  {
+    "id": "tooltip",
+    "name": "Tooltip (Popover)",
+    "category": "feedback",
+    "description": "Balão de informação contextual que aparece ao passar o mouse ou focar em um elemento.",
+    "darkMode": {
+      "screenshot": "/screenshots/15_tooltip_dark.png",
+      "htmlPath": "/html/tooltip_dark.html"
+    },
+    "lightMode": {
+      "screenshot": "/screenshots/15_tooltip_light.png",
+      "htmlPath": "/html/tooltip_light.html"
+    },
+    "tokensUsed": [
+      "surface-dark",
+      "text-secondary",
+      "border-dark"
+    ],
+    "tags": [
+      "feedback",
+      "overlay",
+      "ui"
+    ]
+  },
+  {
+    "id": "icons-usage",
+    "name": "Ícones em Uso",
+    "category": "design",
+    "description": "Guia visual mostrando a aplicação prática dos ícones do Design System em componentes reais.",
+    "darkMode": {
+      "screenshot": "/screenshots/16_icons-usage_dark.png",
+      "htmlPath": "/html/icons-usage_dark.html"
+    },
+    "lightMode": {
+      "screenshot": "/screenshots/16_icons-usage_light.png",
+      "htmlPath": "/html/icons-usage_light.html"
+    },
+    "tokensUsed": [
+      "primary",
+      "text-secondary"
+    ],
+    "tags": [
+      "design",
+      "icons",
+      "guide"
+    ]
+  },
+  {
+    "id": "navigation-layout",
+    "name": "Navegação e Layout",
+    "category": "navigation",
+    "description": "Componentes de navegação estrutural incluindo sidebars, headers e sistemas de menu.",
+    "darkMode": {
+      "screenshot": "/screenshots/17_navigation_dark.png",
+      "htmlPath": "/html/navigation_dark.html"
+    },
+    "lightMode": {
+      "screenshot": "/screenshots/17_navigation_light.png",
+      "htmlPath": "/html/navigation_light.html"
+    },
+    "tokensUsed": [
+      "primary",
+      "surface-dark",
+      "border-dark"
+    ],
+    "tags": [
+      "navigation",
+      "layout",
+      "ui"
+    ]
+  },
+  {
+    "id": "error-page",
+    "name": "Página de Erro",
+    "category": "feedback",
+    "description": "Templates de páginas de erro (404, 500, etc.) com mensagens amigáveis e ações de recuperação.",
+    "darkMode": {
+      "screenshot": "/screenshots/18_error-page_dark.png",
+      "htmlPath": "/html/error-page_dark.html"
+    },
+    "lightMode": {
+      "screenshot": "/screenshots/18_error-page_light.png",
+      "htmlPath": "/html/error-page_light.html"
+    },
+    "tokensUsed": [
+      "error",
+      "surface-dark",
+      "text-secondary"
+    ],
+    "tags": [
+      "feedback",
+      "error",
+      "ui"
+    ]
+  },
+  {
+    "id": "design-tokens",
+    "name": "Design Tokens",
+    "category": "design",
+    "description": "Visualização completa dos tokens de design incluindo cores, espaçamentos, tipografia e variáveis do sistema.",
+    "darkMode": {
+      "screenshot": "/screenshots/19_design-tokens_dark.png",
+      "htmlPath": "/html/design-tokens_dark.html"
+    },
+    "lightMode": {
+      "screenshot": "/screenshots/19_design-tokens_light.png",
+      "htmlPath": "/html/design-tokens_light.html"
+    },
+    "tokensUsed": [
+      "primary",
+      "surface-dark",
+      "border-dark"
+    ],
+    "tags": [
+      "design",
+      "tokens",
+      "reference"
+    ]
+  }
+]

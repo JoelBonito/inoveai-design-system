@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Tooltip &amp; Popover - AI Design System</title>
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;family=Noto+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<!-- Icons -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#2b2bee",
+                        "background-light": "#f6f6f8",
+                        "background-dark": "#101022",
+                    },
+                    fontFamily: {
+                        "display": ["Space Grotesk", "sans-serif"],
+                        "body": ["Noto Sans", "sans-serif"],
+                        "mono": ["ui-monospace", "SFMono-Regular", "Menlo", "Monaco", "Consolas", "Liberation Mono", "Courier New", "monospace"],
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "2xl": "1rem", "full": "9999px"},
+                    boxShadow: {
+                        'soft': '0 4px 20px -2px rgba(0, 0, 0, 0.05)',
+                        'glow': '0 0 15px rgba(43, 43, 238, 0.15)',
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            font-family: "Space Grotesk", "Noto Sans", sans-serif;
+        }
+        
+        /* Custom Scrollbar for the technical vibe */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: transparent; 
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #e5e7eb; 
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #d1d5db; 
+        }
+
+        /* Tooltip Arrow Animation */
+        .tooltip-trigger:hover .tooltip-content {
+            opacity: 1;
+            transform: translateY(0) translateX(-50%);
+            visibility: visible;
+        }
+        
+        /* For left/right positioning */
+        .tooltip-trigger-right:hover .tooltip-content-right {
+            opacity: 1;
+            transform: translateY(-50%) translateX(0);
+            visibility: visible;
+        }
+
+        /* Code block syntax highlighting simulation */
+        .token.keyword { color: #ff79c6; }
+        .token.string { color: #f1fa8c; }
+        .token.function { color: #8be9fd; }
+        .token.tag { color: #ff79c6; }
+        .token.attr-name { color: #50fa7b; }
+        .token.attr-value { color: #f1fa8c; }
+        .token.comment { color: #6272a4; }
+    </style>
+</head>
+<body class="bg-background-light text-[#111118] overflow-hidden h-screen flex flex-col">
+<!-- Top Navigation -->
+<header class="flex items-center justify-between whitespace-nowrap border-b border-solid border-[#e5e7eb] bg-white px-6 py-3 shrink-0 z-20 relative shadow-sm">
+<div class="flex items-center gap-8">
+<div class="flex items-center gap-3 text-[#111118]">
+<div class="size-8 bg-primary rounded-lg flex items-center justify-center text-white">
+<span class="material-symbols-outlined text-[20px]">dataset</span>
+</div>
+<h2 class="text-[#111118] text-lg font-bold leading-tight tracking-[-0.015em]">AI Design System</h2>
+</div>
+<nav class="hidden md:flex items-center gap-1">
+<a class="text-[#616189] hover:text-primary hover:bg-primary/5 px-3 py-2 rounded-lg text-sm font-medium transition-colors" href="#">Overview</a>
+<a class="text-primary bg-primary/10 px-3 py-2 rounded-lg text-sm font-medium transition-colors" href="#">Components</a>
+<a class="text-[#616189] hover:text-primary hover:bg-primary/5 px-3 py-2 rounded-lg text-sm font-medium transition-colors" href="#">Patterns</a>
+<a class="text-[#616189] hover:text-primary hover:bg-primary/5 px-3 py-2 rounded-lg text-sm font-medium transition-colors" href="#">Brand</a>
+</nav>
+</div>
+<div class="flex items-center gap-4">
+<div class="hidden md:flex relative group">
+<div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-[#616189]">
+<span class="material-symbols-outlined text-[20px]">search</span>
+</div>
+<input class="pl-10 pr-4 py-2 bg-[#f6f6f8] border-none rounded-lg text-sm text-[#111118] w-64 focus:ring-2 focus:ring-primary/20 focus:bg-white transition-all placeholder:text-[#616189]" placeholder="Search documentation..." type="text"/>
+<div class="absolute inset-y-0 right-0 pr-2 flex items-center pointer-events-none">
+<span class="border border-gray-300 rounded px-1.5 py-0.5 text-[10px] font-medium text-gray-500">⌘K</span>
+</div>
+</div>
+<div class="h-6 w-px bg-gray-200 mx-1"></div>
+<button class="text-[#616189] hover:text-[#111118] transition-colors">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<div class="bg-center bg-no-repeat bg-cover rounded-full size-9 ring-2 ring-white shadow-sm cursor-pointer" data-alt="User avatar profile picture showing a smiling person" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDmvHs_d8a0LmrRYoBFborzoPxj-uEcWu0_V5W2kegbatRQlWHoyVwckJZjQx4dyeqKQaFx4igIxiGs95zL3p42qDrovBOvR_QxPWSs-XcPEMUc5cw6JwZ-Ut2n51fQ09kyNmgvGR-vwWpMrVeV6kT7J1prZdkcdSKQTd8MhmXNdEAJhhE0mAeE6h0P1cyxLBFjhbvgfSeOe3XSPu_EhpkpJVyeUJM8hXH-893-4XDGBBbSktud-3j59fWjRaEnz77E8z7cTvEE9VlR");'></div>
+</div>
+</header>
+<div class="flex flex-1 overflow-hidden">
+<!-- Side Navigation -->
+<aside class="hidden lg:flex flex-col w-72 bg-white border-r border-[#e5e7eb] overflow-y-auto shrink-0 pb-10">
+<div class="p-4 flex flex-col gap-6">
+<!-- Section 1 -->
+<div>
+<h3 class="px-3 text-xs font-bold text-[#616189] uppercase tracking-wider mb-2">Documentation</h3>
+<div class="flex flex-col gap-1">
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-[#f6f6f8] text-[#616189] group transition-all" href="#">
+<span class="material-symbols-outlined text-[20px] group-hover:text-primary transition-colors">rocket_launch</span>
+<span class="text-sm font-medium group-hover:text-[#111118]">Getting Started</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-[#f6f6f8] text-[#616189] group transition-all" href="#">
+<span class="material-symbols-outlined text-[20px] group-hover:text-primary transition-colors">palette</span>
+<span class="text-sm font-medium group-hover:text-[#111118]">Foundations</span>
+</a>
+</div>
+</div>
+<!-- Section 2 -->
+<div>
+<h3 class="px-3 text-xs font-bold text-[#616189] uppercase tracking-wider mb-2">Components</h3>
+<div class="flex flex-col gap-1">
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-[#f6f6f8] text-[#616189] group transition-all" href="#">
+<span class="material-symbols-outlined text-[20px] group-hover:text-primary transition-colors">smart_button</span>
+<span class="text-sm font-medium group-hover:text-[#111118]">Buttons</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-[#f6f6f8] text-[#616189] group transition-all" href="#">
+<span class="material-symbols-outlined text-[20px] group-hover:text-primary transition-colors">input</span>
+<span class="text-sm font-medium group-hover:text-[#111118]">Inputs</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg bg-primary/5 text-primary" href="#">
+<span class="material-symbols-outlined text-[20px] text-primary fill-1">chat_bubble</span>
+<span class="text-sm font-bold">Tooltip &amp; Popover</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-[#f6f6f8] text-[#616189] group transition-all" href="#">
+<span class="material-symbols-outlined text-[20px] group-hover:text-primary transition-colors">web_stories</span>
+<span class="text-sm font-medium group-hover:text-[#111118]">Cards</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-[#f6f6f8] text-[#616189] group transition-all" href="#">
+<span class="material-symbols-outlined text-[20px] group-hover:text-primary transition-colors">view_kanban</span>
+<span class="text-sm font-medium group-hover:text-[#111118]">Modals</span>
+</a>
+</div>
+</div>
+</div>
+</aside>
+<!-- Main Content -->
+<main class="flex-1 overflow-y-auto bg-white relative">
+<div class="max-w-[1000px] mx-auto px-8 py-10 flex flex-col gap-10">
+<!-- Page Header -->
+<div class="flex flex-col gap-6">
+<div class="flex flex-wrap items-start justify-between gap-4">
+<div class="flex flex-col gap-3 max-w-2xl">
+<h1 class="text-[#111118] text-4xl font-bold leading-tight tracking-[-0.03em]">Tooltip &amp; Popover</h1>
+<p class="text-[#616189] text-lg font-normal leading-relaxed">
+                                Contextual overlays that display informative text or rich content when users hover, focus, or tap an element. Designed for high-density data interfaces and AI insights.
+                            </p>
+</div>
+<div class="flex items-center gap-3">
+<button class="flex items-center justify-center gap-2 px-4 h-10 rounded-lg bg-[#f6f6f8] hover:bg-[#e5e7eb] text-[#111118] text-sm font-semibold transition-colors">
+<span class="material-symbols-outlined text-[18px]">edit</span>
+<span>Edit on GitHub</span>
+</button>
+</div>
+</div>
+<!-- Chips -->
+<div class="flex flex-wrap gap-3">
+<div class="flex items-center gap-2 px-3 py-1.5 rounded-md bg-[#e0f2fe] text-[#0284c7] border border-[#bae6fd]">
+<span class="material-symbols-outlined text-[16px]">check_circle</span>
+<span class="text-xs font-bold uppercase tracking-wide">v2.4 Stable</span>
+</div>
+<div class="flex items-center gap-2 px-3 py-1.5 rounded-md bg-[#f3f4f6] text-[#4b5563] border border-[#e5e7eb]">
+<span class="material-symbols-outlined text-[16px]">light_mode</span>
+<span class="text-xs font-bold uppercase tracking-wide">Light Mode Optimized</span>
+</div>
+<div class="flex items-center gap-2 px-3 py-1.5 rounded-md bg-[#f3f4f6] text-[#4b5563] border border-[#e5e7eb]">
+<span class="material-symbols-outlined text-[16px]">accessibility_new</span>
+<span class="text-xs font-bold uppercase tracking-wide">A11y Ready</span>
+</div>
+</div>
+</div>
+<hr class="border-[#e5e7eb]"/>
+<!-- Interactive Playground Section -->
+<section class="flex flex-col gap-6">
+<div class="flex items-center justify-between">
+<h2 class="text-[#111118] text-2xl font-bold tracking-tight">Interactive Playground</h2>
+<div class="flex items-center gap-2 bg-[#f6f6f8] p-1 rounded-lg">
+<button class="px-3 py-1 rounded bg-white shadow-sm text-xs font-medium text-[#111118]">Preview</button>
+<button class="px-3 py-1 rounded text-xs font-medium text-[#616189] hover:text-[#111118]">Code</button>
+</div>
+</div>
+<!-- Visual Playground Area -->
+<div class="border border-[#e5e7eb] rounded-xl bg-white shadow-sm overflow-hidden flex flex-col md:flex-row min-h-[400px]">
+<!-- Canvas -->
+<div class="flex-1 bg-[#f9fafb] relative flex items-center justify-center p-12 bg-[radial-gradient(#e5e7eb_1px,transparent_1px)] [background-size:16px_16px]">
+<div class="flex flex-col gap-12 items-center">
+<!-- Top Tooltip Example -->
+<div class="relative group tooltip-trigger">
+<button class="bg-white border border-gray-200 hover:border-primary/50 hover:text-primary text-[#111118] px-6 py-3 rounded-lg shadow-sm font-medium transition-all flex items-center gap-2">
+<span>Hover for Tooltip</span>
+<span class="material-symbols-outlined text-[18px]">info</span>
+</button>
+<!-- Tooltip Element -->
+<div class="tooltip-content absolute bottom-full left-1/2 -translate-x-1/2 mb-3 px-3 py-2 bg-[#111118] text-white text-xs font-medium rounded shadow-xl whitespace-nowrap opacity-0 invisible transition-all duration-200 z-10">
+                                        AI Confidence Score: 98%
+                                        <div class="absolute top-full left-1/2 -translate-x-1/2 border-4 border-transparent border-t-[#111118]"></div>
+</div>
+</div>
+<!-- Flex row for Side and Popover -->
+<div class="flex gap-16 items-center">
+<!-- Right Tooltip Example (Icon) -->
+<div class="relative group tooltip-trigger-right">
+<div class="size-10 rounded-full bg-white border border-gray-200 flex items-center justify-center text-[#616189] hover:text-primary hover:border-primary cursor-help transition-all shadow-sm">
+<span class="material-symbols-outlined">help</span>
+</div>
+<!-- Tooltip Element -->
+<div class="tooltip-content-right absolute top-1/2 left-full ml-3 -translate-y-1/2 px-3 py-2 bg-[#111118] text-white text-xs font-medium rounded shadow-xl whitespace-nowrap opacity-0 invisible transition-all duration-200 z-10">
+                                            Documentation
+                                            <div class="absolute top-1/2 right-full -translate-y-1/2 border-4 border-transparent border-r-[#111118]"></div>
+</div>
+</div>
+<!-- Static Popover Example (Visualizing 'Active' State) -->
+<div class="relative">
+<button class="bg-primary text-white px-6 py-3 rounded-lg shadow-lg font-medium shadow-primary/30 flex items-center gap-2">
+<span>Active Popover</span>
+<span class="material-symbols-outlined text-[18px]">expand_less</span>
+</button>
+<!-- Popover Body (Always Visible for Demo) -->
+<div class="absolute top-full left-1/2 -translate-x-1/2 mt-4 w-72 bg-white rounded-xl shadow-soft border border-gray-100 z-20 p-4 animate-in fade-in zoom-in-95 duration-200">
+<div class="flex items-start gap-3 mb-3">
+<div class="size-10 rounded-lg bg-indigo-50 text-indigo-600 flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined">auto_awesome</span>
+</div>
+<div>
+<h4 class="text-sm font-bold text-[#111118]">AI Insight Generated</h4>
+<p class="text-xs text-[#616189] mt-1">This layout was optimized based on user heatmaps.</p>
+</div>
+</div>
+<div class="bg-gray-50 rounded p-2 mb-3">
+<div class="h-2 w-3/4 bg-gray-200 rounded mb-1"></div>
+<div class="h-2 w-1/2 bg-gray-200 rounded"></div>
+</div>
+<div class="flex gap-2">
+<button class="flex-1 bg-primary text-white text-xs font-semibold py-2 rounded hover:bg-primary/90 transition">Apply</button>
+<button class="flex-1 bg-transparent text-[#616189] hover:bg-gray-50 text-xs font-semibold py-2 rounded border border-gray-200 transition">Dismiss</button>
+</div>
+<!-- Arrow -->
+<div class="absolute bottom-full left-1/2 -translate-x-1/2 border-8 border-transparent border-b-white"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Configuration Panel -->
+<div class="w-full md:w-72 bg-white border-t md:border-t-0 md:border-l border-[#e5e7eb] p-6 flex flex-col gap-6">
+<h3 class="text-sm font-bold text-[#111118] uppercase tracking-wider">Configuration</h3>
+<!-- Control Group -->
+<div class="flex flex-col gap-3">
+<label class="text-xs font-medium text-[#616189]">Variant</label>
+<div class="flex p-1 bg-[#f6f6f8] rounded-lg">
+<button class="flex-1 py-1.5 text-xs font-semibold bg-white rounded shadow-sm text-[#111118]">Simple</button>
+<button class="flex-1 py-1.5 text-xs font-medium text-[#616189] hover:text-[#111118]">Rich</button>
+</div>
+</div>
+<!-- Control Group -->
+<div class="flex flex-col gap-3">
+<label class="text-xs font-medium text-[#616189]">Placement</label>
+<div class="grid grid-cols-3 gap-2">
+<div></div>
+<button class="h-8 rounded border border-gray-200 hover:border-primary/50 flex items-center justify-center text-[#616189] bg-white"><span class="material-symbols-outlined text-[16px]">arrow_drop_up</span></button>
+<div></div>
+<button class="h-8 rounded border border-gray-200 hover:border-primary/50 flex items-center justify-center text-[#616189] bg-white"><span class="material-symbols-outlined text-[16px]">arrow_left</span></button>
+<div class="size-2 rounded-full bg-primary/20 m-auto"></div>
+<button class="h-8 rounded border border-gray-200 hover:border-primary/50 flex items-center justify-center text-[#616189] bg-white"><span class="material-symbols-outlined text-[16px]">arrow_right</span></button>
+<div></div>
+<button class="h-8 rounded border border-primary text-primary bg-primary/5 flex items-center justify-center"><span class="material-symbols-outlined text-[16px]">arrow_drop_down</span></button>
+<div></div>
+</div>
+</div>
+<!-- Toggles -->
+<div class="flex flex-col gap-3 pt-2">
+<div class="flex items-center justify-between">
+<span class="text-xs font-medium text-[#111118]">Show Arrow</span>
+<div class="w-9 h-5 bg-primary rounded-full relative cursor-pointer">
+<div class="absolute right-0.5 top-0.5 size-4 bg-white rounded-full shadow-sm"></div>
+</div>
+</div>
+<div class="flex items-center justify-between">
+<span class="text-xs font-medium text-[#111118]">Close on Click</span>
+<div class="w-9 h-5 bg-gray-200 rounded-full relative cursor-pointer">
+<div class="absolute left-0.5 top-0.5 size-4 bg-white rounded-full shadow-sm"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Code Example -->
+<section class="flex flex-col gap-4">
+<h2 class="text-[#111118] text-xl font-bold tracking-tight">Usage</h2>
+<div class="bg-[#1e1e2e] rounded-xl overflow-hidden shadow-lg border border-[#2b2b40]">
+<div class="flex items-center justify-between px-4 py-2 bg-[#181825] border-b border-[#2b2b40]">
+<div class="flex gap-1.5">
+<div class="size-3 rounded-full bg-[#ff5f56]"></div>
+<div class="size-3 rounded-full bg-[#ffbd2e]"></div>
+<div class="size-3 rounded-full bg-[#27c93f]"></div>
+</div>
+<span class="text-xs text-[#6272a4] font-mono">MyComponent.tsx</span>
+</div>
+<div class="p-4 overflow-x-auto">
+<pre class="font-mono text-sm leading-relaxed text-[#f8f8f2]"><code><span class="token keyword">import</span> { Tooltip, TooltipContent, TooltipTrigger } <span class="token keyword">from</span> <span class="token string">"@ai-design/ui"</span>;
+
+<span class="token keyword">export function</span> <span class="token function">AnalysisButton</span>() {
+  <span class="token keyword">return</span> (
+    <span class="token tag">&lt;Tooltip</span> <span class="token attr-name">delayDuration</span>=<span class="token attr-value">{300}</span><span class="token tag">&gt;</span>
+      <span class="token tag">&lt;TooltipTrigger</span> <span class="token attr-name">asChild</span><span class="token tag">&gt;</span>
+        <span class="token tag">&lt;Button</span> <span class="token attr-name">variant</span>=<span class="token string">"outline"</span><span class="token tag">&gt;</span>Hover me<span class="token tag">&lt;/Button&gt;</span>
+      <span class="token tag">&lt;/TooltipTrigger&gt;</span>
+      <span class="token tag">&lt;TooltipContent</span> <span class="token attr-name">side</span>=<span class="token string">"top"</span><span class="token tag">&gt;</span>
+        <span class="token tag">&lt;p&gt;</span>AI Confidence Score: 98%<span class="token tag">&lt;/p&gt;</span>
+      <span class="token tag">&lt;/TooltipContent&gt;</span>
+    <span class="token tag">&lt;/Tooltip&gt;</span>
+  );
+}</code>
+</pre>
+</div>
+</div>
+</section>
+<!-- Properties Table -->
+<section class="flex flex-col gap-4 pb-12">
+<h2 class="text-[#111118] text-xl font-bold tracking-tight">API Reference</h2>
+<div class="border border-[#e5e7eb] rounded-xl overflow-hidden bg-white shadow-sm">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-[#f6f6f8] border-b border-[#e5e7eb]">
+<th class="px-6 py-3 text-xs font-bold text-[#616189] uppercase tracking-wider">Prop</th>
+<th class="px-6 py-3 text-xs font-bold text-[#616189] uppercase tracking-wider">Type</th>
+<th class="px-6 py-3 text-xs font-bold text-[#616189] uppercase tracking-wider">Default</th>
+<th class="px-6 py-3 text-xs font-bold text-[#616189] uppercase tracking-wider">Description</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-[#e5e7eb]">
+<tr>
+<td class="px-6 py-4 text-sm font-mono text-primary font-medium">content</td>
+<td class="px-6 py-4 text-sm text-[#e83e8c] font-mono">ReactNode | string</td>
+<td class="px-6 py-4 text-sm font-mono text-[#616189]">-</td>
+<td class="px-6 py-4 text-sm text-[#111118]">The content to display inside the popover/tooltip.</td>
+</tr>
+<tr>
+<td class="px-6 py-4 text-sm font-mono text-primary font-medium">side</td>
+<td class="px-6 py-4 text-sm text-[#e83e8c] font-mono">"top" | "right" | "bottom" | "left"</td>
+<td class="px-6 py-4 text-sm font-mono text-[#616189]">"top"</td>
+<td class="px-6 py-4 text-sm text-[#111118]">The preferred side of the trigger to render against.</td>
+</tr>
+<tr>
+<td class="px-6 py-4 text-sm font-mono text-primary font-medium">sideOffset</td>
+<td class="px-6 py-4 text-sm text-[#e83e8c] font-mono">number</td>
+<td class="px-6 py-4 text-sm font-mono text-[#616189]">4</td>
+<td class="px-6 py-4 text-sm text-[#111118]">The distance in pixels from the trigger.</td>
+</tr>
+<tr>
+<td class="px-6 py-4 text-sm font-mono text-primary font-medium">delayDuration</td>
+<td class="px-6 py-4 text-sm text-[#e83e8c] font-mono">number</td>
+<td class="px-6 py-4 text-sm font-mono text-[#616189]">700</td>
+<td class="px-6 py-4 text-sm text-[#111118]">The duration from when the mouse enters the trigger until the tooltip opens.</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+</div>
+</main>
+</div>
+</body></html>

@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Toast Notification Component - Dark Mode</title>
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Theme Config -->
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#2b2bee",
+                        "background-light": "#f6f6f8",
+                        "background-dark": "#101022",
+                        "surface-dark": "#1a1a2e",
+                        "border-dark": "#2a2a40",
+                        "success": "#22c55e",
+                        "error": "#ef4444",
+                        "warning": "#f59e0b",
+                        "info": "#3b82f6"
+                    },
+                    fontFamily: {
+                        "display": ["Space Grotesk", "sans-serif"],
+                        "mono": ["ui-monospace", "SFMono-Regular", "Menlo", "Monaco", "Consolas", "Liberation Mono", "Courier New", "monospace"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        /* Custom scrollbar for code blocks */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #101022; 
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #2a2a40; 
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #3a3a50; 
+        }
+        
+        .glass-panel {
+            background: rgba(26, 26, 46, 0.7);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        
+        .code-syntax-keyword { color: #c678dd; }
+        .code-syntax-func { color: #61afef; }
+        .code-syntax-string { color: #98c379; }
+        .code-syntax-tag { color: #e06c75; }
+        .code-syntax-attr { color: #d19a66; }
+        .code-syntax-comment { color: #5c6370; font-style: italic; }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-white font-display antialiased selection:bg-primary selection:text-white">
+<div class="relative flex min-h-screen w-full flex-col overflow-x-hidden">
+<!-- Top Navigation -->
+<header class="sticky top-0 z-50 flex items-center justify-between whitespace-nowrap border-b border-solid border-border-dark bg-background-dark/95 backdrop-blur px-10 py-3">
+<div class="flex items-center gap-8">
+<div class="flex items-center gap-4 text-white">
+<div class="flex items-center justify-center size-8 rounded bg-primary/20 text-primary">
+<span class="material-symbols-outlined text-[24px]">terminal</span>
+</div>
+<h2 class="text-white text-lg font-bold leading-tight tracking-[-0.015em]">DevSystem UI</h2>
+</div>
+<div class="hidden md:flex items-center gap-9">
+<a class="text-white/80 hover:text-white text-sm font-medium leading-normal transition-colors" href="#">Components</a>
+<a class="text-white/80 hover:text-white text-sm font-medium leading-normal transition-colors" href="#">Patterns</a>
+<a class="text-primary text-sm font-medium leading-normal" href="#">Tokens</a>
+<a class="text-white/80 hover:text-white text-sm font-medium leading-normal transition-colors" href="#">Icons</a>
+</div>
+</div>
+<div class="flex flex-1 justify-end gap-6">
+<label class="hidden lg:flex flex-col min-w-40 !h-10 max-w-64">
+<div class="flex w-full flex-1 items-stretch rounded-lg h-full border border-border-dark bg-surface-dark focus-within:border-primary transition-colors">
+<div class="text-[#9d9db9] flex items-center justify-center pl-3">
+<span class="material-symbols-outlined text-[20px]">search</span>
+</div>
+<input class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-lg bg-transparent text-white focus:outline-0 focus:ring-0 border-none h-full placeholder:text-[#9d9db9] px-3 text-sm font-normal leading-normal" placeholder="Search components..." value=""/>
+<div class="flex items-center pr-3">
+<span class="text-xs text-[#5c5c70] border border-[#2a2a40] rounded px-1.5 py-0.5">⌘K</span>
+</div>
+</div>
+</label>
+<div class="flex gap-3">
+<button class="flex items-center justify-center rounded-lg size-10 bg-surface-dark border border-border-dark text-white hover:bg-[#2a2a40] transition-colors">
+<span class="material-symbols-outlined text-[20px]">webhook</span>
+</button>
+<button class="flex items-center justify-center rounded-lg size-10 bg-surface-dark border border-border-dark text-white hover:bg-[#2a2a40] transition-colors">
+<span class="material-symbols-outlined text-[20px]">dark_mode</span>
+</button>
+<div class="size-10 rounded-full bg-gradient-to-tr from-primary to-purple-500 p-[1px]" data-alt="User avatar gradient">
+<div class="h-full w-full rounded-full bg-surface-dark flex items-center justify-center">
+<span class="text-xs font-bold">JD</span>
+</div>
+</div>
+</div>
+</div>
+</header>
+<!-- Main Content -->
+<main class="flex-1 flex flex-col items-center py-10 px-6 sm:px-10 lg:px-40">
+<div class="w-full max-w-[1024px] flex flex-col gap-10">
+<!-- Header Section -->
+<div class="flex flex-col gap-6 border-b border-border-dark pb-8">
+<div class="flex flex-wrap justify-between items-start gap-4">
+<div class="flex flex-col gap-2">
+<div class="flex items-center gap-3">
+<h1 class="text-white text-4xl font-bold tracking-tight">Toast Notification</h1>
+<span class="px-2.5 py-0.5 rounded-full bg-primary/20 text-primary text-xs font-medium border border-primary/20">v2.1.0</span>
+</div>
+<p class="text-[#9d9db9] text-lg max-w-2xl mt-1">
+                                Non-blocking, temporary status messages for success, error, warning, or info states. 
+                                Optimized for high-contrast dark mode environments.
+                            </p>
+</div>
+<div class="flex gap-3">
+<button class="group flex items-center justify-center gap-2 rounded-lg h-10 px-4 bg-surface-dark border border-border-dark text-white text-sm font-medium hover:border-white/20 transition-all">
+<span class="material-symbols-outlined text-[18px] group-hover:rotate-12 transition-transform">edit</span>
+<span>Edit on GitHub</span>
+</button>
+</div>
+</div>
+<!-- Chips -->
+<div class="flex gap-3 flex-wrap">
+<div class="flex h-7 items-center gap-2 rounded px-3 bg-[#1e1e2e] border border-border-dark">
+<span class="material-symbols-outlined text-[14px] text-[#9d9db9]">devices</span>
+<p class="text-[#9d9db9] text-xs font-medium">Responsive</p>
+</div>
+<div class="flex h-7 items-center gap-2 rounded px-3 bg-[#1e1e2e] border border-border-dark">
+<span class="material-symbols-outlined text-[14px] text-[#9d9db9]">contrast</span>
+<p class="text-[#9d9db9] text-xs font-medium">Dark Mode Only</p>
+</div>
+<div class="flex h-7 items-center gap-2 rounded px-3 bg-[#1e1e2e] border border-border-dark">
+<span class="material-symbols-outlined text-[14px] text-[#9d9db9]">code</span>
+<p class="text-[#9d9db9] text-xs font-medium">React / Vue</p>
+</div>
+</div>
+</div>
+<!-- Live Preview & Playground -->
+<section class="flex flex-col gap-6">
+<div class="flex items-center justify-between">
+<h2 class="text-white text-2xl font-bold tracking-tight">Live Preview</h2>
+<div class="flex items-center gap-2 text-xs text-[#9d9db9]">
+<span class="size-2 rounded-full bg-green-500 animate-pulse"></span>
+                            System Operational
+                        </div>
+</div>
+<div class="grid lg:grid-cols-3 gap-6 h-[500px]">
+<!-- Controls -->
+<div class="glass-panel rounded-xl p-6 flex flex-col gap-6 lg:col-span-1">
+<h3 class="text-sm font-bold text-white uppercase tracking-wider text-opacity-70">Trigger Event</h3>
+<div class="space-y-3">
+<button class="w-full group relative overflow-hidden rounded-lg bg-surface-dark border border-border-dark hover:border-success/50 p-4 text-left transition-all hover:bg-success/5">
+<div class="flex items-center gap-3">
+<div class="flex items-center justify-center size-8 rounded bg-success/10 text-success group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-[20px]">check_circle</span>
+</div>
+<div>
+<p class="text-sm font-bold text-white">Success State</p>
+<p class="text-xs text-[#9d9db9]">Action completed</p>
+</div>
+</div>
+</button>
+<button class="w-full group relative overflow-hidden rounded-lg bg-surface-dark border border-border-dark hover:border-error/50 p-4 text-left transition-all hover:bg-error/5">
+<div class="flex items-center gap-3">
+<div class="flex items-center justify-center size-8 rounded bg-error/10 text-error group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-[20px]">error</span>
+</div>
+<div>
+<p class="text-sm font-bold text-white">Error State</p>
+<p class="text-xs text-[#9d9db9]">Critical failure</p>
+</div>
+</div>
+</button>
+<button class="w-full group relative overflow-hidden rounded-lg bg-surface-dark border border-border-dark hover:border-warning/50 p-4 text-left transition-all hover:bg-warning/5">
+<div class="flex items-center gap-3">
+<div class="flex items-center justify-center size-8 rounded bg-warning/10 text-warning group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-[20px]">warning</span>
+</div>
+<div>
+<p class="text-sm font-bold text-white">Warning State</p>
+<p class="text-xs text-[#9d9db9]">Needs attention</p>
+</div>
+</div>
+</button>
+<button class="w-full group relative overflow-hidden rounded-lg bg-surface-dark border border-border-dark hover:border-info/50 p-4 text-left transition-all hover:bg-info/5">
+<div class="flex items-center gap-3">
+<div class="flex items-center justify-center size-8 rounded bg-info/10 text-info group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-[20px]">info</span>
+</div>
+<div>
+<p class="text-sm font-bold text-white">Info State</p>
+<p class="text-xs text-[#9d9db9]">General update</p>
+</div>
+</div>
+</button>
+</div>
+<div class="mt-auto pt-4 border-t border-border-dark">
+<label class="flex items-center justify-between text-sm text-white cursor-pointer">
+<span>Auto-dismiss</span>
+<div class="relative inline-block w-10 h-5 align-middle select-none transition duration-200 ease-in">
+<input class="toggle-checkbox absolute block w-4 h-4 rounded-full bg-white border-4 appearance-none cursor-pointer left-[2px] top-[2px] checked:left-[22px] transition-all" name="toggle" type="checkbox"/>
+<label class="toggle-label block overflow-hidden h-5 rounded-full bg-[#2a2a40] cursor-pointer" for="toggle"></label>
+</div>
+</label>
+</div>
+</div>
+<!-- Canvas -->
+<div class="relative lg:col-span-2 rounded-xl bg-[#080810] border border-border-dark overflow-hidden flex items-end justify-end p-8" style="background-image: radial-gradient(#2a2a40 1px, transparent 1px); background-size: 24px 24px;">
+<!-- Static representation of a "triggered" toast in the preview area -->
+<div class="relative w-full max-w-sm transform transition-all duration-300 translate-y-0 opacity-100">
+<div class="relative overflow-hidden rounded-lg bg-[#151520] border-l-4 border-l-success border-y border-r border-y-border-dark border-r-border-dark shadow-2xl shadow-black/50 p-4 flex gap-4">
+<!-- Icon -->
+<div class="flex-shrink-0 text-success">
+<span class="material-symbols-outlined text-[24px]">check_circle</span>
+</div>
+<!-- Content -->
+<div class="flex-1 min-w-0">
+<h4 class="text-sm font-bold text-white leading-none mb-1">Deployment Successful</h4>
+<p class="text-sm text-[#9d9db9] leading-tight">Project 'Nebula' has been deployed to production.</p>
+</div>
+<!-- Close -->
+<button class="flex-shrink-0 text-[#5c5c70] hover:text-white transition-colors">
+<span class="material-symbols-outlined text-[20px]">close</span>
+</button>
+<!-- Progress bar simulation -->
+<div class="absolute bottom-0 left-0 h-[2px] bg-success w-3/4 opacity-50"></div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Variants Grid -->
+<section class="flex flex-col gap-6">
+<h2 class="text-white text-2xl font-bold tracking-tight">Variants</h2>
+<div class="grid md:grid-cols-2 gap-4">
+<!-- Success Variant -->
+<div class="rounded-lg bg-[#151520] border border-border-dark p-4 flex items-start gap-4 hover:border-success/30 transition-colors cursor-default">
+<span class="material-symbols-outlined text-success mt-0.5">check_circle</span>
+<div class="flex-1">
+<h4 class="text-white text-sm font-bold mb-1">Success</h4>
+<p class="text-[#9d9db9] text-sm">Operation completed successfully.</p>
+</div>
+</div>
+<!-- Error Variant -->
+<div class="rounded-lg bg-[#151520] border border-border-dark p-4 flex items-start gap-4 hover:border-error/30 transition-colors cursor-default">
+<span class="material-symbols-outlined text-error mt-0.5">error</span>
+<div class="flex-1">
+<h4 class="text-white text-sm font-bold mb-1">Error</h4>
+<p class="text-[#9d9db9] text-sm">Failed to save changes. Try again.</p>
+</div>
+</div>
+<!-- Warning Variant -->
+<div class="rounded-lg bg-[#151520] border border-border-dark p-4 flex items-start gap-4 hover:border-warning/30 transition-colors cursor-default">
+<span class="material-symbols-outlined text-warning mt-0.5">warning</span>
+<div class="flex-1">
+<h4 class="text-white text-sm font-bold mb-1">Warning</h4>
+<p class="text-[#9d9db9] text-sm">Your license expires in 3 days.</p>
+</div>
+</div>
+<!-- Info Variant -->
+<div class="rounded-lg bg-[#151520] border border-border-dark p-4 flex items-start gap-4 hover:border-info/30 transition-colors cursor-default">
+<span class="material-symbols-outlined text-info mt-0.5">info</span>
+<div class="flex-1">
+<h4 class="text-white text-sm font-bold mb-1">Info</h4>
+<p class="text-[#9d9db9] text-sm">New update available for download.</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Documentation Section -->
+<div class="grid lg:grid-cols-3 gap-10 border-t border-border-dark pt-10">
+<!-- Code Snippet -->
+<div class="lg:col-span-2 flex flex-col gap-6">
+<h2 class="text-white text-2xl font-bold tracking-tight">Implementation</h2>
+<div class="rounded-xl overflow-hidden bg-[#0d0d15] border border-border-dark shadow-lg">
+<div class="flex items-center justify-between px-4 py-2 bg-[#1a1a2e] border-b border-border-dark">
+<div class="flex gap-1.5">
+<div class="w-3 h-3 rounded-full bg-[#ff5f56]"></div>
+<div class="w-3 h-3 rounded-full bg-[#ffbd2e]"></div>
+<div class="w-3 h-3 rounded-full bg-[#27c93f]"></div>
+</div>
+<span class="text-xs text-[#9d9db9] font-mono">App.tsx</span>
+<button class="text-[#9d9db9] hover:text-white transition-colors">
+<span class="material-symbols-outlined text-[16px]">content_copy</span>
+</button>
+</div>
+<div class="p-6 overflow-x-auto">
+<pre class="font-mono text-sm leading-relaxed"><span class="code-syntax-keyword">import</span> { useToast } <span class="code-syntax-keyword">from</span> <span class="code-syntax-string">'@/hooks/use-toast'</span>
+<span class="code-syntax-keyword">import</span> { Button } <span class="code-syntax-keyword">from</span> <span class="code-syntax-string">'@/components/ui/button'</span>
+
+<span class="code-syntax-keyword">export default function</span> <span class="code-syntax-func">ToastDemo</span>() {
+  <span class="code-syntax-keyword">const</span> { toast } = <span class="code-syntax-func">useToast</span>()
+
+  <span class="code-syntax-keyword">return</span> (
+    <span class="code-syntax-tag">&lt;Button</span>
+      <span class="code-syntax-attr">onClick</span>={() =&gt; {
+        <span class="code-syntax-func">toast</span>({
+          title: <span class="code-syntax-string">"Deployment Successful"</span>,
+          description: <span class="code-syntax-string">"Project 'Nebula' has been deployed."</span>,
+          variant: <span class="code-syntax-string">"success"</span>,
+        })
+      }}
+    <span class="code-syntax-tag">&gt;</span>
+      Show Toast
+    <span class="code-syntax-tag">&lt;/Button&gt;</span>
+  )
+}
+</pre>
+</div>
+</div>
+<div class="rounded-xl overflow-hidden bg-[#0d0d15] border border-border-dark shadow-lg">
+<div class="flex items-center justify-between px-4 py-2 bg-[#1a1a2e] border-b border-border-dark">
+<span class="text-xs text-[#9d9db9] font-mono">Terminal Installation</span>
+</div>
+<div class="p-4">
+<p class="font-mono text-sm text-[#9d9db9]">
+<span class="text-success">$</span> npm install @agency/ui-kit
+                                </p>
+</div>
+</div>
+</div>
+<!-- Props Table -->
+<div class="lg:col-span-1 flex flex-col gap-6">
+<h2 class="text-white text-2xl font-bold tracking-tight">Props API</h2>
+<div class="flex flex-col gap-4">
+<!-- Prop Item -->
+<div class="flex flex-col gap-2 p-4 rounded-lg border border-border-dark bg-surface-dark/50">
+<div class="flex items-center justify-between">
+<code class="text-primary text-sm font-bold bg-primary/10 px-2 py-0.5 rounded">variant</code>
+<span class="text-xs text-[#5c5c70] font-mono">string</span>
+</div>
+<p class="text-sm text-[#9d9db9]">Visual style of the toast.</p>
+<div class="flex flex-wrap gap-1 mt-1">
+<span class="text-[10px] text-white bg-[#2a2a40] px-1.5 py-0.5 rounded border border-[#3a3a50]">default</span>
+<span class="text-[10px] text-white bg-[#2a2a40] px-1.5 py-0.5 rounded border border-[#3a3a50]">success</span>
+<span class="text-[10px] text-white bg-[#2a2a40] px-1.5 py-0.5 rounded border border-[#3a3a50]">error</span>
+<span class="text-[10px] text-white bg-[#2a2a40] px-1.5 py-0.5 rounded border border-[#3a3a50]">warning</span>
+</div>
+</div>
+<!-- Prop Item -->
+<div class="flex flex-col gap-2 p-4 rounded-lg border border-border-dark bg-surface-dark/50">
+<div class="flex items-center justify-between">
+<code class="text-primary text-sm font-bold bg-primary/10 px-2 py-0.5 rounded">duration</code>
+<span class="text-xs text-[#5c5c70] font-mono">number</span>
+</div>
+<p class="text-sm text-[#9d9db9]">Time in ms before auto-dismissing.</p>
+<p class="text-xs text-[#5c5c70] font-mono">Default: 5000</p>
+</div>
+<!-- Prop Item -->
+<div class="flex flex-col gap-2 p-4 rounded-lg border border-border-dark bg-surface-dark/50">
+<div class="flex items-center justify-between">
+<code class="text-primary text-sm font-bold bg-primary/10 px-2 py-0.5 rounded">action</code>
+<span class="text-xs text-[#5c5c70] font-mono">ReactNode</span>
+</div>
+<p class="text-sm text-[#9d9db9]">Optional action button component to display.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</div>
+</body></html>

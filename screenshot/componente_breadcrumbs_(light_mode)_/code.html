@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Breadcrumbs Component - Design System</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;family=Noto+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#2b2bee",
+                        "background-light": "#f6f6f8",
+                        "background-dark": "#101022",
+                    },
+                    fontFamily: {
+                        "display": ["Space Grotesk", "sans-serif"],
+                        "body": ["Noto Sans", "sans-serif"],
+                        "mono": ["ui-monospace", "SFMono-Regular", "Menlo", "Monaco", "Consolas", "monospace"],
+                    },
+                    borderRadius: { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "2xl": "1rem", "full": "9999px" },
+                    backgroundImage: {
+                        'dot-pattern': "radial-gradient(#cbd5e1 1px, transparent 1px)",
+                    },
+                    backgroundSize: {
+                        'dot-pattern': '20px 20px',
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        body { font-family: "Space Grotesk", sans-serif; }
+        /* Custom scrollbar for code blocks */
+        .custom-scrollbar::-webkit-scrollbar {
+            height: 8px;
+            width: 8px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 4px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #d1d5db;
+            border-radius: 4px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+            background: #9ca3af;
+        }
+    </style>
+</head>
+<body class="bg-background-light text-[#111118]">
+<div class="relative flex min-h-screen flex-col">
+<!-- Top Navigation -->
+<header class="sticky top-0 z-50 flex items-center justify-between whitespace-nowrap border-b border-solid border-[#dbdbe6] bg-white/80 backdrop-blur-md px-4 py-3 lg:px-10">
+<div class="flex items-center gap-8">
+<div class="flex items-center gap-4 text-[#111118]">
+<div class="size-8 flex items-center justify-center bg-primary rounded-lg text-white">
+<span class="material-symbols-outlined text-xl">dataset</span>
+</div>
+<h2 class="text-[#111118] text-xl font-bold leading-tight tracking-[-0.015em]">Nova UI</h2>
+</div>
+<div class="hidden md:flex items-center gap-4">
+<span class="text-xs font-bold uppercase tracking-wider text-[#616189] bg-[#f0f0f4] px-2 py-1 rounded">v2.4.0</span>
+</div>
+</div>
+<!-- Search Bar -->
+<div class="flex flex-1 justify-center max-w-lg mx-4 hidden md:flex">
+<label class="flex w-full items-center rounded-lg bg-[#f0f0f4] px-3 py-2 transition-colors focus-within:bg-white focus-within:ring-2 focus-within:ring-primary/20">
+<span class="material-symbols-outlined text-[#616189]">search</span>
+<input class="ml-2 flex-1 bg-transparent text-sm text-[#111118] placeholder-[#616189] focus:outline-none" placeholder="Search components (Press '/')"/>
+<div class="flex items-center gap-1">
+<kbd class="hidden rounded border border-[#dbdbe6] bg-white px-1.5 py-0.5 text-[10px] font-bold text-[#616189] lg:inline-block">CMD</kbd>
+<kbd class="hidden rounded border border-[#dbdbe6] bg-white px-1.5 py-0.5 text-[10px] font-bold text-[#616189] lg:inline-block">K</kbd>
+</div>
+</label>
+</div>
+<div class="flex items-center gap-6">
+<nav class="hidden lg:flex items-center gap-6">
+<a class="text-[#111118] text-sm font-medium hover:text-primary transition-colors" href="#">Docs</a>
+<a class="text-primary text-sm font-bold" href="#">Components</a>
+<a class="text-[#111118] text-sm font-medium hover:text-primary transition-colors" href="#">Support</a>
+</nav>
+<div class="h-6 w-px bg-[#dbdbe6]"></div>
+<div class="flex gap-3">
+<button class="flex items-center justify-center rounded-full p-2 text-[#616189] hover:bg-[#f0f0f4] transition-colors">
+<span class="material-symbols-outlined text-[20px]">dark_mode</span>
+</button>
+<button class="flex items-center justify-center rounded-full p-2 text-[#616189] hover:bg-[#f0f0f4] transition-colors">
+<span class="material-symbols-outlined text-[20px]">notifications</span>
+</button>
+<div class="bg-center bg-no-repeat bg-cover rounded-full size-9 border border-[#dbdbe6]" data-alt="User profile avatar showing a smiling face" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAzhL2NGeZcINgMufeXdmV8yH17tBuAlh3SFi9zIdeQdzD5VsPX3AfHHxE0ywELXx0YFn6vQwWlNmym6qRCcIu__B-6SO82luQP2odgfxqMtNgyR5jeI37YkQ9QOKf0yFzJ04YfYm2-5nT5SDIBmMiRwOHL51EOtDsSnATzZfd_akak4bTWLeIxIigW-5FLir1DtPQN1m3axRgu5UQ5iSwVfII6qBAQUSJwATvlFdMlBfla4QJlpHG-Tg7_9re8ZGq3tqKLUuzeZqHY");'>
+</div>
+</div>
+</div>
+</header>
+<div class="flex flex-1 w-full max-w-[1440px] mx-auto">
+<!-- Side Navigation -->
+<aside class="hidden lg:block w-64 shrink-0 border-r border-[#dbdbe6] bg-white pb-10 pt-8 pl-8 pr-4 h-[calc(100vh-65px)] sticky top-[65px] overflow-y-auto custom-scrollbar">
+<div class="flex flex-col gap-8">
+<div>
+<h3 class="mb-3 px-2 text-xs font-bold uppercase tracking-wider text-[#616189]">Getting Started</h3>
+<div class="flex flex-col gap-1">
+<a class="flex items-center gap-2 rounded-lg px-2 py-2 text-sm font-medium text-[#616189] hover:bg-[#f0f0f4] hover:text-[#111118]" href="#">Introduction</a>
+<a class="flex items-center gap-2 rounded-lg px-2 py-2 text-sm font-medium text-[#616189] hover:bg-[#f0f0f4] hover:text-[#111118]" href="#">Installation</a>
+<a class="flex items-center gap-2 rounded-lg px-2 py-2 text-sm font-medium text-[#616189] hover:bg-[#f0f0f4] hover:text-[#111118]" href="#">Theming</a>
+</div>
+</div>
+<div>
+<h3 class="mb-3 px-2 text-xs font-bold uppercase tracking-wider text-[#616189]">Components</h3>
+<div class="flex flex-col gap-1">
+<a class="flex items-center gap-2 rounded-lg px-2 py-2 text-sm font-medium text-[#616189] hover:bg-[#f0f0f4] hover:text-[#111118]" href="#">Accordion</a>
+<a class="flex items-center gap-2 rounded-lg px-2 py-2 text-sm font-medium text-[#616189] hover:bg-[#f0f0f4] hover:text-[#111118]" href="#">Badge</a>
+<a class="flex items-center gap-2 rounded-lg bg-primary/10 px-2 py-2 text-sm font-bold text-primary" href="#">
+                                Breadcrumbs
+                                <span class="ml-auto block size-1.5 rounded-full bg-primary"></span>
+</a>
+<a class="flex items-center gap-2 rounded-lg px-2 py-2 text-sm font-medium text-[#616189] hover:bg-[#f0f0f4] hover:text-[#111118]" href="#">Button</a>
+<a class="flex items-center gap-2 rounded-lg px-2 py-2 text-sm font-medium text-[#616189] hover:bg-[#f0f0f4] hover:text-[#111118]" href="#">Card</a>
+<a class="flex items-center gap-2 rounded-lg px-2 py-2 text-sm font-medium text-[#616189] hover:bg-[#f0f0f4] hover:text-[#111118]" href="#">Dropdown</a>
+<a class="flex items-center gap-2 rounded-lg px-2 py-2 text-sm font-medium text-[#616189] hover:bg-[#f0f0f4] hover:text-[#111118]" href="#">Input</a>
+<a class="flex items-center gap-2 rounded-lg px-2 py-2 text-sm font-medium text-[#616189] hover:bg-[#f0f0f4] hover:text-[#111118]" href="#">Modal</a>
+</div>
+</div>
+<div>
+<h3 class="mb-3 px-2 text-xs font-bold uppercase tracking-wider text-[#616189]">Patterns</h3>
+<div class="flex flex-col gap-1">
+<a class="flex items-center gap-2 rounded-lg px-2 py-2 text-sm font-medium text-[#616189] hover:bg-[#f0f0f4] hover:text-[#111118]" href="#">Dashboard</a>
+<a class="flex items-center gap-2 rounded-lg px-2 py-2 text-sm font-medium text-[#616189] hover:bg-[#f0f0f4] hover:text-[#111118]" href="#">Forms</a>
+<a class="flex items-center gap-2 rounded-lg px-2 py-2 text-sm font-medium text-[#616189] hover:bg-[#f0f0f4] hover:text-[#111118]" href="#">Settings</a>
+</div>
+</div>
+</div>
+</aside>
+<!-- Main Content -->
+<main class="flex-1 min-w-0 py-10 px-6 lg:px-12 xl:px-20">
+<div class="max-w-[960px] mx-auto flex flex-col gap-10">
+<!-- Page Header -->
+<div class="flex flex-col gap-4">
+<div class="flex items-center gap-2 text-sm text-[#616189]">
+<span>Components</span>
+<span class="material-symbols-outlined text-[14px]">chevron_right</span>
+<span class="text-[#111118] font-medium">Breadcrumbs</span>
+</div>
+<div class="flex flex-wrap justify-between items-start gap-4">
+<div class="flex flex-col gap-3 max-w-2xl">
+<h1 class="text-[#111118] text-4xl lg:text-5xl font-black leading-tight tracking-[-0.033em]">Breadcrumbs</h1>
+<p class="text-[#616189] text-lg leading-relaxed">
+                                    Navigation component to indicate the current page's location within a hierarchy. Helps users understand their current position and navigate back to parent levels.
+                                </p>
+</div>
+<div class="flex gap-3">
+<a class="flex items-center gap-2 rounded-lg border border-[#dbdbe6] bg-white px-4 py-2 text-sm font-bold text-[#111118] transition-colors hover:bg-[#f0f0f4]" href="#">
+<span class="material-symbols-outlined text-[18px]">code</span>
+                                    View Source
+                                </a>
+<a class="flex items-center gap-2 rounded-lg bg-[#111118] px-4 py-2 text-sm font-bold text-white transition-opacity hover:opacity-90" href="#">
+<span class="material-symbols-outlined text-[18px]">bug_report</span>
+                                    Report Issue
+                                </a>
+</div>
+</div>
+</div>
+<!-- Tabs -->
+<div class="border-b border-[#dbdbe6]">
+<div class="flex gap-8">
+<button class="relative pb-3 pt-2 text-sm font-bold text-primary">
+                                Preview
+                                <span class="absolute bottom-0 left-0 h-[3px] w-full rounded-t-full bg-primary"></span>
+</button>
+<button class="relative pb-3 pt-2 text-sm font-bold text-[#616189] hover:text-[#111118] transition-colors">
+                                Code
+                            </button>
+<button class="relative pb-3 pt-2 text-sm font-bold text-[#616189] hover:text-[#111118] transition-colors">
+                                Props
+                            </button>
+</div>
+</div>
+<!-- Playground -->
+<div class="flex flex-col gap-6">
+<div class="flex flex-col rounded-xl border border-[#dbdbe6] bg-white shadow-sm overflow-hidden">
+<!-- Toolbar -->
+<div class="flex items-center justify-between border-b border-[#dbdbe6] bg-[#fbfbfd] px-4 py-3">
+<h3 class="text-sm font-bold text-[#111118]">Interactive Playground</h3>
+<div class="flex items-center gap-2">
+<button class="flex items-center justify-center rounded p-1.5 text-[#616189] hover:bg-[#e4e4e9]">
+<span class="material-symbols-outlined text-[18px]">refresh</span>
+</button>
+<button class="flex items-center justify-center rounded p-1.5 text-[#616189] hover:bg-[#e4e4e9]">
+<span class="material-symbols-outlined text-[18px]">content_copy</span>
+</button>
+</div>
+</div>
+<!-- Canvas -->
+<div class="relative flex min-h-[320px] items-center justify-center bg-background-light bg-dot-pattern p-8 lg:p-12">
+<div class="flex w-full max-w-2xl flex-col gap-10">
+<!-- Variation 1: Standard with Chevrons -->
+<div class="flex flex-col gap-2">
+<p class="text-xs font-bold uppercase tracking-wider text-[#616189] mb-1">Standard Hierarchy</p>
+<nav aria-label="Breadcrumb" class="flex rounded-lg border border-[#dbdbe6] bg-white p-4 shadow-sm">
+<ol class="inline-flex items-center space-x-1 md:space-x-2 rtl:space-x-reverse">
+<li class="inline-flex items-center">
+<a class="inline-flex items-center text-sm font-medium text-[#616189] hover:text-primary transition-colors" href="#">
+<span class="material-symbols-outlined mr-1 text-[18px]">home</span>
+                                                        Home
+                                                    </a>
+</li>
+<li>
+<div class="flex items-center">
+<span class="material-symbols-outlined text-[#dbdbe6] text-[18px]">chevron_right</span>
+<a class="ms-1 text-sm font-medium text-[#616189] hover:text-primary md:ms-2 transition-colors" href="#">Projects</a>
+</div>
+</li>
+<li aria-current="page">
+<div class="flex items-center">
+<span class="material-symbols-outlined text-[#dbdbe6] text-[18px]">chevron_right</span>
+<span class="ms-1 text-sm font-bold text-primary md:ms-2 bg-primary/10 px-2 py-0.5 rounded">Design System</span>
+</div>
+</li>
+</ol>
+</nav>
+</div>
+<!-- Variation 2: File System / Code Vibe -->
+<div class="flex flex-col gap-2">
+<p class="text-xs font-bold uppercase tracking-wider text-[#616189] mb-1">File System Path (Code Mode)</p>
+<nav aria-label="Breadcrumb" class="flex items-center rounded-lg border border-[#dbdbe6] bg-[#1e1e2e] p-3 shadow-sm text-white font-mono text-sm">
+<span class="text-[#a6accd]">src</span>
+<span class="mx-2 text-[#616189]">/</span>
+<a class="text-[#a6accd] hover:text-white hover:underline decoration-primary decoration-2 underline-offset-4" href="#">components</a>
+<span class="mx-2 text-[#616189]">/</span>
+<a class="text-[#a6accd] hover:text-white hover:underline decoration-primary decoration-2 underline-offset-4" href="#">navigation</a>
+<span class="mx-2 text-[#616189]">/</span>
+<span class="text-[#89ddff] font-bold flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px]">description</span>
+                                                breadcrumbs.tsx
+                                            </span>
+</nav>
+</div>
+<!-- Variation 3: Collapsed Items -->
+<div class="flex flex-col gap-2">
+<p class="text-xs font-bold uppercase tracking-wider text-[#616189] mb-1">Deep Hierarchy (Collapsed)</p>
+<nav aria-label="Breadcrumb" class="flex rounded-lg border border-[#dbdbe6] bg-white p-4 shadow-sm">
+<ol class="inline-flex items-center gap-2">
+<li>
+<a class="text-sm font-medium text-[#616189] hover:text-primary transition-colors" href="#">Settings</a>
+</li>
+<li class="text-[#dbdbe6]">/</li>
+<li>
+<button class="flex items-center justify-center rounded bg-[#f0f0f4] px-1.5 py-0.5 text-[#616189] hover:bg-[#e4e4e9] hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-[16px]">more_horiz</span>
+</button>
+</li>
+<li class="text-[#dbdbe6]">/</li>
+<li>
+<a class="text-sm font-medium text-[#616189] hover:text-primary transition-colors" href="#">Security</a>
+</li>
+<li class="text-[#dbdbe6]">/</li>
+<li>
+<span class="text-sm font-bold text-[#111118]">API Keys</span>
+</li>
+</ol>
+</nav>
+</div>
+</div>
+</div>
+</div>
+<!-- Code Example Snippet -->
+<div class="flex flex-col rounded-xl border border-[#dbdbe6] bg-white overflow-hidden">
+<div class="flex items-center justify-between border-b border-[#dbdbe6] px-4 py-2">
+<div class="flex gap-2">
+<div class="size-3 rounded-full bg-[#ff5f57]"></div>
+<div class="size-3 rounded-full bg-[#febc2e]"></div>
+<div class="size-3 rounded-full bg-[#28c840]"></div>
+</div>
+<span class="text-xs font-medium text-[#616189]">React / TSX</span>
+</div>
+<div class="overflow-x-auto bg-[#fbfbfd] p-6">
+<pre class="font-mono text-sm leading-relaxed text-[#111118]"><span class="text-primary">import</span> { Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbSeparator } <span class="text-primary">from</span> <span class="text-[#09825d]">'@nova-ui/breadcrumb'</span>
+
+<span class="text-primary">export default</span> <span class="text-primary">function</span> <span class="text-[#795da3]">App</span>() {
+  <span class="text-primary">return</span> (
+    &lt;<span class="text-[#005cc5]">Breadcrumb</span>&gt;
+      &lt;<span class="text-[#005cc5]">BreadcrumbItem</span>&gt;
+        &lt;<span class="text-[#005cc5]">BreadcrumbLink</span> href=<span class="text-[#09825d]">'/'</span>&gt;Home&lt;/<span class="text-[#005cc5]">BreadcrumbLink</span>&gt;
+      &lt;/<span class="text-[#005cc5]">BreadcrumbItem</span>&gt;
+
+      &lt;<span class="text-[#005cc5]">BreadcrumbSeparator</span> /&gt;
+
+      &lt;<span class="text-[#005cc5]">BreadcrumbItem</span>&gt;
+        &lt;<span class="text-[#005cc5]">BreadcrumbLink</span> href=<span class="text-[#09825d]">'/components'</span>&gt;Components&lt;/<span class="text-[#005cc5]">BreadcrumbLink</span>&gt;
+      &lt;/<span class="text-[#005cc5]">BreadcrumbItem</span>&gt;
+
+      &lt;<span class="text-[#005cc5]">BreadcrumbSeparator</span> /&gt;
+
+      &lt;<span class="text-[#005cc5]">BreadcrumbItem</span> <span class="text-[#795da3]">isCurrentPage</span>&gt;
+        &lt;<span class="text-[#005cc5]">BreadcrumbLink</span> href=<span class="text-[#09825d]">'/breadcrumbs'</span>&gt;Breadcrumbs&lt;/<span class="text-[#005cc5]">BreadcrumbLink</span>&gt;
+      &lt;/<span class="text-[#005cc5]">BreadcrumbItem</span>&gt;
+    &lt;/<span class="text-[#005cc5]">Breadcrumb</span>&gt;
+  )
+}
+</pre>
+</div>
+</div>
+</div>
+<!-- Props Table -->
+<div class="flex flex-col gap-6 pt-6">
+<h2 class="text-[#111118] text-2xl font-bold leading-tight">API Reference</h2>
+<div class="overflow-hidden rounded-xl border border-[#dbdbe6] bg-white">
+<table class="w-full text-left text-sm text-[#616189]">
+<thead class="bg-[#f0f0f4] text-xs uppercase text-[#111118]">
+<tr>
+<th class="px-6 py-4 font-bold" scope="col">Prop</th>
+<th class="px-6 py-4 font-bold" scope="col">Type</th>
+<th class="px-6 py-4 font-bold" scope="col">Default</th>
+<th class="px-6 py-4 font-bold" scope="col">Description</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-[#dbdbe6]">
+<tr class="hover:bg-[#fbfbfd]">
+<td class="px-6 py-4 font-mono font-bold text-primary">separator</td>
+<td class="px-6 py-4 font-mono text-[#d73a49]">ReactNode</td>
+<td class="px-6 py-4 font-mono text-[#616189]">'/'</td>
+<td class="px-6 py-4">Custom separator element between items.</td>
+</tr>
+<tr class="hover:bg-[#fbfbfd]">
+<td class="px-6 py-4 font-mono font-bold text-primary">addHomeIcon</td>
+<td class="px-6 py-4 font-mono text-[#d73a49]">boolean</td>
+<td class="px-6 py-4 font-mono text-[#616189]">false</td>
+<td class="px-6 py-4">If true, adds a home icon to the first item automatically.</td>
+</tr>
+<tr class="hover:bg-[#fbfbfd]">
+<td class="px-6 py-4 font-mono font-bold text-primary">itemsAfterCollapse</td>
+<td class="px-6 py-4 font-mono text-[#d73a49]">number</td>
+<td class="px-6 py-4 font-mono text-[#616189]">1</td>
+<td class="px-6 py-4">Number of items to show after the ellipsis when collapsed.</td>
+</tr>
+<tr class="hover:bg-[#fbfbfd]">
+<td class="px-6 py-4 font-mono font-bold text-primary">itemsBeforeCollapse</td>
+<td class="px-6 py-4 font-mono text-[#d73a49]">number</td>
+<td class="px-6 py-4 font-mono text-[#616189]">1</td>
+<td class="px-6 py-4">Number of items to show before the ellipsis when collapsed.</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<!-- Guidelines -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6 pt-6">
+<div class="flex flex-col gap-4 rounded-xl border border-[#dbdbe6] bg-white p-6">
+<div class="flex items-center gap-3">
+<div class="flex size-8 items-center justify-center rounded-full bg-green-100 text-green-700">
+<span class="material-symbols-outlined text-sm">check</span>
+</div>
+<h3 class="font-bold text-[#111118]">Do</h3>
+</div>
+<ul class="flex flex-col gap-3 text-sm text-[#616189]">
+<li class="flex items-start gap-2">
+<span class="mt-1 size-1.5 shrink-0 rounded-full bg-[#616189]"></span>
+                                    Use breadcrumbs for hierarchically structured sites greater than two levels deep.
+                                </li>
+<li class="flex items-start gap-2">
+<span class="mt-1 size-1.5 shrink-0 rounded-full bg-[#616189]"></span>
+                                    Place breadcrumbs at the top left of the page, above the page title.
+                                </li>
+</ul>
+</div>
+<div class="flex flex-col gap-4 rounded-xl border border-[#dbdbe6] bg-white p-6">
+<div class="flex items-center gap-3">
+<div class="flex size-8 items-center justify-center rounded-full bg-red-100 text-red-700">
+<span class="material-symbols-outlined text-sm">close</span>
+</div>
+<h3 class="font-bold text-[#111118]">Don't</h3>
+</div>
+<ul class="flex flex-col gap-3 text-sm text-[#616189]">
+<li class="flex items-start gap-2">
+<span class="mt-1 size-1.5 shrink-0 rounded-full bg-[#616189]"></span>
+                                    Don't use breadcrumbs as the primary navigation method.
+                                </li>
+<li class="flex items-start gap-2">
+<span class="mt-1 size-1.5 shrink-0 rounded-full bg-[#616189]"></span>
+                                    Don't include the current page link if the page title is already prominent.
+                                </li>
+</ul>
+</div>
+</div>
+</div>
+</main>
+</div>
+</div>
+</body></html>

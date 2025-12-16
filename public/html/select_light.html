@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Design System - Select Component</title>
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;family=Noto+Sans:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Theme Config -->
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#2b2bee",
+                        "primary-hover": "#1a1adb",
+                        "background-light": "#f6f6f8",
+                        "background-dark": "#101022",
+                        "surface": "#ffffff",
+                        "border-subtle": "#e2e2e8",
+                        "text-main": "#111118",
+                        "text-muted": "#616189",
+                    },
+                    fontFamily: {
+                        "display": ["Space Grotesk", "sans-serif"],
+                        "body": ["Noto Sans", "sans-serif"],
+                        "mono": ["monospace"],
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "md": "0.375rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                    boxShadow: {
+                        'xs': '0 1px 2px 0 rgba(0, 0, 0, 0.05)',
+                        'sm': '0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06)',
+                        'md': '0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)',
+                        'lg': '0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05)',
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        /* Custom scrollbar for code blocks */
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: #1e1e2e;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #4b4b5e;
+            border-radius: 4px;
+        }
+        .pattern-dots {
+            background-image: radial-gradient(#cbd5e1 1px, transparent 1px);
+            background-size: 20px 20px;
+        }
+    </style>
+</head>
+<body class="bg-background-light font-display text-text-main antialiased selection:bg-primary/20 selection:text-primary">
+<div class="min-h-screen flex flex-col">
+<!-- Header / Navigation -->
+<header class="sticky top-0 z-50 flex items-center justify-between whitespace-nowrap border-b border-border-subtle bg-surface/80 backdrop-blur-md px-6 py-3 lg:px-10">
+<div class="flex items-center gap-8">
+<div class="flex items-center gap-3 text-text-main">
+<div class="size-8 bg-primary text-white flex items-center justify-center rounded-lg shadow-sm">
+<span class="material-symbols-outlined text-[20px]">code</span>
+</div>
+<h2 class="text-xl font-bold tracking-tight">DesignSystem <span class="text-xs font-normal text-text-muted bg-gray-100 px-1.5 py-0.5 rounded ml-1 align-middle">v2.1</span></h2>
+</div>
+<nav class="hidden md:flex items-center gap-6">
+<a class="text-text-main text-sm font-medium hover:text-primary transition-colors" href="#">Components</a>
+<a class="text-text-muted text-sm font-medium hover:text-primary transition-colors" href="#">Foundations</a>
+<a class="text-text-muted text-sm font-medium hover:text-primary transition-colors" href="#">Patterns</a>
+</nav>
+</div>
+<div class="flex items-center gap-4">
+<div class="relative hidden sm:block">
+<span class="absolute left-3 top-1/2 -translate-y-1/2 material-symbols-outlined text-text-muted text-[18px]">search</span>
+<input class="h-9 w-64 rounded-lg bg-background-light border-0 pl-9 pr-4 text-sm focus:ring-2 focus:ring-primary/20 focus:bg-white transition-all placeholder:text-text-muted/70" placeholder="Search components..."/>
+<div class="absolute right-2 top-1/2 -translate-y-1/2 flex gap-1">
+<kbd class="hidden font-mono text-[10px] font-medium text-text-muted border border-border-subtle rounded px-1.5 bg-white sm:inline-block">⌘K</kbd>
+</div>
+</div>
+<button class="size-9 flex items-center justify-center rounded-lg bg-background-light hover:bg-gray-200 transition-colors text-text-main">
+<span class="material-symbols-outlined text-[20px]">light_mode</span>
+</button>
+<div class="size-9 rounded-full bg-cover bg-center border border-border-subtle" data-alt="User avatar placeholder with abstract gradient" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAGEKHDw-vZGrXZcPR7rP3cSUA9WmXS5yLKg0Ng2CEs-Vt4lSqS9ayLR5vmziMVgZ63j7uTllUTNl6RYMKDgHfmMr4vzSp6upDgrzg8R3_OSm3ghXD8-PhR1bPxqG5Tpw_IVHIrUFlH84fWhamde-jzWbFZAJtXQljJGB1R0HksuqOf9OU6yCSrR5zbZ9XFYLe4lHNWbHqipAZ8n7kz_pyFcBJy99gVotF1iW8QAEHwOyJlC3DaW6EEYfNjjqbjQOn1mroSWrWmaNTP');"></div>
+</div>
+</header>
+<!-- Main Content -->
+<main class="flex-1 w-full max-w-[1400px] mx-auto px-6 py-8 lg:px-10">
+<!-- Breadcrumbs -->
+<nav class="flex items-center gap-2 text-sm text-text-muted mb-6">
+<a class="hover:text-primary transition-colors" href="#">Design System</a>
+<span class="material-symbols-outlined text-[14px]">chevron_right</span>
+<a class="hover:text-primary transition-colors" href="#">Components</a>
+<span class="material-symbols-outlined text-[14px]">chevron_right</span>
+<span class="text-text-main font-medium">Select</span>
+</nav>
+<!-- Page Title -->
+<div class="flex flex-col md:flex-row md:items-start justify-between gap-6 mb-10">
+<div class="max-w-2xl">
+<h1 class="text-4xl md:text-5xl font-bold tracking-tight text-text-main mb-4">Select Input</h1>
+<p class="text-lg text-text-muted leading-relaxed">
+                        A form control that allows users to choose one option from a list of values. 
+                        Designed for high density data and AI model configuration interfaces.
+                    </p>
+</div>
+<div class="flex gap-3">
+<button class="h-9 px-4 rounded-lg border border-border-subtle bg-white text-sm font-medium text-text-main hover:bg-gray-50 hover:border-gray-300 transition-all flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px]">edit</span>
+                        Edit page
+                    </button>
+<button class="h-9 px-4 rounded-lg bg-text-main text-white text-sm font-medium hover:bg-black transition-all shadow-sm flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px]">bug_report</span>
+                        Report issue
+                    </button>
+</div>
+</div>
+<!-- Tabs -->
+<div class="border-b border-border-subtle mb-10">
+<div class="flex gap-8">
+<button class="relative pb-4 text-sm font-bold text-primary">
+                        Preview
+                        <span class="absolute bottom-0 left-0 w-full h-0.5 bg-primary rounded-t-full"></span>
+</button>
+<button class="relative pb-4 text-sm font-medium text-text-muted hover:text-text-main transition-colors">
+                        Code
+                    </button>
+<button class="relative pb-4 text-sm font-medium text-text-muted hover:text-text-main transition-colors">
+                        Accessibility
+                    </button>
+<button class="relative pb-4 text-sm font-medium text-text-muted hover:text-text-main transition-colors">
+                        History
+                    </button>
+</div>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
+<!-- Left Column: Preview & Documentation -->
+<div class="lg:col-span-8 flex flex-col gap-12">
+<!-- Interactive Playground -->
+<section class="rounded-xl border border-border-subtle bg-surface overflow-hidden shadow-xs">
+<!-- Toolbar -->
+<div class="border-b border-border-subtle bg-gray-50/50 p-4 flex flex-wrap items-center justify-between gap-4">
+<div class="flex items-center gap-6">
+<div class="flex items-center gap-2">
+<span class="text-xs font-bold text-text-muted uppercase tracking-wider">Size</span>
+<div class="flex bg-white rounded-md border border-border-subtle p-0.5">
+<button class="px-2.5 py-1 text-xs font-medium text-text-muted hover:text-text-main hover:bg-gray-50 rounded">SM</button>
+<button class="px-2.5 py-1 text-xs font-bold text-primary bg-primary/10 rounded shadow-sm">MD</button>
+<button class="px-2.5 py-1 text-xs font-medium text-text-muted hover:text-text-main hover:bg-gray-50 rounded">LG</button>
+</div>
+</div>
+<div class="h-4 w-px bg-border-subtle"></div>
+<div class="flex items-center gap-2">
+<span class="text-xs font-bold text-text-muted uppercase tracking-wider">State</span>
+<select class="text-xs font-medium text-text-main bg-white border border-border-subtle rounded-md py-1 pl-2 pr-6 focus:ring-1 focus:ring-primary focus:border-primary">
+<option>Default</option>
+<option>Hover</option>
+<option>Focused</option>
+<option>Disabled</option>
+<option>Error</option>
+</select>
+</div>
+</div>
+<button class="text-text-muted hover:text-primary transition-colors" title="Reset">
+<span class="material-symbols-outlined text-[20px]">restart_alt</span>
+</button>
+</div>
+<!-- Canvas -->
+<div class="relative p-12 min-h-[400px] flex items-center justify-center bg-gray-50 pattern-dots">
+<div class="w-full max-w-[320px]">
+<label class="block text-sm font-medium text-text-main mb-2">Select AI Model</label>
+<!-- Select Component: Open State Simulation for Demo -->
+<div class="relative group">
+<!-- Trigger -->
+<button class="relative w-full cursor-default rounded-lg bg-white py-3 pl-4 pr-10 text-left shadow-sm ring-1 ring-inset ring-primary border-0 focus:outline-none focus:ring-2 focus:ring-primary sm:text-sm sm:leading-6" type="button">
+<span class="block truncate text-text-main font-medium">GPT-4 Turbo</span>
+<span class="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-3">
+<span class="material-symbols-outlined text-primary text-[20px] transition-transform duration-200 rotate-180">expand_more</span>
+</span>
+</button>
+<!-- Dropdown Menu -->
+<div class="absolute z-10 mt-2 max-h-60 w-full overflow-auto rounded-lg bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm transform transition-all opacity-100 scale-100 translate-y-0">
+<div class="px-2 py-1.5 text-xs font-bold text-text-muted uppercase tracking-wider">OpenAI</div>
+<div class="cursor-pointer select-none relative py-2.5 pl-3 pr-9 rounded-md mx-1 bg-primary/10 text-primary font-medium mb-0.5">
+<div class="flex items-center">
+<div class="size-2 rounded-full bg-green-500 mr-2"></div>
+<span class="block truncate">GPT-4 Turbo</span>
+</div>
+<span class="absolute inset-y-0 right-0 flex items-center pr-3 text-primary">
+<span class="material-symbols-outlined text-[18px]">check</span>
+</span>
+</div>
+<div class="cursor-pointer select-none relative py-2.5 pl-3 pr-9 rounded-md mx-1 text-text-main hover:bg-gray-50 transition-colors mb-0.5">
+<div class="flex items-center">
+<div class="size-2 rounded-full bg-gray-300 mr-2"></div>
+<span class="block truncate">GPT-3.5 Legacy</span>
+</div>
+</div>
+<div class="border-t border-gray-100 my-1"></div>
+<div class="px-2 py-1.5 text-xs font-bold text-text-muted uppercase tracking-wider">Anthropic</div>
+<div class="cursor-pointer select-none relative py-2.5 pl-3 pr-9 rounded-md mx-1 text-text-main hover:bg-gray-50 transition-colors">
+<div class="flex items-center">
+<div class="size-2 rounded-full bg-green-500 mr-2"></div>
+<span class="block truncate">Claude 3 Opus</span>
+</div>
+</div>
+</div>
+</div>
+<p class="mt-2 text-xs text-text-muted">Currently active model for generating responses.</p>
+</div>
+</div>
+</section>
+<!-- Sizes Section -->
+<section>
+<h3 class="text-xl font-bold text-text-main mb-6 border-l-4 border-primary pl-4">Sizes</h3>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+<!-- Small -->
+<div class="flex flex-col gap-3">
+<div class="h-32 rounded-lg border border-border-subtle bg-white flex items-center justify-center p-6">
+<div class="w-full">
+<div class="relative w-full">
+<div class="relative w-full cursor-pointer rounded bg-white py-1.5 pl-3 pr-8 text-left border border-border-subtle shadow-xs focus:outline-none focus:ring-2 focus:ring-primary sm:text-xs">
+<span class="block truncate text-text-main">Small Input</span>
+<span class="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2">
+<span class="material-symbols-outlined text-text-muted text-[16px]">expand_more</span>
+</span>
+</div>
+</div>
+</div>
+</div>
+<div class="flex justify-between items-center px-1">
+<span class="text-sm font-mono text-text-muted">size="sm"</span>
+<span class="text-xs text-text-muted bg-gray-100 px-2 py-0.5 rounded">h-8</span>
+</div>
+</div>
+<!-- Medium -->
+<div class="flex flex-col gap-3">
+<div class="h-32 rounded-lg border border-border-subtle bg-white flex items-center justify-center p-6">
+<div class="w-full">
+<div class="relative w-full">
+<div class="relative w-full cursor-pointer rounded-md bg-white py-2.5 pl-3 pr-10 text-left border border-border-subtle shadow-xs focus:outline-none focus:ring-2 focus:ring-primary sm:text-sm">
+<span class="block truncate text-text-main">Default Input</span>
+<span class="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-3">
+<span class="material-symbols-outlined text-text-muted text-[20px]">expand_more</span>
+</span>
+</div>
+</div>
+</div>
+</div>
+<div class="flex justify-between items-center px-1">
+<span class="text-sm font-mono text-text-muted">size="md"</span>
+<span class="text-xs text-text-muted bg-gray-100 px-2 py-0.5 rounded">h-10</span>
+</div>
+</div>
+<!-- Large -->
+<div class="flex flex-col gap-3">
+<div class="h-32 rounded-lg border border-border-subtle bg-white flex items-center justify-center p-6">
+<div class="w-full">
+<div class="relative w-full">
+<div class="relative w-full cursor-pointer rounded-lg bg-white py-3 pl-4 pr-10 text-left border border-border-subtle shadow-xs focus:outline-none focus:ring-2 focus:ring-primary sm:text-base">
+<span class="block truncate text-text-main">Large Input</span>
+<span class="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-3">
+<span class="material-symbols-outlined text-text-muted text-[24px]">expand_more</span>
+</span>
+</div>
+</div>
+</div>
+</div>
+<div class="flex justify-between items-center px-1">
+<span class="text-sm font-mono text-text-muted">size="lg"</span>
+<span class="text-xs text-text-muted bg-gray-100 px-2 py-0.5 rounded">h-12</span>
+</div>
+</div>
+</div>
+</section>
+<!-- States Section -->
+<section>
+<h3 class="text-xl font-bold text-text-main mb-6 border-l-4 border-primary pl-4">States</h3>
+<div class="rounded-xl border border-border-subtle bg-surface p-8 overflow-x-auto">
+<div class="flex flex-wrap gap-8 min-w-[600px]">
+<!-- Default -->
+<div class="flex-1 min-w-[200px]">
+<label class="block text-xs font-bold text-text-muted uppercase mb-3">Default</label>
+<div class="relative w-full cursor-pointer rounded-lg bg-white py-2.5 pl-3 pr-10 text-left border border-border-subtle shadow-xs sm:text-sm hover:border-gray-400 transition-colors">
+<span class="block truncate text-text-main">Choose option...</span>
+<span class="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-3">
+<span class="material-symbols-outlined text-text-muted text-[20px]">expand_more</span>
+</span>
+</div>
+</div>
+<!-- Active/Focus -->
+<div class="flex-1 min-w-[200px]">
+<label class="block text-xs font-bold text-primary uppercase mb-3">Active / Focus</label>
+<div class="relative w-full cursor-pointer rounded-lg bg-white py-2.5 pl-3 pr-10 text-left border border-primary ring-4 ring-primary/10 sm:text-sm">
+<span class="block truncate text-text-main">Currently Selecting</span>
+<span class="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-3">
+<span class="material-symbols-outlined text-primary text-[20px] rotate-180">expand_more</span>
+</span>
+</div>
+</div>
+<!-- Disabled -->
+<div class="flex-1 min-w-[200px]">
+<label class="block text-xs font-bold text-text-muted uppercase mb-3">Disabled</label>
+<div class="relative w-full cursor-not-allowed rounded-lg bg-gray-100 py-2.5 pl-3 pr-10 text-left border border-border-subtle sm:text-sm opacity-70">
+<span class="block truncate text-text-muted">Not available</span>
+<span class="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-3">
+<span class="material-symbols-outlined text-text-muted text-[20px]">lock</span>
+</span>
+</div>
+</div>
+<!-- Error -->
+<div class="flex-1 min-w-[200px]">
+<label class="block text-xs font-bold text-red-500 uppercase mb-3">Error</label>
+<div class="relative w-full cursor-pointer rounded-lg bg-white py-2.5 pl-3 pr-10 text-left border border-red-500 text-red-600 sm:text-sm focus:ring-red-500/20">
+<span class="block truncate">Invalid Selection</span>
+<span class="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-3">
+<span class="material-symbols-outlined text-red-500 text-[20px]">error</span>
+</span>
+</div>
+<p class="mt-1.5 text-xs text-red-500 font-medium">Please select a valid model.</p>
+</div>
+</div>
+</div>
+</section>
+</div>
+<!-- Right Column: Code & Props -->
+<div class="lg:col-span-4 flex flex-col gap-8">
+<!-- Installation -->
+<div class="rounded-xl border border-border-subtle bg-surface p-6 shadow-sm">
+<h4 class="text-sm font-bold text-text-main mb-4 flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px]">terminal</span>
+                            Installation
+                        </h4>
+<div class="group relative rounded-lg bg-[#101022] p-4 font-mono text-sm text-white">
+<span class="text-gray-500">$</span> npm install @agency/ui-kit
+                            <button class="absolute right-2 top-2 hidden group-hover:flex items-center justify-center p-1.5 rounded hover:bg-white/10 text-gray-400 hover:text-white transition-colors">
+<span class="material-symbols-outlined text-[16px]">content_copy</span>
+</button>
+</div>
+</div>
+<!-- Usage Code -->
+<div class="rounded-xl border border-border-subtle bg-surface overflow-hidden shadow-sm">
+<div class="border-b border-border-subtle bg-gray-50 p-3 flex items-center justify-between">
+<div class="flex gap-2">
+<div class="size-3 rounded-full bg-red-400"></div>
+<div class="size-3 rounded-full bg-yellow-400"></div>
+<div class="size-3 rounded-full bg-green-400"></div>
+</div>
+<span class="text-xs font-mono text-text-muted">CreateProject.tsx</span>
+</div>
+<div class="relative bg-[#101022] p-4 overflow-x-auto custom-scrollbar">
+<pre class="font-mono text-sm leading-relaxed text-gray-300"><code><span class="text-purple-400">import</span> { Select, SelectItem } <span class="text-purple-400">from</span> <span class="text-green-400">'@agency/ui'</span>;
+
+<span class="text-purple-400">export function</span> <span class="text-blue-400">ModelConfig</span>() {
+  <span class="text-purple-400">return</span> (
+    &lt;<span class="text-yellow-400">Select</span> 
+      <span class="text-blue-300">label</span>=<span class="text-green-400">"AI Model"</span> 
+      <span class="text-blue-300">placeholder</span>=<span class="text-green-400">"Pick a model..."</span>
+      <span class="text-blue-300">defaultValue</span>=<span class="text-green-400">"gpt-4"</span>
+    &gt;
+      &lt;<span class="text-yellow-400">SelectItem</span> <span class="text-blue-300">value</span>=<span class="text-green-400">"gpt-4"</span>&gt;
+        GPT-4 Turbo
+      &lt;/<span class="text-yellow-400">SelectItem</span>&gt;
+      &lt;<span class="text-yellow-400">SelectItem</span> <span class="text-blue-300">value</span>=<span class="text-green-400">"claude-3"</span>&gt;
+        Claude 3 Opus
+      &lt;/<span class="text-yellow-400">SelectItem</span>&gt;
+    &lt;/<span class="text-yellow-400">Select</span>&gt;
+  );
+}</code></pre>
+<button class="absolute right-4 top-4 p-2 rounded-md bg-white/10 hover:bg-white/20 text-white transition-colors">
+<span class="material-symbols-outlined text-[18px]">content_copy</span>
+</button>
+</div>
+</div>
+<!-- Props Table -->
+<div class="rounded-xl border border-border-subtle bg-surface p-6 shadow-sm">
+<h4 class="text-sm font-bold text-text-main mb-4 flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px]">settings</span>
+                            Properties
+                        </h4>
+<div class="overflow-hidden rounded-lg border border-border-subtle">
+<table class="w-full text-left text-sm">
+<thead class="bg-gray-50 border-b border-border-subtle">
+<tr>
+<th class="px-4 py-3 font-semibold text-text-main">Prop</th>
+<th class="px-4 py-3 font-semibold text-text-main">Type</th>
+<th class="px-4 py-3 font-semibold text-text-main">Default</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-border-subtle bg-white">
+<tr>
+<td class="px-4 py-3 font-mono text-primary">label</td>
+<td class="px-4 py-3 text-text-muted">string</td>
+<td class="px-4 py-3 text-text-muted">-</td>
+</tr>
+<tr>
+<td class="px-4 py-3 font-mono text-primary">value</td>
+<td class="px-4 py-3 text-text-muted">string</td>
+<td class="px-4 py-3 text-text-muted">-</td>
+</tr>
+<tr>
+<td class="px-4 py-3 font-mono text-primary">disabled</td>
+<td class="px-4 py-3 text-text-muted">boolean</td>
+<td class="px-4 py-3 text-red-400">false</td>
+</tr>
+<tr>
+<td class="px-4 py-3 font-mono text-primary">error</td>
+<td class="px-4 py-3 text-text-muted">boolean</td>
+<td class="px-4 py-3 text-red-400">false</td>
+</tr>
+<tr>
+<td class="px-4 py-3 font-mono text-primary">size</td>
+<td class="px-4 py-3 text-text-muted">'sm' | 'md' | 'lg'</td>
+<td class="px-4 py-3 text-text-muted">'md'</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<!-- Help Card -->
+<div class="rounded-xl bg-gradient-to-br from-primary to-[#5555ff] p-6 text-white shadow-md relative overflow-hidden group">
+<div class="relative z-10">
+<h4 class="text-lg font-bold mb-2">Need Custom Logic?</h4>
+<p class="text-white/80 text-sm mb-4">Check out our Hooks library for advanced selection behaviors and async loading states.</p>
+<button class="bg-white text-primary px-4 py-2 rounded-lg text-sm font-bold hover:bg-gray-100 transition-colors">
+                                View Documentation
+                            </button>
+</div>
+<div class="absolute -right-4 -bottom-8 opacity-20 text-white rotate-12 group-hover:rotate-0 transition-transform duration-500">
+<span class="material-symbols-outlined text-[120px]">webhook</span>
+</div>
+</div>
+</div>
+</div>
+</main>
+</div>
+</body></html>

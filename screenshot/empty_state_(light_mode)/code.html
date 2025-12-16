@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Empty State - AI Web App</title>
+<!-- Google Fonts: Inter -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&amp;family=Noto+Sans:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#1337ec",
+                        "background-light": "#f6f6f8",
+                        "background-dark": "#101322",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"],
+                        "body": ["Noto Sans", "sans-serif"],
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .material-symbols-outlined {
+            font-variation-settings:
+            'FILL' 0,
+            'wght' 400,
+            'GRAD' 0,
+            'opsz' 24
+        }
+        .icon-fill {
+            font-variation-settings:
+            'FILL' 1,
+            'wght' 400,
+            'GRAD' 0,
+            'opsz' 24
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-white overflow-x-hidden min-h-screen flex flex-col transition-colors duration-200">
+<!-- Top Navigation Bar -->
+<header class="sticky top-0 z-50 flex items-center justify-between border-b border-solid border-slate-200 dark:border-[#232948] bg-white dark:bg-[#111422] px-6 py-3 shadow-sm dark:shadow-none h-16">
+<div class="flex items-center gap-8">
+<!-- Logo -->
+<div class="flex items-center gap-3 text-slate-900 dark:text-white">
+<div class="size-8 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined !text-[32px] icon-fill">neurology</span>
+</div>
+<h2 class="text-lg font-bold leading-tight tracking-[-0.015em] hidden sm:block">AI Nexus</h2>
+</div>
+<!-- Search Bar -->
+<label class="hidden md:flex flex-col min-w-40 h-10 w-64">
+<div class="flex w-full flex-1 items-stretch rounded-lg h-full bg-slate-50 dark:bg-[#232948] border border-slate-200 dark:border-[#232948] focus-within:border-primary focus-within:ring-1 focus-within:ring-primary overflow-hidden transition-all">
+<div class="text-slate-400 dark:text-[#929bc9] flex items-center justify-center pl-3">
+<span class="material-symbols-outlined text-[20px]">search</span>
+</div>
+<input class="flex w-full min-w-0 flex-1 resize-none bg-transparent text-slate-900 dark:text-white focus:outline-0 h-full placeholder:text-slate-400 dark:placeholder:text-[#929bc9] px-3 text-sm font-normal leading-normal border-none focus:ring-0" placeholder="Search..." value=""/>
+</div>
+</label>
+</div>
+<div class="flex items-center justify-end gap-4">
+<div class="flex gap-1">
+<button class="flex size-10 cursor-pointer items-center justify-center rounded-full hover:bg-slate-100 dark:hover:bg-[#232948] text-slate-600 dark:text-white transition-colors">
+<span class="material-symbols-outlined text-[24px]">notifications</span>
+</button>
+<button class="flex size-10 cursor-pointer items-center justify-center rounded-full hover:bg-slate-100 dark:hover:bg-[#232948] text-slate-600 dark:text-white transition-colors">
+<span class="material-symbols-outlined text-[24px]">help</span>
+</button>
+</div>
+<div class="bg-center bg-no-repeat bg-cover rounded-full size-9 ring-2 ring-white dark:ring-[#232948] shadow-sm cursor-pointer" data-alt="User profile avatar showing a smiling person" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAf4zuyazXAeKY2O6l_z9HD1lA8MEBbrVIl0RkvfsdD9ckQ7j1b9IycqgZ4tKOdWJVzQpVNsNnXtv3A7ywEp351I_Xh__68C1NYDkyM0Xs_p2E4Md47uGB10neJgTK2YpNtkYVNpguzV2JDuH-GC4s9YzQO5VlDnurwAKjmhmbVk4RgSu9cgDpu-LgcZNIwtpB10s3dUPwuNJAWm20rwouM5tE64t8G_M4Tu-ACOq4zpDFhKblLenEPc9pS5rmGX1ng1U8r0wVc5sc");'></div>
+</div>
+</header>
+<div class="flex flex-1 h-[calc(100vh-64px)] overflow-hidden">
+<!-- Sidebar -->
+<aside class="hidden lg:flex w-64 flex-col justify-between border-r border-slate-200 dark:border-[#232948] bg-white dark:bg-[#111422] p-4 overflow-y-auto">
+<div class="flex flex-col gap-6">
+<!-- Agency Switcher -->
+<div class="flex items-center gap-3 p-2 rounded-lg hover:bg-slate-50 dark:hover:bg-[#1e2336] cursor-pointer transition-colors border border-transparent hover:border-slate-200 dark:hover:border-[#232948]">
+<div class="bg-center bg-no-repeat bg-cover rounded-lg size-10 shadow-sm" data-alt="Agency logo abstract blue shape" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCNvCf3qZzlFyydZWsOhgoyIgpdkyuaWuZD1cCDY3ykW24bxParmLOwoivFzp6fvG_jVfwEmjNLUI-n-qvm6edf2zAH4atmKKEucbsW-Kge3kSXbHpBS2Rh8rd2ZPijaR20YZQisjiECaz4HuurzfDufLbYwUd1OtmDCQlNBEFLr6yX5BzqY9cq-br78tIPH-XHxGgjmVB0V-b_n6yDNe8XDO6mU8JS-Ai_7M60USsXQtumLiQaaizLKKj0Enm6_pjbM38dUMff6vA");'></div>
+<div class="flex flex-col overflow-hidden">
+<h1 class="text-slate-900 dark:text-white text-sm font-semibold leading-normal truncate">Agency Workspace</h1>
+<p class="text-slate-500 dark:text-[#929bc9] text-xs font-normal leading-normal truncate">Pro Plan</p>
+</div>
+<span class="material-symbols-outlined text-slate-400 text-[18px] ml-auto">expand_more</span>
+</div>
+<!-- Navigation -->
+<nav class="flex flex-col gap-1">
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-600 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-[#1e2336] transition-colors group" href="#">
+<span class="material-symbols-outlined text-[22px] group-hover:text-primary transition-colors">dashboard</span>
+<span class="text-sm font-medium leading-normal">Dashboard</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg bg-primary/10 text-primary dark:bg-[#232948] dark:text-white transition-colors" href="#">
+<span class="material-symbols-outlined text-[22px] icon-fill">folder_open</span>
+<span class="text-sm font-medium leading-normal">Projects</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-600 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-[#1e2336] transition-colors group" href="#">
+<span class="material-symbols-outlined text-[22px] group-hover:text-primary transition-colors">database</span>
+<span class="text-sm font-medium leading-normal">Datasets</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-600 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-[#1e2336] transition-colors group" href="#">
+<span class="material-symbols-outlined text-[22px] group-hover:text-primary transition-colors">memory</span>
+<span class="text-sm font-medium leading-normal">Models</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-600 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-[#1e2336] transition-colors group" href="#">
+<span class="material-symbols-outlined text-[22px] group-hover:text-primary transition-colors">settings</span>
+<span class="text-sm font-medium leading-normal">Settings</span>
+</a>
+</nav>
+</div>
+<!-- Bottom Actions -->
+<div class="flex flex-col gap-2 mt-auto pt-4 border-t border-slate-200 dark:border-[#232948]">
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-slate-600 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-[#1e2336] transition-colors" href="#">
+<span class="material-symbols-outlined text-[20px]">logout</span>
+<span class="text-sm font-medium leading-normal">Sign Out</span>
+</a>
+</div>
+</aside>
+<!-- Main Content -->
+<main class="flex-1 flex flex-col min-w-0 overflow-y-auto bg-background-light dark:bg-background-dark p-6 md:p-10 lg:px-16">
+<div class="max-w-[1200px] w-full mx-auto flex flex-col h-full">
+<!-- Page Heading -->
+<div class="flex flex-wrap items-end justify-between gap-4 mb-8">
+<div class="flex flex-col gap-1">
+<h1 class="text-slate-900 dark:text-white text-3xl font-bold tracking-tight">Projects</h1>
+<p class="text-slate-500 dark:text-[#929bc9] text-base font-normal">Manage and organize your AI initiatives.</p>
+</div>
+</div>
+<!-- Empty State Card -->
+<div class="flex-1 flex flex-col items-center justify-center rounded-xl border border-dashed border-slate-300 dark:border-[#232948] bg-white dark:bg-[#111422] p-8 md:p-12 text-center shadow-sm min-h-[500px]">
+<div class="max-w-md w-full flex flex-col items-center">
+<!-- Illustration Area -->
+<div class="relative mb-8 group">
+<div class="absolute inset-0 bg-primary/20 blur-[40px] rounded-full scale-75 dark:opacity-30"></div>
+<div class="relative bg-slate-50 dark:bg-[#1e2336] rounded-full p-6 ring-1 ring-slate-100 dark:ring-[#232948]">
+<span class="material-symbols-outlined text-[64px] text-primary/80 dark:text-primary">rocket_launch</span>
+</div>
+<!-- Decorative Elements -->
+<div class="absolute -top-2 -right-2 bg-white dark:bg-[#232948] p-1.5 rounded-lg shadow-sm ring-1 ring-slate-100 dark:ring-transparent animate-bounce" style="animation-duration: 3s;">
+<span class="material-symbols-outlined text-[20px] text-amber-500 icon-fill">stars</span>
+</div>
+<div class="absolute -bottom-1 -left-4 bg-white dark:bg-[#232948] p-1.5 rounded-lg shadow-sm ring-1 ring-slate-100 dark:ring-transparent animate-bounce" style="animation-delay: 1.5s; animation-duration: 3.5s;">
+<span class="material-symbols-outlined text-[20px] text-emerald-500 icon-fill">data_object</span>
+</div>
+</div>
+<h3 class="text-slate-900 dark:text-white text-xl font-bold leading-tight mb-3">No Projects Created Yet</h3>
+<p class="text-slate-500 dark:text-[#929bc9] text-sm md:text-base font-normal leading-relaxed mb-8">
+                            You haven't created any AI projects in this workspace. Start by creating a new project or importing an existing dataset to train your model.
+                        </p>
+<div class="flex flex-col sm:flex-row gap-4 w-full justify-center">
+<button class="flex items-center justify-center gap-2 rounded-lg h-11 px-6 bg-primary hover:bg-blue-700 text-white text-sm font-semibold tracking-wide shadow-md shadow-blue-500/20 transition-all transform hover:-translate-y-0.5 active:translate-y-0">
+<span class="material-symbols-outlined text-[20px]">add</span>
+<span>Create New Project</span>
+</button>
+<button class="flex items-center justify-center gap-2 rounded-lg h-11 px-6 bg-white dark:bg-[#1e2336] border border-slate-200 dark:border-[#232948] text-slate-700 dark:text-white hover:bg-slate-50 dark:hover:bg-[#232948] text-sm font-semibold transition-all">
+<span class="material-symbols-outlined text-[20px]">upload_file</span>
+<span>Import Dataset</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Footer / Meta -->
+<div class="mt-6 flex justify-center">
+<a class="inline-flex items-center gap-1.5 text-slate-500 dark:text-[#929bc9] text-sm hover:text-primary dark:hover:text-primary transition-colors group" href="#">
+<span class="material-symbols-outlined text-[18px]">menu_book</span>
+<span class="group-hover:underline">Learn how to structure your data for best results</span>
+</a>
+</div>
+</div>
+</main>
+</div>
+</body></html>

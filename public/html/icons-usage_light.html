@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Ícones em Uso (Light Mode) - Componentes</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#1337ec",
+                        "background-light": "#f6f6f8",
+                        "background-dark": "#101322",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "md": "0.375rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            font-size: 20px;}
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-white min-h-screen flex flex-col font-display antialiased selection:bg-primary/20">
+<header class="flex items-center justify-between whitespace-nowrap border-b border-solid border-slate-200 dark:border-slate-800 bg-white dark:bg-[#151a2d] px-8 py-3 sticky top-0 z-50 shadow-sm">
+<div class="flex items-center gap-8">
+<div class="flex items-center gap-3 text-slate-900 dark:text-white">
+<div class="flex items-center justify-center size-8 bg-primary rounded-lg text-white">
+<span class="material-symbols-outlined !text-xl">dataset</span>
+</div>
+<h2 class="text-lg font-bold leading-tight tracking-tight">Design System</h2>
+</div>
+<label class="hidden md:flex flex-col min-w-64 h-10">
+<div class="flex w-full flex-1 items-stretch rounded-lg h-full border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 focus-within:ring-2 focus-within:ring-primary/20 focus-within:border-primary transition-all">
+<div class="text-slate-400 flex items-center justify-center pl-3">
+<span class="material-symbols-outlined !text-[20px]">search</span>
+</div>
+<input class="flex w-full min-w-0 flex-1 resize-none overflow-hidden bg-transparent border-none focus:ring-0 text-slate-900 dark:text-white placeholder:text-slate-400 px-3 text-sm font-normal" placeholder="Search components..." value=""/>
+<div class="text-slate-400 flex items-center justify-center pr-3">
+<kbd class="hidden sm:inline-block rounded border border-slate-300 dark:border-slate-600 bg-slate-100 dark:bg-slate-700 px-1.5 py-0.5 text-[10px] font-medium text-slate-500 dark:text-slate-400">⌘K</kbd>
+</div>
+</div>
+</label>
+</div>
+<div class="flex flex-1 justify-end gap-6 items-center">
+<nav class="hidden lg:flex items-center gap-6">
+<a class="text-slate-600 dark:text-slate-300 hover:text-primary text-sm font-medium leading-normal transition-colors" href="#">Foundation</a>
+<a class="text-primary text-sm font-medium leading-normal" href="#">Components</a>
+<a class="text-slate-600 dark:text-slate-300 hover:text-primary text-sm font-medium leading-normal transition-colors" href="#">Patterns</a>
+<a class="text-slate-600 dark:text-slate-300 hover:text-primary text-sm font-medium leading-normal transition-colors" href="#">Resources</a>
+</nav>
+<div class="h-5 w-px bg-slate-200 dark:bg-slate-700 hidden lg:block"></div>
+<div class="flex items-center gap-3">
+<button class="relative flex size-9 items-center justify-center rounded-full hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-500 transition-colors">
+<span class="material-symbols-outlined">notifications</span>
+<span class="absolute top-2 right-2 size-2 rounded-full bg-red-500 border-2 border-white dark:border-[#151a2d]"></span>
+</button>
+<div class="bg-center bg-no-repeat bg-cover rounded-full size-9 border border-slate-200 dark:border-slate-700" data-alt="User avatar profile picture" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBPx4m5spOpuXrpd0Wt3cgVUGWVb51LBxnl9F0-C_cFcrnKbG9OW77vQ0-8kBWLdHCdFNodnYSSgjWOPZjmooSUMa2L1NC00LSjptT_VaM9AuWwtsm5UY7hs0mv8dxN4WyUDnqn3cIAn5a4G8iF4oswvxgXizEOshQneylfbdTnCmsID7tfSO_vo1Esr8KCoPUFBdytRWzQhzBgi-Hud6St-XltqpN68iDymo8O_0o7HCZEZH3_tyYi0UFcQDzGCrqeFYDDw0lOyvc");'></div>
+</div>
+</div>
+</header>
+<div class="flex flex-1 w-full max-w-[1440px] mx-auto">
+<aside class="w-64 hidden md:flex flex-col border-r border-slate-200 dark:border-slate-800 bg-white dark:bg-[#151a2d] py-6 sticky top-[65px] h-[calc(100vh-65px)] overflow-y-auto">
+<div class="px-4 mb-6">
+<p class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-3 px-2">Components</p>
+<ul class="space-y-0.5">
+<li><a class="flex items-center gap-3 px-2 py-2 text-sm font-medium text-slate-600 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800 rounded-md transition-colors" href="#"><span class="material-symbols-outlined !text-[18px]">smart_button</span>Buttons</a></li>
+<li><a class="flex items-center gap-3 px-2 py-2 text-sm font-medium text-slate-600 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800 rounded-md transition-colors" href="#"><span class="material-symbols-outlined !text-[18px]">input</span>Inputs</a></li>
+<li><a class="flex items-center gap-3 px-2 py-2 text-sm font-medium text-primary bg-primary/5 rounded-md transition-colors" href="#"><span class="material-symbols-outlined !text-[18px]">sentiment_satisfied</span>Icons Usage</a></li>
+<li><a class="flex items-center gap-3 px-2 py-2 text-sm font-medium text-slate-600 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800 rounded-md transition-colors" href="#"><span class="material-symbols-outlined !text-[18px]">label</span>Badges</a></li>
+<li><a class="flex items-center gap-3 px-2 py-2 text-sm font-medium text-slate-600 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800 rounded-md transition-colors" href="#"><span class="material-symbols-outlined !text-[18px]">table_chart</span>Data Tables</a></li>
+</ul>
+</div>
+<div class="px-4 mt-auto">
+<div class="bg-slate-50 dark:bg-slate-800 p-4 rounded-lg border border-slate-100 dark:border-slate-700">
+<h4 class="font-bold text-sm text-slate-900 dark:text-white mb-1">Documentation</h4>
+<p class="text-xs text-slate-500 dark:text-slate-400 mb-3">Learn about the icon grid and optical sizing.</p>
+<a class="text-xs font-medium text-primary hover:underline" href="#">Read guidelines →</a>
+</div>
+</div>
+</aside>
+<main class="flex-1 min-w-0 bg-background-light dark:bg-background-dark p-8 md:p-12 overflow-y-auto">
+<div class="max-w-5xl mx-auto space-y-10">
+<div class="space-y-6">
+<nav class="flex items-center text-sm text-slate-500 dark:text-slate-400">
+<a class="hover:text-primary transition-colors" href="#">Design System</a>
+<span class="mx-2 text-slate-300">/</span>
+<a class="hover:text-primary transition-colors" href="#">Components</a>
+<span class="mx-2 text-slate-300">/</span>
+<span class="text-slate-900 dark:text-white font-medium">Icons Usage</span>
+</nav>
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-4 border-b border-slate-200 dark:border-slate-800 pb-6">
+<div class="space-y-2 max-w-2xl">
+<h1 class="text-3xl md:text-4xl font-black text-slate-900 dark:text-white tracking-tight">Iconography in Context</h1>
+<p class="text-slate-500 dark:text-slate-400 text-lg leading-relaxed">
+                                Standardized usage of Material Symbols icons across interface elements. Examples demonstrate WCAG AAA compliance, correct sizing (16px, 20px, 24px), and semantic application in a light mode context.
+                            </p>
+</div>
+<div class="flex gap-3">
+<button class="flex items-center gap-2 px-3 py-2 text-sm font-medium text-slate-600 dark:text-slate-300 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-lg hover:bg-slate-50 dark:hover:bg-slate-700 transition-colors">
+<span class="material-symbols-outlined !text-[18px]">code</span>
+                                View Source
+                            </button>
+<button class="flex items-center gap-2 px-3 py-2 text-sm font-medium text-white bg-primary rounded-lg hover:bg-primary/90 transition-colors shadow-sm shadow-primary/20">
+<span class="material-symbols-outlined !text-[18px]">download</span>
+                                Download Assets
+                            </button>
+</div>
+</div>
+</div>
+<section class="space-y-4">
+<div class="flex items-center gap-2 mb-4">
+<span class="flex items-center justify-center size-6 rounded-full bg-slate-200 dark:bg-slate-700 text-xs font-bold text-slate-600 dark:text-slate-300">1</span>
+<h2 class="text-xl font-bold text-slate-900 dark:text-white">Interactive Elements</h2>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+<div class="bg-white dark:bg-[#151a2d] rounded-xl border border-slate-200 dark:border-slate-800 p-6 shadow-sm">
+<h3 class="text-sm font-bold text-slate-400 uppercase tracking-wider mb-6">Primary Actions</h3>
+<div class="flex flex-wrap gap-4 items-center">
+<button class="flex items-center justify-center h-10 px-4 bg-primary text-white text-sm font-semibold rounded-lg hover:bg-primary/90 focus:ring-4 focus:ring-primary/20 transition-all shadow-sm">
+<span class="material-symbols-outlined mr-2 !text-[20px]">add</span>
+                                    Create New
+                                </button>
+<button class="flex items-center justify-center h-10 px-4 bg-primary text-white text-sm font-semibold rounded-lg hover:bg-primary/90 focus:ring-4 focus:ring-primary/20 transition-all shadow-sm">
+                                    Next Step
+                                    <span class="material-symbols-outlined ml-2 !text-[20px]">arrow_forward</span>
+</button>
+<button aria-label="Settings" class="flex items-center justify-center size-10 bg-primary text-white rounded-lg hover:bg-primary/90 focus:ring-4 focus:ring-primary/20 transition-all shadow-sm">
+<span class="material-symbols-outlined !text-[20px]">settings</span>
+</button>
+</div>
+<div class="mt-4 pt-4 border-t border-slate-100 dark:border-slate-800 text-xs text-slate-400 font-mono">
+                                .btn-primary .icon-size-20
+                            </div>
+</div>
+<div class="bg-white dark:bg-[#151a2d] rounded-xl border border-slate-200 dark:border-slate-800 p-6 shadow-sm">
+<h3 class="text-sm font-bold text-slate-400 uppercase tracking-wider mb-6">Secondary &amp; Ghost</h3>
+<div class="flex flex-wrap gap-4 items-center">
+<button class="flex items-center justify-center h-10 px-4 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-200 text-sm font-medium rounded-lg hover:bg-slate-50 dark:hover:bg-slate-700 focus:ring-4 focus:ring-slate-100 dark:focus:ring-slate-800 transition-all">
+<span class="material-symbols-outlined mr-2 !text-[20px] text-slate-500">filter_list</span>
+                                    Filter
+                                </button>
+<button class="flex items-center justify-center h-10 px-4 bg-transparent text-slate-600 dark:text-slate-400 text-sm font-medium rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800 hover:text-primary transition-all">
+<span class="material-symbols-outlined mr-2 !text-[20px]">share</span>
+                                    Share
+                                </button>
+<button class="flex items-center justify-center h-10 px-4 bg-transparent text-red-600 text-sm font-medium rounded-lg hover:bg-red-50 dark:hover:bg-red-900/20 transition-all">
+<span class="material-symbols-outlined mr-2 !text-[20px]">delete</span>
+                                    Delete
+                                </button>
+</div>
+<div class="mt-4 pt-4 border-t border-slate-100 dark:border-slate-800 text-xs text-slate-400 font-mono">
+                                .btn-secondary .btn-ghost .text-slate-500
+                            </div>
+</div>
+</div>
+</section>
+<section class="space-y-4">
+<div class="flex items-center gap-2 mb-4">
+<span class="flex items-center justify-center size-6 rounded-full bg-slate-200 dark:bg-slate-700 text-xs font-bold text-slate-600 dark:text-slate-300">2</span>
+<h2 class="text-xl font-bold text-slate-900 dark:text-white">Form Controls</h2>
+</div>
+<div class="bg-white dark:bg-[#151a2d] rounded-xl border border-slate-200 dark:border-slate-800 p-8 shadow-sm">
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+<div class="space-y-2">
+<label class="text-sm font-medium text-slate-700 dark:text-slate-300">Search Input</label>
+<div class="relative">
+<div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+<span class="material-symbols-outlined text-slate-400 !text-[20px]">search</span>
+</div>
+<input class="block w-full pl-10 pr-3 py-2.5 border border-slate-300 dark:border-slate-600 rounded-lg leading-5 bg-white dark:bg-slate-800 text-slate-900 dark:text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary sm:text-sm" placeholder="Search data..." type="text"/>
+</div>
+<p class="text-xs text-slate-500">Leading icon used for identifying input purpose.</p>
+</div>
+<div class="space-y-2">
+<label class="text-sm font-medium text-slate-700 dark:text-slate-300">Dropdown Select</label>
+<div class="relative">
+<select class="block w-full pl-3 pr-10 py-2.5 border border-slate-300 dark:border-slate-600 rounded-lg leading-5 bg-white dark:bg-slate-800 text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary sm:text-sm appearance-none">
+<option>Daily Report</option>
+<option>Weekly Report</option>
+<option>Monthly Report</option>
+</select>
+<div class="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none">
+<span class="material-symbols-outlined text-slate-500 !text-[20px]">expand_more</span>
+</div>
+</div>
+<p class="text-xs text-slate-500">Custom chevron icon for consistency.</p>
+</div>
+<div class="space-y-2">
+<label class="text-sm font-medium text-red-600">Error State</label>
+<div class="relative">
+<input class="block w-full pl-3 pr-10 py-2.5 border border-red-300 rounded-lg leading-5 bg-red-50 dark:bg-red-900/10 text-red-900 dark:text-red-200 placeholder-red-300 focus:outline-none focus:ring-2 focus:ring-red-500/20 focus:border-red-500 sm:text-sm" type="email" value="invalid-email"/>
+<div class="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none">
+<span class="material-symbols-outlined text-red-500 !text-[20px]">error</span>
+</div>
+</div>
+<p class="text-xs text-red-500 mt-1">Please enter a valid email address.</p>
+</div>
+</div>
+</div>
+</section>
+<section class="space-y-4">
+<div class="flex items-center gap-2 mb-4">
+<span class="flex items-center justify-center size-6 rounded-full bg-slate-200 dark:bg-slate-700 text-xs font-bold text-slate-600 dark:text-slate-300">3</span>
+<h2 class="text-xl font-bold text-slate-900 dark:text-white">Status &amp; Feedback</h2>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<div class="bg-white dark:bg-[#151a2d] rounded-xl border border-slate-200 dark:border-slate-800 p-6 shadow-sm">
+<h3 class="text-sm font-bold text-slate-400 uppercase tracking-wider mb-6">Status Badges</h3>
+<div class="flex flex-wrap gap-3">
+<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md text-xs font-medium bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-300 border border-green-200 dark:border-green-800">
+<span class="material-symbols-outlined !text-[14px]">check_circle</span>
+                                    Active
+                                </span>
+<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md text-xs font-medium bg-yellow-100 text-yellow-800 dark:bg-yellow-900/30 dark:text-yellow-300 border border-yellow-200 dark:border-yellow-800">
+<span class="material-symbols-outlined !text-[14px]">schedule</span>
+                                    Pending
+                                </span>
+<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md text-xs font-medium bg-red-100 text-red-800 dark:bg-red-900/30 dark:text-red-300 border border-red-200 dark:border-red-800">
+<span class="material-symbols-outlined !text-[14px]">cancel</span>
+                                    Failed
+                                </span>
+<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md text-xs font-medium bg-slate-100 text-slate-600 dark:bg-slate-800 dark:text-slate-300 border border-slate-200 dark:border-slate-700">
+<span class="material-symbols-outlined !text-[14px]">draft</span>
+                                    Draft
+                                </span>
+</div>
+</div>
+<div class="bg-white dark:bg-[#151a2d] rounded-xl border border-slate-200 dark:border-slate-800 p-6 shadow-sm">
+<h3 class="text-sm font-bold text-slate-400 uppercase tracking-wider mb-6">Contextual Alert</h3>
+<div class="bg-blue-50 dark:bg-blue-900/10 border-l-4 border-primary p-4 rounded-r-md">
+<div class="flex">
+<div class="flex-shrink-0">
+<span class="material-symbols-outlined text-primary !text-[24px]">info</span>
+</div>
+<div class="ml-3">
+<h3 class="text-sm font-medium text-blue-900 dark:text-blue-100">Update Available</h3>
+<div class="mt-1 text-sm text-blue-700 dark:text-blue-200/70">
+<p>A new version of the design system components is ready to download.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section class="space-y-4 pb-12">
+<div class="flex items-center gap-2 mb-4">
+<span class="flex items-center justify-center size-6 rounded-full bg-slate-200 dark:bg-slate-700 text-xs font-bold text-slate-600 dark:text-slate-300">4</span>
+<h2 class="text-xl font-bold text-slate-900 dark:text-white">Dense Data Lists</h2>
+</div>
+<div class="bg-white dark:bg-[#151a2d] rounded-xl border border-slate-200 dark:border-slate-800 shadow-sm overflow-hidden">
+<div class="px-6 py-4 border-b border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-[#1e2538] flex justify-between items-center">
+<h3 class="font-semibold text-slate-900 dark:text-white">Recent Files</h3>
+<button class="text-primary text-sm font-medium hover:underline flex items-center">View All <span class="material-symbols-outlined !text-[16px] ml-1">arrow_right_alt</span></button>
+</div>
+<div class="divide-y divide-slate-100 dark:divide-slate-800">
+<div class="flex items-center justify-between px-6 py-4 hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors group">
+<div class="flex items-center gap-4">
+<div class="size-10 rounded-lg bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 flex items-center justify-center">
+<span class="material-symbols-outlined">description</span>
+</div>
+<div>
+<p class="text-sm font-medium text-slate-900 dark:text-white">Q3 Financial Report.pdf</p>
+<div class="flex items-center gap-2 mt-0.5">
+<span class="text-xs text-slate-500">2.4 MB</span>
+<span class="size-1 bg-slate-300 rounded-full"></span>
+<span class="text-xs text-slate-500">Updated 2h ago</span>
+</div>
+</div>
+</div>
+<div class="flex items-center gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
+<button class="p-2 text-slate-400 hover:text-primary hover:bg-primary/10 rounded-md transition-colors" title="Download">
+<span class="material-symbols-outlined !text-[20px]">download</span>
+</button>
+<button class="p-2 text-slate-400 hover:text-primary hover:bg-primary/10 rounded-md transition-colors" title="Share">
+<span class="material-symbols-outlined !text-[20px]">share</span>
+</button>
+<button class="p-2 text-slate-400 hover:text-red-500 hover:bg-red-50 dark:hover:bg-red-900/20 rounded-md transition-colors" title="Delete">
+<span class="material-symbols-outlined !text-[20px]">delete</span>
+</button>
+</div>
+</div>
+<div class="flex items-center justify-between px-6 py-4 hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors group">
+<div class="flex items-center gap-4">
+<div class="size-10 rounded-lg bg-purple-100 dark:bg-purple-900/30 text-purple-600 dark:text-purple-400 flex items-center justify-center">
+<span class="material-symbols-outlined">image</span>
+</div>
+<div>
+<p class="text-sm font-medium text-slate-900 dark:text-white">Homepage_Mockup_v4.png</p>
+<div class="flex items-center gap-2 mt-0.5">
+<span class="text-xs text-slate-500">12.8 MB</span>
+<span class="size-1 bg-slate-300 rounded-full"></span>
+<span class="text-xs text-slate-500">Updated yesterday</span>
+</div>
+</div>
+</div>
+<div class="flex items-center gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
+<button class="p-2 text-slate-400 hover:text-primary hover:bg-primary/10 rounded-md transition-colors" title="Download">
+<span class="material-symbols-outlined !text-[20px]">download</span>
+</button>
+<button class="p-2 text-slate-400 hover:text-primary hover:bg-primary/10 rounded-md transition-colors" title="Share">
+<span class="material-symbols-outlined !text-[20px]">share</span>
+</button>
+<button class="p-2 text-slate-400 hover:text-red-500 hover:bg-red-50 dark:hover:bg-red-900/20 rounded-md transition-colors" title="Delete">
+<span class="material-symbols-outlined !text-[20px]">delete</span>
+</button>
+</div>
+</div>
+<div class="flex items-center justify-between px-6 py-4 hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors group">
+<div class="flex items-center gap-4">
+<div class="size-10 rounded-lg bg-emerald-100 dark:bg-emerald-900/30 text-emerald-600 dark:text-emerald-400 flex items-center justify-center">
+<span class="material-symbols-outlined">table_chart</span>
+</div>
+<div>
+<p class="text-sm font-medium text-slate-900 dark:text-white">User_Analytics_2023.csv</p>
+<div class="flex items-center gap-2 mt-0.5">
+<span class="text-xs text-slate-500">845 KB</span>
+<span class="size-1 bg-slate-300 rounded-full"></span>
+<span class="text-xs text-slate-500">Updated 2 days ago</span>
+</div>
+</div>
+</div>
+<div class="flex items-center gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
+<button class="p-2 text-slate-400 hover:text-primary hover:bg-primary/10 rounded-md transition-colors" title="Download">
+<span class="material-symbols-outlined !text-[20px]">download</span>
+</button>
+<button class="p-2 text-slate-400 hover:text-primary hover:bg-primary/10 rounded-md transition-colors" title="Share">
+<span class="material-symbols-outlined !text-[20px]">share</span>
+</button>
+<button class="p-2 text-slate-400 hover:text-red-500 hover:bg-red-50 dark:hover:bg-red-900/20 rounded-md transition-colors" title="Delete">
+<span class="material-symbols-outlined !text-[20px]">delete</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</section>
+<footer class="border-t border-slate-200 dark:border-slate-800 pt-8 pb-12">
+<div class="flex flex-col md:flex-row justify-between items-center gap-4">
+<p class="text-sm text-slate-500 dark:text-slate-400">© 2024 AI Agency Design System. All rights reserved.</p>
+<div class="flex items-center gap-6">
+<a class="text-sm text-slate-500 hover:text-primary" href="#">Documentation</a>
+<a class="text-sm text-slate-500 hover:text-primary" href="#">Changelog</a>
+<a class="text-sm text-slate-500 hover:text-primary" href="#">Support</a>
+</div>
+</div>
+</footer>
+</div>
+</main>
+</div>
+</body></html>
