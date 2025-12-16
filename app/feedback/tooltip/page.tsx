@@ -54,16 +54,18 @@ function TooltipTopPreview() {
         ? "bg-white text-slate-900 hover:bg-slate-100"
         : "bg-slate-900 text-white hover:bg-slate-800";
 
+    const tooltipBg = isDark ? "bg-slate-700" : "bg-slate-900";
+
     return (
         <div className="relative flex flex-col items-center group">
             <button className={`${btnClass} px-4 py-2 rounded-md text-sm font-medium transition-colors`}>
                 Passe o mouse (Topo)
             </button>
             <div className="absolute bottom-full mb-2 hidden flex-col items-center group-hover:flex">
-                <span className="relative z-10 p-2 text-xs leading-none text-white whitespace-nowrap bg-slate-900 shadow-lg rounded-md dark:bg-slate-700">
+                <span className={`relative z-10 p-2 text-xs leading-none text-white whitespace-nowrap ${tooltipBg} shadow-lg rounded-md`}>
                     Tooltip Exemplo
                 </span>
-                <div className="w-3 h-3 -mt-2 rotate-45 bg-slate-900 dark:bg-slate-700"></div>
+                <div className={`w-3 h-3 -mt-2 rotate-45 ${tooltipBg}`}></div>
             </div>
         </div>
     );
@@ -75,14 +77,16 @@ function TooltipRightPreview() {
         ? "bg-slate-800 border-slate-700 text-slate-300 hover:bg-slate-700"
         : "bg-white border-slate-300 text-slate-700 hover:bg-slate-50";
 
+    const tooltipBg = isDark ? "bg-slate-700" : "bg-slate-900";
+
     return (
         <div className="relative flex items-center group">
             <button className={`${btnClass} border px-4 py-2 rounded-md text-sm font-medium transition-colors`}>
                 Passe o mouse (Direita)
             </button>
             <div className="absolute left-full ml-2 hidden items-center group-hover:flex">
-                <div className="w-3 h-3 -mr-2 rotate-45 bg-slate-900 dark:bg-slate-700"></div>
-                <span className="relative z-10 p-2 text-xs leading-none text-white whitespace-nowrap bg-slate-900 shadow-lg rounded-md dark:bg-slate-700">
+                <div className={`w-3 h-3 -mr-2 rotate-45 ${tooltipBg}`}></div>
+                <span className={`relative z-10 p-2 text-xs leading-none text-white whitespace-nowrap ${tooltipBg} shadow-lg rounded-md`}>
                     Informação extra
                 </span>
             </div>

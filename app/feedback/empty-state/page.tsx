@@ -64,6 +64,7 @@ function EmptyStateSearchPreview() {
     const { bg, border, text, isDark } = useThemeClasses();
     const iconBg = isDark ? "bg-slate-800" : "bg-slate-100";
     const dashedBorder = isDark ? "border-slate-700" : "border-slate-300";
+    const descColor = isDark ? "text-slate-400" : "text-slate-500";
 
     return (
         <div className={`text-center py-12 ${bg} rounded-lg border border-dashed ${dashedBorder}`}>
@@ -71,7 +72,7 @@ function EmptyStateSearchPreview() {
                 <Search className="size-6 text-slate-400" />
             </div>
             <h3 className={`mt-4 text-sm font-semibold ${text}`}>Nenhum resultado encontrado</h3>
-            <p className="mt-1 text-sm text-slate-500 dark:text-slate-400">Não encontramos nada com "xyz". Tente ajustar sua busca.</p>
+            <p className={`mt-1 text-sm ${descColor}`}>Não encontramos nada com "xyz". Tente ajustar sua busca.</p>
         </div>
     );
 }
@@ -81,6 +82,7 @@ function EmptyStateDataPreview() {
     const iconBg = isDark ? "bg-blue-900/20" : "bg-blue-50";
     const iconColor = isDark ? "text-blue-400" : "text-blue-600";
     const dashedBorder = isDark ? "border-slate-700" : "border-slate-300";
+    const descColor = isDark ? "text-slate-400" : "text-slate-500";
 
     return (
         <div className={`text-center py-12 ${bg} rounded-lg border border-dashed ${dashedBorder}`}>
@@ -88,7 +90,7 @@ function EmptyStateDataPreview() {
                 <FolderOpen className={`size-6 ${iconColor}`} />
             </div>
             <h3 className={`mt-4 text-lg font-semibold ${text}`}>Sem projetos</h3>
-            <p className="mt-2 text-sm text-slate-500 dark:text-slate-400 max-w-sm mx-auto">
+            <p className={`mt-2 text-sm ${descColor} max-w-sm mx-auto`}>
                 Comece criando um novo projeto para organizar suas tarefas.
             </p>
             <div className="mt-6">
@@ -126,7 +128,7 @@ export default function EmptyStatePage() {
                         title="Busca Vazia"
                         description="Exibido quando filtros ou buscas não retornam resultados."
                         code={emptySearchCode}
-                        previewClassName="bg-slate-50 dark:bg-slate-950 p-6"
+                        previewClassName="p-6"
                     >
                         <EmptyStateSearchPreview />
                     </ComponentShowcase>
@@ -136,7 +138,7 @@ export default function EmptyStatePage() {
                         title="Sem Dados (com Ação)"
                         description="Estado inicial de uma lista ou tabela vazia, encorajando o primeiro cadastro."
                         code={emptyDataCode}
-                        previewClassName="bg-slate-50 dark:bg-slate-950 p-6"
+                        previewClassName="p-6"
                     >
                         <EmptyStateDataPreview />
                     </ComponentShowcase>

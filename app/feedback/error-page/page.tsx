@@ -67,12 +67,13 @@ const errorPageProps: PropDefinition[] = [
 ];
 
 function Error404Preview() {
-    const { text } = useThemeClasses();
+    const { text, isDark } = useThemeClasses();
+    const descColor = isDark ? "text-slate-400" : "text-slate-600";
     return (
         <div className="flex min-h-[300px] flex-col items-center justify-center text-center px-6">
             <p className="text-base font-semibold text-blue-600 dark:text-blue-400">404</p>
             <h1 className={`mt-4 text-3xl font-bold tracking-tight ${text} sm:text-5xl`}>Página não encontrada</h1>
-            <p className="mt-6 text-base leading-7 text-slate-600 dark:text-slate-400">
+            <p className={`mt-6 text-base leading-7 ${descColor}`}>
                 Desculpe, não conseguimos encontrar a página que você está procurando.
             </p>
             <div className="mt-10 flex items-center justify-center gap-x-6">
@@ -90,18 +91,22 @@ function Error404Preview() {
 function Error403Preview() {
     const { isDark, text } = useThemeClasses();
     const bg = isDark ? "bg-red-900/10 border-red-900/30" : "bg-red-50 border-red-200";
+    const iconBg = isDark ? 'bg-red-900/20' : 'bg-red-100';
+    const iconColor = isDark ? 'text-red-400' : 'text-red-600';
+    const descColor = isDark ? "text-slate-400" : "text-slate-600";
+    const btnText = isDark ? 'text-red-400' : 'text-red-600';
 
     return (
         <div className={`flex min-h-[300px] flex-col items-center justify-center text-center px-6 border-2 border-dashed rounded-xl ${bg}`}>
-            <div className={`rounded-full p-4 mb-4 ${isDark ? 'bg-red-900/20' : 'bg-red-100'}`}>
-                <Lock className={`size-8 ${isDark ? 'text-red-400' : 'text-red-600'}`} />
+            <div className={`rounded-full p-4 mb-4 ${iconBg}`}>
+                <Lock className={`size-8 ${iconColor}`} />
             </div>
             <h1 className={`text-2xl font-bold tracking-tight ${text}`}>Acesso Negado</h1>
-            <p className="mt-2 text-base text-slate-600 dark:text-slate-400 max-w-md">
+            <p className={`mt-2 text-base ${descColor} max-w-md`}>
                 Você não tem permissão para acessar este recurso. Entre em contato com seu administrador se acredita que isso é um erro.
             </p>
             <div className="mt-8">
-                <button type="button" className={`inline-flex items-center gap-2 text-sm font-medium ${isDark ? 'text-red-400' : 'text-red-600'} hover:opacity-80`}>
+                <button type="button" className={`inline-flex items-center gap-2 text-sm font-medium ${btnText} hover:opacity-80`}>
                     <ArrowLeft className="size-4" />
                     Voltar para a página anterior
                 </button>
@@ -135,7 +140,6 @@ export default function ErrorPagePage() {
                         title="Erro 404 (Not Found)"
                         description="Padrão para rotas inexistentes."
                         code={error404Code}
-                        previewClassName="bg-white dark:bg-slate-900"
                     >
                         <Error404Preview />
                     </ComponentShowcase>
@@ -145,7 +149,6 @@ export default function ErrorPagePage() {
                         title="Erro 403 (Acesso Negado)"
                         description="Variação visual para erros de permissão."
                         code={error403Code}
-                        previewClassName="bg-white dark:bg-slate-900"
                     >
                         <Error403Preview />
                     </ComponentShowcase>

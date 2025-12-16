@@ -101,6 +101,10 @@ function ModalBasicPreview() {
     const { bg, border, text, isDark } = useThemeClasses();
     const secondaryBg = isDark ? "bg-slate-800" : "bg-white";
     const ring = isDark ? "ring-slate-700" : "ring-slate-300";
+    const descColor = isDark ? "text-slate-400" : "text-slate-500";
+    const iconWrapper = isDark ? 'bg-blue-900/30' : 'bg-blue-100';
+    const iconColor = isDark ? 'text-blue-400' : 'text-blue-600';
+    const hoverSecondary = isDark ? 'hover:bg-slate-700' : 'hover:bg-slate-50';
 
     return (
         <div className="relative z-10 p-12 flex justify-center">
@@ -113,13 +117,13 @@ function ModalBasicPreview() {
                     </button>
                 </div>
                 <div className="sm:flex sm:items-start">
-                    <div className={`mx-auto flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full sm:mx-0 sm:h-10 sm:w-10 ${isDark ? 'bg-blue-900/30' : 'bg-blue-100'}`}>
-                        <Info className={`h-6 w-6 ${isDark ? 'text-blue-400' : 'text-blue-600'}`} />
+                    <div className={`mx-auto flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full sm:mx-0 sm:h-10 sm:w-10 ${iconWrapper}`}>
+                        <Info className={`h-6 w-6 ${iconColor}`} />
                     </div>
                     <div className="mt-3 text-center sm:ml-4 sm:mt-0 sm:text-left">
                         <h3 className={`text-base font-semibold leading-6 ${text}`}>Informação Importante</h3>
                         <div className="mt-2">
-                            <p className="text-sm text-slate-500 dark:text-slate-400">
+                            <p className={`text-sm ${descColor}`}>
                                 Você está prestes a realizar uma ação que pode impactar outros usuários. Por favor, verifique os dados antes de continuar.
                             </p>
                         </div>
@@ -127,7 +131,7 @@ function ModalBasicPreview() {
                 </div>
                 <div className="mt-5 sm:mt-4 sm:flex sm:flex-row-reverse">
                     <button type="button" className="inline-flex w-full justify-center rounded-md bg-blue-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-blue-500 sm:ml-3 sm:w-auto">Confirmar</button>
-                    <button type="button" className={`mt-3 inline-flex w-full justify-center rounded-md ${secondaryBg} px-3 py-2 text-sm font-semibold ${text} shadow-sm ring-1 ring-inset ${ring} hover:bg-slate-50 dark:hover:bg-slate-700 sm:mt-0 sm:w-auto`}>Cancelar</button>
+                    <button type="button" className={`mt-3 inline-flex w-full justify-center rounded-md ${secondaryBg} px-3 py-2 text-sm font-semibold ${text} shadow-sm ring-1 ring-inset ${ring} ${hoverSecondary} sm:mt-0 sm:w-auto`}>Cancelar</button>
                 </div>
             </div>
         </div>
@@ -138,18 +142,22 @@ function ModalDestructivePreview() {
     const { bg, border, text, isDark } = useThemeClasses();
     const secondaryBg = isDark ? "bg-slate-800" : "bg-white";
     const ring = isDark ? "ring-slate-700" : "ring-slate-300";
+    const descColor = isDark ? "text-slate-400" : "text-slate-500";
+    const iconWrapper = isDark ? 'bg-red-900/30' : 'bg-red-100';
+    const iconColor = isDark ? 'text-red-400' : 'text-red-600';
+    const hoverSecondary = isDark ? 'hover:bg-slate-700' : 'hover:bg-slate-50';
 
     return (
         <div className="relative z-10 p-12 flex justify-center">
             <div className={`relative transform overflow-hidden rounded-lg ${bg} px-4 pb-4 pt-5 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg sm:p-6 border ${border}`}>
                 <div className="sm:flex sm:items-start">
-                    <div className={`mx-auto flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full sm:mx-0 sm:h-10 sm:w-10 ${isDark ? 'bg-red-900/30' : 'bg-red-100'}`}>
-                        <AlertTriangle className={`h-6 w-6 ${isDark ? 'text-red-400' : 'text-red-600'}`} />
+                    <div className={`mx-auto flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full sm:mx-0 sm:h-10 sm:w-10 ${iconWrapper}`}>
+                        <AlertTriangle className={`h-6 w-6 ${iconColor}`} />
                     </div>
                     <div className="mt-3 text-center sm:ml-4 sm:mt-0 sm:text-left">
                         <h3 className={`text-base font-semibold leading-6 ${text}`}>Desativar conta?</h3>
                         <div className="mt-2">
-                            <p className="text-sm text-slate-500 dark:text-slate-400">
+                            <p className={`text-sm ${descColor}`}>
                                 Tem certeza que deseja desativar sua conta? Todos os seus dados serão removidos permanentemente. Esta ação não pode ser desfeita.
                             </p>
                         </div>
@@ -157,7 +165,7 @@ function ModalDestructivePreview() {
                 </div>
                 <div className="mt-5 sm:mt-4 sm:flex sm:flex-row-reverse">
                     <button type="button" className="inline-flex w-full justify-center rounded-md bg-red-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-red-500 sm:ml-3 sm:w-auto">Desativar</button>
-                    <button type="button" className={`mt-3 inline-flex w-full justify-center rounded-md ${secondaryBg} px-3 py-2 text-sm font-semibold ${text} shadow-sm ring-1 ring-inset ${ring} hover:bg-slate-50 dark:hover:bg-slate-700 sm:mt-0 sm:w-auto`}>Cancelar</button>
+                    <button type="button" className={`mt-3 inline-flex w-full justify-center rounded-md ${secondaryBg} px-3 py-2 text-sm font-semibold ${text} shadow-sm ring-1 ring-inset ${ring} ${hoverSecondary} sm:mt-0 sm:w-auto`}>Cancelar</button>
                 </div>
             </div>
         </div>
@@ -189,7 +197,6 @@ export default function ModalPage() {
                         title="Informativo"
                         description="Modal padrão para confirmações e informações importantes."
                         code={modalBasicCode}
-                        previewClassName="!bg-slate-100 dark:!bg-slate-950"
                     >
                         <ModalBasicPreview />
                     </ComponentShowcase>
@@ -199,7 +206,6 @@ export default function ModalPage() {
                         title="Destrutivo"
                         description="Para ações perigosas ou irreversíveis, use cores de alerta."
                         code={modalDestructiveCode}
-                        previewClassName="!bg-slate-100 dark:!bg-slate-950"
                     >
                         <ModalDestructivePreview />
                     </ComponentShowcase>

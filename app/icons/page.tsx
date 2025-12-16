@@ -35,11 +35,22 @@ export default function IconsPage() {
         MATERIAL_SYMBOLS.filter(icon => icon.toLowerCase().includes(search.toLowerCase())),
         [search]);
 
+    const [visibleCount, setVisibleCount] = useState(200);
+
     const filteredLucide = useMemo(() =>
         lucideIconList.filter(icon => icon.toLowerCase().includes(search.toLowerCase())),
         [search]);
 
-    const displayLucide = filteredLucide.slice(0, 200);
+    const displayLucide = filteredLucide.slice(0, visibleCount);
+
+    // Reset pagination when search or tab changes
+    React.useEffect(() => {
+        setVisibleCount(200);
+    }, [search, activeTab]);
+
+    const loadMore = () => {
+        setVisibleCount(prev => Math.min(prev + 200, filteredLucide.length));
+    };
 
     const copyCode = (code: string) => {
         navigator.clipboard.writeText(code);
@@ -149,9 +160,17 @@ export default function IconsPage() {
                         )}
                     </div>
 
-                    {activeTab === 'lucide' && filteredLucide.length > 200 && (
-                        <div className="text-center py-8 text-[var(--text-secondary)] text-sm">
-                            Mostrando os primeiros 200 ícones. Refine sua busca para ver mais.
+                    {activeTab === 'lucide' && visibleCount < filteredLucide.length && (
+                        <div className="flex flex-col items-center gap-4 py-8">
+                            <div className="text-[var(--text-secondary)] text-sm">
+                                Mostrando {displayLucide.length} de {filteredLucide.length} ícones
+                            </div>
+                            <button
+                                onClick={loadMore}
+                                className="px-6 py-2 bg-[var(--surface)] border border-[var(--border)] rounded-full text-sm font-medium hover:border-primary hover:text-primary transition-colors"
+                            >
+                                Carregar mais
+                            </button>
                         </div>
                     )}
                 </div>

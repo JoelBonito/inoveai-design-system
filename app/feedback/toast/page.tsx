@@ -56,102 +56,105 @@ const toastErrorCode = `<!-- Toast Error -->
 </div>`;
 
 const toastProps: PropDefinition[] = [
-    {
-        name: "title",
-        type: "string",
-        description: "Título da notificação"
-    },
-    {
-        name: "description",
-        type: "string",
-        description: "Mensagem detalhada (opcional)"
-    },
-    {
-        name: "variant",
-        type: "'default' | 'destructive' | 'success'",
-        description: "Estilo visual do toast"
-    },
+  {
+    name: "title",
+    type: "string",
+    description: "Título da notificação"
+  },
+  {
+    name: "description",
+    type: "string",
+    description: "Mensagem detalhada (opcional)"
+  },
+  {
+    name: "variant",
+    type: "'default' | 'destructive' | 'success'",
+    description: "Estilo visual do toast"
+  },
 ];
 
 function ToastPreview({ variant = "success" }: { variant?: "success" | "error" }) {
-    const { bg, border, text, isDark } = useThemeClasses();
+  const { bg, border, text, isDark } = useThemeClasses();
 
-    const icon = variant === "success"
-        ? <CheckCircle className="h-6 w-6 text-green-400" />
-        : <AlertCircle className="h-6 w-6 text-red-400" />;
+  const icon = variant === "success"
+    ? <CheckCircle className="h-6 w-6 text-green-400" />
+    : <AlertCircle className="h-6 w-6 text-red-400" />;
 
-    const title = variant === "success" ? "Salvo com sucesso!" : "Erro ao conectar";
-    const desc = variant === "success" ? "As alterações foram aplicadas." : "Verifique sua conexão e tente novamente.";
+  const title = variant === "success" ? "Salvo com sucesso!" : "Erro ao conectar";
+  const desc = variant === "success" ? "As alterações foram aplicadas." : "Verifique sua conexão e tente novamente.";
 
-    return (
-        <div className={`pointer-events-auto w-full max-w-sm rounded-lg ${bg} shadow-lg ring-1 ring-black ring-opacity-5 border border-slate-100 dark:border-slate-800`}>
-            <div className="p-4">
-                <div className="flex items-start">
-                    <div className="flex-shrink-0">
-                        {icon}
-                    </div>
-                    <div className="ml-3 w-0 flex-1 pt-0.5">
-                        <p className={`text-sm font-medium ${text}`}>{title}</p>
-                        <p className="mt-1 text-sm text-slate-500 dark:text-slate-400">{desc}</p>
-                    </div>
-                    <div className="ml-4 flex flex-shrink-0">
-                        <button type="button" className={`inline-flex rounded-md ${bg} text-slate-400 hover:text-slate-500 focus:outline-none`}>
-                            <span className="sr-only">Fechar</span>
-                            <X className="h-5 w-5" />
-                        </button>
-                    </div>
-                </div>
-            </div>
+  const borderColor = isDark ? "border-slate-800" : "border-slate-100";
+  const descColor = isDark ? "text-slate-400" : "text-slate-500";
+
+  return (
+    <div className={`pointer-events-auto w-full max-w-sm rounded-lg ${bg} shadow-lg ring-1 ring-black ring-opacity-5 border ${borderColor}`}>
+      <div className="p-4">
+        <div className="flex items-start">
+          <div className="flex-shrink-0">
+            {icon}
+          </div>
+          <div className="ml-3 flex-1 pt-0.5">
+            <p className={`text-sm font-medium ${text}`}>{title}</p>
+            <p className={`mt-1 text-sm ${descColor}`}>{desc}</p>
+          </div>
+          <div className="ml-4 flex flex-shrink-0">
+            <button type="button" className={`inline-flex rounded-md ${bg} text-slate-400 hover:text-slate-500 focus:outline-none`}>
+              <span className="sr-only">Fechar</span>
+              <X className="h-5 w-5" />
+            </button>
+          </div>
         </div>
-    );
+      </div>
+    </div>
+  );
 }
 
 export default function ToastPage() {
-    return (
-        <div className="min-h-screen bg-[var(--background)] text-[var(--foreground)]">
-            <main className="container mx-auto px-4 sm:px-8 py-8">
-                <div className="max-w-6xl mx-auto space-y-12">
-                    {/* Hero */}
-                    <div className="pb-8 border-b border-[var(--border)]">
-                        <div className="flex items-center gap-3 mb-4">
-                            <h1 className="text-5xl font-black text-[var(--foreground)] tracking-tight">
-                                Toast
-                            </h1>
-                            <span className="px-3 py-1 rounded-md bg-primary/10 text-primary text-xs font-bold border border-primary/20 capitalize">
-                                Feedback
-                            </span>
-                        </div>
-                        <p className="text-[var(--text-secondary)] text-lg max-w-3xl">
-                            Notificações temporárias e discretas que informam o usuário sobre o resultado de uma ação sem interromper seu fluxo de trabalho.
-                        </p>
-                    </div>
+  return (
+    <div className="min-h-screen bg-[var(--background)] text-[var(--foreground)]">
+      <main className="container mx-auto px-4 sm:px-8 py-8">
+        <div className="max-w-6xl mx-auto space-y-12">
+          {/* Hero */}
+          <div className="pb-8 border-b border-[var(--border)]">
+            <div className="flex items-center gap-3 mb-4">
+              <h1 className="text-5xl font-black text-[var(--foreground)] tracking-tight">
+                Toast
+              </h1>
+              <span className="px-3 py-1 rounded-md bg-primary/10 text-primary text-xs font-bold border border-primary/20 capitalize">
+                Feedback
+              </span>
+            </div>
+            <p className="text-[var(--text-secondary)] text-lg max-w-3xl">
+              Notificações temporárias e discretas que informam o usuário sobre o resultado de uma ação sem interromper seu fluxo de trabalho.
+            </p>
+          </div>
 
-                    {/* Success */}
-                    <ComponentShowcase
-                        title="Sucesso"
-                        description="Usado para confirmar ações bem-sucedidas."
-                        code={toastSuccessCode}
-                        previewClassName="bg-slate-50 dark:bg-slate-950 flex justify-center !p-12"
-                    >
-                        <ToastPreview variant="success" />
-                    </ComponentShowcase>
+          {/* Success */}
+          <ComponentShowcase
+            title="Sucesso"
+            description="Usado para confirmar ações bem-sucedidas."
+            code={toastSuccessCode}
+            previewClassName="flex justify-center !p-12"
+          >
+            <ToastPreview variant="success" />
+          </ComponentShowcase>
 
-                    {/* Error */}
-                    <ComponentShowcase
-                        title="Erro"
-                        description="Usado para comunicar falhas ou problemas."
-                        code={toastErrorCode}
-                        previewClassName="bg-slate-50 dark:bg-slate-950 flex justify-center !p-12"
-                    >
-                        <ToastPreview variant="error" />
-                    </ComponentShowcase>
+          {/* Error */}
+          <ComponentShowcase
+            title="Erro"
+            description="Usado para comunicar falhas ou problemas."
+            code={toastErrorCode}
+            previewClassName="flex justify-center !p-12"
+          >
+            <ToastPreview variant="error" />
+          </ComponentShowcase>
 
-                    {/* API Reference */}
-                    <div className="pt-12 border-t border-[var(--border)]">
-                        <PropsTable props={toastProps} />
-                    </div>
-                </div>
-            </main>
+          {/* API Reference */}
+          <div className="pt-12 border-t border-[var(--border)]">
+            <PropsTable props={toastProps} />
+          </div>
         </div>
-    );
+      </main>
+    </div>
+  );
 }

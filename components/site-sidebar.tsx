@@ -90,15 +90,6 @@ const CATEGORIES = [
       { name: "Página de Erro", href: "/feedback/error-page" },
     ]
   },
-  {
-    id: "referencia",
-    title: "📚 Referência",
-    href: "/referencia",
-    icon: BookOpen,
-    items: [
-      { name: "Componentes Essenciais", href: "/referencia/essentials" },
-    ]
-  },
 ];
 
 const FOUNDATION_ITEMS = [
@@ -282,9 +273,9 @@ export function SiteSidebar({ components = [] }: SiteSidebarProps) {
                           <Link
                             key={item.href}
                             href={item.href}
-                            className={`relative z-10 block pl-4 py-2 text-sm transition-colors cursor-pointer ${isActive
+                            className={`relative z-10 flex w-full items-center pl-4 py-2 text-sm transition-colors cursor-pointer ${isActive
                               ? "text-primary font-medium border-l-2 border-primary -ml-px"
-                              : "text-[var(--text-secondary)] hover:text-[var(--foreground)]"
+                              : "text-[var(--text-secondary)] hover:text-[var(--foreground)] border-l-2 border-transparent -ml-px"
                               }`}
                           >
                             {item.name}
