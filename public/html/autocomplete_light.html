@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Autocomplete Search (Light Mode)</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script id="tailwind-config">
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#1337ec",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"]
+                    },
+                    borderRadius: { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" },
+                },
+            },
+        }
+    </script>
+    <style>
+        .scrollbar-hide::-webkit-scrollbar {
+            display: none;
+        }
+
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+        }
+    </style>
+</head>
+
+<body class="bg-[#f8f9fc] text-slate-900 font-display overflow-hidden">
+    <div class="flex h-screen w-full flex-row overflow-hidden">
+        <aside class="hidden w-64 flex-col border-r border-slate-200 bg-white p-4 lg:flex">
+            <div class="flex items-center gap-3 mb-8 px-2">
+                <div class="flex items-center justify-center rounded-lg bg-primary/10 p-2 text-primary">
+                    <span class="material-symbols-outlined">smart_toy</span>
+                </div>
+                <div class="flex flex-col">
+                    <h1 class="text-base font-bold leading-tight text-slate-900">Nexus Agency</h1>
+                    <p class="text-slate-500 text-xs font-medium">Enterprise Plan</p>
+                </div>
+            </div>
+            <nav class="flex flex-1 flex-col gap-2">
+                <a class="flex items-center gap-3 rounded-lg px-3 py-2 text-slate-500 hover:bg-slate-50 hover:text-slate-900 transition-colors"
+                    href="#">
+                    <span class="material-symbols-outlined">dashboard</span>
+                    <span class="text-sm font-medium">Dashboard</span>
+                </a>
+                <a class="flex items-center gap-3 rounded-lg px-3 py-2 text-slate-500 hover:bg-slate-50 hover:text-slate-900 transition-colors"
+                    href="#">
+                    <span class="material-symbols-outlined">folder_open</span>
+                    <span class="text-sm font-medium">Projects</span>
+                </a>
+                <a class="flex items-center gap-3 rounded-lg bg-slate-50 px-3 py-2 text-primary shadow-sm ring-1 ring-slate-200"
+                    href="#">
+                    <span class="material-symbols-outlined filled">database</span>
+                    <span class="text-sm font-medium">Datasets</span>
+                </a>
+                <a class="flex items-center gap-3 rounded-lg px-3 py-2 text-slate-500 hover:bg-slate-50 hover:text-slate-900 transition-colors"
+                    href="#">
+                    <span class="material-symbols-outlined">bar_chart</span>
+                    <span class="text-sm font-medium">Analytics</span>
+                </a>
+                <a class="flex items-center gap-3 rounded-lg px-3 py-2 text-slate-500 hover:bg-slate-50 hover:text-slate-900 transition-colors"
+                    href="#">
+                    <span class="material-symbols-outlined">settings</span>
+                    <span class="text-sm font-medium">Settings</span>
+                </a>
+            </nav>
+            <div class="mt-auto border-t border-slate-200 pt-4">
+                <div class="flex items-center gap-3 px-2">
+                    <div class="h-8 w-8 rounded-full bg-cover bg-center shadow-sm ring-1 ring-slate-200"
+                        data-alt="User profile avatar gradient"
+                        style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAQqS3ce1rLBiHh4CEGB9KIVFAoHP1iqRFkXkEuOY2HhP_EMAvcyMnWeCQ4RAb5TFpBtPlaSnMhyiwSN9cCdbOiFR-uwmklwqFCGIOE7D_rwGssy8hp_m0bt1uCi1bn-BgnkJ4kgoC0n2Z-R7LyelLpJsnpnlq37-W3vW5u9zxHtCobOZc2r7oJWqOxRg4fLIC2Gwx0Hdx-26RQSpErn0UevQcMXb8tr7b2vAR4-S9SfjuLtkgXPPT_gNDUi3gxm-aOpKN1Sx8_IWg');">
+                    </div>
+                    <div class="flex flex-col">
+                        <p class="text-sm font-medium text-slate-900">Alex Morgan</p>
+                        <p class="text-xs text-slate-500">alex@nexus.ai</p>
+                    </div>
+                </div>
+            </div>
+        </aside>
+        <div class="flex flex-1 flex-col h-full overflow-hidden relative">
+            <header class="flex h-16 items-center justify-between border-b border-slate-200 bg-white px-8">
+                <h2 class="text-lg font-semibold tracking-tight text-slate-900">Data Explorer</h2>
+                <div class="flex items-center gap-4">
+                    <button
+                        class="flex h-9 w-9 items-center justify-center rounded-lg border border-slate-200 bg-white text-slate-500 transition-colors hover:bg-slate-50 hover:text-slate-900">
+                        <span class="material-symbols-outlined text-[20px]">notifications</span>
+                    </button>
+                    <button
+                        class="flex h-9 w-9 items-center justify-center rounded-lg border border-slate-200 bg-white text-slate-500 transition-colors hover:bg-slate-50 hover:text-slate-900">
+                        <span class="material-symbols-outlined text-[20px]">help</span>
+                    </button>
+                </div>
+            </header>
+            <main class="flex-1 overflow-y-auto bg-[#f8f9fc] p-8 md:p-12 lg:p-16">
+                <div class="mx-auto max-w-3xl flex flex-col items-center justify-start pt-10">
+                    <div class="w-full relative group">
+                        <div class="relative z-30 flex w-full items-center rounded-t-xl bg-white ring-1 ring-slate-200 focus-within:ring-2 focus-within:ring-primary shadow-xl transition-all duration-200"
+                            style="border-bottom-left-radius: 0; border-bottom-right-radius: 0;">
+                            <div class="flex h-14 w-14 items-center justify-center text-slate-400">
+                                <span class="material-symbols-outlined">search</span>
+                            </div>
+                            <input
+                                class="h-14 w-full bg-transparent border-none p-0 text-base text-slate-900 placeholder-slate-400 focus:ring-0"
+                                placeholder="Search databases, models, or projects..." type="text"
+                                value="Neural network optimization" />
+                            <div class="flex items-center pr-4 gap-3">
+                                <div
+                                    class="flex items-center gap-1.5 rounded bg-slate-100 border border-slate-200 px-2 py-1 text-xs font-medium text-slate-500">
+                                    <span class="material-symbols-outlined text-[14px]">keyboard_command_key</span>
+                                    <span>K</span>
+                                </div>
+                                <button class="text-slate-400 hover:text-slate-600">
+                                    <span class="material-symbols-outlined">close</span>
+                                </button>
+                            </div>
+                            <div class="absolute bottom-0 left-0 h-[2px] w-full bg-slate-100">
+                                <div class="h-full w-1/3 bg-primary animate-pulse"></div>
+                            </div>
+                        </div>
+                        <div
+                            class="absolute left-0 top-14 z-20 w-full rounded-b-xl border border-t-0 border-slate-200 bg-white shadow-2xl overflow-hidden glass-panel">
+                            <div class="flex flex-col border-b border-slate-200 py-2">
+                                <div class="flex items-center justify-between px-4 py-2">
+                                    <h3
+                                        class="flex items-center gap-2 text-xs font-bold tracking-wider text-slate-500 uppercase">
+                                        <span class="material-symbols-outlined text-sm text-primary">auto_awesome</span>
+                                        AI Generated Suggestions
+                                    </h3>
+                                    <span
+                                        class="text-[10px] text-slate-500 bg-slate-100 border border-slate-200 px-1.5 py-0.5 rounded">34ms</span>
+                                </div>
+                                <button
+                                    class="mx-2 flex items-center justify-between rounded-md bg-primary px-3 py-2.5 text-left transition-colors group/item cursor-pointer shadow-sm">
+                                    <div class="flex items-center gap-3">
+                                        <span class="material-symbols-outlined text-white/90">model_training</span>
+                                        <div class="flex flex-col">
+                                            <span class="text-sm font-medium text-white">Optimize learning rate for
+                                                large datasets</span>
+                                            <span class="text-xs text-blue-100">Recommendation based on your recent
+                                                activity</span>
+                                        </div>
+                                    </div>
+                                    <span class="hidden text-xs font-semibold text-white/80 group-hover/item:block">
+                                        <span
+                                            class="material-symbols-outlined text-sm align-middle">keyboard_return</span>
+                                    </span>
+                                </button>
+                                <button
+                                    class="mx-2 flex items-center justify-between rounded-md px-3 py-2.5 text-left hover:bg-slate-50 transition-colors group/item cursor-pointer">
+                                    <div class="flex items-center gap-3">
+                                        <span class="material-symbols-outlined text-slate-400">account_tree</span>
+                                        <span class="text-sm font-medium text-slate-700">Neural architecture search
+                                            patterns</span>
+                                    </div>
+                                </button>
+                            </div>
+                            <div class="flex flex-col border-b border-slate-200 py-2">
+                                <h3 class="px-4 py-2 text-xs font-bold tracking-wider text-slate-500 uppercase">Recent
+                                    Searches</h3>
+                                <button
+                                    class="mx-2 flex items-center gap-3 rounded-md px-3 py-2 text-left hover:bg-slate-50 transition-colors cursor-pointer group/recent">
+                                    <span
+                                        class="material-symbols-outlined text-slate-400 text-[20px] group-hover/recent:text-primary transition-colors">history</span>
+                                    <span
+                                        class="text-sm text-slate-600 group-hover/recent:text-slate-900 transition-colors">Project
+                                        Alpha v2 performance</span>
+                                    <span class="ml-auto text-xs text-slate-400">2h ago</span>
+                                </button>
+                                <button
+                                    class="mx-2 flex items-center gap-3 rounded-md px-3 py-2 text-left hover:bg-slate-50 transition-colors cursor-pointer group/recent">
+                                    <span
+                                        class="material-symbols-outlined text-slate-400 text-[20px] group-hover/recent:text-primary transition-colors">history</span>
+                                    <span
+                                        class="text-sm text-slate-600 group-hover/recent:text-slate-900 transition-colors">Client:
+                                        TechCorp deliverables</span>
+                                    <span class="ml-auto text-xs text-slate-400">5h ago</span>
+                                </button>
+                            </div>
+                            <div class="flex flex-col py-2">
+                                <h3 class="px-4 py-2 text-xs font-bold tracking-wider text-slate-500 uppercase">Database
+                                    Results</h3>
+                                <button
+                                    class="mx-2 flex items-center justify-between rounded-md px-3 py-2.5 text-left hover:bg-slate-50 transition-colors cursor-pointer group/db">
+                                    <div class="flex items-center gap-3 overflow-hidden">
+                                        <div
+                                            class="flex h-8 w-8 shrink-0 items-center justify-center rounded bg-emerald-50 text-emerald-600">
+                                            <span class="material-symbols-outlined text-[18px]">folder</span>
+                                        </div>
+                                        <div class="flex flex-col overflow-hidden">
+                                            <div class="flex items-center gap-2">
+                                                <span
+                                                    class="truncate text-sm font-medium text-slate-700 group-hover/db:text-primary transition-colors">Neural_Opt_V4_Final</span>
+                                                <span
+                                                    class="inline-flex items-center rounded-sm bg-slate-100 px-1.5 py-0.5 text-[10px] font-medium text-slate-500 border border-slate-200">PROJECT</span>
+                                            </div>
+                                            <span class="truncate text-xs text-slate-500">Updated by Sarah J. •
+                                                12MB</span>
+                                        </div>
+                                    </div>
+                                    <div
+                                        class="flex items-center gap-2 opacity-0 group-hover/db:opacity-100 transition-opacity">
+                                        <span
+                                            class="rounded bg-white border border-slate-200 shadow-sm px-1.5 py-0.5 text-[10px] text-slate-500">Jump
+                                            to</span>
+                                    </div>
+                                </button>
+                                <button
+                                    class="mx-2 flex items-center justify-between rounded-md px-3 py-2.5 text-left hover:bg-slate-50 transition-colors cursor-pointer group/db">
+                                    <div class="flex items-center gap-3 overflow-hidden">
+                                        <div
+                                            class="flex h-8 w-8 shrink-0 items-center justify-center rounded bg-purple-50 text-purple-600">
+                                            <span class="material-symbols-outlined text-[18px]">person</span>
+                                        </div>
+                                        <div class="flex flex-col overflow-hidden">
+                                            <div class="flex items-center gap-2">
+                                                <span
+                                                    class="truncate text-sm font-medium text-slate-700 group-hover/db:text-primary transition-colors">Dr.
+                                                    Neural Network</span>
+                                                <span
+                                                    class="inline-flex items-center rounded-sm bg-slate-100 px-1.5 py-0.5 text-[10px] font-medium text-slate-500 border border-slate-200">USER</span>
+                                            </div>
+                                            <span class="truncate text-xs text-slate-500">Lead Researcher •
+                                                Online</span>
+                                        </div>
+                                    </div>
+                                </button>
+                            </div>
+                            <div
+                                class="flex items-center justify-between bg-slate-50 px-4 py-2 text-[11px] text-slate-500 border-t border-slate-200">
+                                <div class="flex gap-4">
+                                    <span class="flex items-center gap-1"><kbd
+                                            class="font-sans font-semibold text-slate-700">↑↓</kbd> to navigate</span>
+                                    <span class="flex items-center gap-1"><kbd
+                                            class="font-sans font-semibold text-slate-700">↵</kbd> to select</span>
+                                    <span class="flex items-center gap-1"><kbd
+                                            class="font-sans font-semibold text-slate-700">esc</kbd> to close</span>
+                                </div>
+                                <span class="opacity-60">Nexus Search Engine v2.4</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div
+                        class="mt-20 grid w-full grid-cols-1 gap-6 opacity-40 blur-[1px] md:grid-cols-2 lg:grid-cols-3 pointer-events-none select-none">
+                        <div class="h-40 rounded-xl bg-white border border-slate-200 p-4 shadow-sm">
+                            <div class="h-4 w-1/2 rounded bg-slate-100 mb-4"></div>
+                            <div class="h-2 w-full rounded bg-slate-100 mb-2"></div>
+                            <div class="h-2 w-2/3 rounded bg-slate-100 mb-2"></div>
+                        </div>
+                        <div class="h-40 rounded-xl bg-white border border-slate-200 p-4 shadow-sm">
+                            <div class="h-4 w-1/2 rounded bg-slate-100 mb-4"></div>
+                            <div class="flex gap-2 mt-4">
+                                <div class="h-16 w-full rounded bg-slate-100"></div>
+                                <div class="h-16 w-full rounded bg-slate-100"></div>
+                            </div>
+                        </div>
+                        <div class="h-40 rounded-xl bg-white border border-slate-200 p-4 shadow-sm">
+                            <div class="h-4 w-1/3 rounded bg-slate-100 mb-4"></div>
+                            <div class="h-20 w-full rounded bg-slate-100"></div>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+
+</body>
+
+</html>

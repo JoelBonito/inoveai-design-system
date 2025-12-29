@@ -1,36 +1,82 @@
 @import "tailwindcss";
+@plugin "tailwindcss-animate";
 
-/* =============================================================
-   STITCH DESIGN SYSTEM - Tailwind v4 CSS-First Configuration
-   ============================================================= */
+/* Relocate Next.js Dev Indicator to Top Right (Next to User) */
+body [data-nextjs-toast] {
+  display: block !important;
+  opacity: 1 !important;
+  pointer-events: auto !important;
+  bottom: auto !important;
+  top: 20px !important;
+  left: auto !important;
+  right: 180px !important;
+  /* Position next to user profile */
+  transform: scale(0.8) !important;
+  border: none !important;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+body [data-nextjs-toast-icon] {
+  border: 1px solid rgba(0, 0, 0, 0.1) !important;
+  border-radius: 50% !important;
+}
+
+/* Forçar Tailwind v4 a usar a classe .dark ao invés de prefers-color-scheme */
+@custom-variant dark (&:where(.dark, .dark *));
 
 @theme {
-  /* ===== COLORS ===== */
-  --color-primary: #2b2bee;
+  /* ===== MAPEAR UTILITÁRIOS PARA VARIÁVEIS DINÂMICAS ===== */
+  /* Isso permite que o Tailwind gere classes como bg-card que mudam com o tema */
 
-  /* Light Mode */
-  --color-background-light: #f6f6f8;
-  --color-surface-light: #ffffff;
-  --color-border-light: #e2e2e8;
-  --color-text-primary-light: #111118;
-  --color-text-secondary-light: #6b6b80;
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
 
-  /* Dark Mode */
-  --color-background-dark: #111118;
-  --color-surface-dark: #1C1C26;
-  --color-border-dark: #282839;
-  --color-text-primary-dark: #ffffff;
-  --color-text-secondary: #9d9db9;
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
 
-  /* Semantic Utilities */
-  --color-surface: #1c1c27;
-  --color-surface-border: #282839;
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
 
-  /* Status Colors */
-  --color-success: #10B981;
-  --color-warning: #F59E0B;
-  --color-error: #EF4444;
-  --color-info: #3B82F6;
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+
+  --color-surface: var(--surface);
+  --color-surface-elevated: var(--surface-elevated);
+
+  --color-success: var(--success);
+  --color-warning: var(--warning);
+  --color-error: var(--error);
+  --color-info: var(--info);
+
+  /* ===== SIDEBAR COLORS ===== */
+  --color-sidebar-background: var(--sidebar-background);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+
+  /* ===== BRAND COLORS ===== */
+  --color-brand-teal: #457b77;
 
   /* ===== FONTS ===== */
   --font-display: "Space Grotesk", sans-serif;
@@ -39,76 +85,247 @@
 
   /* ===== BORDER RADIUS ===== */
   --radius-sm: 0.25rem;
-  --radius-md: 0.5rem;
-  --radius-lg: 0.75rem;
-  --radius-xl: 1rem;
-  --radius-2xl: 1.25rem;
+  /* 4px */
+  --radius-md: 0.375rem;
+  /* 6px */
+  --radius-lg: 0.5rem;
+  /* 8px - Inputs, buttons, badges */
+  --radius-xl: 0.75rem;
+  /* 12px - Cards */
+  --radius-2xl: 1rem;
+  /* 16px - Modals */
   --radius-full: 9999px;
+
+  --radius: 0.5rem;
+
+  /* ===== NAVIGATION COLORS ===== */
+  --color-nav-dashboard: #3b82f6;
+  --color-nav-projects: #f59e0b;
+  --color-nav-clients: #10b981;
+  --color-nav-finance: #059669;
+  --color-nav-reports: #8b5cf6;
+  --color-nav-settings: #64748b;
+  --color-nav-bugs: #f43f5e;
 }
 
-/* =============================================================
-   BASE STYLES
-   ============================================================= */
+@layer base {
+  :root {
+    /* === LIGHT MODE === */
+    --background: #f9fafb;
+    /* Layer 1 */
+    --foreground: #111827;
+
+    --card: #f1f2f4;
+    /* Layer 2 - Sidebar/Cards */
+    --card-foreground: #111827;
+
+    --popover: #ffffff;
+    /* Layer 3 - Surface */
+    --popover-foreground: #111827;
+
+    --primary: #457b77;
+    /* Action Button */
+    --primary-foreground: #FFFFFF;
+
+    --secondary: #f1f2f4;
+    --secondary-foreground: #111827;
+
+    --muted: #f1f2f4;
+    --muted-foreground: #6B7280;
+
+    --accent: #f9fafb;
+    /* Layer 4 - Inputs */
+    --accent-foreground: #111827;
+
+    --border: #e0e7e6;
+    --input: #f9fafb;
+    --ring: #457b77;
+
+    --surface: #f1f2f4;
+    --surface-elevated: #ffffff;
+
+    --btn-gradient-from: #457b77;
+    --btn-gradient-to: #3d6b67;
+    --btn-shadow: rgba(69, 123, 119, 0.2);
+
+    --success: #10B981;
+    --warning: #F59E0B;
+    --error: #EF4444;
+    --info: #3B82F6;
+
+    --radius: 0.5rem;
+
+    /* Sidebar */
+    --sidebar-background: #f1f2f4;
+    /* Layer 2 */
+    --sidebar-foreground: #6B7280;
+    --sidebar-primary: #457b77;
+    --sidebar-primary-foreground: #FFFFFF;
+    --sidebar-accent: #e0e7e6;
+    /* Layer 5 - Selection */
+    --sidebar-accent-foreground: #457b77;
+    --sidebar-active: #e0e7e6;
+    --sidebar-border: #e0e7e6;
+    --sidebar-ring: #457b77;
+  }
+
+  .dark {
+    /* === DARK MODE === */
+    --background: #13151a;
+    /* Layer 1 */
+    --foreground: #FFFFFF;
+
+    --card: #1c202a;
+    /* Layer 2 */
+    --card-foreground: #FFFFFF;
+
+    --popover: #252a36;
+    /* Layer 3 */
+    --popover-foreground: #FFFFFF;
+
+    --primary: #06b6d4;
+    /* Action Button */
+    --primary-foreground: #FFFFFF;
+
+    --secondary: #1c202a;
+    --secondary-foreground: #FFFFFF;
+
+    --muted: #2d3342;
+    --muted-foreground: #94a3b8;
+
+    --accent: #2d3342;
+    /* Layer 4 */
+    --accent-foreground: #FFFFFF;
+
+    --border: #2d3342;
+    --input: #2d3342;
+    --ring: #06b6d4;
+
+    --surface: #1c202a;
+    --surface-elevated: #252a36;
+
+    --btn-gradient-from: #06b6d4;
+    --btn-gradient-to: #0891b2;
+    --btn-shadow: rgba(6, 182, 212, 0.2);
+
+    --sidebar-background: #1c202a;
+    /* Layer 2 */
+    --sidebar-foreground: #94a3b8;
+    --sidebar-primary: #06b6d4;
+    --sidebar-primary-foreground: #FFFFFF;
+    --sidebar-accent: #2d3342;
+    /* Layer 5 - Selection */
+    --sidebar-active: #2d3342;
+    --sidebar-accent-foreground: #FFFFFF;
+    --sidebar-border: #2d3342;
+    --sidebar-ring: #06b6d4;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+}
 
 @layer base {
-  html {
-    font-family: var(--font-body);
-  }
-
-  /* Light Mode (default) */
-  :root {
-    --background: var(--color-background-light);
-    --foreground: var(--color-text-primary-light);
-    --surface: var(--color-surface-light);
-    --border: var(--color-border-light);
-    --text-secondary: var(--color-text-secondary-light);
-  }
-
-  /* Dark Mode */
-  .dark {
-    --background: var(--color-background-dark);
-    --foreground: var(--color-text-primary-dark);
-    --surface: var(--color-surface-dark);
-    --border: var(--color-border-dark);
-    --text-secondary: var(--color-text-secondary);
+  * {
+    border-color: var(--border);
   }
 
   body {
     background-color: var(--background);
     color: var(--foreground);
+    font-family: var(--font-body);
+    font-feature-settings: "rlig" 1, "calt" 1;
   }
 
-  /* Custom Scrollbar (Design System style) */
-  ::-webkit-scrollbar {
-    width: 8px;
-    height: 8px;
-  }
-
-  ::-webkit-scrollbar-track {
-    background: var(--background);
-  }
-
-  ::-webkit-scrollbar-thumb {
-    background: var(--border);
-    border-radius: 4px;
-  }
-
-  ::-webkit-scrollbar-thumb:hover {
-    background: var(--text-secondary);
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply font-display tracking-tight;
   }
 }
 
-/* =============================================================
-   UTILITIES
-   ============================================================= */
-
 @layer utilities {
-  .text-balance {
-    text-wrap: balance;
+  .glass {
+    @apply bg-[var(--surface)]/40 backdrop-blur-md border border-[var(--border)];
   }
 
-  .custom-scrollbar {
-    scrollbar-width: thin;
-    scrollbar-color: var(--color-border-dark) transparent;
+  /* Scrollbar customizada */
+  .custom-scrollbar::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+
+  .custom-scrollbar::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  .custom-scrollbar::-webkit-scrollbar-thumb {
+    @apply bg-[var(--border)] rounded-full;
+  }
+
+  .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+    @apply bg-[var(--muted-foreground)];
+  }
+
+  /* Hide scrollbar but keep functionality */
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  /* Tabs Scroll Fade Indicators */
+  .tabs-scroll-container {
+    position: relative;
+  }
+
+  .tabs-scroll-container::before,
+  .tabs-scroll-container::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 24px;
+    pointer-events: none;
+    z-index: 10;
+    opacity: 0;
+    transition: opacity 0.2s ease;
+  }
+
+  .tabs-scroll-container::before {
+    left: 0;
+    background: linear-gradient(to right, var(--surface), transparent);
+  }
+
+  .tabs-scroll-container::after {
+    right: 0;
+    background: linear-gradient(to left, var(--surface), transparent);
+  }
+
+  .tabs-scroll-container.show-fade-left::before {
+    opacity: 1;
+  }
+
+  .tabs-scroll-container.show-fade-right::after {
+    opacity: 1;
+  }
+
+  /* Utility to remove number input spinners */
+  .no-spinner::-webkit-inner-spin-button,
+  .no-spinner::-webkit-outer-spin-button {
+    -webkit-appearance: none !important;
+    margin: 0;
+  }
+
+  .no-spinner {
+    -moz-appearance: textfield !important;
+    appearance: none !important;
   }
 }

@@ -2,7 +2,7 @@
 
 import { ComponentShowcase } from "@/components/component-showcase";
 import { PropsTable, PropDefinition } from "@/components/props-table";
-import { useThemeClasses } from "@/components/showcase-theme-context";
+import { Input } from "@/components/ui/input";
 
 const inputTypesCode = `<!-- Input Types -->
 <input type="text" placeholder="Digite seu nome..." class="w-full max-w-xs px-4 py-2 rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all" />
@@ -60,99 +60,12 @@ const inputProps: PropDefinition[] = [
     },
 ];
 
-function InputTypesPreview() {
-    const { bg, text, border } = useThemeClasses();
-
-    return (
-        <>
-            <input
-                type="text"
-                placeholder="Digite seu nome..."
-                className={`w-full max-w-xs px-4 py-2 rounded-lg border ${border} ${bg} ${text} focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all`}
-            />
-            <input
-                type="email"
-                placeholder="seu@email.com"
-                className={`w-full max-w-xs px-4 py-2 rounded-lg border ${border} ${bg} ${text} focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all`}
-            />
-            <input
-                type="password"
-                placeholder="Senha secreta"
-                className={`w-full max-w-xs px-4 py-2 rounded-lg border ${border} ${bg} ${text} focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all`}
-            />
-        </>
-    );
-}
-
-function InputStatesPreview() {
-    const { bg, text, border, bgSurface } = useThemeClasses();
-
-    return (
-        <>
-            <input
-                type="text"
-                placeholder="Normal"
-                className={`w-full max-w-xs px-4 py-2 rounded-lg border ${border} ${bg} ${text} focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all`}
-            />
-            <input
-                type="text"
-                placeholder="Email inválido"
-                className={`w-full max-w-xs px-4 py-2 rounded-lg border-2 border-red-500 ${bg} ${text} focus:outline-none focus:ring-2 focus:ring-red-500 transition-all`}
-            />
-            <input
-                type="text"
-                placeholder="Desabilitado"
-                disabled
-                className={`w-full max-w-xs px-4 py-2 rounded-lg border ${border} ${bgSurface} text-slate-500 cursor-not-allowed`}
-            />
-        </>
-    );
-}
-
-function InputSizesPreview() {
-    const { bg, text, border } = useThemeClasses();
-
-    return (
-        <>
-            <input
-                type="text"
-                placeholder="Small"
-                className={`w-full max-w-xs px-3 py-1.5 text-sm rounded-md border ${border} ${bg} ${text} focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all`}
-            />
-            <input
-                type="text"
-                placeholder="Medium"
-                className={`w-full max-w-xs px-4 py-2 rounded-lg border ${border} ${bg} ${text} focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all`}
-            />
-            <input
-                type="text"
-                placeholder="Large"
-                className={`w-full max-w-xs px-5 py-3 text-lg rounded-xl border ${border} ${bg} ${text} focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all`}
-            />
-        </>
-    );
-}
-
 export default function InputPage() {
     return (
         <div className="min-h-screen bg-[var(--background)] text-[var(--foreground)]">
-            <main className="container mx-auto px-4 sm:px-8 py-8">
+            <main className="container mx-auto px-4 sm:px-8 pt-10 pb-8">
                 <div className="max-w-6xl mx-auto space-y-12">
-                    {/* Hero */}
-                    <div className="pb-8 border-b border-[var(--border)]">
-                        <div className="flex items-center gap-3 mb-4">
-                            <h1 className="text-5xl font-black text-[var(--foreground)] tracking-tight">
-                                Input
-                            </h1>
-                            <span className="px-3 py-1 rounded-md bg-primary/10 text-primary text-xs font-bold border border-primary/20 capitalize">
-                                Primitivo
-                            </span>
-                        </div>
-                        <p className="text-[var(--text-secondary)] text-lg max-w-3xl">
-                            Campo de entrada de texto com diferentes tipos, estados e tamanhos.
-                            Suporta validação visual e máscaras.
-                        </p>
-                    </div>
+                    {/* Hero removed */}
 
                     {/* Tipos */}
                     <ComponentShowcase
@@ -161,7 +74,9 @@ export default function InputPage() {
                         code={inputTypesCode}
                         previewClassName="!flex-col !items-center gap-4"
                     >
-                        <InputTypesPreview />
+                        <Input type="text" placeholder="Digite seu nome..." className="max-w-xs" />
+                        <Input type="email" placeholder="seu@email.com" className="max-w-xs" />
+                        <Input type="password" placeholder="Senha secreta" className="max-w-xs" />
                     </ComponentShowcase>
 
                     {/* Estados */}
@@ -171,17 +86,21 @@ export default function InputPage() {
                         code={inputStatesCode}
                         previewClassName="!flex-col !items-center gap-4"
                     >
-                        <InputStatesPreview />
+                        <Input type="text" placeholder="Normal" className="max-w-xs" />
+                        <Input type="text" placeholder="Email inválido" className="max-w-xs border-red-500 focus-visible:ring-red-500" />
+                        <Input type="text" placeholder="Desabilitado" disabled className="max-w-xs" />
                     </ComponentShowcase>
 
                     {/* Tamanhos */}
                     <ComponentShowcase
                         title="Tamanhos"
-                        description="Três tamanhos disponíveis"
+                        description="Três tamanhos disponíveis (simulados via classe por enquanto)"
                         code={inputSizesCode}
                         previewClassName="!flex-col !items-center gap-4"
                     >
-                        <InputSizesPreview />
+                        <Input type="text" placeholder="Small" className="max-w-xs h-8 text-xs" />
+                        <Input type="text" placeholder="Medium" className="max-w-xs" />
+                        <Input type="text" placeholder="Large" className="max-w-xs h-12 text-lg" />
                     </ComponentShowcase>
 
                     {/* API Reference */}

@@ -123,23 +123,9 @@ function SelectStatesPreview() {
 export default function SelectPage() {
     return (
         <div className="min-h-screen bg-[var(--background)] text-[var(--foreground)]">
-            <main className="container mx-auto px-4 sm:px-8 py-8">
+            <main className="container mx-auto px-4 sm:px-8 pt-10 pb-8">
                 <div className="max-w-6xl mx-auto space-y-12">
-                    {/* Hero */}
-                    <div className="pb-8 border-b border-[var(--border)]">
-                        <div className="flex items-center gap-3 mb-4">
-                            <h1 className="text-5xl font-black text-[var(--foreground)] tracking-tight">
-                                Select
-                            </h1>
-                            <span className="px-3 py-1 rounded-md bg-primary/10 text-primary text-xs font-bold border border-primary/20 capitalize">
-                                Formulário
-                            </span>
-                        </div>
-                        <p className="text-[var(--text-secondary)] text-lg max-w-3xl">
-                            Componente de seleção que permite ao usuário escolher uma única opção de uma lista drop-down.
-                            Interface nativa estilizada para consistência visual.
-                        </p>
-                    </div>
+                    {/* Hero removed */}
 
                     {/* Basic */}
                     <ComponentShowcase

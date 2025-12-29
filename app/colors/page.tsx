@@ -54,20 +54,11 @@ export default function ColorsPage() {
 
     return (
         <div className="min-h-screen">
-            <main className="container mx-auto px-4 sm:px-8 py-8">
-                <div className="max-w-7xl mx-auto">
-                    {/* Hero */}
-                    <div className="pb-8 border-b border-[var(--border)] mb-12">
-                        <h1 className="text-4xl lg:text-5xl font-black text-[var(--foreground)] tracking-tight mb-4">
-                            Sistema de Cores
-                        </h1>
-                        <p className="text-[var(--text-secondary)] text-lg max-w-3xl">
-                            Geração automática de escalas de cores acessíveis baseadas nos tokens do nosso Design System.
-                            Estas tonalidades (50-950) são geradas usando interpolação LCH para consistência de brilho percebido.
-                        </p>
-                    </div>
+            <main className="container mx-auto px-4 sm:px-8 pt-10 pb-8">
+                <div className="max-w-6xl mx-auto space-y-12">
+                    {/* Hero removed */}
 
-                    <div className="space-y-16">
+                    <div className="space-y-12">
                         {palettes.map((palette) => (
                             <section key={palette.name} className="space-y-4">
                                 <div className="flex items-center justify-between flex-wrap gap-4">

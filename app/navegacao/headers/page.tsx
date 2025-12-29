@@ -63,114 +63,101 @@ const sidebarCode = `<!-- Sidebar Layout Simulation -->
 </div>`;
 
 function NavbarPreview() {
-    const { bg, border, isDark } = useThemeClasses();
-    const textPrimary = isDark ? "text-white" : "text-slate-900";
-    const textSecondary = isDark ? "text-slate-400" : "text-slate-500";
+  const { bg, border, isDark } = useThemeClasses();
+  const textPrimary = isDark ? "text-white" : "text-slate-900";
+  const textSecondary = isDark ? "text-slate-400" : "text-slate-500";
 
-    return (
-        <nav className={`w-full ${bg} border-b ${border}`}>
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div className="flex justify-between h-16">
-                    <div className="flex">
-                        <div className="flex-shrink-0 flex items-center">
-                            <span className="text-xl font-bold text-primary">Logo</span>
-                        </div>
-                        <div className="hidden sm:ml-6 sm:flex sm:space-x-8">
-                            <a href="#" className={`border-primary ${textPrimary} inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium`}>
-                                Dashboard
-                            </a>
-                            <a href="#" className={`border-transparent ${textSecondary} inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium`}>
-                                Projetos
-                            </a>
-                            <a href="#" className={`border-transparent ${textSecondary} inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium`}>
-                                Equipe
-                            </a>
-                        </div>
-                    </div>
-                    <div className="flex items-center gap-4">
-                        <button className={`p-1 rounded-full ${textSecondary}`}>
-                            <Bell className="h-6 w-6" />
-                        </button>
-                        <div className="ml-3 relative">
-                            <div className={`h-8 w-8 rounded-full ${isDark ? 'bg-slate-700' : 'bg-slate-200'} flex items-center justify-center`}>
-                                <span className={`text-sm font-medium ${isDark ? 'text-slate-300' : 'text-slate-600'}`}>JS</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+  return (
+    <nav className={`w-full ${bg} border-b ${border}`}>
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex justify-between h-16">
+          <div className="flex">
+            <div className="flex-shrink-0 flex items-center">
+              <span className="text-xl font-bold text-primary">Logo</span>
             </div>
-        </nav>
-    );
+            <div className="hidden sm:ml-6 sm:flex sm:space-x-8">
+              <a href="#" className={`border-primary ${textPrimary} inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium`}>
+                Dashboard
+              </a>
+              <a href="#" className={`border-transparent ${textSecondary} inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium`}>
+                Projetos
+              </a>
+              <a href="#" className={`border-transparent ${textSecondary} inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium`}>
+                Equipe
+              </a>
+            </div>
+          </div>
+          <div className="flex items-center gap-4">
+            <button className={`p-1 rounded-full ${textSecondary}`}>
+              <Bell className="h-6 w-6" />
+            </button>
+            <div className="ml-3 relative">
+              <div className={`h-8 w-8 rounded-full ${isDark ? 'bg-slate-700' : 'bg-slate-200'} flex items-center justify-center`}>
+                <span className={`text-sm font-medium ${isDark ? 'text-slate-300' : 'text-slate-600'}`}>JS</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </nav>
+  );
 }
 
 function SidebarPreview() {
-    const { bg, border, isDark } = useThemeClasses();
-    const bgSidebar = isDark ? "bg-slate-800/50" : "bg-slate-50";
+  const { bg, border, isDark } = useThemeClasses();
+  const bgSidebar = isDark ? "bg-slate-800/50" : "bg-slate-50";
 
-    return (
-        <div className={`flex h-64 border ${border} rounded-lg overflow-hidden ${bg}`}>
-            {/* Sidebar */}
-            <div className={`w-64 ${bgSidebar} border-r ${border}`}>
-                <div className={`p-4 border-b ${border}`}>
-                    <span className="font-bold text-lg text-primary">Inove AI</span>
-                </div>
-                <div className="p-4 space-y-2">
-                    <a href="#" className="block px-3 py-2 rounded-md bg-primary/10 text-primary text-sm font-medium">Home</a>
-                    <a href="#" className={`block px-3 py-2 rounded-md ${isDark ? "text-slate-400 hover:bg-slate-700" : "text-slate-600 hover:bg-slate-100"} text-sm font-medium`}>Analytics</a>
-                    <a href="#" className={`block px-3 py-2 rounded-md ${isDark ? "text-slate-400 hover:bg-slate-700" : "text-slate-600 hover:bg-slate-100"} text-sm font-medium`}>Settings</a>
-                </div>
-            </div>
-            {/* Content */}
-            <div className={`flex-1 p-8 ${bg}`}>
-                <div className={`h-full border-2 border-dashed ${border} rounded-lg flex items-center justify-center`}>
-                    <span className="text-slate-400">Conteúdo Principal</span>
-                </div>
-            </div>
+  return (
+    <div className={`flex h-64 border ${border} rounded-lg overflow-hidden ${bg}`}>
+      {/* Sidebar */}
+      <div className={`w-64 ${bgSidebar} border-r ${border}`}>
+        <div className={`p-4 border-b ${border}`}>
+          <span className="font-bold text-lg text-primary">Inove AI</span>
         </div>
-    );
+        <div className="p-4 space-y-2">
+          <a href="#" className="block px-3 py-2 rounded-md bg-primary/10 text-primary text-sm font-medium">Home</a>
+          <a href="#" className={`block px-3 py-2 rounded-md ${isDark ? "text-slate-400 hover:bg-slate-700" : "text-slate-600 hover:bg-slate-100"} text-sm font-medium`}>Analytics</a>
+          <a href="#" className={`block px-3 py-2 rounded-md ${isDark ? "text-slate-400 hover:bg-slate-700" : "text-slate-600 hover:bg-slate-100"} text-sm font-medium`}>Settings</a>
+        </div>
+      </div>
+      {/* Content */}
+      <div className={`flex-1 p-8 ${bg}`}>
+        <div className={`h-full border-2 border-dashed ${border} rounded-lg flex items-center justify-center`}>
+          <span className="text-slate-400">Conteúdo Principal</span>
+        </div>
+      </div>
+    </div>
+  );
 }
 
 export default function HeadersPage() {
-    return (
-        <div className="min-h-screen bg-[var(--background)] text-[var(--foreground)]">
-            <main className="container mx-auto px-4 sm:px-8 py-8">
-                <div className="max-w-6xl mx-auto space-y-12">
-                    {/* Hero */}
-                    <div className="pb-8 border-b border-[var(--border)]">
-                        <div className="flex items-center gap-3 mb-4">
-                            <h1 className="text-5xl font-black text-[var(--foreground)] tracking-tight">
-                                Headers & Layout
-                            </h1>
-                            <span className="px-3 py-1 rounded-md bg-primary/10 text-primary text-xs font-bold border border-primary/20 capitalize">
-                                Navegação
-                            </span>
-                        </div>
-                        <p className="text-[var(--text-secondary)] text-lg max-w-3xl">
-                            Componentes estruturais para layout de aplicação. Inclui barras de navegação superior e lateral.
-                        </p>
-                    </div>
+  return (
+    <div className="min-h-screen bg-[var(--background)] text-[var(--foreground)]">
+      <main className="container mx-auto px-4 sm:px-8 pt-10 pb-8">
+        <div className="max-w-6xl mx-auto space-y-12">
+          {/* Hero removed */}
 
-                    {/* Navbar */}
-                    <ComponentShowcase
-                        title="Navbar Simples"
-                        description="Barra de navegação superior com logo e links"
-                        code={navbarCode}
-                        previewClassName="!p-0"
-                    >
-                        <NavbarPreview />
-                    </ComponentShowcase>
+          {/* Navbar */}
+          <ComponentShowcase
+            title="Navbar Simples"
+            description="Barra de navegação superior com logo e links"
+            code={navbarCode}
+            previewClassName="!p-0"
+          >
+            <NavbarPreview />
+          </ComponentShowcase>
 
-                    {/* Sidebar */}
-                    <ComponentShowcase
-                        title="Layout com Sidebar"
-                        description="Estrutura comum para painéis administrativos"
-                        code={sidebarCode}
-                        previewClassName="!block"
-                    >
-                        <SidebarPreview />
-                    </ComponentShowcase>
-                </div>
-            </main>
+          {/* Sidebar */}
+          <ComponentShowcase
+            title="Layout com Sidebar"
+            description="Estrutura comum para painéis administrativos"
+            code={sidebarCode}
+            previewClassName="!block"
+          >
+            <SidebarPreview />
+          </ComponentShowcase>
         </div>
-    );
+      </main>
+    </div>
+  );
 }

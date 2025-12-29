@@ -112,22 +112,9 @@ function ToastPreview({ variant = "success" }: { variant?: "success" | "error" }
 export default function ToastPage() {
   return (
     <div className="min-h-screen bg-[var(--background)] text-[var(--foreground)]">
-      <main className="container mx-auto px-4 sm:px-8 py-8">
+      <main className="container mx-auto px-4 sm:px-8 pt-10 pb-8">
         <div className="max-w-6xl mx-auto space-y-12">
-          {/* Hero */}
-          <div className="pb-8 border-b border-[var(--border)]">
-            <div className="flex items-center gap-3 mb-4">
-              <h1 className="text-5xl font-black text-[var(--foreground)] tracking-tight">
-                Toast
-              </h1>
-              <span className="px-3 py-1 rounded-md bg-primary/10 text-primary text-xs font-bold border border-primary/20 capitalize">
-                Feedback
-              </span>
-            </div>
-            <p className="text-[var(--text-secondary)] text-lg max-w-3xl">
-              Notificações temporárias e discretas que informam o usuário sobre o resultado de uma ação sem interromper seu fluxo de trabalho.
-            </p>
-          </div>
+          {/* Hero removed */}
 
           {/* Success */}
           <ComponentShowcase

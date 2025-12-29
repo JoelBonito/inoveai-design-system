@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>System Feedback &amp; States - DevAI Agency</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#2b2bee",
+                        "background-light": "#f6f6f8",
+                        "background-dark": "#101022",
+                    },
+                    fontFamily: {
+                        "display": ["Space Grotesk", "sans-serif"],
+                        "mono": ["Space Mono", "monospace"] // Fallback if Space Mono isn't loaded, tech vibe
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            font-family: "Space Grotesk", "Noto Sans", sans-serif;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark min-h-screen flex flex-col overflow-x-hidden">
+<!-- Top Navigation -->
+<header class="sticky top-0 z-50 bg-white/80 dark:bg-[#111118]/80 backdrop-blur-md border-b border-[#f0f0f4] dark:border-[#22222e]">
+<div class="max-w-[1280px] mx-auto px-6 h-16 flex items-center justify-between">
+<div class="flex items-center gap-3 text-[#111118] dark:text-white">
+<div class="size-8 bg-primary rounded-lg flex items-center justify-center text-white">
+<span class="material-symbols-outlined text-[20px]">code_blocks</span>
+</div>
+<h2 class="text-lg font-bold tracking-tight">DevAI Agency</h2>
+</div>
+<nav class="hidden md:flex items-center gap-8">
+<a class="text-[#111118] dark:text-white text-sm font-medium hover:text-primary transition-colors" href="#">Docs</a>
+<a class="text-[#111118] dark:text-white text-sm font-medium hover:text-primary transition-colors" href="#">Components</a>
+<a class="text-primary text-sm font-bold" href="#">System</a>
+<a class="text-[#111118] dark:text-white text-sm font-medium hover:text-primary transition-colors" href="#">Feedback</a>
+</nav>
+<div class="flex items-center gap-4">
+<button class="flex items-center justify-center size-9 rounded-full bg-gray-100 hover:bg-gray-200 dark:bg-gray-800 text-[#111118] dark:text-white transition-colors">
+<span class="material-symbols-outlined text-[20px]">notifications</span>
+</button>
+<div class="bg-center bg-no-repeat bg-cover rounded-full size-9 ring-2 ring-white dark:ring-[#111118]" data-alt="User profile avatar showing a smiling man with glasses" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAgjqEFraKnSegXTnDEd3FBQd3pz9WBXLVFDibIMqtepQoXo7KD3Zqdl7-qIX07bbfg_CcsgKrNtYLPvgc6swtGoNjJ_uVJDLNaqFd10KJB-h9z20jNzSqxaT5PamFXakMNAto9O5TSy7FxWimzpkKj7czJ5yBNgIIkcT_Iqn3n9dQdi1FAW77Y2ay6cOSSfHZHHF030d9habH1iIOpMhZlA4UnvlglO_GSpWFs8567GH4o4jBZpSHDK5MIG9dmDoK7qr8MVUprRWKp");'>
+</div>
+</div>
+</div>
+</header>
+<main class="flex-grow w-full max-w-[1280px] mx-auto px-6 py-8">
+<!-- Breadcrumbs -->
+<div class="flex flex-wrap items-center gap-2 mb-8 text-sm">
+<a class="text-[#616189] dark:text-gray-400 hover:text-primary transition-colors flex items-center gap-1" href="#">
+<span class="material-symbols-outlined text-[16px]">home</span>
+                Home
+            </a>
+<span class="text-[#616189] dark:text-gray-600">/</span>
+<a class="text-[#616189] dark:text-gray-400 hover:text-primary transition-colors" href="#">System</a>
+<span class="text-[#616189] dark:text-gray-600">/</span>
+<a class="text-[#616189] dark:text-gray-400 hover:text-primary transition-colors" href="#">Design</a>
+<span class="text-[#616189] dark:text-gray-600">/</span>
+<span class="text-[#111118] dark:text-white font-semibold bg-gray-100 dark:bg-gray-800 px-2 py-0.5 rounded text-xs tracking-wide">FEEDBACK_STATES</span>
+</div>
+<!-- Page Heading -->
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12 border-b border-gray-200 dark:border-gray-800 pb-8">
+<div class="flex flex-col gap-2">
+<div class="flex items-center gap-3 mb-1">
+<span class="px-2 py-1 bg-primary/10 text-primary text-xs font-bold rounded uppercase tracking-wider">v1.0.4 stable</span>
+<span class="px-2 py-1 bg-green-100 text-green-700 text-xs font-bold rounded uppercase tracking-wider flex items-center gap-1">
+<span class="size-1.5 bg-green-600 rounded-full animate-pulse"></span>
+                        Live
+                    </span>
+</div>
+<h1 class="text-[#111118] dark:text-white text-4xl md:text-5xl font-black tracking-tight leading-none">
+                    System Feedback &amp; States
+                </h1>
+<p class="text-[#616189] dark:text-gray-400 text-lg max-w-2xl mt-2">
+                    Standardized response patterns for user interactions. Includes success confirmations, error handling, and system alerts designed for the DevAI ecosystem.
+                </p>
+</div>
+<div class="flex gap-3">
+<button class="flex items-center gap-2 px-4 py-2 bg-white dark:bg-[#1e1e2d] border border-gray-200 dark:border-gray-700 rounded-lg text-sm font-medium hover:bg-gray-50 dark:hover:bg-[#2a2a3c] transition-colors shadow-sm text-[#111118] dark:text-white">
+<span class="material-symbols-outlined text-[18px]">download</span>
+                    Export Assets
+                </button>
+</div>
+</div>
+<!-- Interactive Triggers Section -->
+<section class="mb-16">
+<div class="flex items-center justify-between mb-6">
+<h2 class="text-[#111118] dark:text-white text-2xl font-bold flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">touch_app</span>
+                    Interactive Triggers
+                </h2>
+<div class="h-px flex-1 bg-gray-200 dark:bg-gray-800 ml-6"></div>
+</div>
+<div class="bg-white dark:bg-[#1e1e2d] p-6 rounded-xl border border-gray-200 dark:border-gray-700 shadow-sm">
+<p class="text-sm text-gray-500 mb-4 font-mono"> // Test animation states</p>
+<div class="flex flex-wrap gap-4">
+<button class="group relative overflow-hidden rounded-lg bg-green-50 hover:bg-green-100 border border-green-200 px-5 py-2.5 transition-all active:scale-95">
+<div class="flex items-center gap-2 text-green-800 font-bold text-sm">
+<span class="material-symbols-outlined text-[18px]">check_circle</span>
+                            Trigger Success
+                        </div>
+</button>
+<button class="group relative overflow-hidden rounded-lg bg-red-50 hover:bg-red-100 border border-red-200 px-5 py-2.5 transition-all active:scale-95">
+<div class="flex items-center gap-2 text-red-800 font-bold text-sm">
+<span class="material-symbols-outlined text-[18px]">error</span>
+                            Trigger Error
+                        </div>
+</button>
+<button class="group relative overflow-hidden rounded-lg bg-amber-50 hover:bg-amber-100 border border-amber-200 px-5 py-2.5 transition-all active:scale-95">
+<div class="flex items-center gap-2 text-amber-800 font-bold text-sm">
+<span class="material-symbols-outlined text-[18px]">warning</span>
+                            Trigger Warning
+                        </div>
+</button>
+<button class="group relative overflow-hidden rounded-lg bg-primary/5 hover:bg-primary/10 border border-primary/20 px-5 py-2.5 transition-all active:scale-95">
+<div class="flex items-center gap-2 text-primary font-bold text-sm">
+<span class="material-symbols-outlined text-[18px]">info</span>
+                            Trigger Info
+                        </div>
+</button>
+</div>
+</div>
+</section>
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-16">
+<!-- Left Column: Contextual Alerts -->
+<section>
+<div class="flex items-center justify-between mb-6">
+<h2 class="text-[#111118] dark:text-white text-2xl font-bold flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">view_agenda</span>
+                        Contextual Alerts
+                    </h2>
+</div>
+<div class="space-y-4">
+<!-- Success Alert -->
+<div class="bg-green-50 dark:bg-green-900/20 border-l-4 border-green-500 p-4 rounded-r-lg shadow-sm flex items-start gap-4">
+<div class="bg-green-100 dark:bg-green-800/50 p-1.5 rounded-full text-green-700 dark:text-green-300">
+<span class="material-symbols-outlined text-[20px]">check</span>
+</div>
+<div class="flex-1">
+<h4 class="text-green-800 dark:text-green-200 font-bold text-sm mb-1">Model Trained Successfully</h4>
+<p class="text-green-700 dark:text-green-300/80 text-sm leading-relaxed">The neural network has completed 10,000 iterations with 98.4% accuracy.</p>
+</div>
+<button class="text-green-600 hover:text-green-800 dark:hover:text-green-100"><span class="material-symbols-outlined text-[18px]">close</span></button>
+</div>
+<!-- Info Alert -->
+<div class="bg-primary/5 dark:bg-primary/10 border-l-4 border-primary p-4 rounded-r-lg shadow-sm flex items-start gap-4">
+<div class="bg-white dark:bg-primary/20 p-1.5 rounded-full text-primary">
+<span class="material-symbols-outlined text-[20px]">hub</span>
+</div>
+<div class="flex-1">
+<h4 class="text-[#111118] dark:text-white font-bold text-sm mb-1">System Update Available</h4>
+<p class="text-slate-600 dark:text-slate-300 text-sm leading-relaxed">Version 2.4.0 introduces new vector database integration. <a class="underline decoration-primary font-medium hover:text-primary" href="#">Read Changelog</a>.</p>
+</div>
+</div>
+<!-- Warning Alert -->
+<div class="bg-amber-50 dark:bg-amber-900/20 border-l-4 border-amber-500 p-4 rounded-r-lg shadow-sm flex items-start gap-4">
+<div class="bg-amber-100 dark:bg-amber-800/50 p-1.5 rounded-full text-amber-700 dark:text-amber-300">
+<span class="material-symbols-outlined text-[20px]">warning</span>
+</div>
+<div class="flex-1">
+<h4 class="text-amber-900 dark:text-amber-200 font-bold text-sm mb-1">API Rate Limit Approaching</h4>
+<p class="text-amber-800 dark:text-amber-300/80 text-sm leading-relaxed">You have used 85% of your daily token allocation. Upgrade plan to ensure continuity.</p>
+</div>
+</div>
+<!-- Error Alert -->
+<div class="bg-red-50 dark:bg-red-900/20 border-l-4 border-red-500 p-4 rounded-r-lg shadow-sm flex items-start gap-4">
+<div class="bg-red-100 dark:bg-red-800/50 p-1.5 rounded-full text-red-700 dark:text-red-300">
+<span class="material-symbols-outlined text-[20px]">report_problem</span>
+</div>
+<div class="flex-1">
+<h4 class="text-red-900 dark:text-red-200 font-bold text-sm mb-1">Connection Failed</h4>
+<p class="text-red-800 dark:text-red-300/80 text-sm leading-relaxed">Could not establish a socket connection to the inference server. Error code: 503.</p>
+<div class="mt-3 bg-white/50 dark:bg-black/20 p-2 rounded text-xs font-mono text-red-900 dark:text-red-200 border border-red-100 dark:border-red-800/30">
+                                &gt; GET /api/v1/stream_response -&gt; TIMEOUT
+                            </div>
+</div>
+<button class="text-red-600 hover:text-red-800"><span class="material-symbols-outlined text-[18px]">refresh</span></button>
+</div>
+</div>
+</section>
+<!-- Right Column: Toasts & Developer View -->
+<section class="flex flex-col gap-8">
+<!-- Toast Notifications -->
+<div>
+<div class="flex items-center justify-between mb-6">
+<h2 class="text-[#111118] dark:text-white text-2xl font-bold flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">notifications_active</span>
+                            Toast Stack
+                        </h2>
+</div>
+<div class="relative min-h-[280px] bg-[url('https://www.transparenttextures.com/patterns/grid-me.png')] bg-gray-50 dark:bg-[#15151e] rounded-xl border border-dashed border-gray-300 dark:border-gray-700 p-8 flex flex-col justify-end items-end gap-3 overflow-hidden">
+<!-- Toast 1 -->
+<div class="bg-white dark:bg-[#1e1e2d] w-full max-w-sm rounded-lg shadow-lg border-l-4 border-primary p-4 flex gap-3 transform translate-x-4 opacity-60 scale-95">
+<span class="material-symbols-outlined text-primary mt-0.5">info</span>
+<div class="flex-1">
+<h5 class="text-sm font-bold text-gray-900 dark:text-white">Autosave complete</h5>
+<p class="text-xs text-gray-500 dark:text-gray-400 mt-1">Project configuration saved to cloud.</p>
+</div>
+</div>
+<!-- Toast 2 -->
+<div class="bg-white dark:bg-[#1e1e2d] w-full max-w-sm rounded-lg shadow-xl border-l-4 border-red-500 p-4 flex gap-3 z-10">
+<span class="material-symbols-outlined text-red-500 mt-0.5">block</span>
+<div class="flex-1">
+<h5 class="text-sm font-bold text-gray-900 dark:text-white">Deployment Failed</h5>
+<p class="text-xs text-gray-500 dark:text-gray-400 mt-1">Build process exited with error code 1.</p>
+</div>
+<button class="text-gray-400 hover:text-gray-600 dark:hover:text-gray-200"><span class="material-symbols-outlined text-[16px]">close</span></button>
+</div>
+</div>
+</div>
+<!-- Developer Code Snippet -->
+<div>
+<div class="bg-[#1e1e1e] rounded-xl overflow-hidden shadow-xl border border-gray-800">
+<div class="bg-[#2d2d2d] px-4 py-2 flex items-center justify-between border-b border-gray-700">
+<div class="flex gap-2">
+<div class="size-3 rounded-full bg-red-500"></div>
+<div class="size-3 rounded-full bg-yellow-500"></div>
+<div class="size-3 rounded-full bg-green-500"></div>
+</div>
+<span class="text-xs text-gray-400 font-mono">FeedbackComponent.tsx</span>
+</div>
+<div class="p-4 overflow-x-auto">
+<pre class="text-xs font-mono leading-5 text-gray-300"><span class="text-pink-400">import</span> { Alert, Toast } <span class="text-pink-400">from</span> <span class="text-green-300">'@devai/ui-kit'</span>;
+
+<span class="text-blue-400">const</span> <span class="text-yellow-300">handleError</span> = (<span class="text-orange-300">err</span>) =&gt; {
+  <span class="text-gray-500">// Log to internal monitoring</span>
+  console.<span class="text-yellow-300">error</span>(err);
+
+  <span class="text-gray-500">// Trigger UI Feedback</span>
+  Toast.<span class="text-yellow-300">show</span>({
+    variant: <span class="text-green-300">'destructive'</span>,
+    title: <span class="text-green-300">'Critical Failure'</span>,
+    message: err.message,
+    duration: <span class="text-purple-400">5000</span>
+  });
+};
+</pre>
+</div>
+</div>
+</div>
+</section>
+</div>
+<!-- Full Page States -->
+<section class="mb-12">
+<div class="flex items-center justify-between mb-6">
+<h2 class="text-[#111118] dark:text-white text-2xl font-bold flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">web_asset_off</span>
+                    Full Page States (404 / 500)
+                </h2>
+</div>
+<div class="bg-gray-100 dark:bg-[#15151e] rounded-2xl p-8 md:p-12 flex flex-col items-center justify-center text-center border-2 border-dashed border-gray-300 dark:border-gray-700 relative overflow-hidden group">
+<!-- Background Decoration -->
+<div class="absolute inset-0 opacity-10 pointer-events-none" style="background-image: radial-gradient(#2b2bee 1px, transparent 1px); background-size: 24px 24px;">
+</div>
+<div class="relative z-10 bg-white dark:bg-[#1e1e2d] p-8 md:p-12 rounded-2xl shadow-xl max-w-lg w-full border border-gray-100 dark:border-gray-800">
+<div class="size-20 bg-gray-50 dark:bg-gray-800 rounded-full flex items-center justify-center mx-auto mb-6 text-gray-400 dark:text-gray-500">
+<span class="material-symbols-outlined text-[40px]">sentiment_dissatisfied</span>
+</div>
+<h1 class="text-4xl font-black text-[#111118] dark:text-white mb-2 tracking-tight">404</h1>
+<h3 class="text-lg font-bold text-gray-700 dark:text-gray-300 mb-4">Logic Not Found</h3>
+<p class="text-gray-500 dark:text-gray-400 mb-8 text-sm">
+                        The algorithm failed to predict this path. The requested resource may have been moved or deleted from the neural network.
+                    </p>
+<div class="flex flex-col sm:flex-row gap-3 justify-center">
+<button class="bg-[#111118] dark:bg-white text-white dark:text-[#111118] px-6 py-2.5 rounded-lg text-sm font-bold hover:opacity-90 transition-opacity">
+                            Return Home
+                        </button>
+<button class="bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-white px-6 py-2.5 rounded-lg text-sm font-bold hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors">
+                            Report Bug
+                        </button>
+</div>
+<div class="mt-8 pt-6 border-t border-gray-100 dark:border-gray-800">
+<p class="font-mono text-xs text-gray-400">Error_ID: <span class="text-primary">0x8842_NULL_PTR</span></p>
+</div>
+</div>
+</div>
+</section>
+</main>
+<footer class="bg-white dark:bg-[#111118] border-t border-gray-200 dark:border-[#22222e] py-12 px-6">
+<div class="max-w-[1280px] mx-auto flex flex-col md:flex-row justify-between items-center gap-6">
+<div class="flex items-center gap-3">
+<div class="size-6 bg-gray-200 dark:bg-gray-800 rounded flex items-center justify-center text-gray-500">
+<span class="material-symbols-outlined text-[16px]">code</span>
+</div>
+<span class="text-sm font-semibold text-gray-600 dark:text-gray-400">DevAI Design System</span>
+</div>
+<div class="text-sm text-gray-500">
+                © 2024 DevAI Agency. Built for the future.
+            </div>
+</div>
+</footer>
+</body></html>

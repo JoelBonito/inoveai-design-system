@@ -39,9 +39,9 @@ export function PropsTable({ props, title = "API Reference" }: PropsTableProps) 
                 {title}
             </h3>
 
-            <div className="rounded-xl border border-[var(--border)] overflow-hidden bg-[var(--surface)]">
+            <div className="rounded-xl border border-[var(--border)] overflow-hidden bg-card">
                 <table className="w-full text-left text-sm">
-                    <thead className="bg-[var(--background)] border-b border-[var(--border)]">
+                    <thead className="bg-card border-b border-[var(--border)]">
                         <tr>
                             <th className="px-6 py-4 font-bold text-[var(--foreground)] uppercase text-xs tracking-wider">
                                 Prop

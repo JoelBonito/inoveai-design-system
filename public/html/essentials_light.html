@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>AI Agency Design System</title>
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#2b2bee",
+                        "primary-hover": "#1a1adb",
+                        "background-light": "#f8f9fc",
+                        "background-dark": "#101022",
+                        "surface": "#ffffff",
+                        "border": "#e2e8f0",
+                        "text-main": "#0f172a",
+                        "text-muted": "#64748b",
+                    },
+                    fontFamily: {
+                        "display": ["Space Grotesk", "sans-serif"],
+                        "mono": ["ui-monospace", "SFMono-Regular", "Menlo", "Monaco", "Consolas", "monospace"],
+                    },
+                    borderRadius: {"DEFAULT": "0.375rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        /* Custom scrollbar for technical vibe */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #94a3b8;
+        }
+        .code-pattern {
+            background-image: radial-gradient(#cbd5e1 1px, transparent 1px);
+            background-size: 20px 20px;
+        }
+    </style>
+</head>
+<body class="bg-background-light font-display text-text-main antialiased h-screen flex flex-col overflow-hidden">
+<!-- Top Navigation -->
+<header class="flex-none bg-surface border-b border-border h-16 flex items-center px-6 justify-between z-20 shadow-sm">
+<div class="flex items-center gap-10">
+<!-- Brand -->
+<div class="flex items-center gap-3 text-text-main hover:opacity-80 transition-opacity cursor-pointer">
+<div class="size-8 rounded bg-primary flex items-center justify-center text-white">
+<span class="material-symbols-outlined text-[20px]">deployed_code</span>
+</div>
+<h1 class="text-lg font-bold tracking-tight">Helix<span class="text-primary">.ai</span></h1>
+</div>
+<!-- Search -->
+<div class="hidden md:flex relative group w-80">
+<div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+<span class="material-symbols-outlined text-text-muted text-[20px]">search</span>
+</div>
+<input class="block w-full pl-10 pr-3 py-1.5 border border-border rounded-lg leading-5 bg-background-light text-text-main placeholder-text-muted focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary sm:text-sm transition-all" placeholder="Search components (Cmd+K)" type="text"/>
+<div class="absolute inset-y-0 right-0 pr-2 flex items-center pointer-events-none">
+<kbd class="inline-flex items-center border border-border rounded px-2 text-xs font-sans font-medium text-text-muted">⌘K</kbd>
+</div>
+</div>
+</div>
+<!-- Right Actions -->
+<div class="flex items-center gap-6">
+<div class="hidden lg:flex items-center gap-6">
+<a class="text-sm font-medium text-text-muted hover:text-primary transition-colors" href="#">Documentation</a>
+<a class="text-sm font-medium text-text-muted hover:text-primary transition-colors" href="#">Releases</a>
+<div class="flex items-center gap-2 px-2 py-1 rounded bg-primary/10 text-primary text-xs font-bold font-mono">
+<span>v2.4.0</span>
+</div>
+</div>
+<div class="h-6 w-px bg-border"></div>
+<div class="flex items-center gap-3">
+<button class="relative rounded-full size-9 overflow-hidden border border-border ring-2 ring-transparent hover:ring-primary/20 transition-all">
+<img alt="User profile avatar of a smiling man" class="object-cover size-full" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB5iv0HqxfYnnD4UctaTpchVkFlrw06nrFzi5MCv7cCUIk3lDhvILpv0O19MbC5cE7O1V6GEiQ4H7YYKf1XyxDDOmCc8HSulVbSnxn9zYZWt2KZoxj9lcqWPX4khmvQJd-yG-u7eScUBZO3KV5pC9w1-ZFPTgs453zK2AFfUgcBV27n6gEyK3XNrexxArhN6A1Ze3ioKh4C5d6WDWk8dP5fzhoOjZjmvRlrzg_rB_0ku9C66jK5ropWJJxEk6eP1cF5WAahchz4zZ7n"/>
+</button>
+</div>
+</div>
+</header>
+<div class="flex flex-1 overflow-hidden">
+<!-- Sidebar Navigation -->
+<aside class="w-64 flex-none bg-surface border-r border-border flex flex-col overflow-y-auto hidden md:flex">
+<div class="p-4 space-y-8">
+<div>
+<h3 class="px-3 text-xs font-bold text-text-muted uppercase tracking-wider mb-2">Getting Started</h3>
+<nav class="space-y-1">
+<a class="flex items-center gap-3 px-3 py-2 text-sm font-medium text-text-muted rounded-lg hover:bg-background-light hover:text-text-main transition-colors" href="#">
+<span class="material-symbols-outlined text-[20px]">rocket_launch</span>
+                            Introduction
+                        </a>
+<a class="flex items-center gap-3 px-3 py-2 text-sm font-medium text-text-muted rounded-lg hover:bg-background-light hover:text-text-main transition-colors" href="#">
+<span class="material-symbols-outlined text-[20px]">palette</span>
+                            Foundations
+                        </a>
+</nav>
+</div>
+<div>
+<h3 class="px-3 text-xs font-bold text-text-muted uppercase tracking-wider mb-2">Core Components</h3>
+<nav class="space-y-1">
+<a class="flex items-center gap-3 px-3 py-2 text-sm font-medium text-primary bg-primary/5 rounded-lg border-l-2 border-primary" href="#">
+<span class="material-symbols-outlined text-[20px] fill-current">layers</span>
+                            Primitives
+                        </a>
+<a class="flex items-center gap-3 px-3 py-2 text-sm font-medium text-text-muted rounded-lg hover:bg-background-light hover:text-text-main transition-colors" href="#">
+<span class="material-symbols-outlined text-[20px]">smart_button</span>
+                            Actions
+                        </a>
+<a class="flex items-center gap-3 px-3 py-2 text-sm font-medium text-text-muted rounded-lg hover:bg-background-light hover:text-text-main transition-colors" href="#">
+<span class="material-symbols-outlined text-[20px]">input</span>
+                            Forms
+                        </a>
+<a class="flex items-center gap-3 px-3 py-2 text-sm font-medium text-text-muted rounded-lg hover:bg-background-light hover:text-text-main transition-colors" href="#">
+<span class="material-symbols-outlined text-[20px]">view_quilt</span>
+                            Layout
+                        </a>
+</nav>
+</div>
+<div>
+<h3 class="px-3 text-xs font-bold text-text-muted uppercase tracking-wider mb-2">AI Patterns</h3>
+<nav class="space-y-1">
+<a class="flex items-center gap-3 px-3 py-2 text-sm font-medium text-text-muted rounded-lg hover:bg-background-light hover:text-text-main transition-colors" href="#">
+<span class="material-symbols-outlined text-[20px]">chat_bubble</span>
+                            Chat Interface
+                        </a>
+<a class="flex items-center gap-3 px-3 py-2 text-sm font-medium text-text-muted rounded-lg hover:bg-background-light hover:text-text-main transition-colors" href="#">
+<span class="material-symbols-outlined text-[20px]">auto_fix_high</span>
+                            Generators
+                        </a>
+</nav>
+</div>
+</div>
+<div class="mt-auto p-4 border-t border-border">
+<div class="bg-background-dark text-white rounded-lg p-3 shadow-lg relative overflow-hidden group cursor-pointer">
+<div class="absolute top-0 right-0 p-2 opacity-20 group-hover:opacity-40 transition-opacity">
+<span class="material-symbols-outlined text-[48px]">terminal</span>
+</div>
+<p class="text-xs text-gray-400 font-mono mb-1">Status</p>
+<div class="flex items-center gap-2">
+<span class="flex size-2 rounded-full bg-green-500 animate-pulse"></span>
+<span class="text-sm font-bold">System Operational</span>
+</div>
+</div>
+</div>
+</aside>
+<!-- Main Content -->
+<main class="flex-1 overflow-y-auto relative bg-background-light">
+<!-- Background Grid -->
+<div class="absolute inset-0 code-pattern opacity-40 pointer-events-none z-0"></div>
+<div class="relative z-10 container mx-auto px-8 py-12 max-w-5xl">
+<!-- Page Header -->
+<div class="mb-12">
+<div class="flex items-center gap-2 text-sm text-text-muted mb-4 font-mono">
+<span>Design System</span>
+<span class="material-symbols-outlined text-[14px]">chevron_right</span>
+<span>Core</span>
+<span class="material-symbols-outlined text-[14px]">chevron_right</span>
+<span class="text-primary font-bold">Primitives</span>
+</div>
+<h1 class="text-4xl md:text-5xl font-bold text-text-main tracking-tight mb-4">Core Primitives</h1>
+<p class="text-lg text-text-muted max-w-2xl">
+                        Essential UI components for the Helix AI ecosystem. These primitives are optimized for performance, accessibility, and high-density information display suitable for AI-driven interfaces.
+                    </p>
+</div>
+<!-- Section: Buttons -->
+<section class="mb-16 scroll-mt-20" id="buttons">
+<div class="flex items-center justify-between mb-6 border-b border-border pb-4">
+<h2 class="text-2xl font-bold text-text-main">Actions (Buttons)</h2>
+<span class="px-2 py-1 bg-blue-100 text-primary text-xs font-mono rounded">src/components/ui/button.tsx</span>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+<!-- Preview Card -->
+<div class="lg:col-span-2 space-y-6">
+<div class="bg-surface rounded-xl border border-border p-8 shadow-sm">
+<h3 class="text-sm font-bold text-text-muted uppercase tracking-wider mb-6">Variants</h3>
+<div class="flex flex-wrap gap-4 items-center">
+<button class="bg-primary hover:bg-primary-hover text-white px-5 py-2.5 rounded-lg text-sm font-bold transition-all shadow-sm shadow-blue-500/20 active:translate-y-px">
+                                        Deploy Agent
+                                    </button>
+<button class="bg-white border border-border hover:bg-background-light text-text-main px-5 py-2.5 rounded-lg text-sm font-medium transition-all active:translate-y-px">
+                                        View Documentation
+                                    </button>
+<button class="bg-transparent hover:bg-background-light text-text-main px-5 py-2.5 rounded-lg text-sm font-medium transition-all">
+                                        Cancel
+                                    </button>
+<button class="bg-red-50 hover:bg-red-100 text-red-600 border border-red-100 px-5 py-2.5 rounded-lg text-sm font-bold transition-all">
+                                        Terminate Process
+                                    </button>
+</div>
+</div>
+<div class="bg-surface rounded-xl border border-border p-8 shadow-sm">
+<h3 class="text-sm font-bold text-text-muted uppercase tracking-wider mb-6">States</h3>
+<div class="flex flex-wrap gap-4 items-center">
+<button class="bg-primary text-white px-5 py-2.5 rounded-lg text-sm font-bold opacity-50 cursor-not-allowed flex items-center gap-2">
+<svg class="animate-spin -ml-1 mr-1 h-4 w-4 text-white" fill="none" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+<path class="opacity-75" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z" fill="currentColor"></path>
+</svg>
+                                        Generating Code...
+                                    </button>
+<button class="bg-background-light border border-border text-text-muted px-5 py-2.5 rounded-lg text-sm font-medium cursor-not-allowed">
+                                        Disabled Action
+                                    </button>
+<button class="bg-primary text-white size-10 rounded-lg flex items-center justify-center hover:bg-primary-hover transition-all">
+<span class="material-symbols-outlined text-[20px]">add</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Code Snippet -->
+<div class="lg:col-span-1">
+<div class="bg-background-dark rounded-xl border border-gray-800 shadow-lg overflow-hidden h-full flex flex-col">
+<div class="flex items-center justify-between px-4 py-3 border-b border-gray-800 bg-gray-900/50">
+<span class="text-xs text-gray-400 font-mono">Usage</span>
+<div class="flex gap-1.5">
+<div class="size-2.5 rounded-full bg-red-500"></div>
+<div class="size-2.5 rounded-full bg-yellow-500"></div>
+<div class="size-2.5 rounded-full bg-green-500"></div>
+</div>
+</div>
+<div class="p-4 font-mono text-xs text-gray-300 leading-relaxed overflow-x-auto flex-1">
+<pre><code><span class="text-purple-400">import</span> { Button } <span class="text-purple-400">from</span> <span class="text-green-400">'@ui/core'</span>;
+
+<span class="text-gray-500">// Primary Action</span>
+<span class="text-blue-400">&lt;Button</span> 
+  variant=<span class="text-green-400">"primary"</span> 
+  size=<span class="text-green-400">"lg"</span>
+  onClick={<span class="text-purple-400">deployAgent</span>}
+<span class="text-blue-400">&gt;</span>
+  Deploy Agent
+<span class="text-blue-400">&lt;/Button&gt;</span>
+
+<span class="text-gray-500">// Loading State</span>
+<span class="text-blue-400">&lt;Button</span> isLoading<span class="text-blue-400">&gt;</span>
+  Generating...
+<span class="text-blue-400">&lt;/Button&gt;</span></code></pre>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Section: Inputs -->
+<section class="mb-16 scroll-mt-20" id="inputs">
+<div class="flex items-center justify-between mb-6 border-b border-border pb-4">
+<h2 class="text-2xl font-bold text-text-main">Data Entry (Inputs)</h2>
+<span class="px-2 py-1 bg-blue-100 text-primary text-xs font-mono rounded">src/components/ui/input.tsx</span>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+<div class="bg-surface rounded-xl border border-border p-8 shadow-sm space-y-6">
+<h3 class="text-sm font-bold text-text-muted uppercase tracking-wider mb-2">Default States</h3>
+<div class="space-y-4">
+<div class="space-y-1.5">
+<label class="text-sm font-medium text-text-main">Project Name</label>
+<input class="w-full rounded-lg border-border bg-background-light text-text-main text-sm px-4 py-2.5 focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all placeholder:text-text-muted/60" placeholder="e.g. Neural Net v1" type="text"/>
+</div>
+<div class="space-y-1.5">
+<label class="text-sm font-medium text-text-main">API Endpoint</label>
+<div class="relative">
+<div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+<span class="material-symbols-outlined text-text-muted text-[18px]">link</span>
+</div>
+<input class="w-full rounded-lg border-primary ring-2 ring-primary/10 bg-white text-text-main text-sm pl-10 pr-4 py-2.5 focus:outline-none transition-all" type="text" value="https://api.helix.ai/v1/models"/>
+</div>
+<p class="text-xs text-primary font-medium mt-1">Active endpoint connected.</p>
+</div>
+</div>
+</div>
+<div class="bg-surface rounded-xl border border-border p-8 shadow-sm space-y-6">
+<h3 class="text-sm font-bold text-text-muted uppercase tracking-wider mb-2">Validation &amp; Errors</h3>
+<div class="space-y-4">
+<div class="space-y-1.5">
+<label class="text-sm font-medium text-text-main flex justify-between">
+<span>Secret Key</span>
+<span class="text-red-500 text-xs">Invalid format</span>
+</label>
+<div class="relative">
+<input class="w-full rounded-lg border-red-300 bg-red-50/50 text-red-900 text-sm px-4 py-2.5 focus:border-red-500 focus:ring-2 focus:ring-red-200 outline-none transition-all" type="password" value="sk-xxxxxxxxxxxxxxxx"/>
+<div class="absolute inset-y-0 right-0 pr-3 flex items-center">
+<span class="material-symbols-outlined text-red-500 text-[18px]">error</span>
+</div>
+</div>
+<p class="text-xs text-red-500 mt-1">Key must start with 'hk-live-' prefix.</p>
+</div>
+<div class="space-y-1.5 opacity-60">
+<label class="text-sm font-medium text-text-main">Read-only Configuration</label>
+<input class="w-full rounded-lg border-border bg-gray-100 text-text-muted text-sm px-4 py-2.5 cursor-not-allowed" disabled="" type="text" value="Auto-Scaling: Enabled"/>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Section: Cards -->
+<section class="mb-16 scroll-mt-20" id="cards">
+<div class="flex items-center justify-between mb-6 border-b border-border pb-4">
+<h2 class="text-2xl font-bold text-text-main">Surfaces (Cards)</h2>
+<span class="px-2 py-1 bg-blue-100 text-primary text-xs font-mono rounded">src/components/ui/card.tsx</span>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+<!-- Standard Card -->
+<div class="group bg-surface rounded-xl border border-border p-6 shadow-sm hover:shadow-md transition-all hover:border-primary/50 cursor-pointer relative overflow-hidden">
+<div class="flex justify-between items-start mb-4">
+<div class="size-10 rounded-lg bg-blue-50 text-primary flex items-center justify-center">
+<span class="material-symbols-outlined">smart_toy</span>
+</div>
+<span class="inline-flex items-center rounded-full bg-green-50 px-2 py-1 text-xs font-medium text-green-700 ring-1 ring-inset ring-green-600/20">Active</span>
+</div>
+<h3 class="text-lg font-bold text-text-main mb-2 group-hover:text-primary transition-colors">Customer Support Agent</h3>
+<p class="text-sm text-text-muted mb-4 line-clamp-2">
+                                Automated responding bot for level 1 inquiries. Trained on KB-2023-V4 dataset.
+                            </p>
+<div class="flex items-center justify-between pt-4 border-t border-border">
+<span class="text-xs text-text-muted font-mono">ID: 8829-AF</span>
+<span class="text-xs font-medium text-primary flex items-center gap-1">
+                                    Manage <span class="material-symbols-outlined text-[14px]">arrow_forward</span>
+</span>
+</div>
+</div>
+<!-- Stats Card -->
+<div class="bg-surface rounded-xl border border-border p-6 shadow-sm relative">
+<div class="flex justify-between items-start mb-2">
+<h3 class="text-sm font-medium text-text-muted">Total Requests</h3>
+<span class="material-symbols-outlined text-text-muted text-[20px]">bar_chart</span>
+</div>
+<div class="flex items-baseline gap-2 mb-1">
+<span class="text-3xl font-bold text-text-main">2.4M</span>
+<span class="text-xs font-bold text-green-600 flex items-center">
+<span class="material-symbols-outlined text-[14px]">trending_up</span> +12%
+                                </span>
+</div>
+<p class="text-xs text-text-muted mb-4">Last 30 days performance</p>
+<!-- Fake Graph -->
+<div class="h-16 flex items-end gap-1 w-full justify-between px-1">
+<div class="w-full bg-primary/10 rounded-t-sm h-[40%]"></div>
+<div class="w-full bg-primary/20 rounded-t-sm h-[60%]"></div>
+<div class="w-full bg-primary/30 rounded-t-sm h-[30%]"></div>
+<div class="w-full bg-primary/20 rounded-t-sm h-[50%]"></div>
+<div class="w-full bg-primary/40 rounded-t-sm h-[80%]"></div>
+<div class="w-full bg-primary/60 rounded-t-sm h-[70%]"></div>
+<div class="w-full bg-primary rounded-t-sm h-[90%]"></div>
+</div>
+</div>
+<!-- System Card -->
+<div class="bg-background-dark text-white rounded-xl border border-gray-800 p-6 shadow-lg relative overflow-hidden">
+<!-- Abstract BG -->
+<div class="absolute -top-10 -right-10 size-32 bg-primary/30 blur-3xl rounded-full"></div>
+<div class="relative z-10">
+<div class="flex justify-between items-center mb-4">
+<h3 class="text-sm font-bold tracking-wider uppercase text-gray-400">Server Health</h3>
+<div class="flex gap-1">
+<div class="size-1.5 rounded-full bg-green-500"></div>
+<div class="size-1.5 rounded-full bg-green-500/50"></div>
+<div class="size-1.5 rounded-full bg-green-500/20"></div>
+</div>
+</div>
+<div class="space-y-3 font-mono text-xs">
+<div class="flex justify-between items-center">
+<span class="text-gray-400">CPU Usage</span>
+<span class="text-white">34%</span>
+</div>
+<div class="w-full bg-gray-800 rounded-full h-1.5">
+<div class="bg-primary h-1.5 rounded-full" style="width: 34%"></div>
+</div>
+<div class="flex justify-between items-center pt-2">
+<span class="text-gray-400">Memory</span>
+<span class="text-white">12GB / 64GB</span>
+</div>
+<div class="w-full bg-gray-800 rounded-full h-1.5">
+<div class="bg-purple-500 h-1.5 rounded-full" style="width: 18%"></div>
+</div>
+</div>
+<button class="mt-6 w-full py-2 rounded border border-gray-700 hover:bg-gray-800 text-xs font-mono transition-colors">
+                                    View Telemetry
+                                </button>
+</div>
+</div>
+</div>
+</section>
+<!-- Footer -->
+<footer class="mt-12 pt-8 border-t border-border flex justify-between items-center text-sm text-text-muted">
+<p>© 2023 Helix AI Agency. All rights reserved.</p>
+<div class="flex gap-4">
+<a class="hover:text-primary transition-colors" href="#">Privacy</a>
+<a class="hover:text-primary transition-colors" href="#">Terms</a>
+<a class="hover:text-primary transition-colors" href="#">Status</a>
+</div>
+</footer>
+</div>
+</main>
+</div>
+</body></html>

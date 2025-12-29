@@ -97,22 +97,9 @@ function TooltipRightPreview() {
 export default function TooltipPage() {
     return (
         <div className="min-h-screen bg-[var(--background)] text-[var(--foreground)]">
-            <main className="container mx-auto px-4 sm:px-8 py-8">
+            <main className="container mx-auto px-4 sm:px-8 pt-10 pb-8">
                 <div className="max-w-6xl mx-auto space-y-12">
-                    {/* Hero */}
-                    <div className="pb-8 border-b border-[var(--border)]">
-                        <div className="flex items-center gap-3 mb-4">
-                            <h1 className="text-5xl font-black text-[var(--foreground)] tracking-tight">
-                                Tooltip
-                            </h1>
-                            <span className="px-3 py-1 rounded-md bg-primary/10 text-primary text-xs font-bold border border-primary/20 capitalize">
-                                Feedback
-                            </span>
-                        </div>
-                        <p className="text-[var(--text-secondary)] text-lg max-w-3xl">
-                            Popup informativo flutuante exibido ao passar o mouse ou focar em um elemento. Use com moderação para detalhar interfaces densas.
-                        </p>
-                    </div>
+                    {/* Hero removed */}
 
                     {/* Top */}
                     <ComponentShowcase

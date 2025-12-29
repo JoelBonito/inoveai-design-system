@@ -5,6 +5,13 @@ import fs from "fs";
 import path from "path";
 import { CommandMenu } from "@/components/ui/command-menu";
 import { SiteSidebar } from "@/components/site-sidebar";
+import { ThemeProvider } from "@/components/theme-provider";
+import { FloatingTopBar } from "@/components/layout/floating-top-bar";
+import { SidebarProvider } from "@/components/providers/sidebar-provider";
+import { ClientLayout } from "@/components/layout/client-layout";
+import { Toaster } from "sonner";
+
+
 
 const spaceGrotesk = Space_Grotesk({
   subsets: ["latin"],
@@ -45,18 +52,34 @@ export default function RootLayout({
           href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Noto+Sans:wght@400;500;700&family=JetBrains+Mono:wght@400;500&display=swap"
           rel="stylesheet"
         />
-
       </head>
-      <body className={`${spaceGrotesk.variable} font-display antialiased h-full overflow-hidden flex transition-colors`} suppressHydrationWarning>
-        <CommandMenu components={components} />
+      <body className={`${spaceGrotesk.variable} font-display antialiased h-full overflow-hidden flex transition-colors bg-background text-foreground`} suppressHydrationWarning>
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+        >
+          <SidebarProvider>
+            <CommandMenu components={components} />
+            <Toaster position="top-center" richColors />
 
-        {/* Sidebar Navigation */}
-        <SiteSidebar components={components} />
+            {/* Sidebar Navigation */}
+            <SiteSidebar components={components} />
 
-        {/* Main Scroll Content */}
-        <main className="flex-1 overflow-y-auto h-full pt-14 lg:pt-0 lg:pl-64">
-          {children}
-        </main>
+            {/* Main Scroll Content Wrapper */}
+            <ClientLayout>
+              {/* Floating TopBar */}
+              <div className="hidden lg:block sticky top-0 z-40">
+                <FloatingTopBar />
+              </div>
+
+              <div className="flex-1">
+                {children}
+              </div>
+            </ClientLayout>
+          </SidebarProvider>
+        </ThemeProvider>
       </body>
     </html>
   );

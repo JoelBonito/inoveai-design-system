@@ -70,152 +70,139 @@ const modalDestructiveCode = `<!-- Modal Destructive -->
 </div>`;
 
 const modalProps: PropDefinition[] = [
-    {
-        name: "isOpen",
-        type: "boolean",
-        description: "Controla a visibilidade do modal"
-    },
-    {
-        name: "onClose",
-        type: "() => void",
-        description: "Função chamada ao fechar o modal"
-    },
-    {
-        name: "title",
-        type: "string",
-        description: "Título do modal"
-    },
-    {
-        name: "children",
-        type: "ReactNode",
-        description: "Conteúdo do corpo do modal"
-    },
-    {
-        name: "confirmVariant",
-        type: "'primary' | 'destructive'",
-        description: "Estilo do botão de ação principal"
-    },
+  {
+    name: "isOpen",
+    type: "boolean",
+    description: "Controla a visibilidade do modal"
+  },
+  {
+    name: "onClose",
+    type: "() => void",
+    description: "Função chamada ao fechar o modal"
+  },
+  {
+    name: "title",
+    type: "string",
+    description: "Título do modal"
+  },
+  {
+    name: "children",
+    type: "ReactNode",
+    description: "Conteúdo do corpo do modal"
+  },
+  {
+    name: "confirmVariant",
+    type: "'primary' | 'destructive'",
+    description: "Estilo do botão de ação principal"
+  },
 ];
 
 function ModalBasicPreview() {
-    const { bg, border, text, isDark } = useThemeClasses();
-    const secondaryBg = isDark ? "bg-slate-800" : "bg-white";
-    const ring = isDark ? "ring-slate-700" : "ring-slate-300";
-    const descColor = isDark ? "text-slate-400" : "text-slate-500";
-    const iconWrapper = isDark ? 'bg-blue-900/30' : 'bg-blue-100';
-    const iconColor = isDark ? 'text-blue-400' : 'text-blue-600';
-    const hoverSecondary = isDark ? 'hover:bg-slate-700' : 'hover:bg-slate-50';
+  const { bg, border, text, isDark } = useThemeClasses();
+  const secondaryBg = isDark ? "bg-slate-800" : "bg-white";
+  const ring = isDark ? "ring-slate-700" : "ring-slate-300";
+  const descColor = isDark ? "text-slate-400" : "text-slate-500";
+  const iconWrapper = isDark ? 'bg-blue-900/30' : 'bg-blue-100';
+  const iconColor = isDark ? 'text-blue-400' : 'text-blue-600';
+  const hoverSecondary = isDark ? 'hover:bg-slate-700' : 'hover:bg-slate-50';
 
-    return (
-        <div className="relative z-10 p-12 flex justify-center">
-            {/* Simulation wrapper */}
-            <div className={`relative transform overflow-hidden rounded-lg ${bg} px-4 pb-4 pt-5 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg sm:p-6 border ${border}`}>
-                <div className="absolute right-0 top-0 hidden pr-4 pt-4 sm:block">
-                    <button type="button" className={`rounded-md ${bg} text-slate-400 hover:text-slate-500 focus:outline-none`}>
-                        <span className="sr-only">Fechar</span>
-                        <X className="h-6 w-6" />
-                    </button>
-                </div>
-                <div className="sm:flex sm:items-start">
-                    <div className={`mx-auto flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full sm:mx-0 sm:h-10 sm:w-10 ${iconWrapper}`}>
-                        <Info className={`h-6 w-6 ${iconColor}`} />
-                    </div>
-                    <div className="mt-3 text-center sm:ml-4 sm:mt-0 sm:text-left">
-                        <h3 className={`text-base font-semibold leading-6 ${text}`}>Informação Importante</h3>
-                        <div className="mt-2">
-                            <p className={`text-sm ${descColor}`}>
-                                Você está prestes a realizar uma ação que pode impactar outros usuários. Por favor, verifique os dados antes de continuar.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-                <div className="mt-5 sm:mt-4 sm:flex sm:flex-row-reverse">
-                    <button type="button" className="inline-flex w-full justify-center rounded-md bg-blue-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-blue-500 sm:ml-3 sm:w-auto">Confirmar</button>
-                    <button type="button" className={`mt-3 inline-flex w-full justify-center rounded-md ${secondaryBg} px-3 py-2 text-sm font-semibold ${text} shadow-sm ring-1 ring-inset ${ring} ${hoverSecondary} sm:mt-0 sm:w-auto`}>Cancelar</button>
-                </div>
-            </div>
+  return (
+    <div className="relative z-10 p-12 flex justify-center">
+      {/* Simulation wrapper */}
+      <div className={`relative transform overflow-hidden rounded-lg ${bg} px-4 pb-4 pt-5 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg sm:p-6 border ${border}`}>
+        <div className="absolute right-0 top-0 hidden pr-4 pt-4 sm:block">
+          <button type="button" className={`rounded-md ${bg} text-slate-400 hover:text-slate-500 focus:outline-none`}>
+            <span className="sr-only">Fechar</span>
+            <X className="h-6 w-6" />
+          </button>
         </div>
-    );
+        <div className="sm:flex sm:items-start">
+          <div className={`mx-auto flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full sm:mx-0 sm:h-10 sm:w-10 ${iconWrapper}`}>
+            <Info className={`h-6 w-6 ${iconColor}`} />
+          </div>
+          <div className="mt-3 text-center sm:ml-4 sm:mt-0 sm:text-left">
+            <h3 className={`text-base font-semibold leading-6 ${text}`}>Informação Importante</h3>
+            <div className="mt-2">
+              <p className={`text-sm ${descColor}`}>
+                Você está prestes a realizar uma ação que pode impactar outros usuários. Por favor, verifique os dados antes de continuar.
+              </p>
+            </div>
+          </div>
+        </div>
+        <div className="mt-5 sm:mt-4 sm:flex sm:flex-row-reverse">
+          <button type="button" className="inline-flex w-full justify-center rounded-md bg-blue-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-blue-500 sm:ml-3 sm:w-auto">Confirmar</button>
+          <button type="button" className={`mt-3 inline-flex w-full justify-center rounded-md ${secondaryBg} px-3 py-2 text-sm font-semibold ${text} shadow-sm ring-1 ring-inset ${ring} ${hoverSecondary} sm:mt-0 sm:w-auto`}>Cancelar</button>
+        </div>
+      </div>
+    </div>
+  );
 }
 
 function ModalDestructivePreview() {
-    const { bg, border, text, isDark } = useThemeClasses();
-    const secondaryBg = isDark ? "bg-slate-800" : "bg-white";
-    const ring = isDark ? "ring-slate-700" : "ring-slate-300";
-    const descColor = isDark ? "text-slate-400" : "text-slate-500";
-    const iconWrapper = isDark ? 'bg-red-900/30' : 'bg-red-100';
-    const iconColor = isDark ? 'text-red-400' : 'text-red-600';
-    const hoverSecondary = isDark ? 'hover:bg-slate-700' : 'hover:bg-slate-50';
+  const { bg, border, text, isDark } = useThemeClasses();
+  const secondaryBg = isDark ? "bg-slate-800" : "bg-white";
+  const ring = isDark ? "ring-slate-700" : "ring-slate-300";
+  const descColor = isDark ? "text-slate-400" : "text-slate-500";
+  const iconWrapper = isDark ? 'bg-red-900/30' : 'bg-red-100';
+  const iconColor = isDark ? 'text-red-400' : 'text-red-600';
+  const hoverSecondary = isDark ? 'hover:bg-slate-700' : 'hover:bg-slate-50';
 
-    return (
-        <div className="relative z-10 p-12 flex justify-center">
-            <div className={`relative transform overflow-hidden rounded-lg ${bg} px-4 pb-4 pt-5 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg sm:p-6 border ${border}`}>
-                <div className="sm:flex sm:items-start">
-                    <div className={`mx-auto flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full sm:mx-0 sm:h-10 sm:w-10 ${iconWrapper}`}>
-                        <AlertTriangle className={`h-6 w-6 ${iconColor}`} />
-                    </div>
-                    <div className="mt-3 text-center sm:ml-4 sm:mt-0 sm:text-left">
-                        <h3 className={`text-base font-semibold leading-6 ${text}`}>Desativar conta?</h3>
-                        <div className="mt-2">
-                            <p className={`text-sm ${descColor}`}>
-                                Tem certeza que deseja desativar sua conta? Todos os seus dados serão removidos permanentemente. Esta ação não pode ser desfeita.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-                <div className="mt-5 sm:mt-4 sm:flex sm:flex-row-reverse">
-                    <button type="button" className="inline-flex w-full justify-center rounded-md bg-red-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-red-500 sm:ml-3 sm:w-auto">Desativar</button>
-                    <button type="button" className={`mt-3 inline-flex w-full justify-center rounded-md ${secondaryBg} px-3 py-2 text-sm font-semibold ${text} shadow-sm ring-1 ring-inset ${ring} ${hoverSecondary} sm:mt-0 sm:w-auto`}>Cancelar</button>
-                </div>
+  return (
+    <div className="relative z-10 p-12 flex justify-center">
+      <div className={`relative transform overflow-hidden rounded-lg ${bg} px-4 pb-4 pt-5 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg sm:p-6 border ${border}`}>
+        <div className="sm:flex sm:items-start">
+          <div className={`mx-auto flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full sm:mx-0 sm:h-10 sm:w-10 ${iconWrapper}`}>
+            <AlertTriangle className={`h-6 w-6 ${iconColor}`} />
+          </div>
+          <div className="mt-3 text-center sm:ml-4 sm:mt-0 sm:text-left">
+            <h3 className={`text-base font-semibold leading-6 ${text}`}>Desativar conta?</h3>
+            <div className="mt-2">
+              <p className={`text-sm ${descColor}`}>
+                Tem certeza que deseja desativar sua conta? Todos os seus dados serão removidos permanentemente. Esta ação não pode ser desfeita.
+              </p>
             </div>
+          </div>
         </div>
-    );
+        <div className="mt-5 sm:mt-4 sm:flex sm:flex-row-reverse">
+          <button type="button" className="inline-flex w-full justify-center rounded-md bg-red-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-red-500 sm:ml-3 sm:w-auto">Desativar</button>
+          <button type="button" className={`mt-3 inline-flex w-full justify-center rounded-md ${secondaryBg} px-3 py-2 text-sm font-semibold ${text} shadow-sm ring-1 ring-inset ${ring} ${hoverSecondary} sm:mt-0 sm:w-auto`}>Cancelar</button>
+        </div>
+      </div>
+    </div>
+  );
 }
 
 export default function ModalPage() {
-    return (
-        <div className="min-h-screen bg-[var(--background)] text-[var(--foreground)]">
-            <main className="container mx-auto px-4 sm:px-8 py-8">
-                <div className="max-w-6xl mx-auto space-y-12">
-                    {/* Hero */}
-                    <div className="pb-8 border-b border-[var(--border)]">
-                        <div className="flex items-center gap-3 mb-4">
-                            <h1 className="text-5xl font-black text-[var(--foreground)] tracking-tight">
-                                Modal
-                            </h1>
-                            <span className="px-3 py-1 rounded-md bg-primary/10 text-primary text-xs font-bold border border-primary/20 capitalize">
-                                Feedback
-                            </span>
-                        </div>
-                        <p className="text-[var(--text-secondary)] text-lg max-w-3xl">
-                            Dialogs modais informam os usuários sobre uma tarefa e podem conter informações críticas, exigindo decisões ou envolvendo múltiplas tarefas.
-                        </p>
-                    </div>
+  return (
+    <div className="min-h-screen bg-[var(--background)] text-[var(--foreground)]">
+      <main className="container mx-auto px-4 sm:px-8 pt-10 pb-8">
+        <div className="max-w-6xl mx-auto space-y-12">
+          {/* Hero removed */}
 
-                    {/* Basic */}
-                    <ComponentShowcase
-                        title="Informativo"
-                        description="Modal padrão para confirmações e informações importantes."
-                        code={modalBasicCode}
-                    >
-                        <ModalBasicPreview />
-                    </ComponentShowcase>
+          {/* Basic */}
+          <ComponentShowcase
+            title="Informativo"
+            description="Modal padrão para confirmações e informações importantes."
+            code={modalBasicCode}
+          >
+            <ModalBasicPreview />
+          </ComponentShowcase>
 
-                    {/* Destructive */}
-                    <ComponentShowcase
-                        title="Destrutivo"
-                        description="Para ações perigosas ou irreversíveis, use cores de alerta."
-                        code={modalDestructiveCode}
-                    >
-                        <ModalDestructivePreview />
-                    </ComponentShowcase>
+          {/* Destructive */}
+          <ComponentShowcase
+            title="Destrutivo"
+            description="Para ações perigosas ou irreversíveis, use cores de alerta."
+            code={modalDestructiveCode}
+          >
+            <ModalDestructivePreview />
+          </ComponentShowcase>
 
-                    {/* API Reference */}
-                    <div className="pt-12 border-t border-[var(--border)]">
-                        <PropsTable props={modalProps} />
-                    </div>
-                </div>
-            </main>
+          {/* API Reference */}
+          <div className="pt-12 border-t border-[var(--border)]">
+            <PropsTable props={modalProps} />
+          </div>
         </div>
-    );
+      </main>
+    </div>
+  );
 }

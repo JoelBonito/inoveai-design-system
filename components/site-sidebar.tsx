@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { useTheme } from "next-themes";
 import {
   Palette,
   Type,
@@ -10,20 +11,20 @@ import {
   Sparkles,
   Box,
   Layers,
-  Accessibility,
   Menu,
   X,
-  Sun,
-  Moon,
   Square,
   FormInput,
   BarChart3,
   Navigation,
   MessageSquare,
-  BookOpen,
   ChevronDown,
-  ChevronRight
+  ChevronRight,
+  ChevronLeft,
+  Sun,
+  Moon
 } from "lucide-react";
+import { useSidebar } from "@/components/providers/sidebar-provider";
 
 // =====================================================
 // NOVA ESTRUTURA DE NAVEGAÇÃO POR CATEGORIAS
@@ -32,9 +33,10 @@ import {
 const CATEGORIES = [
   {
     id: "primitivos",
-    title: "🧱 Primitivos",
+    title: "Primitivos",
     href: "/primitivos",
     icon: Square,
+    color: "text-emerald-500", // "Clientes" style
     items: [
       { name: "Botão", href: "/primitivos/button" },
       { name: "Input", href: "/primitivos/input" },
@@ -45,9 +47,10 @@ const CATEGORIES = [
   },
   {
     id: "formularios",
-    title: "📝 Formulários",
+    title: "Formulários",
     href: "/formularios",
     icon: FormInput,
+    color: "text-blue-500", // "Finanças" style
     items: [
       { name: "Select", href: "/formularios/select" },
       { name: "Autocomplete", href: "/formularios/autocomplete" },
@@ -57,9 +60,10 @@ const CATEGORIES = [
   },
   {
     id: "dados",
-    title: "📊 Dados",
+    title: "Dados",
     href: "/dados",
     icon: BarChart3,
+    color: "text-amber-500", // "Produtos" style
     items: [
       { name: "Tabela", href: "/dados/table" },
       { name: "Gráfico", href: "/dados/chart" },
@@ -67,9 +71,10 @@ const CATEGORIES = [
   },
   {
     id: "navegacao",
-    title: "🧭 Navegação",
+    title: "Navegação",
     href: "/navegacao",
     icon: Navigation,
+    color: "text-purple-500",
     items: [
       { name: "Tabs", href: "/navegacao/tabs" },
       { name: "Breadcrumbs", href: "/navegacao/breadcrumbs" },
@@ -79,9 +84,10 @@ const CATEGORIES = [
   },
   {
     id: "feedback",
-    title: "💬 Feedback",
+    title: "Feedback",
     href: "/feedback",
     icon: MessageSquare,
+    color: "text-rose-500",
     items: [
       { name: "Modal", href: "/feedback/modal" },
       { name: "Toast", href: "/feedback/toast" },
@@ -105,30 +111,10 @@ interface SiteSidebarProps {
 
 export function SiteSidebar({ components = [] }: SiteSidebarProps) {
   const pathname = usePathname();
+  const { theme, setTheme } = useTheme();
   const [isOpen, setIsOpen] = useState(false);
-  const [isDark, setIsDark] = useState(false);
+  const { isCollapsed, toggleSidebar } = useSidebar();
   const [expandedCategories, setExpandedCategories] = useState<string[]>(["primitivos"]);
-
-  // Initialize theme from localStorage or system preference
-  useEffect(() => {
-    const savedTheme = localStorage.getItem('theme');
-    if (savedTheme) {
-      setIsDark(savedTheme === 'dark');
-    } else {
-      setIsDark(window.matchMedia('(prefers-color-scheme: dark)').matches);
-    }
-  }, []);
-
-  // Apply theme to document
-  useEffect(() => {
-    if (isDark) {
-      document.documentElement.classList.add('dark');
-      localStorage.setItem('theme', 'dark');
-    } else {
-      document.documentElement.classList.remove('dark');
-      localStorage.setItem('theme', 'light');
-    }
-  }, [isDark]);
 
   // Auto-expand category based on current path
   useEffect(() => {
@@ -143,8 +129,6 @@ export function SiteSidebar({ components = [] }: SiteSidebarProps) {
     setIsOpen(false);
   }, [pathname]);
 
-  const toggleTheme = () => setIsDark(!isDark);
-
   const toggleCategory = (categoryId: string) => {
     setExpandedCategories(prev =>
       prev.includes(categoryId)
@@ -156,27 +140,23 @@ export function SiteSidebar({ components = [] }: SiteSidebarProps) {
   return (
     <>
       {/* Mobile Header */}
-      <div className="fixed top-0 left-0 right-0 z-50 flex items-center justify-between border-b border-[var(--border)] bg-[var(--surface)] px-4 py-3 lg:hidden transition-colors">
+      <div className="fixed top-0 left-0 right-0 z-50 flex items-center justify-between border-b border-border bg-sidebar-background px-4 py-3 lg:hidden transition-colors">
         <Link href="/" className="flex items-center gap-2">
-          <img src="/inove-logo.png" alt="Inove AI" className="size-10 rounded" />
-          <span className="text-[var(--foreground)] text-sm font-semibold tracking-tight">
+          <img src="/inove-logo.png" alt="Inove AI" className="size-8 rounded" />
+          <span className="text-sidebar-foreground text-sm font-semibold tracking-tight">
             Design System
           </span>
         </Link>
         <div className="flex items-center gap-2">
-          {/* Theme Toggle */}
           <button
-            onClick={toggleTheme}
-            className="p-2 rounded-lg text-[var(--text-secondary)] hover:bg-[var(--background)] hover:text-[var(--foreground)] transition-colors"
-            aria-label="Toggle theme"
+            onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
+            className="p-2 rounded-lg text-sidebar-foreground hover:bg-sidebar-accent hover:text-sidebar-accent-foreground transition-colors"
           >
-            {isDark ? <Sun size={20} /> : <Moon size={20} />}
+            {theme === "dark" ? <Sun size={20} /> : <Moon size={20} />}
           </button>
-          {/* Menu Toggle */}
           <button
             onClick={() => setIsOpen(!isOpen)}
-            className="p-2 rounded-lg text-[var(--text-secondary)] hover:bg-[var(--background)] hover:text-[var(--foreground)] transition-colors"
-            aria-label="Toggle menu"
+            className="p-2 rounded-lg text-sidebar-foreground hover:bg-sidebar-accent hover:text-sidebar-accent-foreground transition-colors"
           >
             {isOpen ? <X size={24} /> : <Menu size={24} />}
           </button>
@@ -193,19 +173,31 @@ export function SiteSidebar({ components = [] }: SiteSidebarProps) {
 
       {/* Sidebar */}
       <aside className={`
-        fixed inset-y-0 left-0 z-50 w-64 flex-col border-r border-[var(--border)] bg-[var(--surface)] py-6 transition-colors
-        transform transition-transform duration-300 ease-in-out
+        fixed inset-y-0 left-0 z-50 flex-col border-r border-sidebar-border bg-sidebar-background py-6 transition-all duration-300
+        transform ease-in-out shadow-2xl
         ${isOpen ? 'translate-x-0' : '-translate-x-full'}
         lg:translate-x-0 lg:flex
+        ${isCollapsed ? 'w-20' : 'w-64'} 
       `}>
-        {/* Brand (Desktop only) */}
-        <div className="hidden lg:block px-6 pb-6 border-b border-[var(--border)] mb-6">
-          <Link href="/" className="flex flex-col items-center gap-2">
-            <img src="/inove-logo.png" alt="Inove AI" className="w-24 h-24 rounded-lg" />
-            <span className="text-[var(--foreground)] text-base font-semibold tracking-tight">
+        {/* Header Container (Brand + Toggle on Divider) */}
+        <div className={`relative flex flex-col items-center pb-6 mb-2 border-b border-sidebar-border transition-all duration-300 ${isCollapsed ? 'px-2' : 'px-6'}`}>
+          <Link href="/" className="flex flex-col items-center gap-2 overflow-hidden">
+            <img src="/inove-logo.png" alt="Inove AI" className={`transition-all duration-300 ${isCollapsed ? 'w-10 h-10' : 'w-16 h-16'} rounded-xl shadow-sm`} />
+            <span className={`text-xs text-muted-foreground uppercase tracking-[0.2em] font-bold mt-1 text-center whitespace-nowrap transition-opacity duration-300 ${isCollapsed ? 'opacity-0 h-0 hidden' : 'opacity-100'}`}>
               Design System
             </span>
           </Link>
+
+          {/* Desktop Toggle Button - Positioned exactly on the bottom border */}
+          <div className="hidden lg:block absolute -right-3 bottom-0 translate-y-1/2 z-50">
+            <button
+              onClick={toggleSidebar}
+              className="flex h-6 w-6 items-center justify-center rounded-full bg-sidebar-background border border-sidebar-border shadow-md text-muted-foreground hover:text-foreground hover:border-primary transition-all hover:scale-110"
+              title={isCollapsed ? "Expandir" : "Recolher"}
+            >
+              {isCollapsed ? <ChevronRight size={14} /> : <ChevronLeft size={14} />}
+            </button>
+          </div>
         </div>
 
         {/* Mobile padding for header */}
@@ -219,12 +211,13 @@ export function SiteSidebar({ components = [] }: SiteSidebarProps) {
               <Link
                 href="/"
                 className={`flex items-center gap-3 rounded-lg px-2 py-2 text-sm font-medium transition-colors ${pathname === "/"
-                  ? "bg-[var(--background)] text-primary shadow-sm ring-1 ring-primary/10"
-                  : "text-[var(--text-secondary)] hover:bg-[var(--background)]/50 hover:text-[var(--foreground)]"
-                  }`}
+                  ? "bg-sidebar-accent text-sidebar-primary shadow-sm ring-1 ring-sidebar-ring/10"
+                  : "text-sidebar-foreground hover:bg-sidebar-accent/50 hover:text-sidebar-accent-foreground"
+                  } ${isCollapsed ? 'justify-center' : ''}`}
+                title={isCollapsed ? "Início" : undefined}
               >
-                <Box size={16} />
-                🏠 Início
+                <Box size={18} className="text-sidebar-foreground/70" />
+                {!isCollapsed && <span>Início</span>}
               </Link>
             </div>
 
@@ -233,12 +226,13 @@ export function SiteSidebar({ components = [] }: SiteSidebarProps) {
               <Link
                 href="/tokens"
                 className={`flex items-center gap-3 rounded-lg px-2 py-2 text-sm font-medium transition-colors ${pathname === "/tokens"
-                  ? "bg-[var(--background)] text-primary shadow-sm ring-1 ring-primary/10"
-                  : "text-[var(--text-secondary)] hover:bg-[var(--background)]/50 hover:text-[var(--foreground)]"
-                  }`}
+                  ? "bg-sidebar-accent text-sidebar-primary shadow-sm ring-1 ring-sidebar-ring/10"
+                  : "text-sidebar-foreground hover:bg-sidebar-accent/50 hover:text-sidebar-accent-foreground"
+                  } ${isCollapsed ? 'justify-center' : ''}`}
+                title={isCollapsed ? "Design Tokens" : undefined}
               >
-                <Layers size={16} />
-                🎨 Design Tokens
+                <Layers size={18} className="text-sidebar-foreground/70" />
+                {!isCollapsed && <span>Design Tokens</span>}
               </Link>
             </div>
 
@@ -252,30 +246,32 @@ export function SiteSidebar({ components = [] }: SiteSidebarProps) {
                   {/* Category Header */}
                   <button
                     onClick={() => toggleCategory(category.id)}
-                    className={`w-full flex items-center justify-between rounded-lg px-2 py-2 text-sm font-medium transition-colors ${isCategoryActive
-                      ? "bg-primary/10 text-primary"
-                      : "text-[var(--text-secondary)] hover:bg-[var(--background)]/50 hover:text-[var(--foreground)]"
-                      }`}
+                    className={`w-full flex items-center justify-between rounded-lg px-2 py-2 text-sm font-medium transition-colors group ${isCategoryActive
+                      ? "bg-sidebar-accent/10 text-sidebar-primary"
+                      : "text-sidebar-foreground hover:bg-sidebar-accent/50"
+                      } ${isCollapsed ? 'justify-center' : ''}`}
+                    title={isCollapsed ? category.title : undefined}
                   >
                     <div className="flex items-center gap-3">
-                      <category.icon size={16} />
-                      {category.title}
+                      {/* Ícone Colorido */}
+                      <category.icon size={18} className={category.color} />
+                      {!isCollapsed && <span className="group-hover:text-sidebar-accent-foreground">{category.title}</span>}
                     </div>
-                    {isExpanded ? <ChevronDown size={14} /> : <ChevronRight size={14} />}
+                    {!isCollapsed && (isExpanded ? <ChevronDown size={14} className="text-muted-foreground" /> : <ChevronRight size={14} className="text-muted-foreground" />)}
                   </button>
 
                   {/* Category Items */}
-                  {isExpanded && (
-                    <div className="relative z-10 mt-1 ml-6 space-y-1 border-l border-[var(--border)]">
+                  {isExpanded && !isCollapsed && (
+                    <div className="relative z-10 mt-1 ml-2 space-y-1 border-l border-sidebar-border/60">
                       {category.items.map((item) => {
                         const isActive = pathname === item.href;
                         return (
                           <Link
                             key={item.href}
                             href={item.href}
-                            className={`relative z-10 flex w-full items-center pl-4 py-2 text-sm transition-colors cursor-pointer ${isActive
-                              ? "text-primary font-medium border-l-2 border-primary -ml-px"
-                              : "text-[var(--text-secondary)] hover:text-[var(--foreground)] border-l-2 border-transparent -ml-px"
+                            className={`relative z-10 flex w-full items-center pl-6 py-2 text-sm transition-all cursor-pointer rounded-r-full mr-2 ${isActive
+                              ? "bg-sidebar-accent text-sidebar-primary font-bold border-l-4 border-sidebar-primary"
+                              : "text-sidebar-foreground/70 hover:text-sidebar-foreground hover:bg-sidebar-accent/10 border-l-4 border-transparent"
                               }`}
                           >
                             {item.name}
@@ -290,9 +286,11 @@ export function SiteSidebar({ components = [] }: SiteSidebarProps) {
 
             {/* Fundamentos */}
             <div>
-              <h3 className="mb-2 px-2 text-xs font-bold uppercase tracking-wider text-[var(--text-secondary)] opacity-50">
-                Fundamentos
-              </h3>
+              {!isCollapsed && (
+                <h3 className="mb-2 px-2 text-[10px] font-bold uppercase tracking-wider text-sidebar-foreground/40">
+                  Fundamentos
+                </h3>
+              )}
               <div className="space-y-1">
                 {FOUNDATION_ITEMS.map((item) => {
                   const isActive = pathname === item.href;
@@ -301,12 +299,13 @@ export function SiteSidebar({ components = [] }: SiteSidebarProps) {
                       key={item.href}
                       href={item.href}
                       className={`flex items-center gap-3 rounded-lg px-2 py-2 text-sm font-medium transition-colors ${isActive
-                        ? "bg-[var(--background)] text-primary shadow-sm ring-1 ring-primary/10"
-                        : "text-[var(--text-secondary)] hover:bg-[var(--background)]/50 hover:text-[var(--foreground)]"
-                        }`}
+                        ? "bg-sidebar-accent text-sidebar-primary shadow-sm"
+                        : "text-sidebar-foreground hover:bg-sidebar-accent/50"
+                        } ${isCollapsed ? 'justify-center' : ''}`}
+                      title={isCollapsed ? item.name : undefined}
                     >
-                      <item.icon size={16} />
-                      {item.name}
+                      <item.icon size={18} className="text-slate-400 group-hover:text-slate-600 dark:group-hover:text-slate-300" />
+                      {!isCollapsed && item.name}
                     </Link>
                   );
                 })}
@@ -315,31 +314,21 @@ export function SiteSidebar({ components = [] }: SiteSidebarProps) {
           </div>
         </div>
 
-        {/* Footer - Theme Toggle (Desktop) */}
-        <div className="mt-auto px-6 py-6 border-t border-[var(--border)]">
-          {/* Theme Toggle */}
-          <button
-            onClick={toggleTheme}
-            className="hidden lg:flex w-full items-center justify-between p-4 rounded-xl bg-[var(--background)] border border-[var(--border)] hover:border-primary/30 transition-colors"
-          >
-            <div className="flex items-center gap-3">
-              {isDark ? <Moon size={18} /> : <Sun size={18} />}
-              <span className="text-sm font-medium text-[var(--foreground)]">
-                {isDark ? 'Modo Escuro' : 'Modo Claro'}
+        {/* Footer - Powered by Inove AI */}
+        <div className={`mt-auto px-6 py-6 border-t border-sidebar-border/40 ${isCollapsed ? 'px-2 py-4' : ''}`}>
+          <div className="flex flex-col items-center gap-2">
+            {!isCollapsed && (
+              <span className="text-[10px] font-bold text-muted-foreground/60 uppercase tracking-[0.2em] whitespace-nowrap">
+                Powered By
               </span>
+            )}
+            <div className="flex items-center justify-center">
+              <img src="/inove-powered-logo.jpg" alt="Inove AI" className={`h-10 w-auto opacity-90 hover:opacity-100 transition-opacity rounded-md ${isCollapsed ? 'h-8' : ''}`} />
             </div>
-            <div className={`w-11 h-6 rounded-full p-0.5 transition-colors ${isDark ? 'bg-primary' : 'bg-slate-300'}`}>
-              <div className={`w-5 h-5 rounded-full bg-white transition-transform ${isDark ? 'translate-x-5' : 'translate-x-0'}`} />
-            </div>
-          </button>
-
-          {/* Version badge */}
-          <div className="flex items-center justify-center gap-3 mt-6 text-xs text-[var(--text-secondary)]">
-            <span className="font-medium">Inove DS</span>
-            <span className="px-2 py-1 rounded-md bg-[var(--background)] border border-[var(--border)] text-[11px] font-mono">v2.0.0</span>
           </div>
         </div>
       </aside>
     </>
   );
 }
+

@@ -4,25 +4,7 @@ import React, { useState, useMemo } from 'react';
 import { Search, Check } from 'lucide-react';
 import * as LucideIcons from 'lucide-react';
 
-// Common Material Symbols
-const MATERIAL_SYMBOLS = [
-    "search", "home", "settings", "menu", "close", "add", "delete", "edit",
-    "check", "print", "share", "download", "upload", "cloud", "mail", "person",
-    "notifications", "favorite", "arrow_forward", "arrow_back", "expand_more",
-    "expand_less", "check_circle", "warning", "info", "help", "lock", "lock_open",
-    "visibility", "visibility_off", "calendar_today", "schedule", "language",
-    "dashboard", "analytics", "assignment", "pending", "done", "done_all",
-    "account_circle", "logout", "login", "refresh", "sync", "wifi", "signal_cellular_4_bar",
-    "battery_full", "bluetooth", "brightness_4", "dark_mode", "light_mode",
-    "grid_view", "list", "filter_list", "sort", "tune", "search_off",
-    "navigate_next", "navigate_before", "first_page", "last_page", "more_vert",
-    "more_horiz", "apps", "arrow_drop_down", "arrow_drop_up", "chevron_right",
-    "chevron_left", "folder", "folder_open", "create_new_folder", "file_download",
-    "file_upload", "attach_file", "save", "save_alt", "content_copy", "content_paste",
-    "content_cut", "undo", "redo", "history", "palette", "brush", "image",
-    "photo_camera", "videocam", "mic", "volume_up", "volume_off", "play_arrow",
-    "pause", "stop", "replay", "fast_forward", "fast_rewind", "movie", "subscriptions"
-];
+import { MATERIAL_SYMBOLS } from './icon-service';
 
 const lucideIconList = Object.keys(LucideIcons).filter(key => key !== 'createLucideIcon' && key !== 'default');
 
@@ -60,18 +42,24 @@ export default function IconsPage() {
 
     return (
         <div className="min-h-screen">
-            <main className="container mx-auto px-4 sm:px-8 py-8">
-                <div className="max-w-7xl mx-auto">
-                    {/* Hero */}
-                    <div className="pb-8 border-b border-[var(--border)] mb-8 flex flex-col md:flex-row md:items-end justify-between gap-4">
-                        <div>
-                            <h1 className="text-4xl lg:text-5xl font-black text-[var(--foreground)] tracking-tight mb-2">
-                                Biblioteca de Ícones
-                            </h1>
-                            <p className="text-[var(--text-secondary)]">
-                                Navegue e pesquise através dos nossos conjuntos de ícones suportados.
-                                {activeTab === 'lucide' ? ' Ícones Lucide são componentes React tree-shakable.' : ' Material Symbols dependem da fonte de ligadura do Google Fonts.'}
-                            </p>
+            <main className="container mx-auto px-4 sm:px-8 pt-10 pb-8">
+                <div className="max-w-6xl mx-auto space-y-8">
+                    {/* Toolbar */}
+                    <div className="pb-8 border-b border-[var(--border)] flex flex-col-reverse md:flex-row items-center justify-between gap-4">
+                        {/* Tabs */}
+                        <div className="flex items-center gap-4 bg-[var(--surface)] p-1 rounded-md border border-[var(--border)] w-full md:w-fit">
+                            <button
+                                onClick={() => setActiveTab('material')}
+                                className={`flex-1 md:flex-none px-4 py-1.5 text-sm font-medium rounded-md transition-all ${activeTab === 'material' ? 'bg-primary text-white shadow-lg' : 'text-[var(--text-secondary)] hover:text-[var(--foreground)]'}`}
+                            >
+                                Material Symbols
+                            </button>
+                            <button
+                                onClick={() => setActiveTab('lucide')}
+                                className={`flex-1 md:flex-none px-4 py-1.5 text-sm font-medium rounded-md transition-all ${activeTab === 'lucide' ? 'bg-primary text-white shadow-lg' : 'text-[var(--text-secondary)] hover:text-[var(--foreground)]'}`}
+                            >
+                                Lucide React
+                            </button>
                         </div>
 
                         {/* Search */}
@@ -85,22 +73,6 @@ export default function IconsPage() {
                                 className="w-full bg-[var(--surface)] border border-[var(--border)] rounded-md pl-10 pr-4 py-2 text-[var(--foreground)] placeholder:text-[var(--text-secondary)]/50 focus:outline-none focus:border-primary/50 transition-colors"
                             />
                         </div>
-                    </div>
-
-                    {/* Tabs */}
-                    <div className="flex items-center gap-4 bg-[var(--surface)] p-1 rounded-md border border-[var(--border)] w-fit mb-8">
-                        <button
-                            onClick={() => setActiveTab('material')}
-                            className={`px-4 py-1.5 text-sm font-medium rounded-md transition-all ${activeTab === 'material' ? 'bg-primary text-white shadow-lg' : 'text-[var(--text-secondary)] hover:text-[var(--foreground)]'}`}
-                        >
-                            Material Symbols
-                        </button>
-                        <button
-                            onClick={() => setActiveTab('lucide')}
-                            className={`px-4 py-1.5 text-sm font-medium rounded-md transition-all ${activeTab === 'lucide' ? 'bg-primary text-white shadow-lg' : 'text-[var(--text-secondary)] hover:text-[var(--foreground)]'}`}
-                        >
-                            Lucide React
-                        </button>
                     </div>
 
                     {/* Grid */}

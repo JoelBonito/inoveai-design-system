@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html class="dark" lang="pt-BR">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Input Preview - Dark</title>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+        rel="stylesheet" />
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#2b2bee",
+                        "background-light": "#f6f6f8",
+                        "background-dark": "#111118",
+                        "surface-dark": "#1C1C26",
+                        "border-dark": "#282839",
+                        "text-secondary": "#9d9db9",
+                    },
+                    fontFamily: {
+                        "display": ["Space Grotesk", "sans-serif"],
+                        "mono": ["monospace"]
+                    },
+                    borderRadius: { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "2xl": "1rem", "full": "9999px" },
+                },
+            },
+        }
+    </script>
+    <style>
+        body {
+            font-family: "Space Grotesk", sans-serif;
+        }
+    </style>
+</head>
+
+<body class="bg-background-dark text-white min-h-screen p-8 flex items-center justify-center">
+    <div class="w-full max-w-2xl space-y-8">
+
+        <!-- Standard -->
+        <div class="space-y-2">
+            <label class="text-sm font-bold text-text-secondary">Email Corporativo</label>
+            <input type="email" placeholder="nome@empresa.com"
+                class="w-full bg-surface-dark border border-border-dark rounded-lg px-4 py-3 text-white placeholder-text-secondary/50 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all">
+            <p class="text-xs text-text-secondary">Usaremos este email para contato.</p>
+        </div>
+
+        <!-- With Icon -->
+        <div class="space-y-2">
+            <label class="text-sm font-bold text-text-secondary">Pesquisar</label>
+            <div class="relative">
+                <span
+                    class="material-symbols-outlined absolute left-3 top-3 text-text-secondary text-[20px]">search</span>
+                <input type="text" placeholder="Buscar..."
+                    class="w-full bg-surface-dark border border-border-dark rounded-lg pl-10 pr-4 py-3 text-white placeholder-text-secondary/50 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all">
+            </div>
+        </div>
+
+        <!-- With Error -->
+        <div class="space-y-2">
+            <label class="text-sm font-bold text-red-400">Senha</label>
+            <div class="relative">
+                <input type="password" value="123"
+                    class="w-full bg-surface-dark border border-red-500 rounded-lg px-4 py-3 text-white focus:ring-1 focus:ring-red-500 outline-none transition-all">
+                <span class="material-symbols-outlined absolute right-3 top-3 text-red-500 text-[20px]">error</span>
+            </div>
+            <p class="text-xs text-red-400 font-medium">A senha deve ter no mínimo 8 caracteres.</p>
+        </div>
+
+        <!-- Disabled -->
+        <div class="space-y-2">
+            <label class="text-sm font-bold text-text-secondary">Read-only API Key</label>
+            <div class="flex gap-2">
+                <input type="text" value="sk_test_51Mx..." disabled
+                    class="w-full bg-background-dark border border-border-dark rounded-lg px-4 py-3 text-text-secondary/50 cursor-not-allowed font-mono text-sm">
+                <button
+                    class="bg-surface-dark border border-border-dark hover:text-white text-text-secondary px-4 rounded-lg transition-colors">
+                    <span class="material-symbols-outlined text-[20px]">content_copy</span>
+                </button>
+            </div>
+        </div>
+
+    </div>
+</body>
+
+</html>

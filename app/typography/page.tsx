@@ -15,19 +15,11 @@ export default function TypographyPage() {
 
     return (
         <div className="min-h-screen">
-            <main className="container mx-auto px-4 sm:px-8 py-8">
-                <div className="max-w-6xl mx-auto">
-                    {/* Hero */}
-                    <div className="pb-8 border-b border-[var(--border)] mb-12">
-                        <h1 className="text-4xl lg:text-5xl font-black text-[var(--foreground)] tracking-tight mb-4">
-                            Tipografia
-                        </h1>
-                        <p className="text-[var(--text-secondary)] text-lg max-w-3xl">
-                            A tipografia define a hierarquia e a clareza do conteúdo. Utilizamos uma combinação de fontes com e sem serifa projetadas para legibilidade em interfaces modernas.
-                        </p>
-                    </div>
+            <main className="container mx-auto px-4 sm:px-8 pt-10 pb-8">
+                <div className="max-w-6xl mx-auto space-y-12">
+                    {/* Hero removed */}
 
-                    <div className="space-y-16">
+                    <div className="space-y-12">
                         {/* Font Families */}
                         <section className="space-y-6">
                             <h2 className="text-2xl font-bold flex items-center gap-3">

@@ -26,7 +26,9 @@
   - [x] Implementar Toggle de Tema (Dark/Light) global para a documentação.
   - [x] Organizar links da sidebar (Components, Tokens, Patterns).
 
-## 3. Próximos Passos
-1. Criar `docs/implementacao/02_SIDEBAR_LAYOUT.md`.
-2. Implementar `SiteSidebar`.
-3. Atualizar `app/layout.tsx`.
+## 3. Próximos Passos (Fase 4: Alinhamento Design System)
+1. Migração para Tailwind v4 e variáveis CSS estritas (✅ Concluído).
+2. Refatoração dos Componentes Primitivos (Button, Input, Badge, etc.) (✅ Concluído).
+3. Verificação de consistência visual (Border Radius, Deep Layers).
+4. Refatoração dos Componentes de Formulário e Feedback.
+5. Documentação de Padrões de Layout (PageContainer, TopBar).

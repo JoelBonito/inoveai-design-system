@@ -19,19 +19,10 @@ export default function GridPage() {
                 </div>
             )}
 
-            <main className="container mx-auto px-4 sm:px-8 py-8">
-                <div className="max-w-7xl mx-auto">
-                    {/* Hero */}
-                    <div className="pb-8 border-b border-[var(--border)] mb-12 flex flex-col md:flex-row md:items-end justify-between gap-4">
-                        <div>
-                            <h1 className="text-4xl lg:text-5xl font-black text-[var(--foreground)] tracking-tight mb-4">
-                                Grid e Layout
-                            </h1>
-                            <p className="text-[var(--text-secondary)] text-lg max-w-3xl">
-                                Nosso sistema de layout é baseado em um grid de 12 colunas com breakpoints fixos.
-                                Utiliza a escala de espaçamento padrão do Tailwind CSS e container queries para responsividade robusta.
-                            </p>
-                        </div>
+            <main className="container mx-auto px-4 sm:px-8 pt-10 pb-8">
+                <div className="max-w-6xl mx-auto space-y-12">
+                    {/* Hero removed, Button kept */}
+                    <div className="pb-8 border-b border-[var(--border)] flex justify-start">
                         <button
                             onClick={() => setShowOverlay(!showOverlay)}
                             className={`flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-bold transition-all whitespace-nowrap ${showOverlay ? 'bg-red-500/20 text-red-500 border border-red-500/50' : 'bg-[var(--surface)] border border-[var(--border)] text-[var(--text-secondary)] hover:text-[var(--foreground)]'}`}
@@ -41,7 +32,7 @@ export default function GridPage() {
                         </button>
                     </div>
 
-                    <div className="space-y-16">
+                    <div className="space-y-12">
                         {/* Breakpoints */}
                         <section className="space-y-6">
                             <h2 className="text-2xl font-bold text-[var(--foreground)]">Breakpoints</h2>
