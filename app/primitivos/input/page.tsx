@@ -5,28 +5,28 @@ import { PropsTable, PropDefinition } from "@/components/props-table";
 import { Input } from "@/components/ui/input";
 
 const inputTypesCode = `<!-- Input Types -->
-<input type="text" placeholder="Digite seu nome..." class="w-full max-w-xs px-4 py-2 rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all" />
+<input type="text" placeholder="Digite seu nome..." class="w-full max-w-xs px-4 py-2 rounded-lg border border-border bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all" />
 
-<input type="email" placeholder="seu@email.com" class="w-full max-w-xs px-4 py-2 rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all" />
+<input type="email" placeholder="seu@email.com" class="w-full max-w-xs px-4 py-2 rounded-lg border border-border bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all" />
 
-<input type="password" placeholder="Senha secreta" class="w-full max-w-xs px-4 py-2 rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all" />`;
+<input type="password" placeholder="Senha secreta" class="w-full max-w-xs px-4 py-2 rounded-lg border border-border bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all" />`;
 
 const inputStatesCode = `<!-- Input States -->
 <!-- Normal -->
-<input type="text" placeholder="Normal" class="w-full max-w-xs px-4 py-2 rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all" />
+<input type="text" placeholder="Normal" class="w-full max-w-xs px-4 py-2 rounded-lg border border-border bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all" />
 
 <!-- Error -->
-<input type="text" placeholder="Email inválido" class="w-full max-w-xs px-4 py-2 rounded-lg border-2 border-red-500 bg-white dark:bg-slate-900 text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-red-500 transition-all" />
+<input type="text" placeholder="Email inválido" class="w-full max-w-xs px-4 py-2 rounded-lg border-2 border-destructive bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-destructive transition-all" />
 
 <!-- Disabled -->
-<input type="text" placeholder="Desabilitado" disabled class="w-full max-w-xs px-4 py-2 rounded-lg border border-slate-300 dark:border-slate-700 bg-slate-100 dark:bg-slate-800 text-slate-500 cursor-not-allowed" />`;
+<input type="text" placeholder="Desabilitado" disabled class="w-full max-w-xs px-4 py-2 rounded-lg border border-border bg-muted text-muted-foreground cursor-not-allowed" />`;
 
 const inputSizesCode = `<!-- Input Sizes -->
-<input type="text" placeholder="Small" class="w-full max-w-xs px-3 py-1.5 text-sm rounded-md border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all" />
+<input type="text" placeholder="Small" class="w-full max-w-xs px-3 py-1.5 text-sm rounded-md border border-border bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all" />
 
-<input type="text" placeholder="Medium" class="w-full max-w-xs px-4 py-2 rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all" />
+<input type="text" placeholder="Medium" class="w-full max-w-xs px-4 py-2 rounded-lg border border-border bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all" />
 
-<input type="text" placeholder="Large" class="w-full max-w-xs px-5 py-3 text-lg rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all" />`;
+<input type="text" placeholder="Large" class="w-full max-w-xs px-5 py-3 text-lg rounded-xl border border-border bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all" />`;
 
 const inputProps: PropDefinition[] = [
     {
@@ -87,7 +87,7 @@ export default function InputPage() {
                         previewClassName="!flex-col !items-center gap-4"
                     >
                         <Input type="text" placeholder="Normal" className="max-w-xs" />
-                        <Input type="text" placeholder="Email inválido" className="max-w-xs border-red-500 focus-visible:ring-red-500" />
+                        <Input type="text" placeholder="Email inválido" className="max-w-xs border-destructive focus-visible:ring-destructive" />
                         <Input type="text" placeholder="Desabilitado" disabled className="max-w-xs" />
                     </ComponentShowcase>
 

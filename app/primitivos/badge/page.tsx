@@ -3,41 +3,41 @@ import { PropsTable, PropDefinition } from "@/components/props-table";
 import { Badge } from "@/components/ui/badge";
 
 const badgeVariantsCode = `<!-- Badge Variants -->
-<span class="px-2.5 py-0.5 rounded text-xs font-semibold bg-primary/10 text-primary border border-primary/20">
+<span class="px-2.5 py-0.5 rounded-lg text-xs font-semibold bg-primary/10 text-primary border border-primary/20">
   Primary
 </span>
 
-<span class="px-2.5 py-0.5 rounded text-xs font-semibold bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-700">
+<span class="px-2.5 py-0.5 rounded-lg text-xs font-semibold bg-muted text-muted-foreground border border-border">
   Secondary
 </span>
 
-<span class="px-2.5 py-0.5 rounded text-xs font-semibold bg-green-500/10 text-green-600 dark:text-green-400 border border-green-500/20">
+<span class="px-2.5 py-0.5 rounded-lg text-xs font-semibold bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border border-emerald-500/20">
   Success
 </span>
 
-<span class="px-2.5 py-0.5 rounded text-xs font-semibold bg-yellow-500/10 text-yellow-600 dark:text-yellow-400 border border-yellow-500/20">
+<span class="px-2.5 py-0.5 rounded-lg text-xs font-semibold bg-amber-500/10 text-amber-600 dark:text-amber-400 border border-amber-500/20">
   Warning
 </span>
 
-<span class="px-2.5 py-0.5 rounded text-xs font-semibold bg-red-500/10 text-red-600 dark:text-red-400 border border-red-500/20">
+<span class="px-2.5 py-0.5 rounded-lg text-xs font-semibold bg-destructive/10 text-destructive border border-destructive/20">
   Error
 </span>`;
 
 const badgeSizesCode = `<!-- Badge Sizes -->
-<span class="px-1.5 py-0.5 rounded text-[10px] font-semibold bg-primary/10 text-primary border border-primary/20">
+<span class="px-1.5 py-0.5 rounded-lg text-[10px] font-semibold bg-primary/10 text-primary border border-primary/20">
   Small
 </span>
 
-<span class="px-2.5 py-0.5 rounded text-xs font-semibold bg-primary/10 text-primary border border-primary/20">
+<span class="px-2.5 py-0.5 rounded-lg text-xs font-semibold bg-primary/10 text-primary border border-primary/20">
   Medium
 </span>
 
-<span class="px-3 py-1 rounded text-sm font-semibold bg-primary/10 text-primary border border-primary/20">
+<span class="px-3 py-1 rounded-lg text-sm font-semibold bg-primary/10 text-primary border border-primary/20">
   Large
 </span>`;
 
 const badgeShapesCode = `<!-- Badge Shapes -->
-<span class="px-2.5 py-0.5 rounded text-xs font-semibold bg-primary/10 text-primary border border-primary/20">
+<span class="px-2.5 py-0.5 rounded-lg text-xs font-semibold bg-primary/10 text-primary border border-primary/20">
   Soft
 </span>
 
@@ -46,15 +46,15 @@ const badgeShapesCode = `<!-- Badge Shapes -->
 </span>`;
 
 const badgeWithIconCode = `<!-- Badge With Icon -->
-<span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded text-xs font-semibold bg-primary/10 text-primary border border-primary/20">
+<span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-lg text-xs font-semibold bg-primary/10 text-primary border border-primary/20">
   <svg class="size-3" fill="currentColor" viewBox="0 0 20 20">
     <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
   </svg>
   Verificado
 </span>
 
-<span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded text-xs font-semibold bg-green-500/10 text-green-600 dark:text-green-400 border border-green-500/20">
-  <span class="size-2 rounded-full bg-green-500"></span>
+<span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-lg text-xs font-semibold bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border border-emerald-500/20">
+  <span class="size-2 rounded-full bg-emerald-500"></span>
   Online
 </span>`;
 
@@ -115,7 +115,7 @@ export default function BadgePage() {
           {/* Formatos */}
           <ComponentShowcase
             title="Formatos"
-            description="Diferentes estilos de borderRadius (Soft = 8px, Square = 0px)"
+            description="Diferentes estilos de borderRadius (Soft = 8px [Padrão], Square = 0px)"
             code={badgeShapesCode}
           >
             <Badge shape="soft">Soft (8px)</Badge>
@@ -135,7 +135,7 @@ export default function BadgePage() {
               Verificado
             </Badge>
             <Badge variant="success" className="gap-1">
-              <span className="size-2 rounded-full bg-green-500"></span>
+              <span className="size-2 rounded-full bg-emerald-500"></span>
               Online
             </Badge>
           </ComponentShowcase>

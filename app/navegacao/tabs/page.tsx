@@ -2,32 +2,31 @@
 
 import { ComponentShowcase } from "@/components/component-showcase";
 import { PropsTable, PropDefinition } from "@/components/props-table";
-import { useThemeClasses } from "@/components/showcase-theme-context";
 
 const tabsUnderlineCode = `<!-- Tabs Underline -->
-<div class="border-b border-slate-200 dark:border-slate-800">
+<div class="border-b border-border">
   <nav class="-mb-px flex space-x-8" aria-label="Tabs">
     <a href="#" class="border-primary text-primary whitespace-nowrap border-b-2 py-4 px-1 text-sm font-medium" aria-current="page">
       Minha Conta
     </a>
-    <a href="#" class="border-transparent text-slate-500 hover:text-slate-700 hover:border-slate-300 whitespace-nowrap border-b-2 py-4 px-1 text-sm font-medium">
+    <a href="#" class="border-transparent text-muted-foreground hover:text-foreground hover:border-border whitespace-nowrap border-b-2 py-4 px-1 text-sm font-medium">
       Empresa
     </a>
-    <a href="#" class="border-transparent text-slate-500 hover:text-slate-700 hover:border-slate-300 whitespace-nowrap border-b-2 py-4 px-1 text-sm font-medium">
+    <a href="#" class="border-transparent text-muted-foreground hover:text-foreground hover:border-border whitespace-nowrap border-b-2 py-4 px-1 text-sm font-medium">
       Membros
     </a>
-    <a href="#" class="border-transparent text-slate-500 hover:text-slate-700 hover:border-slate-300 whitespace-nowrap border-b-2 py-4 px-1 text-sm font-medium">
+    <a href="#" class="border-transparent text-muted-foreground hover:text-foreground hover:border-border whitespace-nowrap border-b-2 py-4 px-1 text-sm font-medium">
       Cobrança
     </a>
   </nav>
 </div>`;
 
 const tabsPillsCode = `<!-- Tabs Pills -->
-<div class="flex space-x-2 bg-slate-100 dark:bg-slate-800 p-1 rounded-lg">
-  <button class="bg-white dark:bg-slate-700 text-slate-900 dark:text-white shadow-sm rounded-md py-2 px-4 text-sm font-medium transition-all">
+<div class="flex space-x-2 bg-muted p-1 rounded-lg">
+  <button class="bg-card text-foreground shadow-sm rounded-md py-2 px-4 text-sm font-medium transition-all">
     Mensal
   </button>
-  <button class="text-slate-500 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white rounded-md py-2 px-4 text-sm font-medium transition-all">
+  <button class="text-muted-foreground hover:text-foreground dark:text-muted-foreground dark:hover:text-white rounded-md py-2 px-4 text-sm font-medium transition-all">
     Anual
   </button>
 </div>`;
@@ -52,12 +51,11 @@ const tabsProps: PropDefinition[] = [
 ];
 
 function TabsUnderlinePreview() {
-    const { border, isDark } = useThemeClasses();
     const textActive = "text-primary border-primary";
-    const textInactive = isDark ? "text-slate-400 hover:text-slate-200" : "text-slate-500 hover:text-slate-700";
+    const textInactive = "text-muted-foreground hover:text-foreground";
 
     return (
-        <div className={`border-b ${border} w-full`}>
+        <div className={`border-b border-border w-full`}>
             <nav className="-mb-px flex space-x-8" aria-label="Tabs">
                 <a href="#" className={`${textActive} whitespace-nowrap border-b-2 py-4 px-1 text-sm font-medium`} aria-current="page">
                     Minha Conta
@@ -77,10 +75,9 @@ function TabsUnderlinePreview() {
 }
 
 function TabsPillsPreview() {
-    const { isDark } = useThemeClasses();
-    const bgContainer = isDark ? "bg-slate-800" : "bg-slate-100";
-    const bgActive = isDark ? "bg-slate-700 text-white" : "bg-white text-slate-900";
-    const textInactive = isDark ? "text-slate-400 hover:text-white" : "text-slate-500 hover:text-slate-900";
+    const bgContainer = "bg-muted";
+    const bgActive = "bg-card text-foreground shadow-sm";
+    const textInactive = "text-muted-foreground hover:text-foreground";
 
     return (
         <div className={`flex space-x-2 ${bgContainer} p-1 rounded-lg`}>

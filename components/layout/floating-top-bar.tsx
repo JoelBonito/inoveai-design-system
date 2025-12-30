@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { useTheme } from "next-themes";
 import { Sun, Moon, User, Bell } from "lucide-react";
 import { usePathname } from "next/navigation";
@@ -9,6 +9,12 @@ import { Button } from "@/components/ui/button";
 export function FloatingTopBar() {
     const { theme, setTheme } = useTheme();
     const pathname = usePathname();
+    const [mounted, setMounted] = useState(false);
+
+    // Prevent hydration mismatch
+    useEffect(() => {
+        setMounted(true);
+    }, []);
 
     // Mapeamento de rotas para títulos
     const ROUTE_TITLES: Record<string, string> = {
@@ -80,10 +86,20 @@ export function FloatingTopBar() {
                         onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
                         role="button"
                         tabIndex={0}
+                        suppressHydrationWarning
                     >
                         {/* Moon Icon (Left) */}
-                        <div className="absolute left-1.5 z-10 flex items-center justify-center text-slate-400 dark:text-blue-400">
-                            <svg className={`h-3.5 w-3.5 transition-opacity duration-300 ${theme === 'dark' ? 'opacity-100' : 'opacity-50'}`} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                        <div className="absolute left-1.5 z-10 flex items-center justify-center text-muted-foreground dark:text-blue-400">
+                            <svg
+                                className={`h-3.5 w-3.5 transition-opacity duration-300 ${mounted && theme === 'dark' ? 'opacity-100' : 'opacity-50'}`}
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                stroke="currentColor"
+                                strokeWidth="2"
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                suppressHydrationWarning
+                            >
                                 <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
                                 <circle cx="17" cy="5" r="0.5" fill="currentColor"></circle>
                                 <circle cx="20" cy="9" r="0.3" fill="currentColor"></circle>
@@ -93,7 +109,16 @@ export function FloatingTopBar() {
 
                         {/* Sun Icon (Right) */}
                         <div className="absolute right-1.5 z-10 flex items-center justify-center text-amber-500">
-                            <svg className={`h-3.5 w-3.5 transition-opacity duration-300 ${theme === 'dark' ? 'opacity-50' : 'opacity-100'}`} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                            <svg
+                                className={`h-3.5 w-3.5 transition-opacity duration-300 ${mounted && theme === 'dark' ? 'opacity-50' : 'opacity-100'}`}
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                stroke="currentColor"
+                                strokeWidth="2"
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                suppressHydrationWarning
+                            >
                                 <circle cx="12" cy="12" r="4"></circle>
                                 <path d="M12 2v2"></path>
                                 <path d="M12 20v2"></path>
@@ -110,8 +135,9 @@ export function FloatingTopBar() {
                         <div
                             className={`
                                 relative z-20 h-5 w-5 bg-white rounded-full shadow-sm transition-transform duration-300 ease-spring
-                                ${theme === "dark" ? 'translate-x-7' : 'translate-x-0'}
+                                ${mounted && theme === "dark" ? 'translate-x-7' : 'translate-x-0'}
                             `}
+                            suppressHydrationWarning
                         />
                     </div>
 

@@ -2,12 +2,11 @@
 
 import { ComponentShowcase } from "@/components/component-showcase";
 import { PropsTable, PropDefinition } from "@/components/props-table";
-import { useThemeClasses } from "@/components/showcase-theme-context";
 
 const tableBasicCode = `<!-- Table Basic -->
-<div class="relative overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-800">
-  <table class="w-full text-sm text-left text-slate-500 dark:text-slate-400">
-    <thead class="text-xs text-slate-700 uppercase bg-slate-50 dark:bg-slate-800 dark:text-slate-400">
+<div class="relative overflow-x-auto rounded-lg border border-border">
+  <table class="w-full text-sm text-left text-muted-foreground">
+    <thead class="text-xs text-muted-foreground uppercase bg-card">
       <tr>
         <th scope="col" class="px-6 py-3">Nome do Produto</th>
         <th scope="col" class="px-6 py-3">Cor</th>
@@ -16,24 +15,24 @@ const tableBasicCode = `<!-- Table Basic -->
       </tr>
     </thead>
     <tbody>
-      <tr class="bg-white dark:bg-slate-900 border-b dark:border-slate-800">
-        <th scope="row" class="px-6 py-4 font-medium text-slate-900 dark:text-white whitespace-nowrap">
+      <tr class="bg-popover border-b border-border">
+        <th scope="row" class="px-6 py-4 font-medium text-foreground whitespace-nowrap">
           MacBook Pro
         </th>
         <td class="px-6 py-4">Prata</td>
         <td class="px-6 py-4">Laptop</td>
         <td class="px-6 py-4">R$ 12.999</td>
       </tr>
-      <tr class="bg-white dark:bg-slate-900 border-b dark:border-slate-800">
-        <th scope="row" class="px-6 py-4 font-medium text-slate-900 dark:text-white whitespace-nowrap">
+      <tr class="bg-popover border-b border-border">
+        <th scope="row" class="px-6 py-4 font-medium text-foreground whitespace-nowrap">
           Magic Mouse 2
         </th>
         <td class="px-6 py-4">Branco</td>
         <td class="px-6 py-4">Acessório</td>
         <td class="px-6 py-4">R$ 599</td>
       </tr>
-      <tr class="bg-white dark:bg-slate-900">
-        <th scope="row" class="px-6 py-4 font-medium text-slate-900 dark:text-white whitespace-nowrap">
+      <tr class="bg-popover">
+        <th scope="row" class="px-6 py-4 font-medium text-foreground whitespace-nowrap">
           Monitor 4K
         </th>
         <td class="px-6 py-4">Preto</td>
@@ -70,17 +69,14 @@ const tableProps: PropDefinition[] = [
 ];
 
 function TableBasicPreview() {
-    const { bg, text, border, bgSurface, textSecondary, isDark } = useThemeClasses();
-
-    // Classes específicas para tabela
-    const thClass = `px-6 py-3 text-xs uppercase ${isDark ? 'text-slate-400 bg-slate-800' : 'text-slate-700 bg-slate-50'}`;
+    const thClass = "px-6 py-3 text-xs uppercase text-muted-foreground bg-card";
     const tdClass = "px-6 py-4";
-    const trClass = `${bg} border-b ${isDark ? 'border-slate-800' : 'border-slate-200'} last:border-0`;
-    const thRowClass = `px-6 py-4 font-medium ${text} whitespace-nowrap`;
+    const trClass = "bg-popover border-b border-border last:border-0";
+    const thRowClass = "px-6 py-4 font-medium text-foreground whitespace-nowrap";
 
     return (
-        <div className={`relative overflow-x-auto rounded-lg border ${border} w-full`}>
-            <table className={`w-full text-sm text-left ${textSecondary}`}>
+        <div className="relative overflow-x-auto rounded-lg border border-border w-full">
+            <table className="w-full text-sm text-left text-muted-foreground">
                 <thead className={thClass}>
                     <tr>
                         <th scope="col" className="px-6 py-3">Nome do Produto</th>
@@ -106,7 +102,7 @@ function TableBasicPreview() {
                         <td className={tdClass}>Acessório</td>
                         <td className={tdClass}>R$ 599</td>
                     </tr>
-                    <tr className={`${bg}`}>
+                    <tr className="bg-popover">
                         <th scope="row" className={thRowClass}>
                             Monitor 4K
                         </th>

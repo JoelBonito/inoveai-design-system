@@ -2,10 +2,9 @@
 
 import { ComponentShowcase } from "@/components/component-showcase";
 import { PropsTable, PropDefinition } from "@/components/props-table";
-import { useThemeClasses } from "@/components/showcase-theme-context";
 
 const barChartCode = `<!-- Bar Chart -->
-<div class="w-full h-64 flex items-end justify-between gap-2 p-4 rounded-lg border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900">
+<div class="w-full h-64 flex items-end justify-between gap-2 p-4 rounded-lg border border-border bg-card">
   <div class="w-full bg-primary/20 hover:bg-primary/30 transition-colors rounded-t-sm relative group" style="height: 40%">
     <div class="absolute -top-8 left-1/2 -translate-x-1/2 bg-slate-900 text-white text-xs py-1 px-2 rounded opacity-0 group-hover:opacity-100 transition-opacity">40%</div>
   </div>
@@ -24,10 +23,10 @@ const barChartCode = `<!-- Bar Chart -->
 </div>`;
 
 const lineChartCode = `<!-- Line Chart (SVG) -->
-<div class="w-full h-64 p-4 rounded-lg border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 flex items-center justify-center">
+<div class="w-full h-64 p-4 rounded-lg border border-border bg-card flex items-center justify-center">
   <svg viewBox="0 0 500 200" class="w-full h-full text-primary">
     <!-- Grid lines -->
-    <g class="stroke-slate-200 dark:stroke-slate-700" stroke-width="1">
+    <g class="stroke-border" stroke-width="1">
       <line x1="0" y1="150" x2="500" y2="150" />
       <line x1="0" y1="100" x2="500" y2="100" />
       <line x1="0" y1="50" x2="500" y2="50" />
@@ -41,20 +40,20 @@ const lineChartCode = `<!-- Line Chart (SVG) -->
       stroke-linecap="round"
     />
     <!-- Dots -->
-    <circle cx="0" cy="150" r="4" class="fill-white dark:fill-slate-900 stroke-current" stroke-width="2" />
-    <circle cx="250" cy="100" r="4" class="fill-white dark:fill-slate-900 stroke-current" stroke-width="2" />
-    <circle cx="500" cy="20" r="4" class="fill-white dark:fill-slate-900 stroke-current" stroke-width="2" />
+    <circle cx="0" cy="150" r="4" class="fill-card stroke-current" stroke-width="2" />
+    <circle cx="250" cy="100" r="4" class="fill-card stroke-current" stroke-width="2" />
+    <circle cx="500" cy="20" r="4" class="fill-card stroke-current" stroke-width="2" />
   </svg>
 </div>`;
 
 const pieChartCode = `<!-- Pie Chart (CSS) -->
-<div class="flex items-center justify-center gap-8 p-6 rounded-lg border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900">
+<div class="flex items-center justify-center gap-8 p-6 rounded-lg border border-border bg-card">
   <!-- Chart -->
   <div class="relative size-40 rounded-full" 
-    style="background: conic-gradient(var(--primary) 0% 60%, #e2e8f0 60% 100%)">
+    style="background: conic-gradient(var(--primary) 0% 60%, hsl(var(--muted)) 60% 100%)">
     <!-- Center hole for Donut effect -->
-    <div class="absolute inset-4 rounded-full bg-white dark:bg-slate-900 flex items-center justify-center">
-      <span class="text-2xl font-bold text-slate-900 dark:text-white">60%</span>
+    <div class="absolute inset-4 rounded-full bg-card flex items-center justify-center">
+      <span class="text-2xl font-bold text-foreground">60%</span>
     </div>
   </div>
   
@@ -62,11 +61,11 @@ const pieChartCode = `<!-- Pie Chart (CSS) -->
   <div class="space-y-2">
     <div class="flex items-center gap-2">
       <div class="size-3 rounded-full bg-primary"></div>
-      <span class="text-sm text-slate-600 dark:text-slate-300">Concluído</span>
+      <span class="text-sm text-muted-foreground">Concluído</span>
     </div>
     <div class="flex items-center gap-2">
-      <div class="size-3 rounded-full bg-slate-200 dark:bg-slate-700"></div>
-      <span class="text-sm text-slate-600 dark:text-slate-300">Pendente</span>
+      <div class="size-3 rounded-full bg-muted"></div>
+      <span class="text-sm text-muted-foreground">Pendente</span>
     </div>
   </div>
 </div>`;
@@ -97,13 +96,11 @@ const chartProps: PropDefinition[] = [
 ];
 
 function BarChartPreview() {
-  const { bg, border } = useThemeClasses();
-
-  // Tooltip style always dark for contrast
+  // Tooltip mantém sempre dark para contraste
   const tooltipClass = "absolute -top-8 left-1/2 -translate-x-1/2 bg-slate-900 text-white text-xs py-1 px-2 rounded opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none";
 
   return (
-    <div className={`w-full h-64 flex items-end justify-between gap-2 p-4 rounded-lg border ${border} ${bg}`}>
+    <div className="w-full h-64 flex items-end justify-between gap-2 p-4 rounded-lg border border-border bg-card">
       <div className="w-full bg-primary/20 hover:bg-primary/30 transition-colors rounded-t-sm relative group" style={{ height: '40%' }}>
         <div className={tooltipClass}>40%</div>
       </div>
@@ -124,14 +121,10 @@ function BarChartPreview() {
 }
 
 function LineChartPreview() {
-  const { bg, border, isDark } = useThemeClasses();
-  const gridColor = isDark ? "stroke-slate-700" : "stroke-slate-200";
-  const dotFill = isDark ? "fill-slate-900" : "fill-white";
-
   return (
-    <div className={`w-full h-64 p-4 rounded-lg border ${border} ${bg} flex items-center justify-center`}>
+    <div className="w-full h-64 p-4 rounded-lg border border-border bg-card flex items-center justify-center">
       <svg viewBox="0 0 500 200" className="w-full h-full text-primary">
-        <g className={gridColor} strokeWidth="1">
+        <g className="stroke-border" strokeWidth="1">
           <line x1="0" y1="150" x2="500" y2="150" />
           <line x1="0" y1="100" x2="500" y2="100" />
           <line x1="0" y1="50" x2="500" y2="50" />
@@ -143,35 +136,32 @@ function LineChartPreview() {
           strokeWidth="4"
           strokeLinecap="round"
         />
-        <circle cx="0" cy="150" r="4" className={`${dotFill} stroke-current`} strokeWidth="2" />
-        <circle cx="250" cy="100" r="4" className={`${dotFill} stroke-current`} strokeWidth="2" />
-        <circle cx="500" cy="20" r="4" className={`${dotFill} stroke-current`} strokeWidth="2" />
+        <circle cx="0" cy="150" r="4" className="fill-card stroke-current" strokeWidth="2" />
+        <circle cx="250" cy="100" r="4" className="fill-card stroke-current" strokeWidth="2" />
+        <circle cx="500" cy="20" r="4" className="fill-card stroke-current" strokeWidth="2" />
       </svg>
     </div>
   );
 }
 
 function PieChartPreview() {
-  const { bg, border, text, isDark } = useThemeClasses();
-  const bgHole = isDark ? "bg-slate-900" : "bg-white";
-
   return (
-    <div className={`flex items-center justify-center gap-8 p-6 rounded-lg border ${border} ${bg}`}>
+    <div className="flex items-center justify-center gap-8 p-6 rounded-lg border border-border bg-card">
       <div className="relative size-40 rounded-full"
-        style={{ background: `conic-gradient(var(--primary) 0% 60%, ${isDark ? '#334155' : '#e2e8f0'} 60% 100%)` }}>
-        <div className={`absolute inset-4 rounded-full ${bgHole} flex items-center justify-center`}>
-          <span className={`text-2xl font-bold ${text}`}>60%</span>
+        style={{ background: `conic-gradient(var(--primary) 0% 60%, hsl(var(--muted)) 60% 100%)` }}>
+        <div className="absolute inset-4 rounded-full bg-card flex items-center justify-center">
+          <span className="text-2xl font-bold text-foreground">60%</span>
         </div>
       </div>
 
       <div className="space-y-2">
         <div className="flex items-center gap-2">
           <div className="size-3 rounded-full bg-primary"></div>
-          <span className={`text-sm ${isDark ? 'text-slate-300' : 'text-slate-600'}`}>Concluído</span>
+          <span className="text-sm text-muted-foreground">Concluído</span>
         </div>
         <div className="flex items-center gap-2">
-          <div className={`size-3 rounded-full ${isDark ? 'bg-slate-700' : 'bg-slate-200'}`}></div>
-          <span className={`text-sm ${isDark ? 'text-slate-300' : 'text-slate-600'}`}>Pendente</span>
+          <div className="size-3 rounded-full bg-muted"></div>
+          <span className="text-sm text-muted-foreground">Pendente</span>
         </div>
       </div>
     </div>
@@ -179,10 +169,10 @@ function PieChartPreview() {
 }
 
 const donutChartCode = `<!-- Donut Chart Multi-segment (SVG) -->
-<div class="p-6 rounded-lg border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-sm">
+<div class="p-6 rounded-lg border border-border bg-card shadow-sm">
   <div class="flex items-center gap-2 mb-6">
     <div class="w-1 h-5 bg-blue-600 rounded-full"></div>
-    <h3 class="font-semibold text-slate-900 dark:text-white">Modalidades de Interesse</h3>
+    <h3 class="font-semibold text-foreground">Modalidades de Interesse</h3>
   </div>
 
   <div class="flex flex-col items-center gap-8">
@@ -220,10 +210,11 @@ const donutChartCode = `<!-- Donut Chart Multi-segment (SVG) -->
         </circle>
       </svg>
       
-      <!-- Tooltip Overlay Simulation (For demo purposes) -->
+      <!-- Center Text -->
       <div class="absolute inset-0 flex items-center justify-center pointer-events-none">
-        <div class="bg-slate-900 text-white text-xs py-1 px-2 rounded opacity-0 group-hover:opacity-100 transition-opacity">
-          Hover segments
+        <div class="text-center">
+          <span class="text-3xl font-bold text-foreground">100%</span>
+          <p class="text-xs text-muted-foreground">Total</p>
         </div>
       </div>
     </div>
@@ -232,78 +223,62 @@ const donutChartCode = `<!-- Donut Chart Multi-segment (SVG) -->
     <div class="flex flex-wrap justify-center gap-4 text-sm">
       <div class="flex items-center gap-1.5">
         <div class="size-3 rounded-full bg-orange-600"></div>
-        <span class="text-slate-600 dark:text-slate-300">Treinamento cruzado (30%)</span>
+        <span class="text-muted-foreground">Treinamento cruzado (30%)</span>
       </div>
       <div class="flex items-center gap-1.5">
         <div class="size-3 rounded-full bg-blue-600"></div>
-        <span class="text-slate-600 dark:text-slate-300">Musculatura (15%)</span>
+        <span class="text-muted-foreground">Musculatura (15%)</span>
       </div>
       <div class="flex items-center gap-1.5">
         <div class="size-3 rounded-full bg-green-600"></div>
-        <span class="text-slate-600 dark:text-slate-300">Aulas Coletivas (15%)</span>
+        <span class="text-muted-foreground">Aulas Coletivas (15%)</span>
       </div>
       <div class="flex items-center gap-1.5">
         <div class="size-3 rounded-full bg-yellow-500"></div>
-        <span class="text-slate-600 dark:text-slate-300">Nação (20%)</span>
+        <span class="text-muted-foreground">Nação (20%)</span>
       </div>
       <div class="flex items-center gap-1.5">
         <div class="size-3 rounded-full bg-red-600"></div>
-        <span class="text-slate-600 dark:text-slate-300">Lutas (20%)</span>
+        <span class="text-muted-foreground">Lutas (20%)</span>
       </div>
     </div>
   </div>
 </div>`;
 
 function DonutChartPreview() {
-  const { bg, border, text, isDark } = useThemeClasses();
-
-  // Helper to create a tooltip that appears on hover of a specific segment
-  // Since we are in React, we could use state, but for the "Code" preview we want pure HTML/CSS if possible.
-  // The previous solution using 'title' attribute is the most robust "pure HTML" way for SVGs.
-  // However, to match the bar chart "custom div tooltip", we would need complex foreignObject or JS.
-  // We will stick to the SVG implementation which is cleaner and responsive.
-
   return (
-    <div className={`p-6 rounded-lg border ${border} ${bg} shadow-sm w-full max-w-lg mx-auto`}>
+    <div className="p-6 rounded-lg border border-border bg-card shadow-sm w-full max-w-lg mx-auto">
       <div className="flex items-center gap-2 mb-6">
         <div className="w-1 h-5 bg-blue-600 rounded-full"></div>
-        <h3 className={`font-semibold ${text}`}>Modalidades de Interesse</h3>
+        <h3 className="font-semibold text-foreground">Modalidades de Interesse</h3>
       </div>
 
       <div className="flex flex-col items-center gap-8">
         {/* SVG Chart */}
         <div className="relative size-48 group/chart">
           <svg viewBox="0 0 100 100" className="w-full h-full -rotate-90">
-            {/* Segments - keeping stroke-width=20 (radius 40) means 20/100 = 20% thickness */}
-            <circle cx="50" cy="50" r="40" fill="transparent" stroke="#ea580c" strokeWidth="20" strokeDasharray="30 70" strokeDashoffset="0" className="hover:opacity-80 transition-opacity cursor-pointer group/segment1">
+            {/* Segments */}
+            <circle cx="50" cy="50" r="40" fill="transparent" stroke="#ea580c" strokeWidth="20" strokeDasharray="30 70" strokeDashoffset="0" className="hover:opacity-80 transition-opacity cursor-pointer">
               <title>Treinamento cruzado: 30%</title>
             </circle>
-            <circle cx="50" cy="50" r="40" fill="transparent" stroke="#2563eb" strokeWidth="20" strokeDasharray="15 85" strokeDashoffset="-30" className="hover:opacity-80 transition-opacity cursor-pointer group/segment2">
+            <circle cx="50" cy="50" r="40" fill="transparent" stroke="#2563eb" strokeWidth="20" strokeDasharray="15 85" strokeDashoffset="-30" className="hover:opacity-80 transition-opacity cursor-pointer">
               <title>Musculatura: 15%</title>
             </circle>
-            <circle cx="50" cy="50" r="40" fill="transparent" stroke="#16a34a" strokeWidth="20" strokeDasharray="15 85" strokeDashoffset="-45" className="hover:opacity-80 transition-opacity cursor-pointer group/segment3">
+            <circle cx="50" cy="50" r="40" fill="transparent" stroke="#16a34a" strokeWidth="20" strokeDasharray="15 85" strokeDashoffset="-45" className="hover:opacity-80 transition-opacity cursor-pointer">
               <title>Aulas Coletivas: 15%</title>
             </circle>
-            <circle cx="50" cy="50" r="40" fill="transparent" stroke="#eab308" strokeWidth="20" strokeDasharray="20 80" strokeDashoffset="-60" className="hover:opacity-80 transition-opacity cursor-pointer group/segment4">
+            <circle cx="50" cy="50" r="40" fill="transparent" stroke="#eab308" strokeWidth="20" strokeDasharray="20 80" strokeDashoffset="-60" className="hover:opacity-80 transition-opacity cursor-pointer">
               <title>Nação: 20%</title>
             </circle>
-            <circle cx="50" cy="50" r="40" fill="transparent" stroke="#dc2626" strokeWidth="20" strokeDasharray="20 80" strokeDashoffset="-80" className="hover:opacity-80 transition-opacity cursor-pointer group/segment5">
+            <circle cx="50" cy="50" r="40" fill="transparent" stroke="#dc2626" strokeWidth="20" strokeDasharray="20 80" strokeDashoffset="-80" className="hover:opacity-80 transition-opacity cursor-pointer">
               <title>Lutas: 20%</title>
             </circle>
           </svg>
 
-          {/* Custom Tooltips (Absolute positioned centered styled tooltips that appear on hover) */}
-          {/* Note: In pure CSS without individual segment wrappers specific positioning is hard. 
-                        We will use the 'group' trick: when hovering a specific circle class, we show a specific tooltip? 
-                        Tailwind can't easily peer select from SVG child to outside sibling without arbitrary variants.
-                        For this level of complexity in a "Showcase", utilizing the native <title> tooltip is standard 
-                        and accessible. The code above includes <title>.
-                        If we REALLY want the black tooltip style:
-                    */}
           <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
             <div className="text-center">
-              <span className={`text-3xl font-bold ${text}`}>100%</span>
-              <p className={`text-xs ${isDark ? 'text-slate-400' : 'text-slate-500'}`}>Total</p>
+              <span className="text-3xl font-bold text-foreground">100%</span>
+              <p className="text-xs text-muted-foreground">Total</p>
             </div>
           </div>
         </div>
@@ -312,23 +287,23 @@ function DonutChartPreview() {
         <div className="flex flex-wrap justify-center gap-4 text-sm">
           <div className="flex items-center gap-1.5">
             <div className="size-3 rounded-full bg-orange-600"></div>
-            <span className={isDark ? "text-slate-300" : "text-orange-600"}>Treinamento cruzado</span>
+            <span className="text-muted-foreground">Treinamento cruzado</span>
           </div>
           <div className="flex items-center gap-1.5">
             <div className="size-3 rounded-full bg-blue-600"></div>
-            <span className={isDark ? "text-slate-300" : "text-blue-600"}>Musculatura</span>
+            <span className="text-muted-foreground">Musculatura</span>
           </div>
           <div className="flex items-center gap-1.5">
             <div className="size-3 rounded-full bg-green-600"></div>
-            <span className={isDark ? "text-slate-300" : "text-green-600"}>Aulas Coletivas</span>
+            <span className="text-muted-foreground">Aulas Coletivas</span>
           </div>
           <div className="flex items-center gap-1.5">
             <div className="size-3 rounded-full bg-yellow-500"></div>
-            <span className={isDark ? "text-slate-300" : "text-yellow-600"}>Nação</span>
+            <span className="text-muted-foreground">Nação</span>
           </div>
           <div className="flex items-center gap-1.5">
             <div className="size-3 rounded-full bg-red-600"></div>
-            <span className={isDark ? "text-slate-300" : "text-red-600"}>Lutas</span>
+            <span className="text-muted-foreground">Lutas</span>
           </div>
         </div>
       </div>

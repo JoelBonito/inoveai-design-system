@@ -4,13 +4,8 @@ import { Switch } from "@/components/ui/switch";
 
 const switchBasicCode = `<!-- Switch Basic -->
 <div class="flex items-center gap-2 space-x-2">
-  <Switch id="notif" />
-  <label htmlFor="notif" class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">Notificações</label>
-</div>
-
-<div class="flex items-center gap-2 space-x-2">
-  <Switch id="dark-mode" checked />
-  <label htmlFor="dark-mode" class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">Modo Escuro</label>
+  <Switch id="airplane" />
+  <label htmlFor="airplane" class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">Modo Avião</label>
 </div>`;
 
 const switchStatesCode = `<!-- Switch States -->
@@ -59,11 +54,7 @@ export default function SwitchPage() {
                     >
                         <div className="flex items-center space-x-2">
                             <Switch id="airplane-mode" />
-                            <label htmlFor="airplane-mode" className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">Notificações</label>
-                        </div>
-                        <div className="flex items-center space-x-2">
-                            <Switch id="dark-mode" defaultChecked />
-                            <label htmlFor="dark-mode" className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">Modo Escuro</label>
+                            <label htmlFor="airplane-mode" className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">Modo Avião</label>
                         </div>
                     </ComponentShowcase>
 

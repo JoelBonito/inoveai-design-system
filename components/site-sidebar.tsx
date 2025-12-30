@@ -115,6 +115,12 @@ export function SiteSidebar({ components = [] }: SiteSidebarProps) {
   const [isOpen, setIsOpen] = useState(false);
   const { isCollapsed, toggleSidebar } = useSidebar();
   const [expandedCategories, setExpandedCategories] = useState<string[]>(["primitivos"]);
+  const [mounted, setMounted] = useState(false);
+
+  // Prevent hydration mismatch
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   // Auto-expand category based on current path
   useEffect(() => {
@@ -151,8 +157,9 @@ export function SiteSidebar({ components = [] }: SiteSidebarProps) {
           <button
             onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
             className="p-2 rounded-lg text-sidebar-foreground hover:bg-sidebar-accent hover:text-sidebar-accent-foreground transition-colors"
+            suppressHydrationWarning
           >
-            {theme === "dark" ? <Sun size={20} /> : <Moon size={20} />}
+            {mounted ? (theme === "dark" ? <Sun size={20} /> : <Moon size={20} />) : <div className="w-5 h-5" />}
           </button>
           <button
             onClick={() => setIsOpen(!isOpen)}

@@ -5,43 +5,43 @@ import { Checkbox } from "@/components/ui/checkbox";
 const checkboxBasicCode = `<!-- Checkbox Basic -->
 <label class="flex items-center gap-2 cursor-pointer">
   <Checkbox />
-  <span class="text-slate-700 dark:text-slate-300 select-none">Aceito os termos</span>
+  <span class="text-foreground select-none">Aceito os termos</span>
 </label>
 
 <label class="flex items-center gap-2 cursor-pointer">
   <Checkbox checked />
-  <span class="text-slate-700 dark:text-slate-300 select-none">Notificações por email</span>
+  <span class="text-foreground select-none">Notificações por email</span>
 </label>`;
 
 const checkboxStatesCode = `<!-- Checkbox States -->
 <label class="flex items-center gap-2 cursor-pointer">
   <Checkbox />
-  <span class="text-slate-700 dark:text-slate-300">Normal</span>
+  <span class="text-foreground">Normal</span>
 </label>
 
 <label class="flex items-center gap-2 cursor-pointer">
   <Checkbox checked />
-  <span class="text-slate-700 dark:text-slate-300">Checked</span>
+  <span class="text-foreground">Checked</span>
 </label>
 
 <label class="flex items-center gap-2 cursor-not-allowed opacity-50">
   <Checkbox disabled />
-  <span class="text-slate-400">Disabled</span>
+  <span class="text-muted-foreground">Disabled</span>
 </label>`;
 
 const checkboxGroupCode = `<!-- Checkbox Group -->
 <div class="space-y-3">
   <label class="flex items-center gap-2 cursor-pointer">
     <Checkbox checked />
-    <span class="text-slate-700 dark:text-slate-300">React</span>
+    <span class="text-foreground">React</span>
   </label>
   <label class="flex items-center gap-2 cursor-pointer">
     <Checkbox checked />
-    <span class="text-slate-700 dark:text-slate-300">TypeScript</span>
+    <span class="text-foreground">TypeScript</span>
   </label>
   <label class="flex items-center gap-2 cursor-pointer">
     <Checkbox />
-    <span class="text-slate-700 dark:text-slate-300">Next.js</span>
+    <span class="text-foreground">Next.js</span>
   </label>
 </div>`;
 

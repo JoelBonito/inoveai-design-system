@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect, ReactNode } from "react";
-import { Sun, Moon, Code, Copy, Check } from "lucide-react";
+import { Code, Copy, Check } from "lucide-react";
 import { ShowcaseThemeProvider } from "./showcase-theme-context";
 
 interface ComponentShowcaseProps {
@@ -13,8 +13,6 @@ interface ComponentShowcaseProps {
     children: ReactNode;
     /** Código HTML/TSX para exibir no modal */
     code: string;
-    /** Se deve permitir toggle de tema local */
-    allowThemeToggle?: boolean;
     /** Classe adicional para o container de preview */
     previewClassName?: string;
 }
@@ -39,7 +37,6 @@ export function ComponentShowcase({
     description,
     children,
     code,
-    allowThemeToggle = true,
     previewClassName = "",
 }: ComponentShowcaseProps) {
     const [isLocalDark, setIsLocalDark] = useState(false);
@@ -85,9 +82,23 @@ export function ComponentShowcase({
     }, []);
 
     const handleCopy = async () => {
-        await navigator.clipboard.writeText(code);
-        setCopied(true);
-        setTimeout(() => setCopied(false), 2000);
+        try {
+            await navigator.clipboard.writeText(code);
+            setCopied(true);
+            setTimeout(() => setCopied(false), 2000);
+        } catch (err) {
+            // Fallback para navegadores sem acesso ao clipboard (não-HTTPS)
+            const textarea = document.createElement('textarea');
+            textarea.value = code;
+            textarea.style.position = 'fixed';
+            textarea.style.opacity = '0';
+            document.body.appendChild(textarea);
+            textarea.select();
+            document.execCommand('copy');
+            document.body.removeChild(textarea);
+            setCopied(true);
+            setTimeout(() => setCopied(false), 2000);
+        }
     };
 
     return (
@@ -107,29 +118,6 @@ export function ComponentShowcase({
 
                 {/* Actions */}
                 <div className="flex items-center gap-2">
-                    {allowThemeToggle && (
-                        <button
-                            onClick={() => setIsLocalDark(!isLocalDark)}
-                            className="flex items-center gap-2 px-3 py-1.5 rounded-md text-sm font-medium transition-all
-                                       bg-[var(--surface)] border border-[var(--border)] 
-                                       text-[var(--text-secondary)] hover:text-[var(--foreground)]
-                                       hover:border-primary/50"
-                            title={isLocalDark ? "Mudar para Light Mode" : "Mudar para Dark Mode"}
-                        >
-                            {isLocalDark ? (
-                                <>
-                                    <Sun size={16} />
-                                    <span className="hidden sm:inline">Light</span>
-                                </>
-                            ) : (
-                                <>
-                                    <Moon size={16} />
-                                    <span className="hidden sm:inline">Dark</span>
-                                </>
-                            )}
-                        </button>
-                    )}
-
                     <button
                         onClick={() => setShowCode(!showCode)}
                         className={`flex items-center gap-2 px-3 py-1.5 rounded-md text-sm font-medium transition-all
@@ -167,7 +155,7 @@ export function ComponentShowcase({
                 <div className={`relative z-10 p-8 min-h-[200px] flex items-center justify-center ${previewClassName}`}>
                     {/* Theme Provider for children - allows them to use useShowcaseTheme() */}
                     <ShowcaseThemeProvider isDark={isLocalDark}>
-                        <div className={`
+                        <div className={`${isLocalDark ? 'dark' : ''}
                             flex flex-wrap items-center justify-center gap-4
                             ${isLocalDark ? 'text-white' : 'text-[#111118]'}
                         `}>
@@ -176,16 +164,7 @@ export function ComponentShowcase({
                     </ShowcaseThemeProvider>
                 </div>
 
-                {/* Theme Indicator */}
-                <div className={`
-                    absolute top-3 right-3 px-2 py-1 rounded text-[10px] font-bold uppercase tracking-wider
-                    ${isLocalDark
-                        ? 'bg-white/10 text-white/50'
-                        : 'bg-black/5 text-black/40'
-                    }
-                `}>
-                    {isLocalDark ? 'Dark Mode' : 'Light Mode'}
-                </div>
+
             </div>
 
             {/* Code Panel (Expandable) */}

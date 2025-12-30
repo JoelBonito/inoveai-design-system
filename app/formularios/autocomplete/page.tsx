@@ -2,7 +2,6 @@
 
 import { ComponentShowcase } from "@/components/component-showcase";
 import { PropsTable, PropDefinition } from "@/components/props-table";
-import { useThemeClasses } from "@/components/showcase-theme-context";
 
 const autocompleteBasicCode = `<!-- Autocomplete Basic -->
 <div class="relative w-full max-w-xs group">
@@ -10,9 +9,9 @@ const autocompleteBasicCode = `<!-- Autocomplete Basic -->
     <input 
       type="text" 
       placeholder="Selecione um país..." 
-      class="w-full pl-10 pr-4 py-2 rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all"
+      class="w-full pl-10 pr-4 py-2 rounded-lg border border-border bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all"
     />
-    <div class="absolute left-3 top-2.5 text-slate-400">
+    <div class="absolute left-3 top-2.5 text-muted-foreground">
       <svg class="size-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
       </svg>
@@ -20,12 +19,12 @@ const autocompleteBasicCode = `<!-- Autocomplete Basic -->
   </div>
   
   <!-- Dropdown (simulado visível no hover para demo) -->
-  <div class="absolute z-10 w-full mt-1 bg-white dark:bg-slate-800 rounded-lg shadow-lg border border-slate-200 dark:border-slate-700 hidden group-hover:block">
+  <div class="absolute z-10 w-full mt-1 bg-popover rounded-lg shadow-lg border border-border hidden group-hover:block">
     <ul class="py-1 max-h-60 overflow-auto">
-      <li class="px-4 py-2 hover:bg-slate-100 dark:hover:bg-slate-700 cursor-pointer text-slate-700 dark:text-slate-300 font-medium">Brasil</li>
-      <li class="px-4 py-2 hover:bg-slate-100 dark:hover:bg-slate-700 cursor-pointer text-slate-700 dark:text-slate-300">Argentina</li>
-      <li class="px-4 py-2 hover:bg-slate-100 dark:hover:bg-slate-700 cursor-pointer text-slate-700 dark:text-slate-300">Chile</li>
-      <li class="px-4 py-2 hover:bg-slate-100 dark:hover:bg-slate-700 cursor-pointer text-slate-700 dark:text-slate-300">Uruguai</li>
+      <li class="px-4 py-2 hover:bg-accent cursor-pointer text-foreground font-medium">Brasil</li>
+      <li class="px-4 py-2 hover:bg-accent cursor-pointer text-foreground">Argentina</li>
+      <li class="px-4 py-2 hover:bg-accent cursor-pointer text-foreground">Chile</li>
+      <li class="px-4 py-2 hover:bg-accent cursor-pointer text-foreground">Uruguai</li>
     </ul>
   </div>
 </div>`;
@@ -35,7 +34,7 @@ const autocompleteWithBadgeCode = `<!-- Autocomplete Multi-select -->
   <div class="flex flex-wrap gap-2 mb-2">
     <span class="inline-flex items-center gap-1 px-2 py-1 rounded-md text-xs font-semibold bg-primary/10 text-primary border border-primary/20">
       React
-      <button class="hover:text-red-500 transition-colors">
+      <button class="hover:text-destructive transition-colors">
         <svg class="size-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
         </svg>
@@ -43,7 +42,7 @@ const autocompleteWithBadgeCode = `<!-- Autocomplete Multi-select -->
     </span>
     <span class="inline-flex items-center gap-1 px-2 py-1 rounded-md text-xs font-semibold bg-primary/10 text-primary border border-primary/20">
       TypeScript
-      <button class="hover:text-red-500 transition-colors">
+      <button class="hover:text-destructive transition-colors">
         <svg class="size-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
         </svg>
@@ -55,7 +54,7 @@ const autocompleteWithBadgeCode = `<!-- Autocomplete Multi-select -->
     <input 
       type="text" 
       placeholder="Adicionar tags..." 
-      class="w-full px-4 py-2 rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all"
+      class="w-full px-4 py-2 rounded-lg border border-border bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all"
     />
   </div>
 </div>`;
@@ -86,17 +85,15 @@ const autocompleteProps: PropDefinition[] = [
 ];
 
 function AutocompleteBasicPreview() {
-    const { bg, text, border, isDark } = useThemeClasses();
-
     return (
         <div className="relative w-full max-w-xs group">
             <div className="relative">
                 <input
                     type="text"
                     placeholder="Selecione um país..."
-                    className={`w-full pl-10 pr-4 py-2 rounded-lg border ${border} ${bg} ${text} focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all`}
+                    className="w-full pl-10 pr-4 py-2 rounded-lg border border-border bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all"
                 />
-                <div className="absolute left-3 top-2.5 text-slate-400">
+                <div className="absolute left-3 top-2.5 text-muted-foreground">
                     <svg className="size-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
                     </svg>
@@ -104,12 +101,12 @@ function AutocompleteBasicPreview() {
             </div>
 
             {/* Dropdown (simulado visível no hover para demo) */}
-            <div className={`absolute z-10 w-full mt-1 ${isDark ? 'bg-slate-800 border-slate-700' : 'bg-white border-slate-200'} rounded-lg shadow-lg border hidden group-hover:block`}>
+            <div className="absolute z-10 w-full mt-1 bg-popover rounded-lg shadow-lg border border-border hidden group-hover:block">
                 <ul className="py-1 max-h-60 overflow-auto">
-                    <li className={`px-4 py-2 cursor-pointer font-medium ${isDark ? 'text-slate-300 bg-slate-700/50 hover:bg-slate-700' : 'text-slate-700 bg-slate-50 hover:bg-slate-100'}`}>Brasil</li>
-                    <li className={`px-4 py-2 cursor-pointer ${isDark ? 'text-slate-300 hover:bg-slate-700' : 'text-slate-700 hover:bg-slate-100'}`}>Argentina</li>
-                    <li className={`px-4 py-2 cursor-pointer ${isDark ? 'text-slate-300 hover:bg-slate-700' : 'text-slate-700 hover:bg-slate-100'}`}>Chile</li>
-                    <li className={`px-4 py-2 cursor-pointer ${isDark ? 'text-slate-300 hover:bg-slate-700' : 'text-slate-700 hover:bg-slate-100'}`}>Uruguai</li>
+                    <li className="px-4 py-2 cursor-pointer font-medium bg-accent/50 hover:bg-accent text-foreground">Brasil</li>
+                    <li className="px-4 py-2 cursor-pointer hover:bg-accent text-foreground">Argentina</li>
+                    <li className="px-4 py-2 cursor-pointer hover:bg-accent text-foreground">Chile</li>
+                    <li className="px-4 py-2 cursor-pointer hover:bg-accent text-foreground">Uruguai</li>
                 </ul>
             </div>
         </div>
@@ -117,14 +114,12 @@ function AutocompleteBasicPreview() {
 }
 
 function AutocompleteTagsPreview() {
-    const { bg, text, border } = useThemeClasses();
-
     return (
         <div className="w-full max-w-md space-y-2">
             <div className="flex flex-wrap gap-2 mb-2">
                 <span className="inline-flex items-center gap-1 px-2 py-1 rounded-md text-xs font-semibold bg-primary/10 text-primary border border-primary/20">
                     React
-                    <button className="hover:text-red-500 transition-colors">
+                    <button className="hover:text-destructive transition-colors">
                         <svg className="size-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
                         </svg>
@@ -132,7 +127,7 @@ function AutocompleteTagsPreview() {
                 </span>
                 <span className="inline-flex items-center gap-1 px-2 py-1 rounded-md text-xs font-semibold bg-primary/10 text-primary border border-primary/20">
                     TypeScript
-                    <button className="hover:text-red-500 transition-colors">
+                    <button className="hover:text-destructive transition-colors">
                         <svg className="size-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
                         </svg>
@@ -144,7 +139,7 @@ function AutocompleteTagsPreview() {
                 <input
                     type="text"
                     placeholder="Adicionar tags..."
-                    className={`w-full px-4 py-2 rounded-lg border ${border} ${bg} ${text} focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all`}
+                    className="w-full px-4 py-2 rounded-lg border border-border bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all"
                 />
             </div>
         </div>

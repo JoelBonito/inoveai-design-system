@@ -153,6 +153,9 @@ body [data-nextjs-toast-icon] {
     --error: #EF4444;
     --info: #3B82F6;
 
+    --destructive: #EF4444;
+    --destructive-foreground: #FFFFFF;
+
     --radius: 0.5rem;
 
     /* Sidebar */
@@ -207,6 +210,9 @@ body [data-nextjs-toast-icon] {
     --btn-gradient-from: #06b6d4;
     --btn-gradient-to: #0891b2;
     --btn-shadow: rgba(6, 182, 212, 0.2);
+
+    --destructive: #EF4444;
+    --destructive-foreground: #FFFFFF;
 
     --sidebar-background: #1c202a;
     /* Layer 2 */

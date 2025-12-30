@@ -2,36 +2,35 @@
 
 import { ComponentShowcase } from "@/components/component-showcase";
 import { PropsTable, PropDefinition } from "@/components/props-table";
-import { useThemeClasses } from "@/components/showcase-theme-context";
 
 const datePickerBasicCode = `<!-- Date Picker Basic -->
 <div class="relative w-full max-w-xs">
   <input 
     type="date" 
-    class="w-full px-4 py-2 rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all"
+    class="w-full px-4 py-2 rounded-lg border border-border bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all"
   />
 </div>`;
 
 const datePickerRangeCode = `<!-- Date Range Picker (Visual Simulation) -->
-<div class="flex items-center gap-2 p-2 bg-white dark:bg-slate-900 border border-slate-300 dark:border-slate-700 rounded-lg max-w-sm">
+<div class="flex items-center gap-2 p-2 bg-background border border-border rounded-lg max-w-sm">
   <div class="relative flex-1">
     <input 
       type="date"
-      class="w-full bg-transparent border-none text-slate-900 dark:text-white text-sm focus:ring-0 p-1"
+      class="w-full bg-transparent border-none text-foreground text-sm focus:ring-0 p-1"
     />
   </div>
-  <span class="text-slate-400">→</span>
+  <span class="text-muted-foreground">→</span>
   <div class="relative flex-1">
     <input 
       type="date"
-      class="w-full bg-transparent border-none text-slate-900 dark:text-white text-sm focus:ring-0 p-1"
+      class="w-full bg-transparent border-none text-foreground text-sm focus:ring-0 p-1"
     />
   </div>
 </div>`;
 
 const datePickerCustomCode = `<!-- Custom Date Trigger -->
-<button class="flex items-center gap-2 px-4 py-2 rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors text-slate-700 dark:text-slate-300">
-  <svg class="size-5 text-slate-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+<button class="flex items-center gap-2 px-4 py-2 rounded-lg border border-border bg-background hover:bg-accent transition-colors text-foreground">
+  <svg class="size-5 text-muted-foreground" fill="none" viewBox="0 0 24 24" stroke="currentColor">
     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
   </svg>
   <span>Selecione uma data</span>
@@ -62,34 +61,30 @@ const datePickerProps: PropDefinition[] = [
 ];
 
 function DatePickerBasicPreview() {
-    const { bg, text, border } = useThemeClasses();
-
     return (
         <div className="relative w-full max-w-xs">
             <input
                 type="date"
-                className={`w-full px-4 py-2 rounded-lg border ${border} ${bg} ${text} focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all`}
+                className="w-full px-4 py-2 rounded-lg border border-border bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all"
             />
         </div>
     );
 }
 
 function DatePickerRangePreview() {
-    const { bg, text, border } = useThemeClasses();
-
     return (
-        <div className={`flex items-center gap-2 p-2 ${bg} border ${border} rounded-lg max-w-sm`}>
+        <div className="flex items-center gap-2 p-2 bg-background border border-border rounded-lg max-w-sm">
             <div className="relative flex-1">
                 <input
                     type="date"
-                    className={`w-full bg-transparent border-none ${text} text-sm focus:ring-0 p-1`}
+                    className="w-full bg-transparent border-none text-foreground text-sm focus:ring-0 p-1"
                 />
             </div>
-            <span className="text-slate-400">→</span>
+            <span className="text-muted-foreground">→</span>
             <div className="relative flex-1">
                 <input
                     type="date"
-                    className={`w-full bg-transparent border-none ${text} text-sm focus:ring-0 p-1`}
+                    className="w-full bg-transparent border-none text-foreground text-sm focus:ring-0 p-1"
                 />
             </div>
         </div>
@@ -97,11 +92,9 @@ function DatePickerRangePreview() {
 }
 
 function DatePickerTriggerPreview() {
-    const { bg, border, isDark } = useThemeClasses();
-
     return (
-        <button className={`flex items-center gap-2 px-4 py-2 rounded-lg border ${border} ${bg} ${isDark ? 'hover:bg-slate-800 text-slate-300' : 'hover:bg-slate-50 text-slate-700'} transition-colors`}>
-            <svg className="size-5 text-slate-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <button className="flex items-center gap-2 px-4 py-2 rounded-lg border border-border bg-background hover:bg-accent transition-colors text-foreground">
+            <svg className="size-5 text-muted-foreground" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
             </svg>
             <span>Selecione uma data</span>

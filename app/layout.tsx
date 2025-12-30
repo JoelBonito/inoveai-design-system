@@ -21,6 +21,9 @@ const spaceGrotesk = Space_Grotesk({
 export const metadata: Metadata = {
   title: "Stitch Design System - Documentação",
   description: "Documentação completa do Stitch Design System com tokens, componentes e padrões",
+  icons: {
+    icon: "/favicon.ico",
+  },
 };
 
 export default function RootLayout({

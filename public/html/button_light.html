@@ -16,12 +16,12 @@
             theme: {
                 extend: {
                     colors: {
-                        "primary": "#2b2bee",
-                        "background-light": "#f6f6f8",
-                        "background-dark": "#111118",
-                        "surface-dark": "#1C1C26",
-                        "border-dark": "#282839",
-                        "text-secondary": "#9d9db9",
+                        "primary": "#457b77",
+                        "background-light": "#f9fafb",
+                        "muted": "#f1f2f4",
+                        "foreground": "#111827",
+                        "muted-foreground": "#6B7280",
+                        "destructive": "#EF4444",
                     },
                     fontFamily: {
                         "display": ["Space Grotesk", "sans-serif"],
@@ -47,23 +47,23 @@
             <h2 class="text-xl font-bold mb-6 text-slate-500 border-b border-slate-200 pb-2">Variantes</h2>
             <div class="flex flex-wrap gap-4 items-center">
                 <button
-                    class="h-10 px-5 bg-primary hover:bg-primary/90 text-white rounded-lg text-sm font-bold transition-all shadow-[0_4px_10px_rgba(43,43,238,0.2)]">
+                    class="h-10 px-5 bg-primary hover:bg-primary/90 text-white rounded-lg text-sm font-bold transition-all shadow-[0_4px_10px_rgba(69,123,119,0.2)]">
                     Primary
                 </button>
                 <button
-                    class="h-10 px-5 bg-white border border-slate-200 hover:border-slate-400 text-slate-700 rounded-lg text-sm font-bold transition-all shadow-sm">
+                    class="h-10 px-5 bg-muted text-foreground hover:bg-muted/80 rounded-lg text-sm font-bold transition-all shadow-sm">
                     Secondary
                 </button>
                 <button
-                    class="h-10 px-5 bg-transparent border border-primary text-primary hover:bg-primary/5 rounded-lg text-sm font-bold transition-all">
+                    class="h-10 px-5 bg-transparent border-2 border-primary text-primary hover:bg-primary hover:text-white rounded-lg text-sm font-bold transition-all">
                     Outline
                 </button>
                 <button
-                    class="h-10 px-5 text-slate-500 hover:text-slate-900 hover:bg-slate-100 rounded-lg text-sm font-medium transition-all">
+                    class="h-10 px-5 text-muted-foreground hover:bg-muted hover:text-foreground rounded-lg text-sm font-medium transition-all">
                     Ghost
                 </button>
                 <button
-                    class="h-10 px-5 bg-red-50 text-red-600 hover:bg-red-100 border border-red-200 rounded-lg text-sm font-bold transition-all">
+                    class="h-10 px-5 bg-destructive text-white hover:bg-destructive/90 rounded-lg text-sm font-bold transition-all">
                     Destructive
                 </button>
             </div>

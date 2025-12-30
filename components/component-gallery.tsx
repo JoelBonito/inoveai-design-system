@@ -124,18 +124,6 @@ export function ComponentGallery({ components }: ComponentGalleryProps) {
                                         />
                                     </>
                                 )}
-                                <div className="absolute top-3 right-3 flex gap-2">
-                                    {component.darkMode && (
-                                        <span className="px-2 py-1 rounded bg-black/60 backdrop-blur text-white text-[10px] font-bold border border-white/10">
-                                            Dark
-                                        </span>
-                                    )}
-                                    {component.lightMode && (
-                                        <span className="px-2 py-1 rounded bg-white/90 backdrop-blur text-black text-[10px] font-bold border border-black/10">
-                                            Light
-                                        </span>
-                                    )}
-                                </div>
                             </div>
 
                             {/* Card Content */}
