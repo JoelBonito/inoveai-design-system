@@ -58,42 +58,48 @@ const toastProps: PropDefinition[] = [
   {
     name: "title",
     type: "string",
-    description: "Título da notificação"
+    description: "Título da notificação",
   },
   {
     name: "description",
     type: "string",
-    description: "Mensagem detalhada (opcional)"
+    description: "Mensagem detalhada (opcional)",
   },
   {
     name: "variant",
     type: "'default' | 'destructive' | 'success'",
-    description: "Estilo visual do toast"
+    description: "Estilo visual do toast",
   },
 ];
 
 function ToastPreview({ variant = "success" }: { variant?: "success" | "error" }) {
-
-  const icon = variant === "success"
-    ? <CheckCircle className="h-6 w-6 text-green-400" />
-    : <AlertCircle className="h-6 w-6 text-destructive" />;
+  const icon =
+    variant === "success" ? (
+      <CheckCircle className="h-6 w-6 text-green-400" />
+    ) : (
+      <AlertCircle className="text-destructive h-6 w-6" />
+    );
 
   const title = variant === "success" ? "Salvo com sucesso!" : "Erro ao conectar";
-  const desc = variant === "success" ? "As alterações foram aplicadas." : "Verifique sua conexão e tente novamente.";
+  const desc =
+    variant === "success"
+      ? "As alterações foram aplicadas."
+      : "Verifique sua conexão e tente novamente.";
 
   return (
-    <div className="pointer-events-auto w-full max-w-sm rounded-lg bg-background shadow-lg ring-1 ring-black ring-opacity-5 border border-border">
+    <div className="bg-background ring-opacity-5 border-border pointer-events-auto w-full max-w-sm rounded-lg border shadow-lg ring-1 ring-black">
       <div className="p-4">
         <div className="flex items-start">
-          <div className="flex-shrink-0">
-            {icon}
-          </div>
+          <div className="flex-shrink-0">{icon}</div>
           <div className="ml-3 flex-1 pt-0.5">
-            <p className="text-sm font-medium text-foreground">{title}</p>
-            <p className="mt-1 text-sm text-muted-foreground">{desc}</p>
+            <p className="text-foreground text-sm font-medium">{title}</p>
+            <p className="text-muted-foreground mt-1 text-sm">{desc}</p>
           </div>
           <div className="ml-4 flex flex-shrink-0">
-            <button type="button" className={`inline-flex rounded-md bg-background text-muted-foreground hover:text-muted-foreground focus:outline-none`}>
+            <button
+              type="button"
+              className={`bg-background text-muted-foreground hover:text-muted-foreground inline-flex rounded-md focus:outline-none`}
+            >
               <span className="sr-only">Fechar</span>
               <X className="h-5 w-5" />
             </button>
@@ -107,8 +113,8 @@ function ToastPreview({ variant = "success" }: { variant?: "success" | "error" }
 export default function ToastPage() {
   return (
     <div className="min-h-screen bg-[var(--background)] text-[var(--foreground)]">
-      <main className="container mx-auto px-4 sm:px-8 pt-10 pb-8">
-        <div className="max-w-6xl mx-auto space-y-12">
+      <main className="container mx-auto px-4 pt-10 pb-8 sm:px-8">
+        <div className="mx-auto max-w-6xl space-y-12">
           {/* Hero removed */}
 
           {/* Success */}
@@ -132,7 +138,7 @@ export default function ToastPage() {
           </ComponentShowcase>
 
           {/* API Reference */}
-          <div className="pt-12 border-t border-[var(--border)]">
+          <div className="border-t border-[var(--border)] pt-12">
             <PropsTable props={toastProps} />
           </div>
         </div>

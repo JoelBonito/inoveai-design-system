@@ -57,116 +57,178 @@ const paginationCardCode = `<!-- Pagination Card Style -->
 </nav>`;
 
 const paginationProps: PropDefinition[] = [
-    {
-        name: "currentPage",
-        type: "number",
-        description: "Página atual ativa"
-    },
-    {
-        name: "totalPages",
-        type: "number",
-        description: "Número total de páginas"
-    },
-    {
-        name: "onPageChange",
-        type: "(page: number) => void",
-        description: "Callback disparado ao mudar de página"
-    },
+  {
+    name: "currentPage",
+    type: "number",
+    description: "Página atual ativa",
+  },
+  {
+    name: "totalPages",
+    type: "number",
+    description: "Número total de páginas",
+  },
+  {
+    name: "onPageChange",
+    type: "(page: number) => void",
+    description: "Callback disparado ao mudar de página",
+  },
 ];
 
 function PaginationBasicPreview() {
-    const textDefault = "text-muted-foreground hover:text-foreground hover:border-border";
-    const textPrimary = "text-primary border-primary";
+  const textDefault = "text-muted-foreground hover:text-foreground hover:border-border";
+  const textPrimary = "text-primary border-primary";
 
-    return (
-        <nav className={`flex items-center justify-between border-t border-border px-4 sm:px-0 w-full`}>
-            <div className="-mt-px flex w-0 flex-1">
-                <a href="#" className={`inline-flex items-center border-t-2 border-transparent pt-4 pr-1 text-sm font-medium ${textDefault}`}>
-                    <ChevronLeft className="mr-3 h-5 w-5 text-muted-foreground" />
-                    Anterior
-                </a>
-            </div>
-            <div className="hidden md:-mt-px md:flex">
-                <a href="#" className={`inline-flex items-center border-t-2 border-transparent px-4 pt-4 text-sm font-medium ${textDefault}`}>1</a>
-                <a href="#" className={`inline-flex items-center border-t-2 ${textPrimary} px-4 pt-4 text-sm font-medium`} aria-current="page">2</a>
-                <a href="#" className={`inline-flex items-center border-t-2 border-transparent px-4 pt-4 text-sm font-medium ${textDefault}`}>3</a>
-                <span className="inline-flex items-center border-t-2 border-transparent px-4 pt-4 text-sm font-medium text-muted-foreground">...</span>
-                <a href="#" className={`inline-flex items-center border-t-2 border-transparent px-4 pt-4 text-sm font-medium ${textDefault}`}>8</a>
-                <a href="#" className={`inline-flex items-center border-t-2 border-transparent px-4 pt-4 text-sm font-medium ${textDefault}`}>9</a>
-                <a href="#" className={`inline-flex items-center border-t-2 border-transparent px-4 pt-4 text-sm font-medium ${textDefault}`}>10</a>
-            </div>
-            <div className="-mt-px flex w-0 flex-1 justify-end">
-                <a href="#" className={`inline-flex items-center border-t-2 border-transparent pt-4 pl-1 text-sm font-medium ${textDefault}`}>
-                    Próximo
-                    <ChevronRight className="ml-3 h-5 w-5 text-muted-foreground" />
-                </a>
-            </div>
-        </nav>
-    );
+  return (
+    <nav className={`border-border flex w-full items-center justify-between border-t px-4 sm:px-0`}>
+      <div className="-mt-px flex w-0 flex-1">
+        <a
+          href="#"
+          className={`inline-flex items-center border-t-2 border-transparent pt-4 pr-1 text-sm font-medium ${textDefault}`}
+        >
+          <ChevronLeft className="text-muted-foreground mr-3 h-5 w-5" />
+          Anterior
+        </a>
+      </div>
+      <div className="hidden md:-mt-px md:flex">
+        <a
+          href="#"
+          className={`inline-flex items-center border-t-2 border-transparent px-4 pt-4 text-sm font-medium ${textDefault}`}
+        >
+          1
+        </a>
+        <a
+          href="#"
+          className={`inline-flex items-center border-t-2 ${textPrimary} px-4 pt-4 text-sm font-medium`}
+          aria-current="page"
+        >
+          2
+        </a>
+        <a
+          href="#"
+          className={`inline-flex items-center border-t-2 border-transparent px-4 pt-4 text-sm font-medium ${textDefault}`}
+        >
+          3
+        </a>
+        <span className="text-muted-foreground inline-flex items-center border-t-2 border-transparent px-4 pt-4 text-sm font-medium">
+          ...
+        </span>
+        <a
+          href="#"
+          className={`inline-flex items-center border-t-2 border-transparent px-4 pt-4 text-sm font-medium ${textDefault}`}
+        >
+          8
+        </a>
+        <a
+          href="#"
+          className={`inline-flex items-center border-t-2 border-transparent px-4 pt-4 text-sm font-medium ${textDefault}`}
+        >
+          9
+        </a>
+        <a
+          href="#"
+          className={`inline-flex items-center border-t-2 border-transparent px-4 pt-4 text-sm font-medium ${textDefault}`}
+        >
+          10
+        </a>
+      </div>
+      <div className="-mt-px flex w-0 flex-1 justify-end">
+        <a
+          href="#"
+          className={`inline-flex items-center border-t-2 border-transparent pt-4 pl-1 text-sm font-medium ${textDefault}`}
+        >
+          Próximo
+          <ChevronRight className="text-muted-foreground ml-3 h-5 w-5" />
+        </a>
+      </div>
+    </nav>
+  );
 }
 
 function PaginationCardPreview() {
-    const ringColor = "ring-border";
-    const hoverBg = "hover:bg-accent";
-    const textColor = "text-foreground";
-    const textMuted = "text-muted-foreground";
+  const ringColor = "ring-border";
+  const hoverBg = "hover:bg-accent";
+  const textColor = "text-foreground";
+  const textMuted = "text-muted-foreground";
 
-    const itemClass = `relative inline-flex items-center px-4 py-2 text-sm font-semibold ${textColor} ring-1 ring-inset ${ringColor} ${hoverBg} focus:z-20 focus:outline-offset-0`;
-    const activeClass = "relative z-10 inline-flex items-center bg-primary px-4 py-2 text-sm font-semibold text-white focus:z-20 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary";
+  const itemClass = `relative inline-flex items-center px-4 py-2 text-sm font-semibold ${textColor} ring-1 ring-inset ${ringColor} ${hoverBg} focus:z-20 focus:outline-offset-0`;
+  const activeClass =
+    "relative z-10 inline-flex items-center bg-primary px-4 py-2 text-sm font-semibold text-white focus:z-20 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary";
 
-    return (
-        <nav className="isolate inline-flex -space-x-px rounded-md shadow-sm" aria-label="Pagination">
-            <a href="#" className={`relative inline-flex items-center rounded-l-md px-2 py-2 text-muted-foreground ring-1 ring-inset ${ringColor} ${hoverBg} focus:z-20 focus:outline-offset-0`}>
-                <span className="sr-only">Anterior</span>
-                <ChevronLeft className="h-5 w-5" />
-            </a>
-            <a href="#" aria-current="page" className={activeClass}>1</a>
-            <a href="#" className={itemClass}>2</a>
-            <a href="#" className={`${itemClass} hidden md:inline-flex`}>3</a>
-            <span className={`relative inline-flex items-center px-4 py-2 text-sm font-semibold ${textMuted} ring-1 ring-inset ${ringColor} focus:outline-offset-0`}>...</span>
-            <a href="#" className={`${itemClass} hidden md:inline-flex`}>8</a>
-            <a href="#" className={itemClass}>9</a>
-            <a href="#" className={itemClass}>10</a>
-            <a href="#" className={`relative inline-flex items-center rounded-r-md px-2 py-2 text-muted-foreground ring-1 ring-inset ${ringColor} ${hoverBg} focus:z-20 focus:outline-offset-0`}>
-                <span className="sr-only">Próximo</span>
-                <ChevronRight className="h-5 w-5" />
-            </a>
-        </nav>
-    );
+  return (
+    <nav className="isolate inline-flex -space-x-px rounded-md shadow-sm" aria-label="Pagination">
+      <a
+        href="#"
+        className={`text-muted-foreground relative inline-flex items-center rounded-l-md px-2 py-2 ring-1 ring-inset ${ringColor} ${hoverBg} focus:z-20 focus:outline-offset-0`}
+      >
+        <span className="sr-only">Anterior</span>
+        <ChevronLeft className="h-5 w-5" />
+      </a>
+      <a href="#" aria-current="page" className={activeClass}>
+        1
+      </a>
+      <a href="#" className={itemClass}>
+        2
+      </a>
+      <a href="#" className={`${itemClass} hidden md:inline-flex`}>
+        3
+      </a>
+      <span
+        className={`relative inline-flex items-center px-4 py-2 text-sm font-semibold ${textMuted} ring-1 ring-inset ${ringColor} focus:outline-offset-0`}
+      >
+        ...
+      </span>
+      <a href="#" className={`${itemClass} hidden md:inline-flex`}>
+        8
+      </a>
+      <a href="#" className={itemClass}>
+        9
+      </a>
+      <a href="#" className={itemClass}>
+        10
+      </a>
+      <a
+        href="#"
+        className={`text-muted-foreground relative inline-flex items-center rounded-r-md px-2 py-2 ring-1 ring-inset ${ringColor} ${hoverBg} focus:z-20 focus:outline-offset-0`}
+      >
+        <span className="sr-only">Próximo</span>
+        <ChevronRight className="h-5 w-5" />
+      </a>
+    </nav>
+  );
 }
 
 export default function PaginationPage() {
-    return (
-        <div className="min-h-screen bg-[var(--background)] text-[var(--foreground)]">
-            <main className="container mx-auto px-4 sm:px-8 pt-10 pb-8">
-                <div className="max-w-6xl mx-auto space-y-12">
-                    {/* Hero removed */}
+  return (
+    <div className="min-h-screen bg-[var(--background)] text-[var(--foreground)]">
+      <main className="container mx-auto px-4 pt-10 pb-8 sm:px-8">
+        <div className="mx-auto max-w-6xl space-y-12">
+          {/* Hero removed */}
 
-                    {/* Basic */}
-                    <ComponentShowcase
-                        title="Estilo Básico"
-                        description="Paginação minimalista com bordas superiores"
-                        code={paginationBasicCode}
-                        previewClassName="!block"
-                    >
-                        <PaginationBasicPreview />
-                    </ComponentShowcase>
+          {/* Basic */}
+          <ComponentShowcase
+            title="Estilo Básico"
+            description="Paginação minimalista com bordas superiores"
+            code={paginationBasicCode}
+            previewClassName="!block"
+          >
+            <PaginationBasicPreview />
+          </ComponentShowcase>
 
-                    {/* Card Style */}
-                    <ComponentShowcase
-                        title="Estilo Card (Isolado)"
-                        description="Paginação com botões agrupados e bordas conectadas"
-                        code={paginationCardCode}
-                    >
-                        <PaginationCardPreview />
-                    </ComponentShowcase>
+          {/* Card Style */}
+          <ComponentShowcase
+            title="Estilo Card (Isolado)"
+            description="Paginação com botões agrupados e bordas conectadas"
+            code={paginationCardCode}
+          >
+            <PaginationCardPreview />
+          </ComponentShowcase>
 
-                    {/* API Reference */}
-                    <div className="pt-12 border-t border-[var(--border)]">
-                        <PropsTable props={paginationProps} />
-                    </div>
-                </div>
-            </main>
+          {/* API Reference */}
+          <div className="border-t border-[var(--border)] pt-12">
+            <PropsTable props={paginationProps} />
+          </div>
         </div>
-    );
+      </main>
+    </div>
+  );
 }

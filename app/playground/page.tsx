@@ -1,11 +1,11 @@
 "use client";
 
-import React, { useState, useEffect } from 'react';
-import Link from 'next/link';
-import { ArrowLeft, RefreshCw, Code2, MonitorPlay, Loader2 } from 'lucide-react';
+import React, { useState, useEffect } from "react";
+import Link from "next/link";
+import { ArrowLeft, RefreshCw, Code2, MonitorPlay, Loader2 } from "lucide-react";
 
 // Import Monaco Editor - will only render after client mount
-import Editor from '@monaco-editor/react';
+import Editor from "@monaco-editor/react";
 
 const DEFAULT_CODE = `<div className="p-8 bg-[var(--surface)] rounded-xl border border-[var(--border)] max-w-sm mx-auto shadow-2xl">
   <div className="flex flex-col gap-4">
@@ -38,95 +38,98 @@ const DEFAULT_CODE = `<div className="p-8 bg-[var(--surface)] rounded-xl border 
 </div>`;
 
 export default function PlaygroundPage() {
-    const [code, setCode] = useState(DEFAULT_CODE);
-    const [key, setKey] = useState(0); // To force refresh
-    const [mounted, setMounted] = useState(false);
+  const [code, setCode] = useState(DEFAULT_CODE);
+  const [key, setKey] = useState(0); // To force refresh
+  const [mounted, setMounted] = useState(false);
 
-    // Only render Editor after client mount to avoid hydration mismatch
-    useEffect(() => {
-        setMounted(true);
-    }, []);
+  // Only render Editor after client mount to avoid hydration mismatch
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
-    const handleEditorChange = (value: string | undefined) => {
-        if (value !== undefined) {
-            setCode(value);
-        }
-    };
+  const handleEditorChange = (value: string | undefined) => {
+    if (value !== undefined) {
+      setCode(value);
+    }
+  };
 
-    const reset = () => {
-        setCode(DEFAULT_CODE);
-        setKey(k => k + 1);
-    };
+  const reset = () => {
+    setCode(DEFAULT_CODE);
+    setKey((k) => k + 1);
+  };
 
-    return (
-        <div className="min-h-screen bg-[var(--background)] text-[var(--foreground)] flex flex-col">
-            {/* Header */}
-            <header className="flex-none h-14 border-b border-[var(--border)] flex items-center justify-between px-4 bg-[var(--surface)]">
-                <div className="flex items-center gap-4">
-                    <Link href="/" className="text-[var(--text-secondary)] hover:text-[var(--foreground)] transition-colors">
-                        <ArrowLeft size={18} />
-                    </Link>
-                    <span className="font-bold text-sm flex items-center gap-2">
-                        <Code2 size={16} className="text-primary" />
-                        Playground
-                    </span>
-                </div>
+  return (
+    <div className="flex min-h-screen flex-col bg-[var(--background)] text-[var(--foreground)]">
+      {/* Header */}
+      <header className="flex h-14 flex-none items-center justify-between border-b border-[var(--border)] bg-[var(--surface)] px-4">
+        <div className="flex items-center gap-4">
+          <Link
+            href="/"
+            className="text-[var(--text-secondary)] transition-colors hover:text-[var(--foreground)]"
+          >
+            <ArrowLeft size={18} />
+          </Link>
+          <span className="flex items-center gap-2 text-sm font-bold">
+            <Code2 size={16} className="text-primary" />
+            Playground
+          </span>
+        </div>
 
-                <div className="flex items-center gap-3">
-                    <button
-                        onClick={reset}
-                        className="flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium text-[var(--text-secondary)] hover:bg-[var(--background)]/10 rounded transition-colors"
-                    >
-                        <RefreshCw size={14} />
-                        Resetar
-                    </button>
-                    <div className="h-4 w-px bg-[var(--border)]" />
-                    <span className="text-xs text-[var(--text-secondary)]">Monaco Editor + Live Preview</span>
-                </div>
-            </header>
+        <div className="flex items-center gap-3">
+          <button
+            onClick={reset}
+            className="flex items-center gap-1.5 rounded px-3 py-1.5 text-xs font-medium text-[var(--text-secondary)] transition-colors hover:bg-[var(--background)]/10"
+          >
+            <RefreshCw size={14} />
+            Resetar
+          </button>
+          <div className="h-4 w-px bg-[var(--border)]" />
+          <span className="text-xs text-[var(--text-secondary)]">Monaco Editor + Live Preview</span>
+        </div>
+      </header>
 
-            {/* Main Content (Split View) */}
-            <div className="flex-1 flex overflow-hidden">
-                {/* Editor Pane */}
-                <div className="w-1/2 flex flex-col border-r border-[var(--border)]">
-                    <div className="bg-[var(--surface)] border-b border-[var(--border)] px-4 py-2 text-xs font-bold text-[var(--text-secondary)] uppercase tracking-wider flex items-center justify-between">
-                        <span>Editor de Código (React/HTML + Tailwind)</span>
-                    </div>
-                    <div className="flex-1 relative">
-                        {mounted ? (
-                            <Editor
-                                key={key}
-                                height="100%"
-                                defaultLanguage="xml"
-                                defaultValue={DEFAULT_CODE}
-                                theme="vs-dark"
-                                onChange={handleEditorChange}
-                                options={{
-                                    minimap: { enabled: false },
-                                    fontSize: 14,
-                                    padding: { top: 16 },
-                                    scrollBeyondLastLine: false,
-                                    wordWrap: 'on',
-                                    fontFamily: 'JetBrains Mono, monospace'
-                                }}
-                            />
-                        ) : (
-                            <div className="flex-1 flex items-center justify-center h-full bg-[var(--background)]">
-                                <Loader2 className="w-6 h-6 animate-spin text-primary" />
-                            </div>
-                        )}
-                    </div>
-                </div>
+      {/* Main Content (Split View) */}
+      <div className="flex flex-1 overflow-hidden">
+        {/* Editor Pane */}
+        <div className="flex w-1/2 flex-col border-r border-[var(--border)]">
+          <div className="flex items-center justify-between border-b border-[var(--border)] bg-[var(--surface)] px-4 py-2 text-xs font-bold tracking-wider text-[var(--text-secondary)] uppercase">
+            <span>Editor de Código (React/HTML + Tailwind)</span>
+          </div>
+          <div className="relative flex-1">
+            {mounted ? (
+              <Editor
+                key={key}
+                height="100%"
+                defaultLanguage="xml"
+                defaultValue={DEFAULT_CODE}
+                theme="vs-dark"
+                onChange={handleEditorChange}
+                options={{
+                  minimap: { enabled: false },
+                  fontSize: 14,
+                  padding: { top: 16 },
+                  scrollBeyondLastLine: false,
+                  wordWrap: "on",
+                  fontFamily: "JetBrains Mono, monospace",
+                }}
+              />
+            ) : (
+              <div className="flex h-full flex-1 items-center justify-center bg-[var(--background)]">
+                <Loader2 className="text-primary h-6 w-6 animate-spin" />
+              </div>
+            )}
+          </div>
+        </div>
 
-                {/* Preview Pane */}
-                <div className="w-1/2 flex flex-col bg-[var(--background)]">
-                    <div className="bg-[var(--surface)] border-b border-[var(--border)] px-4 py-2 text-xs font-bold text-[var(--text-secondary)] uppercase tracking-wider flex items-center gap-2">
-                        <MonitorPlay size={14} />
-                        <span>Visualização em Tempo Real</span>
-                    </div>
+        {/* Preview Pane */}
+        <div className="flex w-1/2 flex-col bg-[var(--background)]">
+          <div className="flex items-center gap-2 border-b border-[var(--border)] bg-[var(--surface)] px-4 py-2 text-xs font-bold tracking-wider text-[var(--text-secondary)] uppercase">
+            <MonitorPlay size={14} />
+            <span>Visualização em Tempo Real</span>
+          </div>
 
-                    <div className="flex-1 p-8 overflow-auto flex items-center justify-center bg-[url('/img/grid.svg')] bg-fixed ">
-                        {/* 
+          <div className="flex flex-1 items-center justify-center overflow-auto bg-[url('/img/grid.svg')] bg-fixed p-8">
+            {/* 
                  Safety: We are rendering raw HTML. In a real production app, use DOMPurify.
                  For this internal doc tool, we verify the user is trusted. 
                  
@@ -134,14 +137,13 @@ export default function PlaygroundPage() {
                  We are writing "className" in editor (React style) but rendering via dangerouslySetInnerHTML.
                  We need to replace className -> class for it to work in standard HTML if not using a React runtime.
               */}
-                        <div
-                            className="w-full"
-                            dangerouslySetInnerHTML={{ __html: code.replace(/className=/g, 'class=') }}
-                        />
-                    </div>
-                </div>
-            </div>
+            <div
+              className="w-full"
+              dangerouslySetInnerHTML={{ __html: code.replace(/className=/g, "class=") }}
+            />
+          </div>
         </div>
-    );
+      </div>
+    </div>
+  );
 }
-

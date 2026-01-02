@@ -29,86 +29,90 @@ const inputSizesCode = `<!-- Input Sizes -->
 <input type="text" placeholder="Large" class="w-full max-w-xs px-5 py-3 text-lg rounded-xl border border-border bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all" />`;
 
 const inputProps: PropDefinition[] = [
-    {
-        name: "type",
-        type: '"text" | "email" | "password" | "number" | ...',
-        defaultValue: '"text"',
-        description: "Tipo do input HTML"
-    },
-    {
-        name: "placeholder",
-        type: "string",
-        description: "Texto de placeholder"
-    },
-    {
-        name: "disabled",
-        type: "boolean",
-        defaultValue: "false",
-        description: "Desabilita o input"
-    },
-    {
-        name: "error",
-        type: "boolean",
-        defaultValue: "false",
-        description: "Aplica estilo de erro"
-    },
-    {
-        name: "size",
-        type: '"sm" | "md" | "lg"',
-        defaultValue: '"md"',
-        description: "Tamanho do input"
-    },
+  {
+    name: "type",
+    type: '"text" | "email" | "password" | "number" | ...',
+    defaultValue: '"text"',
+    description: "Tipo do input HTML",
+  },
+  {
+    name: "placeholder",
+    type: "string",
+    description: "Texto de placeholder",
+  },
+  {
+    name: "disabled",
+    type: "boolean",
+    defaultValue: "false",
+    description: "Desabilita o input",
+  },
+  {
+    name: "error",
+    type: "boolean",
+    defaultValue: "false",
+    description: "Aplica estilo de erro",
+  },
+  {
+    name: "size",
+    type: '"sm" | "md" | "lg"',
+    defaultValue: '"md"',
+    description: "Tamanho do input",
+  },
 ];
 
 export default function InputPage() {
-    return (
-        <div className="min-h-screen bg-[var(--background)] text-[var(--foreground)]">
-            <main className="container mx-auto px-4 sm:px-8 pt-10 pb-8">
-                <div className="max-w-6xl mx-auto space-y-12">
-                    {/* Hero removed */}
+  return (
+    <div className="min-h-screen bg-[var(--background)] text-[var(--foreground)]">
+      <main className="container mx-auto px-4 pt-10 pb-8 sm:px-8">
+        <div className="mx-auto max-w-6xl space-y-12">
+          {/* Hero removed */}
 
-                    {/* Tipos */}
-                    <ComponentShowcase
-                        title="Tipos"
-                        description="Diferentes tipos de input para validação específica"
-                        code={inputTypesCode}
-                        previewClassName="!flex-col !items-center gap-4"
-                    >
-                        <Input type="text" placeholder="Digite seu nome..." className="max-w-xs" />
-                        <Input type="email" placeholder="seu@email.com" className="max-w-xs" />
-                        <Input type="password" placeholder="Senha secreta" className="max-w-xs" />
-                    </ComponentShowcase>
+          {/* Tipos */}
+          <ComponentShowcase
+            title="Tipos"
+            description="Diferentes tipos de input para validação específica"
+            code={inputTypesCode}
+            previewClassName="!flex-col !items-center gap-4"
+          >
+            <Input type="text" placeholder="Digite seu nome..." className="max-w-xs" />
+            <Input type="email" placeholder="seu@email.com" className="max-w-xs" />
+            <Input type="password" placeholder="Senha secreta" className="max-w-xs" />
+          </ComponentShowcase>
 
-                    {/* Estados */}
-                    <ComponentShowcase
-                        title="Estados"
-                        description="Estados visuais do input (normal, error, disabled)"
-                        code={inputStatesCode}
-                        previewClassName="!flex-col !items-center gap-4"
-                    >
-                        <Input type="text" placeholder="Normal" className="max-w-xs" />
-                        <Input type="text" placeholder="Email inválido" className="max-w-xs border-destructive focus-visible:ring-destructive" />
-                        <Input type="text" placeholder="Desabilitado" disabled className="max-w-xs" />
-                    </ComponentShowcase>
+          {/* Estados */}
+          <ComponentShowcase
+            title="Estados"
+            description="Estados visuais do input (normal, error, disabled)"
+            code={inputStatesCode}
+            previewClassName="!flex-col !items-center gap-4"
+          >
+            <Input type="text" placeholder="Normal" className="max-w-xs" />
+            <Input
+              type="text"
+              placeholder="Email inválido"
+              className="border-destructive focus-visible:ring-destructive max-w-xs"
+            />
+            <Input type="text" placeholder="Desabilitado" disabled className="max-w-xs" />
+          </ComponentShowcase>
 
-                    {/* Tamanhos */}
-                    <ComponentShowcase
-                        title="Tamanhos"
-                        description="Três tamanhos disponíveis (simulados via classe por enquanto)"
-                        code={inputSizesCode}
-                        previewClassName="!flex-col !items-center gap-4"
-                    >
-                        <Input type="text" placeholder="Small" className="max-w-xs h-8 text-xs" />
-                        <Input type="text" placeholder="Medium" className="max-w-xs" />
-                        <Input type="text" placeholder="Large" className="max-w-xs h-12 text-lg" />
-                    </ComponentShowcase>
+          {/* Tamanhos */}
+          <ComponentShowcase
+            title="Tamanhos"
+            description="Três tamanhos disponíveis (simulados via classe por enquanto)"
+            code={inputSizesCode}
+            previewClassName="!flex-col !items-center gap-4"
+          >
+            <Input type="text" placeholder="Small" className="h-8 max-w-xs text-xs" />
+            <Input type="text" placeholder="Medium" className="max-w-xs" />
+            <Input type="text" placeholder="Large" className="h-12 max-w-xs text-lg" />
+          </ComponentShowcase>
 
-                    {/* API Reference */}
-                    <div className="pt-12 border-t border-[var(--border)]">
-                        <PropsTable props={inputProps} />
-                    </div>
-                </div>
-            </main>
+          {/* API Reference */}
+          <div className="border-t border-[var(--border)] pt-12">
+            <PropsTable props={inputProps} />
+          </div>
         </div>
-    );
+      </main>
+    </div>
+  );
 }

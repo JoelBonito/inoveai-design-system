@@ -4,7 +4,7 @@ This project is optimized for deployment on **Vercel**, the creators of Next.js.
 
 ## ⚠️ Important Pre-requisite
 
-The documentation content relies on assets extracted from the Design System source files. 
+The documentation content relies on assets extracted from the Design System source files.
 Since the source files (e.g., `stitch_design_system_inove_ai_v1 2`) reside locally on your machine and **NOT** in the git repository headers, you **CANNOT** run the extraction script during the build process on Vercel.
 
 **You must generate the data locally and commit it.**
@@ -31,9 +31,11 @@ Since the source files (e.g., `stitch_design_system_inove_ai_v1 2`) reside local
     npm i -g vercel
     ```
 3.  **Deploy via Command Line:**
+
     ```bash
     vercel
     ```
+
     Follow the prompts. Use default settings.
 
 4.  **Deploy via Dashboard:**
@@ -46,12 +48,13 @@ Since the source files (e.g., `stitch_design_system_inove_ai_v1 2`) reside local
 
 ## ⚙️ Environment Variables
 
-No environment variables are strictly required for the public pages. 
+No environment variables are strictly required for the public pages.
 However, if you add authentication or private data later, configure them in **Project Settings > Environment Variables**.
 
 ## 🔄 Updates
 
 When the Design System source changes:
+
 1.  Pull the new DS version locally.
 2.  Run `npx tsx scripts/extract-all.ts`.
 3.  Commit and Push.

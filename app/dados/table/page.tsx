@@ -44,101 +44,109 @@ const tableBasicCode = `<!-- Table Basic -->
 </div>`;
 
 const tableProps: PropDefinition[] = [
-    {
-        name: "data",
-        type: "T[]",
-        description: "Array de dados para preencher a tabela"
-    },
-    {
-        name: "columns",
-        type: "ColumnDef[]",
-        description: "Definição das colunas (header, accessor, cell)"
-    },
-    {
-        name: "striped",
-        type: "boolean",
-        defaultValue: "false",
-        description: "Alterna a cor de fundo das linhas"
-    },
-    {
-        name: "hoverable",
-        type: "boolean",
-        defaultValue: "true",
-        description: "Destaca a linha ao passar o mouse"
-    },
+  {
+    name: "data",
+    type: "T[]",
+    description: "Array de dados para preencher a tabela",
+  },
+  {
+    name: "columns",
+    type: "ColumnDef[]",
+    description: "Definição das colunas (header, accessor, cell)",
+  },
+  {
+    name: "striped",
+    type: "boolean",
+    defaultValue: "false",
+    description: "Alterna a cor de fundo das linhas",
+  },
+  {
+    name: "hoverable",
+    type: "boolean",
+    defaultValue: "true",
+    description: "Destaca a linha ao passar o mouse",
+  },
 ];
 
 function TableBasicPreview() {
-    const thClass = "px-6 py-3 text-xs uppercase text-muted-foreground bg-card";
-    const tdClass = "px-6 py-4";
-    const trClass = "bg-popover border-b border-border last:border-0";
-    const thRowClass = "px-6 py-4 font-medium text-foreground whitespace-nowrap";
+  const thClass = "px-6 py-3 text-xs uppercase text-muted-foreground bg-card";
+  const tdClass = "px-6 py-4";
+  const trClass = "bg-popover border-b border-border last:border-0";
+  const thRowClass = "px-6 py-4 font-medium text-foreground whitespace-nowrap";
 
-    return (
-        <div className="relative overflow-x-auto rounded-lg border border-border w-full">
-            <table className="w-full text-sm text-left text-muted-foreground">
-                <thead className={thClass}>
-                    <tr>
-                        <th scope="col" className="px-6 py-3">Nome do Produto</th>
-                        <th scope="col" className="px-6 py-3">Cor</th>
-                        <th scope="col" className="px-6 py-3">Categoria</th>
-                        <th scope="col" className="px-6 py-3">Preço</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr className={trClass}>
-                        <th scope="row" className={thRowClass}>
-                            MacBook Pro
-                        </th>
-                        <td className={tdClass}>Prata</td>
-                        <td className={tdClass}>Laptop</td>
-                        <td className={tdClass}>R$ 12.999</td>
-                    </tr>
-                    <tr className={trClass}>
-                        <th scope="row" className={thRowClass}>
-                            Magic Mouse 2
-                        </th>
-                        <td className={tdClass}>Branco</td>
-                        <td className={tdClass}>Acessório</td>
-                        <td className={tdClass}>R$ 599</td>
-                    </tr>
-                    <tr className="bg-popover">
-                        <th scope="row" className={thRowClass}>
-                            Monitor 4K
-                        </th>
-                        <td className={tdClass}>Preto</td>
-                        <td className={tdClass}>Monitor</td>
-                        <td className={tdClass}>R$ 2.499</td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-    );
+  return (
+    <div className="border-border relative w-full overflow-x-auto rounded-lg border">
+      <table className="text-muted-foreground w-full text-left text-sm">
+        <thead className={thClass}>
+          <tr>
+            <th scope="col" className="px-6 py-3">
+              Nome do Produto
+            </th>
+            <th scope="col" className="px-6 py-3">
+              Cor
+            </th>
+            <th scope="col" className="px-6 py-3">
+              Categoria
+            </th>
+            <th scope="col" className="px-6 py-3">
+              Preço
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr className={trClass}>
+            <th scope="row" className={thRowClass}>
+              MacBook Pro
+            </th>
+            <td className={tdClass}>Prata</td>
+            <td className={tdClass}>Laptop</td>
+            <td className={tdClass}>R$ 12.999</td>
+          </tr>
+          <tr className={trClass}>
+            <th scope="row" className={thRowClass}>
+              Magic Mouse 2
+            </th>
+            <td className={tdClass}>Branco</td>
+            <td className={tdClass}>Acessório</td>
+            <td className={tdClass}>R$ 599</td>
+          </tr>
+          <tr className="bg-popover">
+            <th scope="row" className={thRowClass}>
+              Monitor 4K
+            </th>
+            <td className={tdClass}>Preto</td>
+            <td className={tdClass}>Monitor</td>
+            <td className={tdClass}>R$ 2.499</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  );
 }
 
 export default function TablePage() {
-    return (
-        <div className="min-h-screen bg-[var(--background)] text-[var(--foreground)]">
-            <main className="container mx-auto px-4 sm:px-8 pt-10 pb-8">
-                <div className="max-w-6xl mx-auto space-y-12">
-                    {/* Hero removed */}
+  return (
+    <div className="min-h-screen bg-[var(--background)] text-[var(--foreground)]">
+      <main className="container mx-auto px-4 pt-10 pb-8 sm:px-8">
+        <div className="mx-auto max-w-6xl space-y-12">
+          {/* Hero removed */}
 
-                    {/* Basic */}
-                    <ComponentShowcase
-                        title="Tabela Básica"
-                        description="Estrutura padrão de tabela"
-                        code={tableBasicCode}
-                        previewClassName="!block"
-                    >
-                        <TableBasicPreview />
-                    </ComponentShowcase>
+          {/* Basic */}
+          <ComponentShowcase
+            title="Tabela Básica"
+            description="Estrutura padrão de tabela"
+            code={tableBasicCode}
+            previewClassName="!block"
+          >
+            <TableBasicPreview />
+          </ComponentShowcase>
 
-                    {/* API Reference */}
-                    <div className="pt-12 border-t border-[var(--border)]">
-                        <PropsTable props={tableProps} />
-                    </div>
-                </div>
-            </main>
+          {/* API Reference */}
+          <div className="border-t border-[var(--border)] pt-12">
+            <PropsTable props={tableProps} />
+          </div>
         </div>
-    );
+      </main>
+    </div>
+  );
 }

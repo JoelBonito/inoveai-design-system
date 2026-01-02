@@ -66,32 +66,43 @@ function NavbarPreview() {
   const textSecondary = "text-muted-foreground";
 
   return (
-    <nav className={`w-full bg-background border-b border-border`}>
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between h-16">
+    <nav className={`bg-background border-border w-full border-b`}>
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div className="flex h-16 justify-between">
           <div className="flex">
-            <div className="flex-shrink-0 flex items-center">
-              <span className="text-xl font-bold text-primary">Logo</span>
+            <div className="flex flex-shrink-0 items-center">
+              <span className="text-primary text-xl font-bold">Logo</span>
             </div>
             <div className="hidden sm:ml-6 sm:flex sm:space-x-8">
-              <a href="#" className={`border-primary ${textPrimary} inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium`}>
+              <a
+                href="#"
+                className={`border-primary ${textPrimary} inline-flex items-center border-b-2 px-1 pt-1 text-sm font-medium`}
+              >
                 Dashboard
               </a>
-              <a href="#" className={`border-transparent ${textSecondary} inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium`}>
+              <a
+                href="#"
+                className={`border-transparent ${textSecondary} inline-flex items-center border-b-2 px-1 pt-1 text-sm font-medium`}
+              >
                 Projetos
               </a>
-              <a href="#" className={`border-transparent ${textSecondary} inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium`}>
+              <a
+                href="#"
+                className={`border-transparent ${textSecondary} inline-flex items-center border-b-2 px-1 pt-1 text-sm font-medium`}
+              >
                 Equipe
               </a>
             </div>
           </div>
           <div className="flex items-center gap-4">
-            <button className={`p-1 rounded-full ${textSecondary}`}>
+            <button className={`rounded-full p-1 ${textSecondary}`}>
               <Bell className="h-6 w-6" />
             </button>
-            <div className="ml-3 relative">
-              <div className={`h-8 w-8 rounded-full ${'bg-muted'} flex items-center justify-center`}>
-                <span className={`text-sm font-medium ${'text-muted-foreground'}`}>JS</span>
+            <div className="relative ml-3">
+              <div
+                className={`h-8 w-8 rounded-full ${"bg-muted"} flex items-center justify-center`}
+              >
+                <span className={`text-sm font-medium ${"text-muted-foreground"}`}>JS</span>
               </div>
             </div>
           </div>
@@ -105,21 +116,38 @@ function SidebarPreview() {
   const bgSidebar = "bg-muted";
 
   return (
-    <div className={`flex h-64 border border-border rounded-lg overflow-hidden bg-background`}>
+    <div className={`border-border bg-background flex h-64 overflow-hidden rounded-lg border`}>
       {/* Sidebar */}
-      <div className={`w-64 ${bgSidebar} border-r border-border`}>
-        <div className={`p-4 border-b border-border`}>
-          <span className="font-bold text-lg text-primary">Inove AI</span>
+      <div className={`w-64 ${bgSidebar} border-border border-r`}>
+        <div className={`border-border border-b p-4`}>
+          <span className="text-primary text-lg font-bold">Inove AI</span>
         </div>
-        <div className="p-4 space-y-2">
-          <a href="#" className="block px-3 py-2 rounded-md bg-primary/10 text-primary text-sm font-medium">Home</a>
-          <a href="#" className={`block px-3 py-2 rounded-md ${"text-muted-foreground hover:bg-accent"} text-sm font-medium`}>Analytics</a>
-          <a href="#" className={`block px-3 py-2 rounded-md ${"text-muted-foreground hover:bg-accent"} text-sm font-medium`}>Settings</a>
+        <div className="space-y-2 p-4">
+          <a
+            href="#"
+            className="bg-primary/10 text-primary block rounded-md px-3 py-2 text-sm font-medium"
+          >
+            Home
+          </a>
+          <a
+            href="#"
+            className={`block rounded-md px-3 py-2 ${"text-muted-foreground hover:bg-accent"} text-sm font-medium`}
+          >
+            Analytics
+          </a>
+          <a
+            href="#"
+            className={`block rounded-md px-3 py-2 ${"text-muted-foreground hover:bg-accent"} text-sm font-medium`}
+          >
+            Settings
+          </a>
         </div>
       </div>
       {/* Content */}
-      <div className={`flex-1 p-8 bg-background`}>
-        <div className={`h-full border-2 border-dashed border-border rounded-lg flex items-center justify-center`}>
+      <div className={`bg-background flex-1 p-8`}>
+        <div
+          className={`border-border flex h-full items-center justify-center rounded-lg border-2 border-dashed`}
+        >
           <span className="text-muted-foreground">Conteúdo Principal</span>
         </div>
       </div>
@@ -130,8 +158,8 @@ function SidebarPreview() {
 export default function HeadersPage() {
   return (
     <div className="min-h-screen bg-[var(--background)] text-[var(--foreground)]">
-      <main className="container mx-auto px-4 sm:px-8 pt-10 pb-8">
-        <div className="max-w-6xl mx-auto space-y-12">
+      <main className="container mx-auto px-4 pt-10 pb-8 sm:px-8">
+        <div className="mx-auto max-w-6xl space-y-12">
           {/* Hero removed */}
 
           {/* Navbar */}

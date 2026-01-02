@@ -73,27 +73,27 @@ const modalProps: PropDefinition[] = [
   {
     name: "isOpen",
     type: "boolean",
-    description: "Controla a visibilidade do modal"
+    description: "Controla a visibilidade do modal",
   },
   {
     name: "onClose",
     type: "() => void",
-    description: "Função chamada ao fechar o modal"
+    description: "Função chamada ao fechar o modal",
   },
   {
     name: "title",
     type: "string",
-    description: "Título do modal"
+    description: "Título do modal",
   },
   {
     name: "children",
     type: "ReactNode",
-    description: "Conteúdo do corpo do modal"
+    description: "Conteúdo do corpo do modal",
   },
   {
     name: "confirmVariant",
     type: "'primary' | 'destructive'",
-    description: "Estilo do botão de ação principal"
+    description: "Estilo do botão de ação principal",
   },
 ];
 
@@ -103,36 +103,56 @@ function ModalBasicPreview() {
   const secondaryBg = "bg-popover";
   const ring = "ring-border";
   const descColor = "text-muted-foreground";
-  const iconWrapper = 'bg-primary/10';
-  const iconColor = 'text-primary';
-  const hoverSecondary = 'hover:bg-accent';
+  const iconWrapper = "bg-primary/10";
+  const iconColor = "text-primary";
+  const hoverSecondary = "hover:bg-accent";
 
   return (
-    <div className="relative z-10 p-12 flex justify-center">
+    <div className="relative z-10 flex justify-center p-12">
       {/* Simulation wrapper */}
-      <div className={`relative transform overflow-hidden rounded-lg ${modalBg} px-4 pb-4 pt-5 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg sm:p-6 border border-border`}>
-        <div className="absolute right-0 top-0 hidden pr-4 pt-4 sm:block">
-          <button type="button" className={`rounded-md ${modalBg} text-muted-foreground hover:text-foreground focus:outline-none`}>
+      <div
+        className={`relative transform overflow-hidden rounded-lg ${modalBg} border-border border px-4 pt-5 pb-4 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg sm:p-6`}
+      >
+        <div className="absolute top-0 right-0 hidden pt-4 pr-4 sm:block">
+          <button
+            type="button"
+            className={`rounded-md ${modalBg} text-muted-foreground hover:text-foreground focus:outline-none`}
+          >
             <span className="sr-only">Fechar</span>
             <X className="h-6 w-6" />
           </button>
         </div>
         <div className="sm:flex sm:items-start">
-          <div className={`mx-auto flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full sm:mx-0 sm:h-10 sm:w-10 ${iconWrapper}`}>
+          <div
+            className={`mx-auto flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full sm:mx-0 sm:h-10 sm:w-10 ${iconWrapper}`}
+          >
             <Info className={`h-6 w-6 ${iconColor}`} />
           </div>
-          <div className="mt-3 text-center sm:ml-4 sm:mt-0 sm:text-left">
-            <h3 className={`text-base font-semibold leading-6 text-foreground`}>Informação Importante</h3>
+          <div className="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left">
+            <h3 className={`text-foreground text-base leading-6 font-semibold`}>
+              Informação Importante
+            </h3>
             <div className="mt-2">
               <p className={`text-sm ${descColor}`}>
-                Você está prestes a realizar uma ação que pode impactar outros usuários. Por favor, verifique os dados antes de continuar.
+                Você está prestes a realizar uma ação que pode impactar outros usuários. Por favor,
+                verifique os dados antes de continuar.
               </p>
             </div>
           </div>
         </div>
         <div className="mt-5 sm:mt-4 sm:flex sm:flex-row-reverse">
-          <button type="button" className="inline-flex w-full justify-center rounded-md bg-primary px-3 py-2 text-sm font-semibold text-primary-foreground shadow-sm hover:bg-primary/90 sm:ml-3 sm:w-auto">Confirmar</button>
-          <button type="button" className={`mt-3 inline-flex w-full justify-center rounded-md ${secondaryBg} px-3 py-2 text-sm font-semibold text-foreground shadow-sm ring-1 ring-inset ${ring} ${hoverSecondary} sm:mt-0 sm:w-auto`}>Cancelar</button>
+          <button
+            type="button"
+            className="bg-primary text-primary-foreground hover:bg-primary/90 inline-flex w-full justify-center rounded-md px-3 py-2 text-sm font-semibold shadow-sm sm:ml-3 sm:w-auto"
+          >
+            Confirmar
+          </button>
+          <button
+            type="button"
+            className={`mt-3 inline-flex w-full justify-center rounded-md ${secondaryBg} text-foreground px-3 py-2 text-sm font-semibold shadow-sm ring-1 ring-inset ${ring} ${hoverSecondary} sm:mt-0 sm:w-auto`}
+          >
+            Cancelar
+          </button>
         </div>
       </div>
     </div>
@@ -145,29 +165,46 @@ function ModalDestructivePreview() {
   const secondaryBg = "bg-popover";
   const ring = "ring-border";
   const descColor = "text-muted-foreground";
-  const iconWrapper = 'bg-destructive/10';
-  const iconColor = 'text-destructive';
-  const hoverSecondary = 'hover:bg-accent';
+  const iconWrapper = "bg-destructive/10";
+  const iconColor = "text-destructive";
+  const hoverSecondary = "hover:bg-accent";
 
   return (
-    <div className="relative z-10 p-12 flex justify-center">
-      <div className={`relative transform overflow-hidden rounded-lg ${modalBg} px-4 pb-4 pt-5 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg sm:p-6 border border-border`}>
+    <div className="relative z-10 flex justify-center p-12">
+      <div
+        className={`relative transform overflow-hidden rounded-lg ${modalBg} border-border border px-4 pt-5 pb-4 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg sm:p-6`}
+      >
         <div className="sm:flex sm:items-start">
-          <div className={`mx-auto flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full sm:mx-0 sm:h-10 sm:w-10 ${iconWrapper}`}>
+          <div
+            className={`mx-auto flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full sm:mx-0 sm:h-10 sm:w-10 ${iconWrapper}`}
+          >
             <AlertTriangle className={`h-6 w-6 ${iconColor}`} />
           </div>
-          <div className="mt-3 text-center sm:ml-4 sm:mt-0 sm:text-left">
-            <h3 className={`text-base font-semibold leading-6 text-foreground`}>Desativar conta?</h3>
+          <div className="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left">
+            <h3 className={`text-foreground text-base leading-6 font-semibold`}>
+              Desativar conta?
+            </h3>
             <div className="mt-2">
               <p className={`text-sm ${descColor}`}>
-                Tem certeza que deseja desativar sua conta? Todos os seus dados serão removidos permanentemente. Esta ação não pode ser desfeita.
+                Tem certeza que deseja desativar sua conta? Todos os seus dados serão removidos
+                permanentemente. Esta ação não pode ser desfeita.
               </p>
             </div>
           </div>
         </div>
         <div className="mt-5 sm:mt-4 sm:flex sm:flex-row-reverse">
-          <button type="button" className="inline-flex w-full justify-center rounded-md bg-destructive px-3 py-2 text-sm font-semibold text-destructive-foreground shadow-sm hover:bg-destructive/90 sm:ml-3 sm:w-auto">Desativar</button>
-          <button type="button" className={`mt-3 inline-flex w-full justify-center rounded-md ${secondaryBg} px-3 py-2 text-sm font-semibold text-foreground shadow-sm ring-1 ring-inset ${ring} ${hoverSecondary} sm:mt-0 sm:w-auto`}>Cancelar</button>
+          <button
+            type="button"
+            className="bg-destructive text-destructive-foreground hover:bg-destructive/90 inline-flex w-full justify-center rounded-md px-3 py-2 text-sm font-semibold shadow-sm sm:ml-3 sm:w-auto"
+          >
+            Desativar
+          </button>
+          <button
+            type="button"
+            className={`mt-3 inline-flex w-full justify-center rounded-md ${secondaryBg} text-foreground px-3 py-2 text-sm font-semibold shadow-sm ring-1 ring-inset ${ring} ${hoverSecondary} sm:mt-0 sm:w-auto`}
+          >
+            Cancelar
+          </button>
         </div>
       </div>
     </div>
@@ -177,8 +214,8 @@ function ModalDestructivePreview() {
 export default function ModalPage() {
   return (
     <div className="min-h-screen bg-[var(--background)] text-[var(--foreground)]">
-      <main className="container mx-auto px-4 sm:px-8 pt-10 pb-8">
-        <div className="max-w-6xl mx-auto space-y-12">
+      <main className="container mx-auto px-4 pt-10 pb-8 sm:px-8">
+        <div className="mx-auto max-w-6xl space-y-12">
           {/* Hero removed */}
 
           {/* Basic */}
@@ -200,7 +237,7 @@ export default function ModalPage() {
           </ComponentShowcase>
 
           {/* API Reference */}
-          <div className="pt-12 border-t border-[var(--border)]">
+          <div className="border-t border-[var(--border)] pt-12">
             <PropsTable props={modalProps} />
           </div>
         </div>

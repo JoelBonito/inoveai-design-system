@@ -12,15 +12,8 @@
       "screenshot": "/screenshots/00_autocomplete_light_v3.png",
       "htmlPath": "/html/autocomplete_light.html"
     },
-    "tokensUsed": [
-      "primary",
-      "surface-dark",
-      "text-secondary"
-    ],
-    "tags": [
-      "form",
-      "ui"
-    ]
+    "tokensUsed": ["primary", "surface-dark", "text-secondary"],
+    "tags": ["form", "ui"]
   },
   {
     "id": "badge",
@@ -35,15 +28,8 @@
       "screenshot": "/screenshots/01_badge_light_v3.png",
       "htmlPath": "/html/badge_light.html"
     },
-    "tokensUsed": [
-      "primary",
-      "surface-dark",
-      "text-secondary"
-    ],
-    "tags": [
-      "feedback",
-      "ui"
-    ]
+    "tokensUsed": ["primary", "surface-dark", "text-secondary"],
+    "tags": ["feedback", "ui"]
   },
   {
     "id": "breadcrumbs",
@@ -58,15 +44,8 @@
       "screenshot": "/screenshots/02_breadcrumbs_light_v3.png",
       "htmlPath": "/html/breadcrumbs_light.html"
     },
-    "tokensUsed": [
-      "primary",
-      "surface-dark",
-      "text-secondary"
-    ],
-    "tags": [
-      "navigation",
-      "ui"
-    ]
+    "tokensUsed": ["primary", "surface-dark", "text-secondary"],
+    "tags": ["navigation", "ui"]
   },
   {
     "id": "date-picker",
@@ -81,15 +60,8 @@
       "screenshot": "/screenshots/03_date-picker_light_v3.png",
       "htmlPath": "/html/date-picker_light.html"
     },
-    "tokensUsed": [
-      "primary",
-      "surface-dark",
-      "text-secondary"
-    ],
-    "tags": [
-      "form",
-      "ui"
-    ]
+    "tokensUsed": ["primary", "surface-dark", "text-secondary"],
+    "tags": ["form", "ui"]
   },
   {
     "id": "select",
@@ -104,15 +76,8 @@
       "screenshot": "/screenshots/04_select_light_v3.png",
       "htmlPath": "/html/select_light.html"
     },
-    "tokensUsed": [
-      "primary",
-      "surface-dark",
-      "text-secondary"
-    ],
-    "tags": [
-      "form",
-      "ui"
-    ]
+    "tokensUsed": ["primary", "surface-dark", "text-secondary"],
+    "tags": ["form", "ui"]
   },
   {
     "id": "table",
@@ -127,15 +92,8 @@
       "screenshot": "/screenshots/05_table_light_v3.png",
       "htmlPath": "/html/table_light.html"
     },
-    "tokensUsed": [
-      "primary",
-      "surface-dark",
-      "text-secondary"
-    ],
-    "tags": [
-      "data",
-      "ui"
-    ]
+    "tokensUsed": ["primary", "surface-dark", "text-secondary"],
+    "tags": ["data", "ui"]
   },
   {
     "id": "tabs",
@@ -150,15 +108,8 @@
       "screenshot": "/screenshots/06_tabs_light_v3.png",
       "htmlPath": "/html/tabs_light.html"
     },
-    "tokensUsed": [
-      "primary",
-      "surface-dark",
-      "text-secondary"
-    ],
-    "tags": [
-      "navigation",
-      "ui"
-    ]
+    "tokensUsed": ["primary", "surface-dark", "text-secondary"],
+    "tags": ["navigation", "ui"]
   },
   {
     "id": "essentials",
@@ -173,15 +124,8 @@
       "screenshot": "/screenshots/07_essentials_light_v3.png",
       "htmlPath": "/html/essentials_light.html"
     },
-    "tokensUsed": [
-      "primary",
-      "surface-dark",
-      "text-secondary"
-    ],
-    "tags": [
-      "core",
-      "ui"
-    ]
+    "tokensUsed": ["primary", "surface-dark", "text-secondary"],
+    "tags": ["core", "ui"]
   },
   {
     "id": "empty-state",
@@ -196,15 +140,8 @@
       "screenshot": "/screenshots/08_empty-state_light_v3.png",
       "htmlPath": "/html/empty-state_light.html"
     },
-    "tokensUsed": [
-      "primary",
-      "surface-dark",
-      "text-secondary"
-    ],
-    "tags": [
-      "feedback",
-      "ui"
-    ]
+    "tokensUsed": ["primary", "surface-dark", "text-secondary"],
+    "tags": ["feedback", "ui"]
   },
   {
     "id": "file-upload",
@@ -219,15 +156,8 @@
       "screenshot": "/screenshots/09_file-upload_light_v3.png",
       "htmlPath": "/html/file-upload_light.html"
     },
-    "tokensUsed": [
-      "primary",
-      "surface-dark",
-      "text-secondary"
-    ],
-    "tags": [
-      "form",
-      "ui"
-    ]
+    "tokensUsed": ["primary", "surface-dark", "text-secondary"],
+    "tags": ["form", "ui"]
   },
   {
     "id": "button",
@@ -242,31 +172,11 @@
       "screenshot": "/screenshots/07_essentials_light_v3.png",
       "htmlPath": "/html/button_light.html"
     },
-    "tokensUsed": [
-      "primary",
-      "surface-dark",
-      "text-white",
-      "radius"
-    ],
-    "tags": [
-      "core",
-      "ui",
-      "interaction"
-    ],
+    "tokensUsed": ["primary", "surface-dark", "text-white", "radius"],
+    "tags": ["core", "ui", "interaction"],
     "props": {
-      "variant": [
-        "primary",
-        "secondary",
-        "outline",
-        "ghost",
-        "destructive"
-      ],
-      "size": [
-        "sm",
-        "md",
-        "lg",
-        "icon"
-      ],
+      "variant": ["primary", "secondary", "outline", "ghost", "destructive"],
+      "size": ["sm", "md", "lg", "icon"],
       "disabled": "boolean",
       "loading": "boolean"
     }
@@ -284,24 +194,10 @@
       "screenshot": "/screenshots/07_essentials_light_v3.png",
       "htmlPath": "/html/input_light.html"
     },
-    "tokensUsed": [
-      "surface-dark",
-      "border-dark",
-      "text-white",
-      "primary"
-    ],
-    "tags": [
-      "form",
-      "ui",
-      "input"
-    ],
+    "tokensUsed": ["surface-dark", "border-dark", "text-white", "primary"],
+    "tags": ["form", "ui", "input"],
     "props": {
-      "type": [
-        "text",
-        "password",
-        "email",
-        "number"
-      ],
+      "type": ["text", "password", "email", "number"],
       "placeholder": "string",
       "error": "boolean",
       "disabled": "boolean"
@@ -320,16 +216,8 @@
       "screenshot": "/screenshots/07_essentials_light_v3.png",
       "htmlPath": "/html/checkbox_light.html"
     },
-    "tokensUsed": [
-      "primary",
-      "surface-dark",
-      "border-dark"
-    ],
-    "tags": [
-      "form",
-      "ui",
-      "selection"
-    ],
+    "tokensUsed": ["primary", "surface-dark", "border-dark"],
+    "tags": ["form", "ui", "selection"],
     "props": {
       "checked": "boolean",
       "disabled": "boolean",
@@ -349,23 +237,12 @@
       "screenshot": "/screenshots/07_essentials_light_v3.png",
       "htmlPath": "/html/switch_light.html"
     },
-    "tokensUsed": [
-      "primary",
-      "surface-dark",
-      "success"
-    ],
-    "tags": [
-      "form",
-      "ui",
-      "toggles"
-    ],
+    "tokensUsed": ["primary", "surface-dark", "success"],
+    "tags": ["form", "ui", "toggles"],
     "props": {
       "checked": "boolean",
       "disabled": "boolean",
-      "size": [
-        "sm",
-        "md"
-      ]
+      "size": ["sm", "md"]
     }
   },
   {
@@ -381,16 +258,8 @@
       "screenshot": "/screenshots/14_chart_light_v3.png",
       "htmlPath": "/html/chart_light.html"
     },
-    "tokensUsed": [
-      "primary",
-      "surface-dark",
-      "text-secondary"
-    ],
-    "tags": [
-      "data",
-      "dashboard",
-      "ui"
-    ]
+    "tokensUsed": ["primary", "surface-dark", "text-secondary"],
+    "tags": ["data", "dashboard", "ui"]
   },
   {
     "id": "modal",
@@ -405,16 +274,8 @@
       "screenshot": "/screenshots/12_modal_light.png",
       "htmlPath": "/html/modal_light.html"
     },
-    "tokensUsed": [
-      "primary",
-      "surface-dark",
-      "border-dark"
-    ],
-    "tags": [
-      "feedback",
-      "overlay",
-      "ui"
-    ]
+    "tokensUsed": ["primary", "surface-dark", "border-dark"],
+    "tags": ["feedback", "overlay", "ui"]
   },
   {
     "id": "toast",
@@ -429,17 +290,8 @@
       "screenshot": "/screenshots/13_toast_light.png",
       "htmlPath": "/html/toast_light.html"
     },
-    "tokensUsed": [
-      "success",
-      "warning",
-      "error",
-      "surface-dark"
-    ],
-    "tags": [
-      "feedback",
-      "notification",
-      "ui"
-    ]
+    "tokensUsed": ["success", "warning", "error", "surface-dark"],
+    "tags": ["feedback", "notification", "ui"]
   },
   {
     "id": "pagination",
@@ -454,15 +306,8 @@
       "screenshot": "/screenshots/14_pagination_light.png",
       "htmlPath": "/html/pagination_light.html"
     },
-    "tokensUsed": [
-      "primary",
-      "surface-dark",
-      "border-dark"
-    ],
-    "tags": [
-      "navigation",
-      "ui"
-    ]
+    "tokensUsed": ["primary", "surface-dark", "border-dark"],
+    "tags": ["navigation", "ui"]
   },
   {
     "id": "tooltip",
@@ -477,16 +322,8 @@
       "screenshot": "/screenshots/15_tooltip_light.png",
       "htmlPath": "/html/tooltip_light.html"
     },
-    "tokensUsed": [
-      "surface-dark",
-      "text-secondary",
-      "border-dark"
-    ],
-    "tags": [
-      "feedback",
-      "overlay",
-      "ui"
-    ]
+    "tokensUsed": ["surface-dark", "text-secondary", "border-dark"],
+    "tags": ["feedback", "overlay", "ui"]
   },
   {
     "id": "icons-usage",
@@ -501,15 +338,8 @@
       "screenshot": "/screenshots/19_icons-usage_light_v3.png",
       "htmlPath": "/html/icons-usage_light.html"
     },
-    "tokensUsed": [
-      "primary",
-      "text-secondary"
-    ],
-    "tags": [
-      "design",
-      "icons",
-      "guide"
-    ]
+    "tokensUsed": ["primary", "text-secondary"],
+    "tags": ["design", "icons", "guide"]
   },
   {
     "id": "navigation-layout",
@@ -524,16 +354,8 @@
       "screenshot": "/screenshots/20_navigation-layout_light_v3.png",
       "htmlPath": "/html/navigation_light.html"
     },
-    "tokensUsed": [
-      "primary",
-      "surface-dark",
-      "border-dark"
-    ],
-    "tags": [
-      "navigation",
-      "layout",
-      "ui"
-    ]
+    "tokensUsed": ["primary", "surface-dark", "border-dark"],
+    "tags": ["navigation", "layout", "ui"]
   },
   {
     "id": "error-page",
@@ -548,16 +370,8 @@
       "screenshot": "/screenshots/18_error-page_light.png",
       "htmlPath": "/html/error-page_light.html"
     },
-    "tokensUsed": [
-      "error",
-      "surface-dark",
-      "text-secondary"
-    ],
-    "tags": [
-      "feedback",
-      "error",
-      "ui"
-    ]
+    "tokensUsed": ["error", "surface-dark", "text-secondary"],
+    "tags": ["feedback", "error", "ui"]
   },
   {
     "id": "design-tokens",
@@ -572,15 +386,7 @@
       "screenshot": "/screenshots/19_design-tokens_light.png",
       "htmlPath": "/html/design-tokens_light.html"
     },
-    "tokensUsed": [
-      "primary",
-      "surface-dark",
-      "border-dark"
-    ],
-    "tags": [
-      "design",
-      "tokens",
-      "reference"
-    ]
+    "tokensUsed": ["primary", "surface-dark", "border-dark"],
+    "tags": ["design", "tokens", "reference"]
   }
 ]

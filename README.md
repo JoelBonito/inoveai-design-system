@@ -1,112 +1,125 @@
-# 🎨 Stitch Design System Docs
+# 🎨 Stitch Design System Docs v6.0
 
-A comprehensive documentation website for the Stitch Design System, built with **Next.js 14**, **TypeScript**, and **Tailwind CSS**. 
-Designed to be the single source of truth for developers and designers.
+Uma documentação abrangente para o Stitch Design System, construída com **Next.js 16**, **React 19**, **TypeScript** e **Tailwind CSS v4**.
+Projetado para ser a fonte única de verdade para desenvolvedores e designers.
 
-## 🚀 Features
+## ✨ O Que Há de Novo na v6.0
+
+- 🎨 **Sistema de Cores OKLCH**: Mais de 60 cores migradas de HEX para OKLCH para uniformidade perceptual e suporte a gamut P3
+- 🏗️ **Tokens de Design em 3 Camadas**: Seguindo especificação W3C DTCG v2025.10 (Primitivo → Semântico → Componente)
+- ♿ **Compatível com WCAG 2.2 AA**: Pontuação de Acessibilidade Lighthouse 100/100, contraste APCA validado
+- 🛠️ **DX Aprimorada**: Prettier com plugin Tailwind, tooling melhorado
+- 🎭 **Suporte a Motion-Reduce**: Respeita preferências do usuário por movimento reduzido
+
+## 🚀 Funcionalidades
 
 ### Core
-- ✅ **Component Gallery**: Interactive grid/list view with search & filtering.
-- ✅ **Global Search (Cmd+K)**: Quick navigation to any component or resource.
-- ✅ **Component Detail Pages**: Live screenshots (Dark/Light), code snippets, and token usage.
-- ✅ **Design Tokens**: Automated extraction of colors, typography, and spacing from the source.
 
-### Advanced Resources
-- 🎨 **Color Palette Generator**: Automatic 50-950 shade generation with contrast checking.
-- 📐 **Grid System**: Interactive layout guide and breakpoint visualization.
-- ✨ **Animation Library**: Standardized Framer Motion patterns with copy-paste snippets.
-- ♿ **Accessibility Tools**: Integrated WCAG Contrast Checker and best practices checklist.
-- 🧩 **Icon Library**: Dual-search for Material Symbols and Lucide React icons.
-- 💻 **Code Playground**: Monaco Editor with live HTML/Tailwind preview.
+- ✅ **Galeria de Componentes**: Visualização interativa em grade/lista com busca e filtragem.
+- ✅ **Busca Global (Cmd+K)**: Navegação rápida para qualquer componente ou recurso.
+- ✅ **Páginas de Detalhes**: Screenshots ao vivo (Dark/Light), snippets de código e uso de tokens.
+- ✅ **Design Tokens**: Extração automatizada de cores, tipografia e espaçamento da fonte.
+
+### Recursos Avançados
+
+- 🎨 **Gerador de Paleta de Cores**: Geração automática de tons 50-950 com verificação de contraste.
+- 📐 **Sistema de Grid**: Guia de layout interativo e visualização de breakpoints.
+- ✨ **Biblioteca de Animação**: Padrões padronizados do Framer Motion com snippets copy-paste.
+- ♿ **Ferramentas de Acessibilidade**: Verificador de Contraste WCAG integrado e checklist de melhores práticas.
+- 🧩 **Biblioteca de Ícones**: Busca dupla para Material Symbols e ícones Lucide React.
+- 💻 **Playground de Código**: Editor Monaco com preview ao vivo de HTML/Tailwind.
 
 ## 📦 Tech Stack
 
-- **Framework**: [Next.js 14](https://nextjs.org/) (App Router)
-- **Language**: [TypeScript](https://www.typescriptlang.org/)
-- **Styling**: [Tailwind CSS](https://tailwindcss.com/)
-- **Animation**: [Framer Motion](https://www.framer.com/motion/)
+- **Framework**: [Next.js 16](https://nextjs.org/) (App Router + React 19)
+- **Linguagem**: [TypeScript](https://www.typescriptlang.org/) (modo estrito)
+- **Estilização**: [Tailwind CSS v4](https://tailwindcss.com/) (configuração CSS-first)
+- **Sistema de Cores**: OKLCH (uniformidade perceptual + gamut P3)
+- **Animação**: [Framer Motion](https://www.framer.com/motion/)
 - **Editor**: [Monaco Editor](https://microsoft.github.io/monaco-editor/)
 - **Utils**: `chroma-js`, `wcag-contrast`, `cmdk`, `lucide-react`
 
-## 🏗️ Project Structure
+## 🏗️ Estrutura do Projeto
 
 ```
 stitch-design-system-docs/
 ├── app/
-│   ├── page.tsx                 # Home: Component Gallery
+│   ├── page.tsx                 # Home: Galeria de Componentes
 │   ├── tokens/page.tsx          # Design Tokens
-│   ├── colors/page.tsx          # Extended Palette
-│   ├── icons/page.tsx           # Icon Browser
-│   ├── animations/page.tsx      # Motion Library
+│   ├── colors/page.tsx          # Paleta Estendida
+│   ├── icons/page.tsx           # Navegador de Ícones
+│   ├── animations/page.tsx      # Biblioteca de Motion
 │   ├── grid/page.tsx            # Layout & Grid
-│   ├── accessibility/page.tsx   # A11y Tools
-│   ├── playground/page.tsx      # Live Code Editor
-│   └── components/[slug]/       # Dynamic Component Details
+│   ├── accessibility/page.tsx   # Ferramentas A11y
+│   ├── playground/page.tsx      # Editor de Código ao Vivo
+│   └── components/[slug]/       # Detalhes Dinâmicos de Componentes
 ├── components/
-│   ├── ui/                      # Reusable UI components (CommandMenu, etc.)
-│   └── layout/                  # Layout wrappers
+│   ├── ui/                      # Componentes UI Reutilizáveis (CommandMenu, etc.)
+│   └── layout/                  # Wrappers de Layout
 ├── data/
-│   ├── components.json          # Auto-generated metadata
-│   └── tokens.json              # Auto-generated tokens
+│   ├── components.json          # Metadados gerados automaticamente
+│   └── tokens.json              # Tokens gerados automaticamente
 ├── public/
-│   ├── screenshots/             # Extracted screenshots
-│   └── html/                    # Extracted code
+│   ├── screenshots/             # Screenshots extraídos
+│   └── html/                    # Código extraído
 └── scripts/
-    └── extract-all.ts           # Core extraction logic
+    └── extract-all.ts           # Lógica central de extração
 ```
 
-## 🛠️ Setup & Development
+## 🛠️ Instalação e Desenvolvimento
 
-### Prerequisites
-- Node.js 18+ 
-- npm or yarn
+### Pré-requisitos
 
-### Installation
+- Node.js 18+
+- npm ou yarn
+
+### Instalação
 
 ```bash
-# Clone the repository
-git clone <your-repo-url>
+# Clone o repositório
+git clone <url-do-seu-repo>
 cd stitch-design-system-docs
 
-# Install dependencies
+# Instale as dependências
 npm install
 
-# Run extraction script (scans source DS and generates data)
-# Note: Ensure source directory is configured in scripts/extract-all.ts
+# Execute o script de extração (escaneia o DS de origem e gera dados)
+# Nota: Garanta que o diretório de origem esteja configurado em scripts/extract-all.ts
 npx tsx scripts/extract-all.ts
 
-# Start dev server
+# Inicie o servidor de desenvolvimento
 npm run dev
 ```
 
-Visit [http://localhost:3000](http://localhost:3000) to see the site.
+Visite [http://localhost:3000](http://localhost:3000) para ver o site.
 
-### Build for Production
+### Build para Produção
 
 ```bash
 npm run build
 npm start
 ```
 
-## 📊 Automated Workflow
+## 📊 Workflow Automatizado
 
-The core of this project is the `extract-all.ts` script. It:
-1.  **Scans** the original Design System directory.
-2.  **Parses** HTML and CSS to extract Tokens (Colors, Fonts, Spacing).
-3.  **Metadata**: Generates `components.json` with categories, tags, and description.
-4.  **Assets**: Copies clean HTML and Screenshots to `public/`.
+O núcleo deste projeto é o script `extract-all.ts`. Ele:
 
-This ensures the documentation never drifts from the implementation.
+1.  **Escaneia** o diretório original do Design System.
+2.  **Analisa** HTML e CSS para extrair Tokens (Cores, Fontes, Espaçamento).
+3.  **Metadados**: Gera `components.json` com categorias, tags e descrição.
+4.  **Assets**: Copia HTML limpo e Screenshots para `public/`.
 
-## 🚀 Deployment
+Isso garante que a documentação nunca desvie da implementação.
 
-The project is optimized for **Vercel**.
-See [DEPLOY.md](./DEPLOY.md) for detailed instructions.
+## 🚀 Deploy
 
-## 📝 License
+O projeto é otimizado para **Vercel**.
+Veja [DEPLOY.md](./DEPLOY.md) para instruções detalhadas.
+
+## 📝 Licença
 
 MIT
 
-## 🙏 Credits
+## 🙏 Créditos
 
-Built with ❤️ using the Stitch Design System.
+Construído com ❤️ usando o Stitch Design System.

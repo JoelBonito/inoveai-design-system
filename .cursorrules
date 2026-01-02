@@ -1,0 +1,246 @@
+# Stitch Design System Docs — Cursor Rules
+# Versão: 6.0.0 (2025-01)
+# Stack: Next.js 16 + React 19 + Tailwind CSS v4
+
+## 🎯 REGRAS FUNDAMENTAIS
+
+### Stack Obrigatória
+- Frontend: Next.js 16 (App Router) + React 19 + TypeScript strict
+- Styling: Tailwind CSS v4 (CSS-first, @theme)
+- UI Components: Custom UI components (ownership no projeto)
+- Testing: Jest (Unit) + Playwright (E2E)
+- Deploy: Vercel
+
+### Idioma
+- UI: Português Brasileiro (PT-BR)
+- Código: Inglês (variáveis, funções)
+- Comentários: Português
+- Documentação: Português
+
+---
+
+## 🎨 DESIGN SYSTEM
+
+### Sistema de Camadas (NUNCA pular)
+```
+Layer 1: bg-background  → Fundo principal
+Layer 2: bg-card        → Cards, Modais
+Layer 3: bg-popover     → Popovers, seções
+Layer 4: bg-accent      → Inputs, hover
+```
+
+### Tokens Semânticos (USAR SEMPRE)
+- Cores: `bg-primary`, `text-foreground`, `border-border`
+- NUNCA usar HEX inline: ❌ `bg-[#1c202a]`
+- SEMPRE usar tokens: ✅ `bg-card`
+
+### Cores de Status
+- Success: `text-success` / `bg-success`
+- Warning: `text-warning` / `bg-warning`
+- Error: `text-error` / `bg-error` / `bg-destructive`
+- Info: `text-info` / `bg-info`
+
+### Cores de Navegação
+- Dashboard: `text-nav-dashboard`
+-  Projetos: `text-nav-projects`
+- Clientes: `text-nav-clients`
+- Finanças: `text-nav-finance`
+- Relatórios: `text-nav-reports`
+- Configurações: `text-nav-settings`
+- Bugs: `text-nav-bugs`
+
+---
+
+## 🧩 COMPONENTES
+
+### Componentes Disponíveis em components/ui
+- Badge
+- Button
+- Checkbox
+- CommandMenu (Cmd+K)
+- Input
+- Switch
+
+### Padrões de Componente
+```tsx
+// SEMPRE usar forwardRef
+const Component = React.forwardRef<HTMLDivElement, Props>(
+  ({ className, ...props }, ref) => (
+    <div ref={ref} className={cn("base-classes", className)} {...props} />
+  )
+)
+Component.displayName = "Component"
+```
+
+### Sistema de Variants (cva)
+```tsx
+import { cva, type VariantProps } from "class-variance-authority"
+
+const componentVariants = cva("base-classes", {
+  variants: {
+    variant: { default: "...", primary: "..." },
+    size: { sm: "...", md: "...", lg: "..." }
+  },
+  defaultVariants: { variant: "default", size: "md" }
+})
+```
+
+### Botões
+- Ação primária: `variant="default"` ou `variant="primary"`
+- Destrutivo: `variant="destructive"`
+- Secundário: `variant="ghost"` ou `variant="outline"`
+
+---
+
+## ♿ ACESSIBILIDADE
+
+###Obrigatório
+- `focus-visible:ring-2` em todos elementos interativos
+- `sr-only` em botões com apenas ícone
+- `motion-reduce:animate-none` em animações
+- Labels em todos inputs
+- Contraste mínimo 4.5:1 (texto) / 3:1 (UI)
+
+### Exemplo Botão com Ícone
+```tsx
+<Button size="icon">
+  <Search className="size-4" />
+  <span className="sr-only">Buscar</span>
+</Button>
+```
+
+---
+
+## 🔧 UTILITÁRIOS
+
+### cn() para Classes Condicionais
+```tsx
+import { cn } from "@/lib/utils"
+
+<div className={cn("base-class", isActive && "active-class")} />
+```
+
+---
+
+## 🚫 ANTI-PATTERNS
+
+### NUNCA fazer
+```tsx
+// ❌ Cores hardcoded
+<div className="bg-[#1c202a]" />
+
+// ❌ text-white que quebra em light mode
+<p className="text-white">Texto</p>
+
+// ❌ Classes dinâmicas (Tailwind não gera)
+<div className={`text-${color}-500`} />
+
+// ❌ Remover focus sem substituir
+<button className="focus:outline-none" />
+
+// ❌ Pular camadas
+Modal (L2) → Input (L4)  // ERRADO: falta L3
+```
+
+### SEMPRE fazer
+```tsx
+// ✅ Tokens semânticos
+<div className="bg-card" />
+
+// ✅ Tokens de texto
+<p className="text-foreground">Texto</p>
+
+// ✅ Mapeamento explícito
+const colorMap = { red: 'text-red-500', blue: 'text-blue-500' }
+
+// ✅ Focus visible
+<button className="focus:outline-none focus-visible:ring-2" />
+
+// ✅ Respeitar camadas
+Modal (L2) → Seção (L3) → Input (L4)
+```
+
+---
+
+## 📁 ESTRUTURA DE ARQUIVOS
+
+```
+inoveai-design-system/
+├── app/
+│   ├── (routes)/         # Pages com App Router
+│   ├── globals.css       # Tailwind @theme + tokens
+│   └── layout.tsx
+├── components/
+│   ├── ui/               # Componentes base
+│   ├── layout/           # Layout wrappers
+│   └── [feature].tsx     # Componentes específicos
+├── lib/
+│   └── utils.ts          # cn(), helpers
+├── data/
+│   ├── components.json   # Metadata gerado
+│   └── tokens.json       # Tokens gerado
+├── scripts/
+│   └── extract-all.ts    # Script de extração
+└── tests/                # Playwright E2E
+```
+
+---
+
+## 🎯 CHECKLIST ANTES DE COMMIT
+
+- [ ] Sem cores hardcoded (HEX inline)
+- [ ] Usando tokens semânticos
+- [ ] focus-visible em elementos interativos
+- [ ] sr-only em botões icon-only
+- [ ] Testado em Light E Dark mode
+- [ ] TypeScript sem erros (`npm run build`)
+- [ ] Testes passando (`npm test`)
+- [ ] E2E passando (`npm run test:e2e`)
+
+---
+
+## 📦 ESPECÍFICO DESTE PROJETO
+
+### Design System Docs
+Este é um site de **documentação** do Stitch Design System.
+
+**Atenção especial:**
+- Screenshots são gerados automaticamente (`scripts/extract-all.ts`)
+- Mudanças visuais impactam screenshots
+- Testes E2E validam interface completa
+- Componentes são mostrados em light E dark mode
+
+### Scripts Importantes
+```bash
+# Extrair componentes e tokens do DS original
+npx tsx scripts/extract-all.ts
+
+# Rodar dev server
+npm run dev
+
+# Build para produção
+npm run build
+
+# Testes
+npm test                # Jest unit tests
+npm run test:e2e        # Playwright E2E
+npm run test:e2e:ui     # Playwright UI mode
+
+# Formatação
+npm run format          # Prettier
+npm run format:check    # Verificar sem alterar
+```
+
+### Cores (v6.0 — OKLCH)
+Projeto em processo de migração HEX → OKLCH.
+
+**Referência:**
+- Light primary: `oklch(47.97% 0.089 195.68)`  (teal)
+- Dark primary: `oklch(76.53% 0.096 196.73)`   (cyan)
+
+Ver `app/globals.css` para paleta completa.
+
+---
+
+**Última Atualização:** 2025-01-02  
+**Versão Design System:** GEMS 6.0

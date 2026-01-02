@@ -11,8 +11,6 @@ import { SidebarProvider } from "@/components/providers/sidebar-provider";
 import { ClientLayout } from "@/components/layout/client-layout";
 import { Toaster } from "sonner";
 
-
-
 const spaceGrotesk = Space_Grotesk({
   subsets: ["latin"],
   variable: "--font-display",
@@ -32,11 +30,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   // Read components for search
-  const componentsPath = path.join(process.cwd(), 'data', 'components.json');
+  const componentsPath = path.join(process.cwd(), "data", "components.json");
   let components = [];
   try {
     if (fs.existsSync(componentsPath)) {
-      components = JSON.parse(fs.readFileSync(componentsPath, 'utf-8'));
+      components = JSON.parse(fs.readFileSync(componentsPath, "utf-8"));
     }
   } catch (e) {
     console.error("Failed to load components for search", e);
@@ -56,7 +54,10 @@ export default function RootLayout({
           rel="stylesheet"
         />
       </head>
-      <body className={`${spaceGrotesk.variable} font-display antialiased h-full overflow-hidden flex transition-colors bg-background text-foreground`} suppressHydrationWarning>
+      <body
+        className={`${spaceGrotesk.variable} font-display bg-background text-foreground flex h-full overflow-hidden antialiased transition-colors`}
+        suppressHydrationWarning
+      >
         <ThemeProvider
           attribute="class"
           defaultTheme="system"
@@ -73,13 +74,11 @@ export default function RootLayout({
             {/* Main Scroll Content Wrapper */}
             <ClientLayout>
               {/* Floating TopBar */}
-              <div className="hidden lg:block sticky top-0 z-40">
+              <div className="sticky top-0 z-40 hidden lg:block">
                 <FloatingTopBar />
               </div>
 
-              <div className="flex-1">
-                {children}
-              </div>
+              <div className="flex-1">{children}</div>
             </ClientLayout>
           </SidebarProvider>
         </ThemeProvider>

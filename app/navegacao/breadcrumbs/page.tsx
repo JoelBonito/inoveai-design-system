@@ -46,100 +46,116 @@ const breadcrumbSlashesCode = `<!-- Breadcrumb Slashes -->
 </nav>`;
 
 const breadcrumbProps: PropDefinition[] = [
-    {
-        name: "separator",
-        type: "ReactNode",
-        description: "Elemento separador (ex: Chevron, Slash)"
-    },
-    {
-        name: "items",
-        type: "{ label: string, href?: string }[]",
-        description: "Lista de itens da trilha"
-    },
+  {
+    name: "separator",
+    type: "ReactNode",
+    description: "Elemento separador (ex: Chevron, Slash)",
+  },
+  {
+    name: "items",
+    type: "{ label: string, href?: string }[]",
+    description: "Lista de itens da trilha",
+  },
 ];
 
 function BreadcrumbBasicPreview() {
-    const textLink = "text-muted-foreground hover:text-foreground";
-    const textCurrent = "text-muted-foreground";
-    const iconColor = "text-muted-foreground";
+  const textLink = "text-muted-foreground hover:text-foreground";
+  const textCurrent = "text-muted-foreground";
+  const iconColor = "text-muted-foreground";
 
-    return (
-        <nav className="flex" aria-label="Breadcrumb">
-            <ol className="inline-flex items-center space-x-1 md:space-x-3">
-                <li className="inline-flex items-center">
-                    <a href="#" className={`inline-flex items-center text-sm font-medium ${textLink}`}>
-                        <Home className="w-4 h-4 mr-2" />
-                        Home
-                    </a>
-                </li>
-                <li>
-                    <div className="flex items-center">
-                        <ChevronRight className={`w-5 h-5 ${iconColor}`} />
-                        <a href="#" className={`ml-1 text-sm font-medium ${textLink} md:ml-2`}>Projetos</a>
-                    </div>
-                </li>
-                <li aria-current="page">
-                    <div className="flex items-center">
-                        <ChevronRight className={`w-5 h-5 ${iconColor}`} />
-                        <span className={`ml-1 text-sm font-medium ${textCurrent} md:ml-2`}>Design System</span>
-                    </div>
-                </li>
-            </ol>
-        </nav>
-    );
+  return (
+    <nav className="flex" aria-label="Breadcrumb">
+      <ol className="inline-flex items-center space-x-1 md:space-x-3">
+        <li className="inline-flex items-center">
+          <a href="#" className={`inline-flex items-center text-sm font-medium ${textLink}`}>
+            <Home className="mr-2 h-4 w-4" />
+            Home
+          </a>
+        </li>
+        <li>
+          <div className="flex items-center">
+            <ChevronRight className={`h-5 w-5 ${iconColor}`} />
+            <a href="#" className={`ml-1 text-sm font-medium ${textLink} md:ml-2`}>
+              Projetos
+            </a>
+          </div>
+        </li>
+        <li aria-current="page">
+          <div className="flex items-center">
+            <ChevronRight className={`h-5 w-5 ${iconColor}`} />
+            <span className={`ml-1 text-sm font-medium ${textCurrent} md:ml-2`}>Design System</span>
+          </div>
+        </li>
+      </ol>
+    </nav>
+  );
 }
 
 function BreadcrumbSlashesPreview() {
-    const textLink = "text-muted-foreground hover:text-foreground";
-    const textCurrent = "text-foreground";
-    const separator = "text-muted-foreground";
+  const textLink = "text-muted-foreground hover:text-foreground";
+  const textCurrent = "text-foreground";
+  const separator = "text-muted-foreground";
 
-    return (
-        <nav className="flex" aria-label="Breadcrumb">
-            <ol className="flex items-center space-x-2 text-sm">
-                <li><a href="#" className={textLink}>Docs</a></li>
-                <li><span className={separator}>/</span></li>
-                <li><a href="#" className={textLink}>Componentes</a></li>
-                <li><span className={separator}>/</span></li>
-                <li><span className={`${textCurrent} font-medium`}>Breadcrumb</span></li>
-            </ol>
-        </nav>
-    );
+  return (
+    <nav className="flex" aria-label="Breadcrumb">
+      <ol className="flex items-center space-x-2 text-sm">
+        <li>
+          <a href="#" className={textLink}>
+            Docs
+          </a>
+        </li>
+        <li>
+          <span className={separator}>/</span>
+        </li>
+        <li>
+          <a href="#" className={textLink}>
+            Componentes
+          </a>
+        </li>
+        <li>
+          <span className={separator}>/</span>
+        </li>
+        <li>
+          <span className={`${textCurrent} font-medium`}>Breadcrumb</span>
+        </li>
+      </ol>
+    </nav>
+  );
 }
 
 export default function BreadcrumbPage() {
-    return (
-        <div className="min-h-screen bg-[var(--background)] text-[var(--foreground)]">
-            <main className="container mx-auto px-4 sm:px-8 pt-10 pb-8">
-                <div className="max-w-6xl mx-auto space-y-12">
-                    {/* Hero removed */}
+  return (
+    <div className="min-h-screen bg-[var(--background)] text-[var(--foreground)]">
+      <main className="container mx-auto px-4 pt-10 pb-8 sm:px-8">
+        <div className="mx-auto max-w-6xl space-y-12">
+          {/* Hero removed */}
 
-                    {/* Basic */}
-                    <ComponentShowcase
-                        title="Estilo com Ícones"
-                        description="Breadcrumb padrão com separadores de seta (Chevron)"
-                        code={breadcrumbBasicCode}
-                        previewClassName="!flex-col !items-start"
-                    >
-                        <BreadcrumbBasicPreview />
-                    </ComponentShowcase>
+          {/* Basic */}
+          <ComponentShowcase
+            title="Estilo com Ícones"
+            description="Breadcrumb padrão com separadores de seta (Chevron)"
+            code={breadcrumbBasicCode}
+            previewClassName="!flex-col !items-start"
+          >
+            <BreadcrumbBasicPreview />
+          </ComponentShowcase>
 
-                    {/* Slashes */}
-                    <ComponentShowcase
-                        title="Estilo Minimalista"
-                        description="Separadores de barra simples"
-                        code={breadcrumbSlashesCode}
-                        previewClassName="!flex-col !items-start"
-                    >
-                        <BreadcrumbSlashesPreview />
-                    </ComponentShowcase>
+          {/* Slashes */}
+          <ComponentShowcase
+            title="Estilo Minimalista"
+            description="Separadores de barra simples"
+            code={breadcrumbSlashesCode}
+            previewClassName="!flex-col !items-start"
+          >
+            <BreadcrumbSlashesPreview />
+          </ComponentShowcase>
 
-                    {/* API Reference */}
-                    <div className="pt-12 border-t border-[var(--border)]">
-                        <PropsTable props={breadcrumbProps} />
-                    </div>
-                </div>
-            </main>
+          {/* API Reference */}
+          <div className="border-t border-[var(--border)] pt-12">
+            <PropsTable props={breadcrumbProps} />
+          </div>
         </div>
-    );
+      </main>
+    </div>
+  );
 }

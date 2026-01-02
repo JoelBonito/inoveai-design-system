@@ -7,7 +7,7 @@ import {
   MessageSquare,
   Palette,
   ArrowRight,
-  Sparkles
+  Sparkles,
 } from "lucide-react";
 
 const CATEGORIES = [
@@ -60,62 +60,60 @@ export default function HomePage() {
   const totalComponents = CATEGORIES.reduce((acc, cat) => acc + cat.count, 0);
 
   return (
-    <div className="min-h-screen bg-background text-foreground">
-      <main className="container mx-auto px-4 sm:px-8 pt-10 pb-8">
-        <div className="max-w-6xl mx-auto">
-
-
+    <div className="bg-background text-foreground min-h-screen">
+      <main className="container mx-auto px-4 pt-10 pb-8 sm:px-8">
+        <div className="mx-auto max-w-6xl">
           {/* Stats */}
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 pb-6">
-            <div className="bg-card border border-border rounded-xl p-5 shadow-sm text-center">
-              <div className="text-3xl font-bold text-foreground mb-1">{totalComponents}</div>
-              <div className="text-sm text-text-secondary">Componentes</div>
+          <div className="grid grid-cols-2 gap-4 pb-6 md:grid-cols-4">
+            <div className="bg-card border-border rounded-xl border p-5 text-center shadow-sm">
+              <div className="text-foreground mb-1 text-3xl font-bold">{totalComponents}</div>
+              <div className="text-text-secondary text-sm">Componentes</div>
             </div>
-            <div className="bg-card border border-border rounded-xl p-5 shadow-sm text-center">
-              <div className="text-3xl font-bold text-primary mb-1">{CATEGORIES.length}</div>
-              <div className="text-sm text-text-secondary">Categorias</div>
+            <div className="bg-card border-border rounded-xl border p-5 text-center shadow-sm">
+              <div className="text-primary mb-1 text-3xl font-bold">{CATEGORIES.length}</div>
+              <div className="text-text-secondary text-sm">Categorias</div>
             </div>
-            <div className="bg-card border border-border rounded-xl p-5 shadow-sm text-center">
-              <div className="text-3xl font-bold text-emerald-500 mb-1">2</div>
-              <div className="text-sm text-text-secondary">Temas</div>
+            <div className="bg-card border-border rounded-xl border p-5 text-center shadow-sm">
+              <div className="mb-1 text-3xl font-bold text-emerald-500">2</div>
+              <div className="text-text-secondary text-sm">Temas</div>
             </div>
-            <div className="bg-card border border-border rounded-xl p-5 shadow-sm text-center">
-              <div className="text-3xl font-bold text-foreground mb-1">100%</div>
-              <div className="text-sm text-text-secondary">Código Real</div>
+            <div className="bg-card border-border rounded-xl border p-5 text-center shadow-sm">
+              <div className="text-foreground mb-1 text-3xl font-bold">100%</div>
+              <div className="text-text-secondary text-sm">Código Real</div>
             </div>
           </div>
 
           {/* Categories Grid */}
           <section className="pt-6 pb-8">
-            <h2 className="text-2xl font-bold mb-8">Explorar por Categoria</h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <h2 className="mb-8 text-2xl font-bold">Explorar por Categoria</h2>
+            <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
               {CATEGORIES.map((category) => (
                 <Link
                   key={category.href}
                   href={category.href}
-                  className="group relative overflow-hidden rounded-xl border border-border bg-card p-6 hover:border-primary/50 hover:shadow-lg transition-all duration-300"
+                  className="group border-border bg-card hover:border-primary/50 relative overflow-hidden rounded-xl border p-6 transition-all duration-300 hover:shadow-lg"
                 >
                   <div className="flex items-start gap-4">
-                    <div className={`size-12 rounded-lg ${category.color} flex items-center justify-center text-white`}>
+                    <div
+                      className={`size-12 rounded-lg ${category.color} flex items-center justify-center text-white`}
+                    >
                       <category.icon size={24} />
                     </div>
                     <div className="flex-1">
-                      <div className="flex items-center justify-between mb-1">
-                        <h3 className="text-lg font-semibold group-hover:text-primary transition-colors">
+                      <div className="mb-1 flex items-center justify-between">
+                        <h3 className="group-hover:text-primary text-lg font-semibold transition-colors">
                           {category.name}
                         </h3>
-                        <span className="text-xs px-2 py-0.5 rounded-full bg-background text-text-secondary">
+                        <span className="bg-background text-text-secondary rounded-full px-2 py-0.5 text-xs">
                           {category.count}
                         </span>
                       </div>
-                      <p className="text-sm text-text-secondary">
-                        {category.description}
-                      </p>
+                      <p className="text-text-secondary text-sm">{category.description}</p>
                     </div>
                   </div>
                   <ArrowRight
                     size={18}
-                    className="absolute bottom-4 right-4 text-text-secondary opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all"
+                    className="text-text-secondary absolute right-4 bottom-4 opacity-0 transition-all group-hover:translate-x-1 group-hover:opacity-100"
                   />
                 </Link>
               ))}
@@ -123,23 +121,35 @@ export default function HomePage() {
           </section>
 
           {/* Quick Links */}
-          <section className="pt-8 pb-4 border-t border-border">
-            <h2 className="text-2xl font-bold mb-6">Acesso Rápido</h2>
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-              <Link href="/tokens" className="p-4 rounded-lg border border-border bg-card hover:border-primary/50 transition-colors text-center">
-                <Palette className="mx-auto mb-2 text-text-secondary" size={24} />
+          <section className="border-border border-t pt-8 pb-4">
+            <h2 className="mb-6 text-2xl font-bold">Acesso Rápido</h2>
+            <div className="grid grid-cols-2 gap-4 md:grid-cols-4">
+              <Link
+                href="/tokens"
+                className="border-border bg-card hover:border-primary/50 rounded-lg border p-4 text-center transition-colors"
+              >
+                <Palette className="text-text-secondary mx-auto mb-2" size={24} />
                 <span className="text-sm font-medium">Design Tokens</span>
               </Link>
-              <Link href="/primitivos/button" className="p-4 rounded-lg border border-border bg-card hover:border-primary/50 transition-colors text-center">
-                <Square className="mx-auto mb-2 text-text-secondary" size={24} />
+              <Link
+                href="/primitivos/button"
+                className="border-border bg-card hover:border-primary/50 rounded-lg border p-4 text-center transition-colors"
+              >
+                <Square className="text-text-secondary mx-auto mb-2" size={24} />
                 <span className="text-sm font-medium">Botão</span>
               </Link>
-              <Link href="/formularios/select" className="p-4 rounded-lg border border-border bg-card hover:border-primary/50 transition-colors text-center">
-                <FormInput className="mx-auto mb-2 text-text-secondary" size={24} />
+              <Link
+                href="/formularios/select"
+                className="border-border bg-card hover:border-primary/50 rounded-lg border p-4 text-center transition-colors"
+              >
+                <FormInput className="text-text-secondary mx-auto mb-2" size={24} />
                 <span className="text-sm font-medium">Select</span>
               </Link>
-              <Link href="/feedback/modal" className="p-4 rounded-lg border border-border bg-card hover:border-primary/50 transition-colors text-center">
-                <MessageSquare className="mx-auto mb-2 text-text-secondary" size={24} />
+              <Link
+                href="/feedback/modal"
+                className="border-border bg-card hover:border-primary/50 rounded-lg border p-4 text-center transition-colors"
+              >
+                <MessageSquare className="text-text-secondary mx-auto mb-2" size={24} />
                 <span className="text-sm font-medium">Modal</span>
               </Link>
             </div>
@@ -148,8 +158,8 @@ export default function HomePage() {
       </main>
 
       {/* Footer */}
-      <footer className="border-t border-border pt-6 pb-2 mt-0">
-        <div className="container mx-auto px-8 text-center text-text-secondary text-sm">
+      <footer className="border-border mt-0 border-t pt-6 pb-2">
+        <div className="text-text-secondary container mx-auto px-8 text-center text-sm">
           <p>Stitch Design System © 2025 — Desenvolvido com Next.js & Tailwind CSS</p>
         </div>
       </footer>

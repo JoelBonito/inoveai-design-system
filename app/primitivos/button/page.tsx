@@ -58,33 +58,33 @@ const buttonProps: PropDefinition[] = [
     name: "variant",
     type: '"primary" | "secondary" | "outline" | "ghost" | "destructive"',
     defaultValue: '"primary"',
-    description: "Define o estilo visual do botão"
+    description: "Define o estilo visual do botão",
   },
   {
     name: "size",
     type: '"sm" | "md" | "lg" | "icon"',
     defaultValue: '"md"',
-    description: "Define o tamanho do botão"
+    description: "Define o tamanho do botão",
   },
   {
     name: "disabled",
     type: "boolean",
     defaultValue: "false",
-    description: "Desabilita o botão"
+    description: "Desabilita o botão",
   },
   {
     name: "loading",
     type: "boolean",
     defaultValue: "false",
-    description: "Exibe estado de carregamento"
+    description: "Exibe estado de carregamento",
   },
 ];
 
 export default function ButtonPage() {
   return (
     <div className="min-h-screen bg-[var(--background)] text-[var(--foreground)]">
-      <main className="container mx-auto px-4 sm:px-8 pt-10 pb-8">
-        <div className="max-w-6xl mx-auto space-y-12">
+      <main className="container mx-auto px-4 pt-10 pb-8 sm:px-8">
+        <div className="mx-auto max-w-6xl space-y-12">
           {/* Hero removed */}
 
           {/* Variantes */}
@@ -120,16 +120,32 @@ export default function ButtonPage() {
             <Button>Normal</Button>
             <Button disabled>Disabled</Button>
             <Button disabled>
-              <svg className="animate-spin h-4 w-4 mr-2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
-                <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+              <svg
+                className="mr-2 h-4 w-4 animate-spin"
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+              >
+                <circle
+                  className="opacity-25"
+                  cx="12"
+                  cy="12"
+                  r="10"
+                  stroke="currentColor"
+                  strokeWidth="4"
+                ></circle>
+                <path
+                  className="opacity-75"
+                  fill="currentColor"
+                  d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+                ></path>
               </svg>
               Loading
             </Button>
           </ComponentShowcase>
 
           {/* API Reference */}
-          <div className="pt-12 border-t border-[var(--border)]">
+          <div className="border-t border-[var(--border)] pt-12">
             <PropsTable props={buttonProps} />
           </div>
         </div>

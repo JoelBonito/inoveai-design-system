@@ -74,46 +74,62 @@ const chartProps: PropDefinition[] = [
   {
     name: "data",
     type: "object[]",
-    description: "Dados do gráfico"
+    description: "Dados do gráfico",
   },
   {
     name: "type",
     type: '"bar" | "line" | "pie"',
     defaultValue: '"bar"',
-    description: "Tipo de visualização"
+    description: "Tipo de visualização",
   },
   {
     name: "height",
     type: "number",
     defaultValue: "300",
-    description: "Altura do gráfico em pixels"
+    description: "Altura do gráfico em pixels",
   },
   {
     name: "colors",
     type: "string[]",
-    description: "Cores personalizadas para as séries"
+    description: "Cores personalizadas para as séries",
   },
 ];
 
 function BarChartPreview() {
   // Tooltip mantém sempre dark para contraste
-  const tooltipClass = "absolute -top-8 left-1/2 -translate-x-1/2 bg-slate-900 text-white text-xs py-1 px-2 rounded opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none";
+  const tooltipClass =
+    "absolute -top-8 left-1/2 -translate-x-1/2 bg-slate-900 text-white text-xs py-1 px-2 rounded opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none";
 
   return (
-    <div className="w-full h-64 flex items-end justify-between gap-2 p-4 rounded-lg border border-border bg-card">
-      <div className="w-full bg-primary/20 hover:bg-primary/30 transition-colors rounded-t-sm relative group" style={{ height: '40%' }}>
+    <div className="border-border bg-card flex h-64 w-full items-end justify-between gap-2 rounded-lg border p-4">
+      <div
+        className="bg-primary/20 hover:bg-primary/30 group relative w-full rounded-t-sm transition-colors"
+        style={{ height: "40%" }}
+      >
         <div className={tooltipClass}>40%</div>
       </div>
-      <div className="w-full bg-primary/40 hover:bg-primary/50 transition-colors rounded-t-sm relative group" style={{ height: '70%' }}>
+      <div
+        className="bg-primary/40 hover:bg-primary/50 group relative w-full rounded-t-sm transition-colors"
+        style={{ height: "70%" }}
+      >
         <div className={tooltipClass}>70%</div>
       </div>
-      <div className="w-full bg-primary/60 hover:bg-primary/70 transition-colors rounded-t-sm relative group" style={{ height: '50%' }}>
+      <div
+        className="bg-primary/60 hover:bg-primary/70 group relative w-full rounded-t-sm transition-colors"
+        style={{ height: "50%" }}
+      >
         <div className={tooltipClass}>50%</div>
       </div>
-      <div className="w-full bg-primary/80 hover:bg-primary/90 transition-colors rounded-t-sm relative group" style={{ height: '90%' }}>
+      <div
+        className="bg-primary/80 hover:bg-primary/90 group relative w-full rounded-t-sm transition-colors"
+        style={{ height: "90%" }}
+      >
         <div className={tooltipClass}>90%</div>
       </div>
-      <div className="w-full bg-primary hover:bg-primary/90 transition-colors rounded-t-sm relative group" style={{ height: '60%' }}>
+      <div
+        className="bg-primary hover:bg-primary/90 group relative w-full rounded-t-sm transition-colors"
+        style={{ height: "60%" }}
+      >
         <div className={tooltipClass}>60%</div>
       </div>
     </div>
@@ -122,8 +138,8 @@ function BarChartPreview() {
 
 function LineChartPreview() {
   return (
-    <div className="w-full h-64 p-4 rounded-lg border border-border bg-card flex items-center justify-center">
-      <svg viewBox="0 0 500 200" className="w-full h-full text-primary">
+    <div className="border-border bg-card flex h-64 w-full items-center justify-center rounded-lg border p-4">
+      <svg viewBox="0 0 500 200" className="text-primary h-full w-full">
         <g className="stroke-border" strokeWidth="1">
           <line x1="0" y1="150" x2="500" y2="150" />
           <line x1="0" y1="100" x2="500" y2="100" />
@@ -146,22 +162,24 @@ function LineChartPreview() {
 
 function PieChartPreview() {
   return (
-    <div className="flex items-center justify-center gap-8 p-6 rounded-lg border border-border bg-card">
-      <div className="relative size-40 rounded-full"
-        style={{ background: `conic-gradient(var(--primary) 0% 60%, hsl(var(--muted)) 60% 100%)` }}>
-        <div className="absolute inset-4 rounded-full bg-card flex items-center justify-center">
-          <span className="text-2xl font-bold text-foreground">60%</span>
+    <div className="border-border bg-card flex items-center justify-center gap-8 rounded-lg border p-6">
+      <div
+        className="relative size-40 rounded-full"
+        style={{ background: `conic-gradient(var(--primary) 0% 60%, hsl(var(--muted)) 60% 100%)` }}
+      >
+        <div className="bg-card absolute inset-4 flex items-center justify-center rounded-full">
+          <span className="text-foreground text-2xl font-bold">60%</span>
         </div>
       </div>
 
       <div className="space-y-2">
         <div className="flex items-center gap-2">
-          <div className="size-3 rounded-full bg-primary"></div>
-          <span className="text-sm text-muted-foreground">Concluído</span>
+          <div className="bg-primary size-3 rounded-full"></div>
+          <span className="text-muted-foreground text-sm">Concluído</span>
         </div>
         <div className="flex items-center gap-2">
-          <div className="size-3 rounded-full bg-muted"></div>
-          <span className="text-sm text-muted-foreground">Pendente</span>
+          <div className="bg-muted size-3 rounded-full"></div>
+          <span className="text-muted-foreground text-sm">Pendente</span>
         </div>
       </div>
     </div>
@@ -247,38 +265,88 @@ const donutChartCode = `<!-- Donut Chart Multi-segment (SVG) -->
 
 function DonutChartPreview() {
   return (
-    <div className="p-6 rounded-lg border border-border bg-card shadow-sm w-full max-w-lg mx-auto">
-      <div className="flex items-center gap-2 mb-6">
-        <div className="w-1 h-5 bg-blue-600 rounded-full"></div>
-        <h3 className="font-semibold text-foreground">Modalidades de Interesse</h3>
+    <div className="border-border bg-card mx-auto w-full max-w-lg rounded-lg border p-6 shadow-sm">
+      <div className="mb-6 flex items-center gap-2">
+        <div className="h-5 w-1 rounded-full bg-blue-600"></div>
+        <h3 className="text-foreground font-semibold">Modalidades de Interesse</h3>
       </div>
 
       <div className="flex flex-col items-center gap-8">
         {/* SVG Chart */}
-        <div className="relative size-48 group/chart">
-          <svg viewBox="0 0 100 100" className="w-full h-full -rotate-90">
+        <div className="group/chart relative size-48">
+          <svg viewBox="0 0 100 100" className="h-full w-full -rotate-90">
             {/* Segments */}
-            <circle cx="50" cy="50" r="40" fill="transparent" stroke="#ea580c" strokeWidth="20" strokeDasharray="30 70" strokeDashoffset="0" className="hover:opacity-80 transition-opacity cursor-pointer">
+            <circle
+              cx="50"
+              cy="50"
+              r="40"
+              fill="transparent"
+              stroke="#ea580c"
+              strokeWidth="20"
+              strokeDasharray="30 70"
+              strokeDashoffset="0"
+              className="cursor-pointer transition-opacity hover:opacity-80"
+            >
               <title>Treinamento cruzado: 30%</title>
             </circle>
-            <circle cx="50" cy="50" r="40" fill="transparent" stroke="#2563eb" strokeWidth="20" strokeDasharray="15 85" strokeDashoffset="-30" className="hover:opacity-80 transition-opacity cursor-pointer">
+            <circle
+              cx="50"
+              cy="50"
+              r="40"
+              fill="transparent"
+              stroke="#2563eb"
+              strokeWidth="20"
+              strokeDasharray="15 85"
+              strokeDashoffset="-30"
+              className="cursor-pointer transition-opacity hover:opacity-80"
+            >
               <title>Musculatura: 15%</title>
             </circle>
-            <circle cx="50" cy="50" r="40" fill="transparent" stroke="#16a34a" strokeWidth="20" strokeDasharray="15 85" strokeDashoffset="-45" className="hover:opacity-80 transition-opacity cursor-pointer">
+            <circle
+              cx="50"
+              cy="50"
+              r="40"
+              fill="transparent"
+              stroke="#16a34a"
+              strokeWidth="20"
+              strokeDasharray="15 85"
+              strokeDashoffset="-45"
+              className="cursor-pointer transition-opacity hover:opacity-80"
+            >
               <title>Aulas Coletivas: 15%</title>
             </circle>
-            <circle cx="50" cy="50" r="40" fill="transparent" stroke="#eab308" strokeWidth="20" strokeDasharray="20 80" strokeDashoffset="-60" className="hover:opacity-80 transition-opacity cursor-pointer">
+            <circle
+              cx="50"
+              cy="50"
+              r="40"
+              fill="transparent"
+              stroke="#eab308"
+              strokeWidth="20"
+              strokeDasharray="20 80"
+              strokeDashoffset="-60"
+              className="cursor-pointer transition-opacity hover:opacity-80"
+            >
               <title>Nação: 20%</title>
             </circle>
-            <circle cx="50" cy="50" r="40" fill="transparent" stroke="#dc2626" strokeWidth="20" strokeDasharray="20 80" strokeDashoffset="-80" className="hover:opacity-80 transition-opacity cursor-pointer">
+            <circle
+              cx="50"
+              cy="50"
+              r="40"
+              fill="transparent"
+              stroke="#dc2626"
+              strokeWidth="20"
+              strokeDasharray="20 80"
+              strokeDashoffset="-80"
+              className="cursor-pointer transition-opacity hover:opacity-80"
+            >
               <title>Lutas: 20%</title>
             </circle>
           </svg>
 
-          <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+          <div className="pointer-events-none absolute inset-0 flex items-center justify-center">
             <div className="text-center">
-              <span className="text-3xl font-bold text-foreground">100%</span>
-              <p className="text-xs text-muted-foreground">Total</p>
+              <span className="text-foreground text-3xl font-bold">100%</span>
+              <p className="text-muted-foreground text-xs">Total</p>
             </div>
           </div>
         </div>
@@ -314,8 +382,8 @@ function DonutChartPreview() {
 export default function ChartPage() {
   return (
     <div className="min-h-screen bg-[var(--background)] text-[var(--foreground)]">
-      <main className="container mx-auto px-4 sm:px-8 pt-10 pb-8">
-        <div className="max-w-6xl mx-auto space-y-12">
+      <main className="container mx-auto px-4 pt-10 pb-8 sm:px-8">
+        <div className="mx-auto max-w-6xl space-y-12">
           {/* Hero removed */}
 
           {/* Bar Chart */}
@@ -359,7 +427,7 @@ export default function ChartPage() {
           </ComponentShowcase>
 
           {/* API Reference */}
-          <div className="pt-12 border-t border-[var(--border)]">
+          <div className="border-t border-[var(--border)] pt-12">
             <PropsTable props={chartProps} />
           </div>
         </div>

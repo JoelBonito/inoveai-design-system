@@ -43,99 +43,108 @@ const error403Code = `<!-- Error 403 -->
 </div>`;
 
 const errorPageProps: PropDefinition[] = [
-    {
-        name: "code",
-        type: "number",
-        description: "Código de erro (404, 500, etc.)"
-    },
-    {
-        name: "title",
-        type: "string",
-        description: "Título principal do erro"
-    },
-    {
-        name: "description",
-        type: "string",
-        description: "Explicação amigável do problema"
-    },
-    {
-        name: "actions",
-        type: "ReactNode",
-        description: "Botões de navegação para recuperação"
-    },
+  {
+    name: "code",
+    type: "number",
+    description: "Código de erro (404, 500, etc.)",
+  },
+  {
+    name: "title",
+    type: "string",
+    description: "Título principal do erro",
+  },
+  {
+    name: "description",
+    type: "string",
+    description: "Explicação amigável do problema",
+  },
+  {
+    name: "actions",
+    type: "ReactNode",
+    description: "Botões de navegação para recuperação",
+  },
 ];
 
 function Error404Preview() {
-    return (
-        <div className="flex min-h-[300px] flex-col items-center justify-center text-center px-6">
-            <p className="text-base font-semibold text-primary">404</p>
-            <h1 className={`mt-4 text-3xl font-bold tracking-tight text-foreground sm:text-5xl`}>Página não encontrada</h1>
-            <p className="mt-6 text-base leading-7 text-muted-foreground">
-                Desculpe, não conseguimos encontrar a página que você está procurando.
-            </p>
-            <div className="mt-10 flex items-center justify-center gap-x-6">
-                <a href="#" className="rounded-md bg-primary px-3.5 py-2.5 text-sm font-semibold text-primary-foreground shadow-sm hover:bg-primary/90">
-                    Voltar ao início
-                </a>
-                <a href="#" className="text-sm font-semibold text-foreground hover:underline">
-                    Fale com o suporte <span aria-hidden="true">&rarr;</span>
-                </a>
-            </div>
-        </div>
-    );
+  return (
+    <div className="flex min-h-[300px] flex-col items-center justify-center px-6 text-center">
+      <p className="text-primary text-base font-semibold">404</p>
+      <h1 className={`text-foreground mt-4 text-3xl font-bold tracking-tight sm:text-5xl`}>
+        Página não encontrada
+      </h1>
+      <p className="text-muted-foreground mt-6 text-base leading-7">
+        Desculpe, não conseguimos encontrar a página que você está procurando.
+      </p>
+      <div className="mt-10 flex items-center justify-center gap-x-6">
+        <a
+          href="#"
+          className="bg-primary text-primary-foreground hover:bg-primary/90 rounded-md px-3.5 py-2.5 text-sm font-semibold shadow-sm"
+        >
+          Voltar ao início
+        </a>
+        <a href="#" className="text-foreground text-sm font-semibold hover:underline">
+          Fale com o suporte <span aria-hidden="true">&rarr;</span>
+        </a>
+      </div>
+    </div>
+  );
 }
 
 function Error403Preview() {
-    return (
-        <div className="flex min-h-[300px] flex-col items-center justify-center text-center px-6 border-2 border-dashed border-destructive/30 rounded-xl bg-destructive/5">
-            <div className="rounded-full p-4 mb-4 bg-destructive/10">
-                <Lock className="size-8 text-destructive" />
-            </div>
-            <h1 className="text-2xl font-bold tracking-tight text-foreground">Acesso Negado</h1>
-            <p className="mt-2 text-base text-muted-foreground max-w-md">
-                Você não tem permissão para acessar este recurso. Entre em contato com seu administrador se acredita que isso é um erro.
-            </p>
-            <div className="mt-8">
-                <button type="button" className="inline-flex items-center gap-2 text-sm font-medium text-destructive hover:text-destructive/80">
-                    <ArrowLeft className="size-4" />
-                    Voltar para a página anterior
-                </button>
-            </div>
-        </div>
-    );
+  return (
+    <div className="border-destructive/30 bg-destructive/5 flex min-h-[300px] flex-col items-center justify-center rounded-xl border-2 border-dashed px-6 text-center">
+      <div className="bg-destructive/10 mb-4 rounded-full p-4">
+        <Lock className="text-destructive size-8" />
+      </div>
+      <h1 className="text-foreground text-2xl font-bold tracking-tight">Acesso Negado</h1>
+      <p className="text-muted-foreground mt-2 max-w-md text-base">
+        Você não tem permissão para acessar este recurso. Entre em contato com seu administrador se
+        acredita que isso é um erro.
+      </p>
+      <div className="mt-8">
+        <button
+          type="button"
+          className="text-destructive hover:text-destructive/80 inline-flex items-center gap-2 text-sm font-medium"
+        >
+          <ArrowLeft className="size-4" />
+          Voltar para a página anterior
+        </button>
+      </div>
+    </div>
+  );
 }
 
 export default function ErrorPagePage() {
-    return (
-        <div className="min-h-screen bg-[var(--background)] text-[var(--foreground)]">
-            <main className="container mx-auto px-4 sm:px-8 pt-10 pb-8">
-                <div className="max-w-6xl mx-auto space-y-12">
-                    {/* Hero removed */}
+  return (
+    <div className="min-h-screen bg-[var(--background)] text-[var(--foreground)]">
+      <main className="container mx-auto px-4 pt-10 pb-8 sm:px-8">
+        <div className="mx-auto max-w-6xl space-y-12">
+          {/* Hero removed */}
 
-                    {/* 404 */}
-                    <ComponentShowcase
-                        title="Erro 404 (Not Found)"
-                        description="Padrão para rotas inexistentes."
-                        code={error404Code}
-                    >
-                        <Error404Preview />
-                    </ComponentShowcase>
+          {/* 404 */}
+          <ComponentShowcase
+            title="Erro 404 (Not Found)"
+            description="Padrão para rotas inexistentes."
+            code={error404Code}
+          >
+            <Error404Preview />
+          </ComponentShowcase>
 
-                    {/* 403 */}
-                    <ComponentShowcase
-                        title="Erro 403 (Acesso Negado)"
-                        description="Variação visual para erros de permissão."
-                        code={error403Code}
-                    >
-                        <Error403Preview />
-                    </ComponentShowcase>
+          {/* 403 */}
+          <ComponentShowcase
+            title="Erro 403 (Acesso Negado)"
+            description="Variação visual para erros de permissão."
+            code={error403Code}
+          >
+            <Error403Preview />
+          </ComponentShowcase>
 
-                    {/* API Reference */}
-                    <div className="pt-12 border-t border-[var(--border)]">
-                        <PropsTable props={errorPageProps} />
-                    </div>
-                </div>
-            </main>
+          {/* API Reference */}
+          <div className="border-t border-[var(--border)] pt-12">
+            <PropsTable props={errorPageProps} />
+          </div>
         </div>
-    );
+      </main>
+    </div>
+  );
 }

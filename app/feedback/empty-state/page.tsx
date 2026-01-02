@@ -37,97 +37,104 @@ const emptyDataCode = `<!-- Empty State Data -->
 </div>`;
 
 const emptyStateProps: PropDefinition[] = [
-    {
-        name: "title",
-        type: "string",
-        description: "Título principal do estado vazio"
-    },
-    {
-        name: "description",
-        type: "string",
-        description: "Descrição explicativa ou instrução"
-    },
-    {
-        name: "icon",
-        type: "ReactNode",
-        description: "Ícone ilustrativo central"
-    },
-    {
-        name: "action",
-        type: "ReactNode",
-        description: "Botão de ação principal (opcional)"
-    },
+  {
+    name: "title",
+    type: "string",
+    description: "Título principal do estado vazio",
+  },
+  {
+    name: "description",
+    type: "string",
+    description: "Descrição explicativa ou instrução",
+  },
+  {
+    name: "icon",
+    type: "ReactNode",
+    description: "Ícone ilustrativo central",
+  },
+  {
+    name: "action",
+    type: "ReactNode",
+    description: "Botão de ação principal (opcional)",
+  },
 ];
 
 function EmptyStateSearchPreview() {
-    const iconBg = "bg-muted";
-    const dashedBorder = "border-border";
-    const descColor = "text-muted-foreground";
+  const iconBg = "bg-muted";
+  const dashedBorder = "border-border";
+  const descColor = "text-muted-foreground";
 
-    return (
-        <div className={`text-center py-12 bg-background rounded-lg border border-dashed ${dashedBorder}`}>
-            <div className={`inline-flex size-12 items-center justify-center rounded-full ${iconBg}`}>
-                <Search className="size-6 text-muted-foreground" />
-            </div>
-            <h3 className={`mt-4 text-sm font-semibold text-foreground`}>Nenhum resultado encontrado</h3>
-            <p className={`mt-1 text-sm ${descColor}`}>Não encontramos nada com "xyz". Tente ajustar sua busca.</p>
-        </div>
-    );
+  return (
+    <div
+      className={`bg-background rounded-lg border border-dashed py-12 text-center ${dashedBorder}`}
+    >
+      <div className={`inline-flex size-12 items-center justify-center rounded-full ${iconBg}`}>
+        <Search className="text-muted-foreground size-6" />
+      </div>
+      <h3 className={`text-foreground mt-4 text-sm font-semibold`}>Nenhum resultado encontrado</h3>
+      <p className={`mt-1 text-sm ${descColor}`}>
+        Não encontramos nada com "xyz". Tente ajustar sua busca.
+      </p>
+    </div>
+  );
 }
 
 function EmptyStateDataPreview() {
-    return (
-        <div className="text-center py-12 bg-background rounded-lg border border-dashed border-border">
-            <div className="inline-flex size-14 items-center justify-center rounded-full bg-primary/10">
-                <FolderOpen className="size-6 text-primary" />
-            </div>
-            <h3 className="mt-4 text-lg font-semibold text-foreground">Sem projetos</h3>
-            <p className="mt-2 text-sm text-muted-foreground max-w-sm mx-auto">
-                Comece criando um novo projeto para organizar suas tarefas.
-            </p>
-            <div className="mt-6">
-                <button type="button" className="inline-flex items-center gap-2 rounded-md bg-primary px-3.5 py-2.5 text-sm font-semibold text-primary-foreground shadow-sm hover:bg-primary/90">
-                    <Plus className="-ml-0.5 size-5" />
-                    Novo Projeto
-                </button>
-            </div>
-        </div>
-    );
+  return (
+    <div className="bg-background border-border rounded-lg border border-dashed py-12 text-center">
+      <div className="bg-primary/10 inline-flex size-14 items-center justify-center rounded-full">
+        <FolderOpen className="text-primary size-6" />
+      </div>
+      <h3 className="text-foreground mt-4 text-lg font-semibold">Sem projetos</h3>
+      <p className="text-muted-foreground mx-auto mt-2 max-w-sm text-sm">
+        Comece criando um novo projeto para organizar suas tarefas.
+      </p>
+      <div className="mt-6">
+        <button
+          type="button"
+          className="bg-primary text-primary-foreground hover:bg-primary/90 inline-flex items-center gap-2 rounded-md px-3.5 py-2.5 text-sm font-semibold shadow-sm"
+        >
+          <Plus className="-ml-0.5 size-5" />
+          Novo Projeto
+        </button>
+      </div>
+    </div>
+  );
 }
 
 export default function EmptyStatePage() {
-    return (
-        <div className="min-h-screen bg-[var(--background)] text-[var(--foreground)]">
-            <main className="container mx-auto px-4 sm:px-8 pt-10 pb-8">
-                <div className="max-w-6xl mx-auto space-y-12">
-                    {/* Hero removed */}
+  return (
+    <div className="min-h-screen bg-[var(--background)] text-[var(--foreground)]">
+      <main className="container mx-auto px-4 pt-10 pb-8 sm:px-8">
+        <div className="mx-auto max-w-6xl space-y-12">
+          {/* Hero removed */}
 
-                    {/* Search */}
-                    <ComponentShowcase
-                        title="Busca Vazia"
-                        description="Exibido quando filtros ou buscas não retornam resultados."
-                        code={emptySearchCode}
-                        previewClassName="p-6"
-                    >
-                        <EmptyStateSearchPreview />
-                    </ComponentShowcase>
+          {/* Search */}
+          <ComponentShowcase
+            title="Busca Vazia"
+            description="Exibido quando filtros ou buscas não retornam resultados."
+            code={emptySearchCode}
+            previewClassName="p-6"
+          >
+            <EmptyStateSearchPreview />
+          </ComponentShowcase>
 
-                    {/* Data */}
-                    <ComponentShowcase
-                        title="Sem Dados (com Ação)"
-                        description="Estado inicial de uma lista ou tabela vazia, encorajando o primeiro cadastro."
-                        code={emptyDataCode}
-                        previewClassName="p-6"
-                    >
-                        <EmptyStateDataPreview />
-                    </ComponentShowcase>
+          {/* Data */}
+          <ComponentShowcase
+            title="Sem Dados (com Ação)"
+            description="Estado inicial de uma lista ou tabela vazia, encorajando o primeiro cadastro."
+            code={emptyDataCode}
+            previewClassName="p-6"
+          >
+            <EmptyStateDataPreview />
+          </ComponentShowcase>
 
-                    {/* API Reference */}
-                    <div className="pt-12 border-t border-[var(--border)]">
-                        <PropsTable props={emptyStateProps} />
-                    </div>
-                </div>
-            </main>
+          {/* API Reference */}
+          <div className="border-t border-[var(--border)] pt-12">
+            <PropsTable props={emptyStateProps} />
+          </div>
         </div>
-    );
+      </main>
+    </div>
+  );
 }
